@@ -57,26 +57,16 @@ O desenvolvimento do sistema será realizado com base em etapas bem definidas:
     composer install
     ```
 
-3. Instale as dependências do Node.js:
-    ```bash
-    npm install
-    ```
+3. Configure o arquivo `.env` com suas credenciais de banco de dados.
 
-4. Configure o arquivo `.env` com suas credenciais de banco de dados.
-
-5. Execute as migrações do banco de dados:
+4. Execute as migrações do banco de dados:
     ```bash
     php artisan migrate
     ```
 
-6. Inicie o servidor de desenvolvimento:
+5. Inicie o servidor de desenvolvimento:
     ```bash
     php artisan serve
-    ```
-
-7. Compile os assets do frontend:
-    ```bash
-    npm run dev
     ```
 
 ### Contribuição
