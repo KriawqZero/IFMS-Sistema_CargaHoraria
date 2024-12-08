@@ -1,13 +1,13 @@
 # IFMS-Sistema_CargaHoraria
 
 ## Tema
-Desenvolvimento de um software WEB para gerenciamento de carga horária de atividades diversificadas realizadas pelos alunos dos cursos técnicos do Campus Corumbá
+Desenvolvimento de um software WEB para gerenciamento de carga horária de atividades diversificadas realizadas pelos alunos dos cursos técnicos do Campus Corumbá.
 
 ## Justificativa
-Tendo em vista o envio obrigatório das cargas horárias, identificamos que a atual logística e organização não favorece o acompanhamento do aluno sobre seu quantitativo de horas entregue e sobrecarrega o professor responsável por validar as atividades diversificadas. Neste contexto, desenvolver um sistema de gerenciamento de carga horária de atividades diversificadas pode melhorar a qualidade de tramitação destes certificados internamente, facilitando a comunicação, validação e acompanhamento do processo pelos envolvidos.
+O envio obrigatório das cargas horárias atualmente apresenta dificuldades logísticas e organizacionais que não favorecem o acompanhamento do aluno sobre seu quantitativo de horas entregue, além de sobrecarregar o professor responsável por validar as atividades diversificadas. Nesse contexto, desenvolver um sistema de gerenciamento de carga horária de atividades diversificadas pode melhorar a qualidade da tramitação desses certificados internamente, facilitando a comunicação, validação e acompanhamento do processo pelos envolvidos.
 
 ## Problema
-O IFMS prevê que os alunos acumulem Atividades Diversificadas dentro do período de realização do curso, atividades que geram certificados. Dessa forma, deve-se cumprir o mínimo de carga horária de 125 horas, de acordo com o previsto nos Projetos Pedagógicos dos Cursos (PPC) técnicos. Criar um sistema que facilite o envio e validação de certificados, além de permitir verificar o número de horas a serem cumpridas pelo estudante.
+Os alunos do IFMS devem acumular Atividades Diversificadas dentro do período de realização do curso, atividades que geram certificados. É necessário cumprir o mínimo de carga horária de 125 horas, conforme previsto nos Projetos Pedagógicos dos Cursos (PPC) técnicos. Atualmente, não há um sistema eficiente para facilitar o envio e validação de certificados, além de permitir verificar o número de horas a serem cumpridas pelo estudante.
 
 ## Objetivo Geral
 Desenvolver um Sistema WEB de Gerenciamento de carga horária de atividades diversificadas para os cursos técnicos do Campus Corumbá.
