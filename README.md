@@ -3,6 +3,8 @@ https://www.figma.com/design/meaMHV4yA26OY9ZkBSnKh0/Sistema-De-Gerenciamento-de-
 
 # IFMS-Sistema_CargaHoraria
 
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=KriawqZero&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
 ## Tema
 Desenvolvimento de um software WEB para gerenciamento de carga horária de atividades diversificadas realizadas pelos alunos dos cursos técnicos do Campus Corumbá.
 
