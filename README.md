@@ -38,7 +38,10 @@ O desenvolvimento do sistema será realizado com base em etapas bem definidas:
 - **Frontend:** Tailwind, Bootstrap
 - **Banco de Dados:** MariaDB
 - **Prototipagem:** Figma
+ 
+### Ambiente de desenvolvimento:
 - **API de Teste:** C#
+- **Backend:** Docker, Docker-compose
 
 ## Como configurar e rodar o projeto
 
@@ -70,6 +73,52 @@ O desenvolvimento do sistema será realizado com base em etapas bem definidas:
 5. Inicie o servidor de desenvolvimento:
     ```bash
     php artisan serve
+    ```
+
+## Utilizando Docker
+
+### Inicializando o Container Docker
+
+Para facilitar o processo de configuração e execução do projeto, você pode utilizar Docker. Siga os passos abaixo para inicializar os containers Docker:
+
+1. Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.
+
+2. Crie e configure o arquivo `.env` com suas credenciais de banco de dados, se ainda não o fez.
+
+3. Suba os containers definidos no arquivo `docker-compose.yml`:
+    ```bash
+    docker-compose up -d
+    ```
+
+4. Verifique os containers em execução:
+    ```bash
+    docker-compose ps
+    ```
+
+5. Acesse o banco de dados MariaDB:
+    ```bash
+    docker exec -it mariadb_local bash
+    mysql -u root -p
+    ```
+
+6. Para parar os containers:
+    ```bash
+    docker-compose stop
+    ```
+
+7. Para remover os containers e volumes associados:
+    ```bash
+    docker-compose down -v
+    ```
+
+8. Para visualizar os logs de um serviço específico, por exemplo, do phpMyAdmin:
+    ```bash
+    docker-compose logs phpmyadmin
+    ```
+
+9. Para reconstruir as imagens após alterações no `docker-compose.yml`:
+    ```bash
+    docker-compose build
     ```
 
 ### Contribuição
