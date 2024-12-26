@@ -1,0 +1,26 @@
+iversion: '3.9'
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb_local
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: sistema_carga_horaria
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user123
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    container_name: adminer_local
+    restart: always
+    ports:
+      - "8080:8080"
+
+volumes:
+  mariadb_data:
+
