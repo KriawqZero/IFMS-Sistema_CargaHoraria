@@ -1,4 +1,3 @@
-iversion: '3.9'
 services:
   mariadb:
     image: mariadb:latest
@@ -12,14 +11,18 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: user123
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - mariadb_data:/var/lib/mariadb
 
-  adminer:
-    image: adminer
-    container_name: adminer_local
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_local
     restart: always
     ports:
-      - "8080:8080"
+      - "7050:80"
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: user
+      PMA_PASSWORD: user123
 
 volumes:
   mariadb_data:
