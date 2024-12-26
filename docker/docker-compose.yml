@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
-iversion: '3.9'
->>>>>>> 83a530f76129fc0accf7e3fba9f493630ebd4cee
+version: "3.9" # or a higher compatible version
+
 services:
   mariadb:
     image: mariadb:latest
@@ -15,7 +13,6 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: user123
     volumes:
-<<<<<<< HEAD
       - mariadb_data:/var/lib/mariadb
 
   phpmyadmin:
@@ -28,17 +25,10 @@ services:
       PMA_HOST: mariadb
       PMA_USER: user
       PMA_PASSWORD: user123
-=======
+    depends_on:
+      - mariadb
+    volumes:
       - mariadb_data:/var/lib/mysql
-
-  adminer:
-    image: adminer
-    container_name: adminer_local
-    restart: always
-    ports:
-      - "8080:8080"
->>>>>>> 83a530f76129fc0accf7e3fba9f493630ebd4cee
 
 volumes:
   mariadb_data:
-
