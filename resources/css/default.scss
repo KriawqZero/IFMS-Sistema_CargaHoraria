@@ -1,0 +1,163 @@
+// Definindo variáveis
+$primary-color: green;
+$secondary-color: #228b22;
+$text-color: black;
+$background-color: rgba(102, 156, 31, 0.712);
+$font-family: 'Arial', sans-serif;
+$border-radius: 30px;
+$input-background: #ddd;
+$input-focus-background: #eee;
+$card-bg-color: #fff;
+$card-shadow: rgba(0, 0, 0, 0.1);
+
+// #header
+$header-height: 110px;
+$header-padding: 30px;
+
+#header {
+    top: 0;
+    color: $text-color;
+    background-color: $primary-color;
+    height: $header-height;
+    padding: $header-padding;
+    display: flex;
+    align-items: center;
+
+    img {
+        max-height: 100px;
+        width: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: $text-color;
+        text-shadow: 2px 2px 4px rgba(241, 4, 4, 0.3);
+        margin: 0;
+        padding: 10px 20px;
+        background-color: $background-color;
+        border-radius: 8px;
+        position: absolute;
+        top: 30px;
+        left: 40px;
+        font-family: $font-family;
+        text-align: left;
+    }
+}
+
+// #menu
+$menu-background-image: url('../imagens/background.png');
+$menu-height: 100vh;
+
+#menu {
+    background-image: $menu-background-image;
+    background-size: cover;
+    background-position: center;
+    height: $menu-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Título dentro do menu
+    .title {
+        font-size: 1.5rem;
+        color: white;
+    }
+}
+
+// .card (Cartão de login)
+$card-border-radius: 20px;
+$card-padding: 20px;
+$card-max-width: 400px;
+
+.card {
+    border: none;
+    border-radius: $card-border-radius;
+    padding: $card-padding;
+    box-shadow: 0 4px 10px $card-shadow;
+    background-color: $card-bg-color;
+    max-width: $card-max-width;
+    width: 100%;
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+        color: $text-color;
+    }
+}
+
+// Inputs (CPF e Senha)
+$input-font-size: 1rem;
+$input-padding: 10px 15px;
+$input-transition: all 0.3s ease;
+
+input.form-control {
+    border-radius: $border-radius;
+    background-color: $input-background;
+    border: none;
+    padding: $input-padding;
+    font-size: $input-font-size;
+    transition: $input-transition;
+
+    &:focus {
+        background-color: $input-focus-background;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        outline: none;
+    }
+}
+
+// Botões (Entrar)
+$btn-padding: 10px 0;
+$btn-font-size: 1rem;
+$btn-font-weight: bold;
+$btn-transition: all 0.3s ease;
+
+button.btn-primary {
+    background-color: $secondary-color;
+    border: none;
+    border-radius: $border-radius;
+    padding: $btn-padding;
+    font-size: $btn-font-size;
+    font-weight: $btn-font-weight;
+    transition: $btn-transition;
+
+    &:hover {
+        background-color: darken($secondary-color, 10%);
+        transform: scale(1.05);
+    }
+}
+
+// Link "Entrar como servidor"
+$link-font-size: 0.8rem;
+$link-hover-color: darken($secondary-color, 10%);
+
+a.small {
+    font-size: $link-font-size;
+    color: $secondary-color;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: $link-hover-color;
+        text-decoration: underline;
+    }
+}
+
+// #rodape (Rodapé)
+$footer-height: $header-height;
+$footer-padding: $header-padding;
+
+#rodape {
+    background-color: $primary-color;
+    height: $footer-height;
+    padding: $footer-padding;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

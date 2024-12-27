@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Certificado extends Model
+class Professor extends Model
 {
     //
 }

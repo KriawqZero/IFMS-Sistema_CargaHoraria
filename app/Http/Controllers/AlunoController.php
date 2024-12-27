@@ -7,11 +7,16 @@ use Illuminate\Support\Facades\Http;
 
 class AlunoController extends Controller {
     public function showLoginForm() {
-        return view('Login/alunoLogin');
+        return view('aluno/login', [
+            'titulo' => 'Entrar',
+            'noHeader' => true,
+        ]);
     }
 
     public function index() {
-        return view('Index/alunoIndex');
+        return view('aluno/dashboard', [
+            'titulo' => 'Visão Geral',
+        ]);
     }
 
     public function processLogin(Request $request) {
@@ -23,7 +28,7 @@ class AlunoController extends Controller {
         $token = session('token');
 
         if(!$token)
-            return response()->json(['message' => 'Permissão negada. Token ausente'], 403);
+            return response()->json(['message' => 'Permissão negada. Token ausente']);
 
         $headers = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
@@ -49,5 +54,3 @@ class AlunoController extends Controller {
         ], $response->status());
     }
 }
-
-

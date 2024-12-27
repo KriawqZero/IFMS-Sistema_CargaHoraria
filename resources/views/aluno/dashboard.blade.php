@@ -1,15 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Index Web</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+@extends('layouts.app')
 
+@section('titulo', $titulo)
     <!-- Header -->
     <header class="container-fluid p-3 bg-success text-white d-flex align-items-center">
       <img src="ifmslogo.png" alt="Logo IFMS" class="me-3" style="height: 50px;">
@@ -39,7 +30,8 @@
       </div>
     </header>
 
-    <!-- Total de Horas -->
+@section('main')
+  <!-- Total de Horas -->
     <section class="container my-4">
       <div class="card p-4 shadow-sm">
         <h4>Total de Horas: 93,75 H</h4>
@@ -95,7 +87,4 @@
         </table>
       </div>
     </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+@endsection
