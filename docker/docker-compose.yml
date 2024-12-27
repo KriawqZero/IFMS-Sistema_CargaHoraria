@@ -1,5 +1,3 @@
-version: "3.9" # or a higher compatible version
-
 services:
   mariadb:
     image: mariadb:latest
@@ -9,11 +7,13 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: sistema_carga_horaria
       MYSQL_USER: user
       MYSQL_PASSWORD: user123
+      MYSQL_DATABASE: sistema_carga_horaria
     volumes:
-      - mariadb_data:/var/lib/mariadb
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - shared_network
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -23,12 +23,19 @@ services:
       - "7050:80"
     environment:
       PMA_HOST: mariadb
-      PMA_USER: user
-      PMA_PASSWORD: user123
+      PMA_USER: root
+      PMA_PASSWORD: root123
     depends_on:
       - mariadb
-    volumes:
-      - mariadb_data:/var/lib/mysql
+    networks:
+      - shared_network
 
 volumes:
   mariadb_data:
+    driver: local
+
+networks:
+  shared_network:  # Nome fixo para a rede compartilhada
+    name: shared_network
+    driver: bridge
+

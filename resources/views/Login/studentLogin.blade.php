@@ -28,29 +28,30 @@
 </head>
 <body>
     <div class="container d-flex align-items-center justify-content-center min-vh-100">
+
         <div class="container-custom w-100" style="max-width: 400px;">
             <h1 class="text-center text-white mb-4">Login Estudante</h1>
             <p class="text-center text-white mb-4">Bem-vindo ao sistema de acesso de estudantes.</p>
-            <form method="POST" action="/login">
+
+            <form method="POST" action="{{ url('login') }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="email" class="form-label text-white">E-mail Institucional</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="exemplo@ifms.edu.br" required>
+                    <label for="cp" class="form-label text-white">CPF</label>
+                    <input type="text" id="cpf" name="cpf" class="form-control" placeholder="00000000000" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label text-white">Senha</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Sua senha" required>
+                    <input type="password" id="senha" name="senha" class="form-control" placeholder="Sua senha" required>
                 </div>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-custom">Entrar</button>
                 </div>
             </form>
+
             <div class="text-center mt-3">
                 <a href="#" class="text-white">Esqueceu a senha?</a>
             </div>
-            <div class="text-center mt-2">
-                <a href="/register" class="text-white">Cadastrar-se</a>
-            </div>
+
         </div>
     </div>
 </body>
