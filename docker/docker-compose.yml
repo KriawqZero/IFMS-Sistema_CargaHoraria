@@ -1,0 +1,41 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb_local
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user123
+      MYSQL_DATABASE: sistema_carga_horaria
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - shared_network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_local
+    restart: always
+    ports:
+      - "7050:80"
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: root
+      PMA_PASSWORD: root123
+    depends_on:
+      - mariadb
+    networks:
+      - shared_network
+
+volumes:
+  mariadb_data:
+    driver: local
+
+networks:
+  shared_network:  # Nome fixo para a rede compartilhada
+    name: shared_network
+    driver: bridge
+
