@@ -1,0 +1,95 @@
+#header {
+    top: 0; /* Mantém o header no topo */
+    color: black; /* Define a cor do texto como preta */
+    background-color: black; /* Troca o fundo para preto */
+    height: 110px;
+    padding: 30px; /* Diminui o espaçamento interno */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+}
+
+#header img {
+    max-height: 100px; /* Limita a altura da imagem para 20rem */
+    width: auto; /* Mantém a proporção da imagem */
+    height: auto; /* Permite ajustar a altura automaticamente */
+    position: absolute; /* Permite o posicionamento absoluto dentro do #header */
+    top: 0; /* Posiciona a imagem no topo */
+    right: 0; /* Posiciona a imagem no canto superior direito */
+}
+
+#header h1 {
+    font-size: 2.5rem; /* Aumenta o tamanho do texto */
+    font-weight: bold; /* Deixa o texto mais destacado */
+    color: transparent; /* Torna o texto transparente */
+    background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0); /* Gradiente holográfico */
+    background-clip: text; /* Aplica o gradiente ao texto */
+    -webkit-background-clip: text; /* Compatibilidade com Webkit */
+    -webkit-text-fill-color: transparent; /* Remove a cor sólida do texto */
+    text-shadow: none; /* Remove a sombra existente */
+    margin: 0;
+    padding: 10px 20px; /* Adiciona espaço interno ao redor do texto */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    border-radius: 8px; /* Arredonda os cantos do fundo */
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    font-family: 'Arial', sans-serif;
+    text-align: left;
+}
+
+#menu {
+    background-image: url('background.png'); 
+    background-size: cover; 
+    background-position: center; 
+    height: 100vh;
+}
+
+/* Títulos */
+#menu h1 {
+    font-size: 2rem; /* Tamanho ajustado */
+    color: transparent; /* Torna o texto transparente */
+    background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0); /* Gradiente holográfico */
+    background-clip: text; /* Aplica o gradiente ao texto */
+    -webkit-background-clip: text; /* Compatibilidade com Webkit */
+    -webkit-text-fill-color: transparent; /* Remove a cor sólida do texto */
+    text-shadow: none; /* Remove sombra existente */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Botão Entrar */
+button.btn-primary {
+    background-color: black; /* Troca para preto */
+    border: none; /* Remove borda */
+    border-radius: 30px; /* Bordas arredondadas */
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Adiciona transição para fluidez */
+}
+
+button.btn-primary:hover {
+    background-color: #333; /* Cor preta mais clara ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no tamanho para efeito de interação */
+}
+
+/* Link Entrar como servidor */
+a.small {
+    font-size: 0.8rem; /* Texto pequeno */
+    color: black; /* Preto */
+    text-decoration: none; /* Remove o sublinhado */
+    transition: color 0.3s ease; /* Adiciona transição para fluidez */
+}
+
+a.small:hover {
+    color: #555; /* Tom mais claro ao passar o mouse */
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+#rodape {
+    background-color: black; /* Troca o fundo para preto */
+    height: 110px;
+    padding: 30px;
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+}
