@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  laravel-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - laravel_data:/var/www/html
+    networks:
+      - shared_network
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=3UQRwY1sg7OmNkrgOL2CMD9h05k09VhTIGMJPBW7V82OD77YwuGxOR894ECRUEvYyDHcw6h5kl2mKIOctwb0zjKgkf3CPDolxttDOMpC8irTSHiavmHO6CfD8EQ6ATum
+
+volumes:
+  laravel_data:
+    driver: local
+
+networks:
+  shared_network:
+    external: true
+

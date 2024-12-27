@@ -18,3 +18,4 @@ Route::get('index', [AlunoController::class, 'index'])
 Route::get('/', function () {
     return view('Enviar/enviarCertificado');
 });
+
