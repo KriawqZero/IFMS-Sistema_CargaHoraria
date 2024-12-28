@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  api-csharp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_csharp_local
+    restart: always
+    ports:
+      - "5000:80" # Mapeia a porta 5000 do host para a porta 80 do container
+      - "5001:443" # HTTPS
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
