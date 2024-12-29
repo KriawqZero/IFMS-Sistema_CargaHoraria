@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Http;
 
 class AlunoController extends Controller {
     public function loginForm() {
-        return view('Login/studentLogin');
+        return view('Login/alunoLogin');
     }
 
-    public function index() {
-        return view('welcome');
+    public function redirectToAlunoIndex() {
+        return view('Index/alunoIndex');
     }
 
     public function login(Request $request) {
@@ -25,13 +25,22 @@ class AlunoController extends Controller {
         if(!$token)
             return response()->json(['message' => 'Permissão negada. Token ausente']);
 
-        $response = Http::withHeaders([
+        $headers = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->get(env('API_URL') . 'Aluno/login', $credentials);
+        ]);
+        $response = $headers->get(env('API_URL') . 'Aluno/login', $credentials);
 
         if($response->successful()) {
-            $userData = $response->json();
-            return response()->json($userData);
+            $responseData = $response->json();
+
+            if($responseData['valido'] == true) {
+                session(['usuario' => $responseData]);
+                return redirect()->route('alunoIndex');
+            }
+
+            return back()
+                ->withErrors(['message' => 'Usuario ou senha incorretos.'])
+                ->withInput();
         }
 
         return response()->json([

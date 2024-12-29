@@ -5,16 +5,14 @@ use App\Http\Middleware\AutenticarUsuario;
 use App\Http\Middleware\JWTTokenMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('login', [AlunoController::class, 'loginForm'])
+Route::get('/', [AlunoController::class, 'loginForm'])
     ->name('login')
     ->middleware(JWTTokenMiddleware::class);
 
-Route::post('login', [AlunoController::class, 'login']);
+Route::post('/', [AlunoController::class, 'login']);
 
-Route::get('index', [AlunoController::class, 'index'])
-    ->name('index')
+Route::get('aluno', [AlunoController::class, 'redirectToAlunoIndex'])
+    ->name('alunoIndex')
     ->middleware(AutenticarUsuario::class);
 
-Route::get('/', function () {
-    return view('Enviar/enviarCertificado');
-});
+

@@ -16,9 +16,9 @@ class AutenticarUsuario
     public function handle(Request $request, Closure $next): Response
     {
         if(!session()->has('usuario'))
-            return redirect()->route('login')->with(
-                'error', 'Você precisa estar autenticado para acessar essa pagina'
-            );
+            return redirect()
+                ->route('/')
+                ->with('error', 'Você precisa estar autenticado para acessar essa pagina');
 
         return $next($request);
     }
