@@ -5,14 +5,15 @@ use App\Http\Middleware\AutenticarUsuario;
 use App\Http\Middleware\JWTTokenMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AlunoController::class, 'loginForm'])
-    ->name('login')
+Route::get('/', [AlunoController::class, 'showLoginForm'])
+    ->name('aluno.login.post')
     ->middleware(JWTTokenMiddleware::class);
 
-Route::post('/', [AlunoController::class, 'login']);
+Route::post('/', [AlunoController::class, 'processLogin'])
+    ->name('aluno.login.post');
 
-Route::get('aluno', [AlunoController::class, 'redirectToAlunoIndex'])
-    ->name('alunoIndex')
+Route::get('aluno', [AlunoController::class, 'index'])
+    ->name('aluno.index')
     ->middleware(AutenticarUsuario::class);
 
 

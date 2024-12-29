@@ -17,7 +17,7 @@ class AutenticarUsuario
     {
         if(!session()->has('usuario'))
             return redirect()
-                ->route('/')
+                ->route('aluno.login')
                 ->with('error', 'Você precisa estar autenticado para acessar essa pagina');
 
         return $next($request);

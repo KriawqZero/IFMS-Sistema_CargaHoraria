@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class AlunoController extends Controller {
-    public function loginForm() {
+    public function showLoginForm() {
         return view('Login/alunoLogin');
     }
 
-    public function redirectToAlunoIndex() {
+    public function index() {
         return view('Index/alunoIndex');
     }
 
-    public function login(Request $request) {
+    public function processLogin(Request $request) {
         $credentials = $request->validate([
             'cpf' => 'required|string',
             'senha' => 'required|string',
@@ -35,7 +35,7 @@ class AlunoController extends Controller {
 
             if($responseData['valido'] == true) {
                 session(['usuario' => $responseData]);
-                return redirect()->route('alunoIndex');
+                return redirect()->route('aluno.index');
             }
 
             return back()

@@ -32,8 +32,8 @@
         <div class="container-custom w-100" style="max-width: 400px;">
             <h1 class="text-center text-white mb-4">Login Estudante</h1>
             <p class="text-center text-white mb-4">Bem-vindo ao sistema de acesso de estudantes.</p>
-            if
-            <form method="POST" action="{{ url('/') }}">
+
+            <form method="POST" action="{{ route('aluno.login.post') }}">
                 @csrf
                 <div class="mb-3">
                     <label for="cp" class="form-label text-white">CPF</label>

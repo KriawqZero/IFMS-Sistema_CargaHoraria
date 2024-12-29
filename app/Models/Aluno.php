@@ -12,5 +12,8 @@ class Aluno extends Model
         'cpf'
     ];
 
+    public function certificados() {
+        return $this->hasMany(Certificado::class);
+    }
 
 }
