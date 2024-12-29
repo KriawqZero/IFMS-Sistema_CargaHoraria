@@ -27,7 +27,7 @@ class AlunoController extends Controller {
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->get('http://localhost:5000/api/Aluno/login', $credentials);
+        ])->get(env('API_URL') . 'Aluno/login', $credentials);
 
         if($response->successful()) {
             $userData = $response->json();
