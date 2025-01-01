@@ -23,7 +23,7 @@ class AlunoController extends Controller {
         $token = session('token');
 
         if(!$token)
-            return response()->json(['message' => 'Permissão negada. Token ausente']);
+            return response()->json(['message' => 'Permissão negada. Token ausente'], 403);
 
         $headers = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
@@ -49,3 +49,5 @@ class AlunoController extends Controller {
         ], $response->status());
     }
 }
+
+

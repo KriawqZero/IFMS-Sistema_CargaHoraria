@@ -6,7 +6,7 @@ use App\Http\Middleware\JWTTokenMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AlunoController::class, 'showLoginForm'])
-    ->name('aluno.login.post')
+    ->name('aluno.login')
     ->middleware(JWTTokenMiddleware::class);
 
 Route::post('/', [AlunoController::class, 'processLogin'])
