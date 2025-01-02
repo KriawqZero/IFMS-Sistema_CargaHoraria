@@ -1,46 +1,9 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Index Web</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+@extends('layouts.app')
 
-    <!-- Header -->
-    <header class="container-fluid p-3 bg-success text-white d-flex align-items-center">
-      <img src="ifmslogo.png" alt="Logo IFMS" class="me-3" style="height: 50px;">
-      <h5 class="mb-0">INSTITUTO FEDERAL<br><small>Mato Grosso do Sul</small></h5>
-      <nav class="navbar navbar-expand-lg ms-auto">
-        <div class="container-fluid">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">Visão Geral</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">Detalhamento</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="#">Enviar Certificado</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div class="d-flex align-items-center">
-        <div class="position-relative me-3">
-          <i class="fas fa-bell fs-4 text-white"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            1
-          </span>
-        </div>
-        <button class="btn btn-outline-light">Sair</button>
-      </div>
-    </header>
+@section('titulo', $titulo)
 
-    <!-- Total de Horas -->
+@section('main')
+  <!-- Total de Horas -->
     <section class="container my-4">
       <div class="card p-4 shadow-sm">
         <h4>Total de Horas: 93,75 H</h4>
@@ -96,7 +59,4 @@
         </table>
       </div>
     </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+@endsection

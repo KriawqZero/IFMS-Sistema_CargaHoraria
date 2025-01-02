@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Sistema de Carga Horária</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+@extends('layouts.app')
 
-    @vite('resources/css/aluno/login.scss')
-  </head>
-  <body>
-    <header id="header" class="container-fluid"> <!-- inicio do header -->
-      <div class="row">
-        <div class="col-md-6">
-     <img class="img-fluid" src="ifmslogo.png" alt="">
+@section('titulo', $titulo)
+
+
+<header id="header" class="container-fluid"> <!-- inicio do header -->
+  <div class="row">
+    <div class="col-md-6">
+      <img class="img-fluid" src="ifmslogo.png" alt="">
     </div>
     <div class="col-md-4">
       <h1>Sistema de Carga Horária</h1>
     </div>
-    </div>
-  </header> <!-- fim do header -->
+  </div>
+</header> <!-- fim do header -->
 
+
+@section('main')
   <section id="menu" class="container-fluid"><!-- inicio do menu -->
     <div class="container vh-100 d-flex justify-content-center align-items-center">
       <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px;">
           <h3 class="text-center mb-4">Login</h3>
-
           <!-- Formulário -->
           <form method="POST" action="{{ route('aluno.login.post') }}">
               @csrf
@@ -49,21 +44,8 @@
                 <a href="../LoginServidor/loginservidor.html" class="small">Entrar como servidor</a>
               </div>
           </form>
+        </div>
       </div>
-  </div>
-
-  </section><!-- fim do menu -->
-
-  <footer id="rodape">
-    <div class="row">
-      <div class="col-12">
-        <p></p>
-      </div>
-    </div>
-  </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-
-</html>
+  </section>
+@endsection
 
