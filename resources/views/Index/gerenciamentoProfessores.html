@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Professores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Header -->
+    <header class="bg-white shadow fixed-top">
+        <div class="container d-flex justify-content-between align-items-center py-3 px-4">
+            <h1 class="h4 text-primary mb-0">Gerenciamento de Professores</h1>
+            <nav>
+                <a href="#" class="text-dark text-decoration-none mx-3">Dashboard</a>
+                <a href="#" class="text-dark text-decoration-none mx-3">Relatórios</a>
+                <a href="#" class="text-dark text-decoration-none mx-3">Configurações</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mt-5 pt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="h4">Professores Cadastrados</h2>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProfessorModal">Adicionar Novo Professor</button>
+        </div>
+
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Turma Responsável</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Maria Silva</td>
+                    <td>maria.silva@example.com</td>
+                    <td>Turma A</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning">Editar</button>
+                        <button class="btn btn-sm btn-danger">Remover</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>João Souza</td>
+                    <td>joao.souza@example.com</td>
+                    <td>Turma B</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning">Editar</button>
+                        <button class="btn btn-sm btn-danger">Remover</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Add Professor Modal -->
+    <div class="modal fade" id="addProfessorModal" tabindex="-1" aria-labelledby="addProfessorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProfessorModalLabel">Adicionar Novo Professor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="senha" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="senha" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="turma" class="form-label">Turma</label>
+                            <select class="form-select" id="turma" required>
+                                <option value="">Selecione uma turma</option>
+                                <option value="Turma A">Turma A</option>
+                                <option value="Turma B">Turma B</option>
+                                <option value="Turma C">Turma C</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted py-3">
+        <p class="mb-0">IFMS - Campus Corumbá</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
