@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class AlunoController extends Controller {
     public function showLoginForm() {
-        return view('Login/alunoLogin');
+        return view('aluno/login');
     }
 
     public function index() {

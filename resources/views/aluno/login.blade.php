@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login Sistema de Carga Horária</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+
+    @vite('resources/css/aluno/login.scss')
   </head>
   <body>
     <header id="header" class="container-fluid"> <!-- inicio do header -->
       <div class="row">
         <div class="col-md-6">
-     <img  class="img-fluid" src="ifmslogo.png" alt="">
+     <img class="img-fluid" src="ifmslogo.png" alt="">
     </div>
     <div class="col-md-4">
       <h1>Sistema de Carga Horária</h1>
@@ -25,8 +26,8 @@
           <h3 class="text-center mb-4">Login</h3>
 
           <!-- Formulário -->
-          <form>
-              <!-- CPF -->
+          <form method="POST" action="{{ route('aluno.login.post') }}">
+              @csrf
               <div class="mb-3">
                   <label for="cpf" class="form-label">CPF</label>
                   <input type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" required>
@@ -37,17 +38,15 @@
                   <label for="senha" class="form-label">Senha</label>
                   <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required>
               </div>
-              
-                            <!-- Botão Entrar como link -->
-            <a href="../Index/menu.html">
-              <button type="button" class="btn btn-primary w-100">Entrar</button>
-            </a>
 
-  
+              <!-- Botão Entrar como link -->
+              <a href="../Index/menu.html">
+                <button type="button" class="btn btn-primary w-100">Entrar</button>
+              </a>
+
               <!-- Link para "Entrar como servidor" -->
               <div class="text-center mt-3">
                 <a href="../LoginServidor/loginservidor.html" class="small">Entrar como servidor</a>
-
               </div>
           </form>
       </div>
@@ -66,7 +65,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 
-</html>
-=======
 </html>
 
