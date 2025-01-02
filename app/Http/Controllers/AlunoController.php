@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class AlunoController extends Controller {
-    public function loginForm() {
-        return view('Login/studentLogin');
+    public function showLoginForm() {
+        return view('Login/alunoLogin');
     }
 
     public function index() {
-        return view('welcome');
+        return view('Index/alunoIndex');
     }
 
-    public function login(Request $request) {
+    public function processLogin(Request $request) {
         $credentials = $request->validate([
             'cpf' => 'required|string',
             'senha' => 'required|string',
@@ -23,15 +23,24 @@ class AlunoController extends Controller {
         $token = session('token');
 
         if(!$token)
-            return response()->json(['message' => 'Permissão negada. Token ausente']);
+            return response()->json(['message' => 'Permissão negada. Token ausente'], 403);
 
-        $response = Http::withHeaders([
+        $headers = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->get('http://localhost:5000/api/Aluno/login', $credentials);
+        ]);
+        $response = $headers->get(env('API_URL') . 'Aluno/login', $credentials);
 
         if($response->successful()) {
-            $userData = $response->json();
-            return response()->json($userData);
+            $responseData = $response->json();
+
+            if($responseData['valido'] == true) {
+                session(['usuario' => $responseData]);
+                return redirect()->route('aluno.index');
+            }
+
+            return back()
+                ->withErrors(['message' => 'Usuario ou senha incorretos.'])
+                ->withInput();
         }
 
         return response()->json([
@@ -40,3 +49,5 @@ class AlunoController extends Controller {
         ], $response->status());
     }
 }
+
+
