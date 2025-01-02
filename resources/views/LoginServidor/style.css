@@ -1,95 +1,99 @@
-#header {
-    top: 0; /* Mantém o header no topo */
-    color: black; /* Define a cor do texto como preta */
-    background-color: black; /* Troca o fundo para preto */
-    height: 110px;
-    padding: 30px; /* Diminui o espaçamento interno */
-    display: flex;
-    align-items: center; /* Centraliza verticalmente */
-}
-
-#header img {
-    max-height: 100px; /* Limita a altura da imagem para 20rem */
-    width: auto; /* Mantém a proporção da imagem */
-    height: auto; /* Permite ajustar a altura automaticamente */
-    position: absolute; /* Permite o posicionamento absoluto dentro do #header */
-    top: 0; /* Posiciona a imagem no topo */
-    right: 0; /* Posiciona a imagem no canto superior direito */
-}
-
-#header h1 {
-    font-size: 2.5rem; /* Aumenta o tamanho do texto */
-    font-weight: bold; /* Deixa o texto mais destacado */
-    color: transparent; /* Torna o texto transparente */
-    background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0); /* Gradiente holográfico */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatibilidade com Webkit */
-    -webkit-text-fill-color: transparent; /* Remove a cor sólida do texto */
-    text-shadow: none; /* Remove a sombra existente */
+/* === Geral === */
+body, html {
     margin: 0;
-    padding: 10px 20px; /* Adiciona espaço interno ao redor do texto */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
-    border-radius: 8px; /* Arredonda os cantos do fundo */
-    position: absolute;
-    top: 30px;
-    left: 40px;
-    font-family: 'Arial', sans-serif;
-    text-align: left;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden; /* Remove a barra de rolagem */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-#menu {
-    background-image: url('background.png'); 
-    background-size: cover; 
-    background-position: center; 
-    height: 100vh;
+/* === Header === */
+.header {
+    background-color: black;    
+    color: #2E7D32;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* Evita que o header diminua de tamanho */
 }
 
-/* Títulos */
-#menu h1 {
-    font-size: 2rem; /* Tamanho ajustado */
-    color: transparent; /* Torna o texto transparente */
-    background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0); /* Gradiente holográfico */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatibilidade com Webkit */
-    -webkit-text-fill-color: transparent; /* Remove a cor sólida do texto */
-    text-shadow: none; /* Remove sombra existente */
-    margin-bottom: 30px;
+/* Logo ajustada */
+.ifms-logo {
+    max-height: 70px; /* Aumenta o tamanho da logo */
+    height: auto;
+}
+
+/* Título do Header */
+.header-title {
+    background: linear-gradient(90deg, #c0c0c0, #e0e0e0, #ffffff, #e0e0e0, #c0c0c0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* === Menu === */
+.menu {
+    background: linear-gradient(135deg, #2E7D32, #4CAF50);
+    flex: 1; /* Ocupa o espaço restante entre header e footer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card de Login */
+.login-card {
+    background: #fff;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Título do Card */
+.login-card h4 {
+    font-weight: bold;
+    color: #2E7D32;
     text-align: center;
 }
 
-/* Botão Entrar */
-button.btn-primary {
-    background-color: black; /* Troca para preto */
-    border: none; /* Remove borda */
-    border-radius: 30px; /* Bordas arredondadas */
-    padding: 10px 0;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: all 0.3s ease; /* Adiciona transição para fluidez */
+/* Botão de Entrar */
+.btn-success {
+    background-color: #2E7D32;
+    border: none;
 }
 
-button.btn-primary:hover {
-    background-color: #333; /* Cor preta mais clara ao passar o mouse */
-    transform: scale(1.05); /* Leve aumento no tamanho para efeito de interação */
+.btn-success:hover {
+    background-color: #1B5E20;
 }
 
-/* Link Entrar como servidor */
-a.small {
-    font-size: 0.8rem; /* Texto pequeno */
-    color: black; /* Preto */
-    text-decoration: none; /* Remove o sublinhado */
-    transition: color 0.3s ease; /* Adiciona transição para fluidez */
+/* Link para Servidor */
+.text-center a {
+    color: #2E7D32;
 }
 
-a.small:hover {
-    color: #555; /* Tom mais claro ao passar o mouse */
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+.text-center a:hover {
+    text-decoration: underline;
 }
 
-#rodape {
-    background-color: black; /* Troca o fundo para preto */
-    height: 110px;
-    padding: 30px;
-    display: flex;
-    align-items: center; /* Centraliza verticalmente */
+/* === Footer === */
+.footer {
+    background-color:black;
+    color: #333;
+    width: 100%;
+    text-align: center;
+    padding: 5px; /* Altura ajustada */
+    font-size: 0.9rem; /* Fonte ajustada */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* Evita que o footer diminua de tamanho */
 }
+    

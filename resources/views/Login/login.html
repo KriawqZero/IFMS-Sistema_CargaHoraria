@@ -1,72 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Sistema de Carga Horária</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Instituto Federal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <header id="header" class="container-fluid"> <!-- inicio do header -->
-      <div class="row">
-        <div class="col-md-6">
-     <img  class="img-fluid" src="ifmslogo.png" alt="">
-    </div>
-    <div class="col-md-4">
-      <h1>Sistema de Carga Horária</h1>
-    </div>
-    </div>
-  </header> <!-- fim do header -->
+    <!-- Header -->
+    <header class="header d-flex align-items-center justify-content-between px-4 py-2">
+      <img src="ifmslogo.png" alt="Instituto Federal Logo" class="ifms-logo">
+      <h1 class="header-title">Instituto Federal de Mato Grosso do Sul</h1>
+    </header>
 
-  <section id="menu" class="container-fluid"><!-- inicio do menu -->
-    <div class="container vh-100 d-flex justify-content-center align-items-center">
-      <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px;">
-          <h3 class="text-center mb-4">Login</h3>
+    <!-- Menu (Login) -->
+    <section class="menu d-flex justify-content-center align-items-center">
+      <div class="login-card p-4 rounded shadow">
+        <h4 class="text-center mb-4">Login como Estudante</h4>
+        <form>
+          <!-- CPF -->
+          <div class="mb-3">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" required>
+          </div>
 
-          <!-- Formulário -->
-          <form>
-              <!-- CPF -->
-              <div class="mb-3">
-                  <label for="cpf" class="form-label">CPF</label>
-                  <input type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" required>
-              </div>
+          <!-- Senha -->
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required>
+          </div>
 
-              <!-- Senha -->
-              <div class="mb-3">
-                  <label for="senha" class="form-label">Senha</label>
-                  <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required>
-              </div>
-              
-                            <!-- Botão Entrar como link -->
-            <a href="../Index/menu.html">
-              <button type="button" class="btn btn-primary w-100">Entrar</button>
-            </a>
+          <!-- Botão Entrar -->
+          <button type="submit" class="btn btn-success w-100"><a href="../Index/menu.html" class="small">Entrar</a></button>
+          
 
-  
-              <!-- Link para "Entrar como servidor" -->
-              <div class="text-center mt-3">
-                <a href="../LoginServidor/loginservidor.html" class="small">Entrar como servidor</a>
-
-              </div>
-          </form>
+          <!-- Link para Servidor -->
+          <div class="text-center mt-3">
+            <a href="../LoginServidor/loginservidor.html" class="small">Entrar como Servidor</a>
+          </div>
+        </form>
       </div>
-  </div>
+    </section>
 
-  </section><!-- fim do menu -->
+    <!-- Footer -->
+    <footer class="footer text-center py-3">
+      <p>&copy; 2024 Instituto Federal de Mato Grosso do Sul. Todos os direitos reservados.</p>
+    </footer>
 
-  <footer id="rodape">
-    <div class="row">
-      <div class="col-12">
-        <p></p>
-      </div>
-    </div>
-  </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
-
 </html>
-=======
-</html>
-
