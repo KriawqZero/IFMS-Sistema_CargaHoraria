@@ -1,0 +1,20 @@
+body {
+    background: linear-gradient(to bottom, #007f00, #00a000);
+    font-family: Arial, sans-serif;
+  }
+  
+  .card {
+    border-radius: 20px;
+    background: #fff;
+  }
+  
+  .table {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .table th {
+    background: #007f00;
+    color: white;
+  }
+  
