@@ -29,6 +29,45 @@ body {
         height: 50px; // Ajuste conforme necessário para o logo
     }
 }
+//lOGIN
+/* Card de Login */
+.login-card {
+    background: #fff;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Título do Card */
+.login-card h4 {
+    font-weight: bold;
+    color: #2E7D32;
+    text-align: center;
+}
+
+/* Botão de Entrar */
+.btn-success {
+    background-color: #2E7D32;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #1B5E20;
+}
+
+/* Link para Servidor */
+.text-center a {
+    color: #2E7D32;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}
+
+
+
 //Footer
 #login-footer {
     background-color: $corheader;
