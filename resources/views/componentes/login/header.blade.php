@@ -1,4 +1,4 @@
-<header id="login-header" class="container-fluid p-3 bg-dark text-white">
+<header id="login-header" class="container-fluid p-3 text-white">
     <div class="row">
         <div class="col-md-6">
             <img class="img-fluid" src="{{ asset('images/ifmslogo.png') }}" alt="IFMS Logo">

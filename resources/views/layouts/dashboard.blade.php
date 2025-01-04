@@ -13,7 +13,7 @@
         @yield('main')
     </main>
 
-    @include('footers.dashboard.footer')
+    @include('componentes.dashboard.footer')
 
     @vite('resources/js/app.js')
 </body>
