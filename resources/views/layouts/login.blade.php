@@ -14,7 +14,7 @@
     </main>
 
     @include('componentes.login.footer')
-
+    @vite('resources/scss/login.scss')
     @vite('resources/js/app.js')
 </body>
 </html>
