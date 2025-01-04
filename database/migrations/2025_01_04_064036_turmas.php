@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('alunos', function (Blueprint $table) {
-            $table->id();
-            $table->string('cpf')->unique();
-            $table->string('nome');
-            $table->date('data_nascimento');
-            $table->string('codigo_turma')->references('codigo')->on('turmas')->ondelete('cascade');
+        Schema::create('turmas', function (Blueprint $table) {
+            $table->string('codigo')->primary();
+            $table->foreignId('professor_id')->constrained('professores')->ondelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alunos');
+        Schema::dropIfExists('turmas');
     }
 };

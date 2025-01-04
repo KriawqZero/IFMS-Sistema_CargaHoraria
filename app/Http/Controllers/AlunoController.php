@@ -13,7 +13,7 @@ class AlunoController extends Controller {
         ]);
     }
 
-    public function index() {
+    public function dashboard() {
         return view('aluno/dashboard', [
             'titulo' => 'Visão Geral',
         ]);
@@ -40,7 +40,7 @@ class AlunoController extends Controller {
 
             if($responseData['valido'] == true) {
                 session(['usuario' => $responseData]);
-                return redirect()->route('aluno.index');
+                return redirect()->route('aluno.dashboard');
             }
 
             return back()

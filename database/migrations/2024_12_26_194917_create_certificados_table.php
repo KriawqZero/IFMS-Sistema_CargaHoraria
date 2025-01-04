@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('certificados', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('aluno_id')
-                ->constrained('alunos');
+            $table->foreignId('aluno_id')->constrained('alunos')->ondelete('cascade');
             $table->string('tipo');
             $table->string('src');
             $table->text('observacao')->nullable();

@@ -1,0 +1,27 @@
+// Import Bootstrap SCSS
+@import 'bootstrap/scss/bootstrap';
+
+// Custom styles for dashboard
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    text-align: center;
+}
+
+.card {
+    border-radius: 0.5rem;
+}
+
+.progress-bar {
+    font-weight: bold;
+    text-align: center;
+}
