@@ -1,4 +1,4 @@
-@extends('layouts.dashboard-layout')
+@extends('layouts.dashboard')
 
 @section('titulo', $titulo)
 
