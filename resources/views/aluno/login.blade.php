@@ -21,13 +21,13 @@
                 <!-- CPF -->
                 <div class="mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" placeholder="Digite seu CPF">
+                    <input type="text" name="cpf" class="form-control" id="cpf" placeholder="Digite seu CPF">
                 </div>
 
                 <!-- Senha -->
                 <div class="mb-3">
                     <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Digite sua senha">
                 </div>
 
                 <!-- Botão Entrar -->
