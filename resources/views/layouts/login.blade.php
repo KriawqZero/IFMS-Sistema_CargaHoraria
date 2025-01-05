@@ -6,13 +6,13 @@
     <title>@yield('titulo')</title>
 
     @vite('resources/scss/app.scss')
-
-    @stack("styles")
+    @vite('resources/scss/login.scss')
+     
 </head>
 <body>
     @include('componentes.login.header')
 
-    <main>
+    <main class="d-flex flex-column min-vh-100">
         @yield('main')
     </main>
 

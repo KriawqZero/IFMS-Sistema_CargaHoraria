@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ProfessorController extends Controller {
     public function showLoginForm() {
         return view('professor/login', [
-            'titulo' => 'Servidor',
+            'titulo' => 'Login Servidor',
         ]);
     }
 
