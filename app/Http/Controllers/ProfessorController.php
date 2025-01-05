@@ -12,7 +12,6 @@ class ProfessorController extends Controller {
         ]);
     }
 
-
     public function dashboard() {
         return view('professor/dashboard', [
             'titulo' => 'Servidor'
