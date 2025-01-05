@@ -3,80 +3,102 @@
 
 // Variáveis
 $corheader: #00843D; // Verde padrão do Instituto Federal
-$cor-text-header: #000; // Preto para o texto do título
+$cor-text-header: #ffffff; // Preto para o texto do título
 
 
 // Custom styles for login
-body {
-    font-family: 'Nunito', sans-serif;
+html, body {
+font-family: 'Nunito', sans-serif;
+margin: 0;
+display: flex;
+flex-direction: column;
+height: 100vh; /* Garante que o corpo ocupa toda a tela */
+overflow: hidden; /* Remove a barra de rolagem */
 }
-// Estilo do Header
+// Style do Header
+
 #login-header {
-    background-color: $corheader;
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    gap: 0.5rem;
+background-color: $corheader;
+display: flex;
+align-items: center;
+justify-content: flex-start; /* Alinha os elementos ao lado esquerdo */
+padding: 0.5rem 1rem;
+gap: 1rem;
 
-    h1 {
-        margin: 0;
-        color: $cor-text-header;
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
+h1 {
+    white-space: nowrap; /* Impede a quebra de linha no título */
+margin: 0;
+color: $cor-text-header;
+font-size: 1.2rem;
+font-weight: bold;
+text-align: left; /* Remove o alinhamento à direita */
 
-    img {
-        height: 50px; // Ajuste conforme necessário para o logo
-    }
 }
-//lOGIN
-/* Card de Login */
+
+img {
+height: 50px; // Ajuste conforme necessário para o logo
+}
+}
+
+/// Centralização do conteúdo principal
+.menu {
+display: flex;
+justify-content: center; /* Centraliza horizontalmente */
+align-items: center; /* Centraliza verticalmente */
+flex: 1; /* Ocupa o espaço restante entre header e footer */
+min-height: calc(100vh - 120px); /* Altura da tela menos header e footer */
+padding: 20px;
+box-sizing: border-box;
+overflow: hidden; /* Garante que não haja overflow */
+}
+
+// Garantia de centralização correta do Card
 .login-card {
-    background: #fff;
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+background: #fff;
+width: 100%;
+max-width: 400px;
+border-radius: 10px;
+padding: 30px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+text-align: left;
 }
 
 /* Título do Card */
 .login-card h4 {
-    font-weight: bold;
-    color: #2E7D32;
-    text-align: center;
+font-weight: bold;
+color: #2E7D32;
+text-align: center;
+}
+.login-card .form-label {
+text-align: left; /* Alinha os labels à esquerda */
+display: block;
 }
 
 /* Botão de Entrar */
 .btn-success {
-    background-color: #2E7D32;
-    border: none;
+background-color: #2E7D32;
+border: none;
 }
 
 .btn-success:hover {
-    background-color: #1B5E20;
+background-color: #1B5E20;
 }
 
 /* Link para Servidor */
 .text-center a {
-    color: #2E7D32;
+color: #2E7D32;
 }
 
 .text-center a:hover {
-    text-decoration: underline;
+text-decoration: underline;
 }
-
-
 
 //Footer
 #login-footer {
-    background-color: $corheader;
-}
-
-.card {
-    border-radius: 0.5rem;
-}
-
-button {
-    font-weight: bold;
+background-color: $corheader;
+color: #fff;
+text-align: center;
+padding: 10px 0;
+font-size: 0.9rem;
+flex: 0 0 10%; /* Footer ocupa 10% da tela */
 }
