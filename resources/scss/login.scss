@@ -26,7 +26,7 @@ padding: 0.5rem 1rem;
 gap: 1rem;
 
 h1 {
-    white-space: nowrap; /* Impede a quebra de linha no título */
+white-space: nowrap; /* Impede a quebra de linha no título */
 margin: 0;
 color: $cor-text-header;
 font-size: 1.2rem;
@@ -101,4 +101,36 @@ text-align: center;
 padding: 10px 0;
 font-size: 0.9rem;
 flex: 0 0 10%; /* Footer ocupa 10% da tela */
+}
+
+#loginprofessor {
+    background-color: #f0f4f8; // Cor de fundo diferenciada para o servidor
+    color: #2c3e50; // Cor do texto para contraste
+
+    .form-container {
+        background-color: #ffffff; // Fundo do formulário
+        border: 2px solid #2c3e50; // Borda destacada
+        border-radius: 8px; // Arredondar bordas
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Sombras sutis
+    }
+
+    .btn {
+        background-color: #2c3e50; // Cor do botão
+        color: #ffffff;
+        border: none;
+
+        &:hover {
+            background-color: #1a242f; // Cor do botão ao passar o mouse
+        }
+    }
+
+    footer {
+        color: #2c3e50;
+        font-weight: bold;
+    }
+}
+
+.FootereHeaderProfessorLogin{
+    background-color: #1a242f !important ;
+
 }
