@@ -6,7 +6,8 @@
     <title>@yield('titulo')</title>
 
     @vite('resources/scss/app.scss')
-    @vite('resources/scss/login.scss')
+
+    @stack("styles")
 </head>
 <body>
     @include('componentes.login.header')

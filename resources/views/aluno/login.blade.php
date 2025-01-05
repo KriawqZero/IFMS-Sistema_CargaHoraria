@@ -2,6 +2,10 @@
 
 @section('titulo', $titulo)
 
+@push('styles')
+    @vite('resources/scss/login.scss')
+@endpush
+
 @section('main')
     <section class="menu d-flex justify-content-center align-items-center">
         <div class="login-card p-4 rounded shadow">
