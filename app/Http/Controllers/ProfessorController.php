@@ -8,13 +8,12 @@ class ProfessorController extends Controller {
     public function showLoginForm() {
         return view('professor/login', [
             'titulo' => 'Servidor',
-            'noHeader' => true
         ]);
     }
 
     public function dashboard() {
         return view('professor/dashboard', [
-            'titulo' => 'Servidor'
+            'titulo' => 'Servidor',
         ]);
     }
 

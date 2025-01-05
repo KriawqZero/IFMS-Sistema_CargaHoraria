@@ -11,7 +11,6 @@ class AlunoController extends Controller {
     public function showLoginForm() {
         return view('aluno/login', [
             'titulo' => 'Entrar',
-            'noHeader' => true,
         ]);
     }
 
@@ -42,9 +41,12 @@ class AlunoController extends Controller {
         }
 
         // Envia requisição à API externa.
-        $response = Http::withHeaders([
+        $response = Http::retry(3, 100)
+            ->withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->post(env('API_URL') . 'Aluno/login', $credentials);
+            ])
+            ->timeout(45)
+            ->get(env('API_URL') . 'Aluno/login', $credentials);
 
         if ($response->successful()) {
             $responseData = $response->json();
@@ -66,14 +68,13 @@ class AlunoController extends Controller {
                 return redirect()->route('aluno.dashboard');
             }
 
-            return back()
+            return redirect()->route("aluno.login")
                 ->withErrors(['message' => 'Usuário ou senha incorretos.'])
                 ->withInput();
         }
 
-        return back()
+        return redirect()->route("aluno.login")
             ->withErrors(['message' => 'Falha ao autenticar usuário.'])
             ->withInput();
     }
 }
-
