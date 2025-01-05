@@ -1,17 +1,17 @@
 // Import Bootstrap SCSS
 @import 'bootstrap/scss/bootstrap';
 
-// Custom styles for dashboard
-body {
-    font-family: 'Nunito', sans-serif;
-}
+// Variáveis
+$corheader: #00843D; // Verde padrão do Instituto Federal
+$cor-text-header: #000; // Preto para o texto do título
 
-header {
-    background-color: #f8f9fa;
+// Estilo do Header
+#header {
+    background-color: $corheader;
     padding: 1rem;
 }
 
-footer {
+#footer {
     background-color: #f8f9fa;
     padding: 1rem;
     text-align: center;

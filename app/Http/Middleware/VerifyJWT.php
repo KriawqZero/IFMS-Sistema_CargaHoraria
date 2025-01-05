@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Http;
 
-class JWTTokenMiddleware
+class VerifyJWT
 {
     /**
      * Handle an incoming request.

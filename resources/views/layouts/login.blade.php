@@ -7,8 +7,7 @@
 
     @vite('resources/scss/app.scss')
     @vite('resources/scss/login.scss')
-  
-    
+     
 </head>
 <body>
     @include('componentes.login.header')
