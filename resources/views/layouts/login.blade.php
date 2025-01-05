@@ -12,7 +12,7 @@
 <body>
     @include('componentes.login.header')
 
-    <main>
+    <main class="d-flex flex-column min-vh-100">
         @yield('main')
     </main>
 
