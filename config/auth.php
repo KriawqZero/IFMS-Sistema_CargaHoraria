@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+        'guard' => env('AUTH_GUARD', 'aluno'),
+        'passwords' => env('AUTH_PASSWORD_BROKER', 'alunos'),
     ],
 
     /*
@@ -36,9 +36,13 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'aluno' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'alunos',
+        ],
+        'professor' => [
+            'driver' => 'session',
+            'provider' => 'professores',
         ],
     ],
 
@@ -60,9 +64,13 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'alunos' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => env('AUTH_MODEL', App\Models\Aluno::class),
+        ],
+        'professores' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Professor::class),
         ],
 
         // 'users' => [

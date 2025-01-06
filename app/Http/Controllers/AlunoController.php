@@ -5,26 +5,59 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use App\Models\Aluno; // Certifique-se de ter o model Aluno configurado corretamente.
+use App\Models\Aluno;
 
 class AlunoController extends Controller {
+    // Exibe o formulário de login do aluno.
     public function showLoginForm() {
-        return view('aluno/login', [
+        return view('aluno.login', [
             'titulo' => 'Entrar',
         ]);
     }
 
     public function dashboard() {
-        return view('aluno/dashboard', [
+        $aluno = Auth::guard('aluno')->user(); // Obtenha o aluno autenticado
+        $certificados = $aluno->certificados; // Todos os certificados do aluno
+
+        // Calculando a carga horária total e por tipo
+        $cargaHorariaTotal = $aluno->certificados->sum('carga_horaria');
+
+        // Limites máximos de carga horária por tipo (exemplo de limites)
+        $limitesCargaHoraria = [
+            'Unidades curriculares optativas/eletivas' => 120,
+            'Projetos de ensino, pesquisa e extensão' => 80,
+            'Prática profissional integrada' => 80,
+            'Práticas desportivas' => 80,
+            'Práticas artístico-culturais' => 80,
+        ];
+
+        // Calcular a carga horária por tipo
+        $cargaHorariaPorTipo = $aluno->certificados->groupBy('tipo')->map(function ($certificados) {
+            return $certificados->sum('carga_horaria');
+        });
+
+        // Definir o valor máximo de carga horária permitida
+        $maxCargaHoraria = array_sum($limitesCargaHoraria); // Soma de todos os limites máximos
+
+        return view('aluno.dashboard', [
             'titulo' => 'Visão Geral',
+            'aluno' => $aluno,
+            'cargaHorariaTotal' => $cargaHorariaTotal,
+            'cargaHorariaPorTipo' => $cargaHorariaPorTipo,
+            'limitesCargaHoraria' => $limitesCargaHoraria,
+            'maxCargaHoraria' => $maxCargaHoraria,
+            'certificados' => $certificados,
         ]);
     }
 
+    // Realiza o logout do aluno.
     public function logout() {
-        Auth::logout();
+        // Usando o guard 'aluno' para garantir que o logout seja feito corretamente.
+        Auth::guard('aluno')->logout();
         return redirect()->route('aluno.login');
     }
 
+    // Processa o login do aluno.
     public function processLogin(Request $request) {
         // Valida os campos de entrada.
         $credentials = $request->validate([
@@ -61,8 +94,8 @@ class AlunoController extends Controller {
                     ]
                 );
 
-                // Autentica o usuário.
-                Auth::login($aluno);
+                // Autentica o aluno usando o guard 'aluno'.
+                Auth::guard('aluno')->login($aluno);
 
                 return redirect()->route('aluno.dashboard');
             }
@@ -77,3 +110,4 @@ class AlunoController extends Controller {
             ->withInput();
     }
 }
+

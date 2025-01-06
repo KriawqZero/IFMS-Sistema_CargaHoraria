@@ -22,6 +22,10 @@
                 1
             </span>
         </div>
-        <button class="btn btn-outline-light">Sair</button>
+
+        <form action="{{ route('aluno.logout') }}">
+            <button type="submit" class="btn btn-outline-light">Sair</button>
+        </form>
+
     </div>
 </header>
