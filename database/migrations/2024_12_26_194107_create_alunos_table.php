@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('cpf')->unique();
             $table->string('nome');
             $table->date('data_nascimento');
-            $table->string('codigo_turma')->references('codigo')->on('turmas')->ondelete('cascade');
+            $table->string('codigo_turma')->references('codigo')->on('turmas')->nullable()->ondelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

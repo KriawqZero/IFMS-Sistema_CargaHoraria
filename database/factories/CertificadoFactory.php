@@ -3,15 +3,12 @@ namespace Database\Factories;
 
 use App\Models\Certificado;
 use App\Models\Aluno;
-use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CertificadoFactory extends Factory
-{
+class CertificadoFactory extends Factory {
     protected $model = Certificado::class;
 
-    public function definition()
-    {
+    public function definition() {
         $tipos = [
             'Unidades curriculares optativas/eletivas',
             'Projetos de ensino, pesquisa e extensão',

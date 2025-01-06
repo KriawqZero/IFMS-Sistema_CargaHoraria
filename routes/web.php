@@ -8,14 +8,19 @@ use Illuminate\Support\Facades\Route;
 
 // Grupo de rotas do aluno (nomes prefixados com 'aluno.')
 Route::name('aluno.')->group(function() {
-    // Rota de formulario de login do aluno
-    Route::get('/', [AlunoController::class, 'showLoginForm'])
-        ->name('login')
-        ->middleware(VerifyJWT::class);
+    Route::middleware(VerifyJWT::class)->group(function() {
+        // Rota de formulario de login do aluno
+        Route::get('/', [AlunoController::class, 'showLoginForm'])
+            ->name('login');
 
-    // Rota de processamento do login do aluno
-    Route::post('/', [AlunoController::class, 'processLogin'])
-        ->name('login.post');
+        // Rota de processamento do login do aluno
+        Route::post('/', [AlunoController::class, 'processLogin'])
+            ->name('login.post');
+
+        // Rota de logout do aluno
+        Route::get('logout', [AlunoController::class, 'logout'])
+            ->name('logout');
+    });
 
     // Grupo de rotas protegidas por autenticação
     Route::middleware(VerifyAuth::class)->group(function() {

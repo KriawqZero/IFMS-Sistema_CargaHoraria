@@ -43,9 +43,8 @@ class AlunoController extends Controller {
         // Envia requisição à API externa.
         $response = Http::retry(3, 100)
             ->withHeaders([
-            'Authorization' => 'Bearer ' . $token,
+                'Authorization' => 'Bearer ' . $token,
             ])
-            ->timeout(45)
             ->get(env('API_URL') . 'Aluno/login', $credentials);
 
         if ($response->successful()) {
@@ -58,7 +57,7 @@ class AlunoController extends Controller {
                     [ // Dados a serem inseridos caso o aluno não exista.
                         'nome' => $responseData['nome'] ?? 'Nome não informado',
                         'email' => $responseData['email'] ?? null,
-                        'turma' => $responseData['turma'] ?? null,
+                        'data_nascimento' => $responseData['data_nascimento'] ?? null,
                     ]
                 );
 
