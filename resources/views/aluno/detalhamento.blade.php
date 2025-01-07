@@ -82,9 +82,4 @@
     </div>
 @endsection
 
-@push('script')
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-@endpush
-
 

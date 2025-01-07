@@ -8,7 +8,7 @@
 
 @section('main')
      <section class="menu d-flex justify-content-center align-items-center min-vh-100 bg-light">
-        <div class="login-card p-4 rounded shadow-lg" style="max-width: 400px; width: 100%;">
+        <div class="login-card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
