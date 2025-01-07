@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/scss/app.scss',
                 'resources/scss/dashboard.scss',
                 'resources/scss/login.scss',
+                'resources/scss/detalhamento.scss',
             ],
             refresh: true,
         }),
