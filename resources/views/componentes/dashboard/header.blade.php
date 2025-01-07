@@ -7,7 +7,7 @@
                     <a class="nav-link text-white" href="{{ route('aluno.dashboard') }}">Visão Geral</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Detalhamento</a>
+                    <a class="nav-link text-white" href="{{ route('aluno.detalhamento') }}">Detalhamento</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('aluno.enviar-certificado') }}">Enviar Certificado</a>

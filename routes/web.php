@@ -31,6 +31,14 @@ Route::name('aluno.')->group(function() {
         // Rota de formulario de envio de certificado
         Route::get('aluno/enviar-certificado', [AlunoController::class, 'showEnviarCertificadoForm'])
             ->name('enviar-certificado');
+
+        // Rota de processamento do envio de certificado
+        Route::post('aluno/enviar-certificado', [AlunoController::class, 'processEnviarCertificado'])
+            ->name('enviar-certificado.post');
+
+        // Rota de detalhamento de certificados
+        Route::get('aluno/detalhamento', [AlunoController::class, 'detalhamento'])
+            ->name('detalhamento');
     });
 });
 

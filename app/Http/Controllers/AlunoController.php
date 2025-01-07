@@ -63,6 +63,17 @@ class AlunoController extends Controller {
         ]);
     }
 
+    public function detalhamento() {
+        $aluno = Auth::guard('aluno')->user(); // Obtenha o aluno autenticado
+        $certificados = $aluno->certificados; // Todos os certificados do aluno
+
+        return view('aluno.detalhamento', [
+            'titulo' => 'Detalhamento',
+            'aluno' => $aluno,
+            'certificados' => $certificados,
+        ]);
+    }
+
     // Processa o login do aluno.
     public function processLogin(Request $request) {
         // Valida os campos de entrada.
