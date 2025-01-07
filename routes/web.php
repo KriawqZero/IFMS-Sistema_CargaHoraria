@@ -14,7 +14,7 @@ Route::name('aluno.')->group(function() {
             ->name('login.post');
 
         // Rota de logout do aluno
-        Route::get('logout', [AlunoController::class, 'logout'])
+        Route::get('aluno/logout', [AlunoController::class, 'logout'])
             ->name('logout');
     });
 
@@ -25,11 +25,11 @@ Route::name('aluno.')->group(function() {
             ->name('login');
 
         // Rota de dashboard do aluno
-        Route::get('dashboard', [AlunoController::class, 'dashboard'])
+        Route::get('aluno/dashboard', [AlunoController::class, 'dashboard'])
             ->name('dashboard');
 
         // Rota de formulario de envio de certificado
-        Route::get('enviar-certificado', [AlunoController::class, 'showEnviarCertificadoForm'])
+        Route::get('aluno/enviar-certificado', [AlunoController::class, 'showEnviarCertificadoForm'])
             ->name('enviar-certificado');
     });
 });
