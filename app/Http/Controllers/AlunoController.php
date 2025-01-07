@@ -57,6 +57,12 @@ class AlunoController extends Controller {
         return redirect()->route('aluno.login');
     }
 
+    public function showEnviarCertificadoForm() {
+        return view('aluno.enviar_certificado', [
+            'titulo' => 'Enviar Certificado',
+        ]);
+    }
+
     // Processa o login do aluno.
     public function processLogin(Request $request) {
         // Valida os campos de entrada.

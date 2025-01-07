@@ -23,9 +23,14 @@ Route::name('aluno.')->group(function() {
         // Rota de formulario de login do aluno
         Route::get('/', [AlunoController::class, 'showLoginForm'])
             ->name('login');
+
         // Rota de dashboard do aluno
         Route::get('dashboard', [AlunoController::class, 'dashboard'])
             ->name('dashboard');
+
+        // Rota de formulario de envio de certificado
+        Route::get('enviar-certificado', [AlunoController::class, 'showEnviarCertificadoForm'])
+            ->name('enviar-certificado');
     });
 });
 
