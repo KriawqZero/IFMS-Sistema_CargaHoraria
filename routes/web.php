@@ -25,7 +25,7 @@ Route::name('aluno.')->group(function() {
             ->name('login');
 
         // Rota de dashboard do aluno
-        Route::get('aluno/dashboard', [AlunoController::class, 'dashboard'])
+        Route::get('aluno', [AlunoController::class, 'dashboard'])
             ->name('dashboard');
 
         // Rota de formulario de envio de certificado

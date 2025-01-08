@@ -1,47 +1,61 @@
-@extends('layouts.login')
+<!DOCTYPE html>
+<html lang="pt_BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="referrer" content="always">
+        <link rel="canonical" href="#">
 
-@section('titulo', $titulo)
+        <meta name="description">
 
-@push('styles')
-    @vite('resources/scss/login.scss')
-@endpush
+        <title>Login</title>
 
-@section('main')
-     <section class="menu d-flex justify-content-center align-items-center min-vh-100 bg-light">
-        <div class="login-card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            <h4 class="text-center mb-4">Login como Aluno</h4>
-
-            <form method="POST" action="{{ route('aluno.login.post') }}">
-                @csrf
-                <!-- CPF -->
-                <div class="mb-3">
-                    <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" name="cpf" class="form-control" id="cpf" placeholder="Digite seu CPF">
+        @vite('resources/css/app.css')
+        @vite('resources/scss/main.scss')
+        @vite('resources/js/main.js')
+    </head>
+    <body>
+        <div style="background-color: var(--colorWeak);" class="flex justify-center items-center h-screen px-6">
+            <div class="p-6 max-w-sm w-full bg-white shadow-md rounded-md">
+                <div class="flex justify-center items-center">
+                    <img src="{{ asset('images/ifmslogo.png') }}"/>
                 </div>
 
-                <!-- Senha -->
-                <div class="mb-3">
-                    <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" name="senha" id="senha" placeholder="Digite sua senha">
-                </div>
+                @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert">
+                        <span class="block sm:inline">{{ $errors->first() }}</span>
+                    </div>
+                @endif
 
-                <!-- Botão Entrar -->
-                <button type="submit" class="btn btn-success w-100">Entrar</button>
+                <form class="mt-4" action="{{ route('aluno.login.post') }}" method="POST">
+                    @csrf
+                    <label class="block">
+                        <span class="text-gray-700 text-sm">CPF</span>
+                        <input name="cpf" type="text" class="form-input mt-1 block w-full rounded-md focus:border-green-300">
+                    </label>
 
-                <!-- Link para Servidor -->
-                <div class="text-center mt-3">
-                    <a href="{{ route('professor.login') }}" class="small">Entrar como Servidor</a>
-                </div>
-            </form>
+                    <label class="block mt-3">
+                        <span class="text-gray-700 text-sm">Senha</span>
+                        <input name="senha" type="password" class="form-input mt-1 block w-full rounded-md focus:border-green-300">
+                    </label>
+
+                    <div class="flex justify-between items-center mt-4">
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-indigo-600">
+                                <span class="mx-2 text-gray-600 text-sm">Lembrar de mim</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <button type="submit" class="py-2 px-4 text-center bg-green-600 rounded-md w-full text-white text-sm hover:bg-green-700">
+                            Entrar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </section>
-@endsection
+    </body>
+</html>

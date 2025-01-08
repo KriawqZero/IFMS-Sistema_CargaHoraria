@@ -10,7 +10,7 @@ use App\Models\Aluno;
 class AlunoController extends Controller {
     // Exibe o formulário de login do aluno.
     public function showLoginForm() {
-        return view('aluno.login', [
+        return view('aluno/login', [
             'titulo' => 'Entrar',
         ]);
     }
@@ -39,7 +39,7 @@ class AlunoController extends Controller {
         // Definir o valor máximo de carga horária permitida
         $maxCargaHoraria = array_sum($limitesCargaHoraria); // Soma de todos os limites máximos
 
-        return view('aluno.dashboard', [
+        return view('aluno.index', [
             'titulo' => 'Visão Geral',
             'aluno' => $aluno,
             'cargaHorariaTotal' => $cargaHorariaTotal,
