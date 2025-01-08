@@ -6,11 +6,11 @@
 
             <div class="flex justify-end">
                 <button
-                    class="mb-5 px-6 py-3 bg-green-600 rounded-md text-white font-medium tracking-wide hover:bg-green-500 ml-3 mr-8 ">Enviar
+                    class="mb-5 px-6 py-3 bg-green-600 rounded-3xl text-white font-medium tracking-wide hover:bg-green-500 ml-3 mr-8 ">Enviar
                     Certificado</button>
             </div>
 
-            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-3xl border-b border-gray-200">
                 <table class="min-w-full">
                     <thead>
                         <tr>

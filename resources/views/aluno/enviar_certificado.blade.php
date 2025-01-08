@@ -1,7 +1,7 @@
 @extends('_layouts.master')
 
 @section('body')
-    <div class="sm:max-w-none w-full max-w-full p-9 bg-white rounded-xl z-10">
+    <div class="sm:max-w-none w-full max-w-full p-9 bg-white rounded-3xl z-10">
         <div class="text-center">
             <h3 class="mt-5 text-3xl font-bold text-gray-900">
                 File Upload!

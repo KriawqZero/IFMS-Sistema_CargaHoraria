@@ -2,16 +2,15 @@
     class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden"></div>
 
 <div x-cloak :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
-    style='background-color: green;'
-    class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform lg:translate-x-0 lg:static lg:inset-0">
+    class="fixed bg-zinc-800 inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform lg:translate-x-0 lg:static lg:inset-0">
     <div class="flex items-center justify-center mt-8">
         <div class="flex items-center">
-            <img src={{ asset('images/ifmslogo.png') }} />
+            <img class="mt-5 px-6"src={{ asset('images/SISCO_1.png') }} />
         </div>
     </div>
 
-    <nav class="mt-10">
-        <a class="flex items-center px-6 py-2 mt-4 text-white {{ request()->routeIs('aluno.dashboard') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
+    <nav class="mt-10 text-slate-200">
+        <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('aluno.dashboard') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
             href="/">
             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -20,7 +19,7 @@
             <span class="mx-3">Visão Geral</span>
         </a>
 
-        <a class="flex items-center px-6 py-2 mt-4 text-white {{ request()->routeIs('aluno.detalhamento') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
+        <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('aluno.detalhamento') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
             href="{{ route('aluno.detalhamento') }}">
             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -34,7 +33,7 @@
             <span class="mx-3">Detalhamento</span>
         </a>
 
-        <a class="flex items-center px-6 py-2 mt-4 text-white {{ request()->routeIs('aluno.enviar-certificado') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
+        <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('aluno.enviar-certificado') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
             href="{{ route('aluno.enviar-certificado') }}">
             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                 <path fill-rule="evenodd"

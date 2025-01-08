@@ -4,7 +4,7 @@
     <div class="mt-4">
         <div class="flex flex-wrap -mx-6">
             <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+                <div class="flex items-center px-5 py-6 shadow-sm rounded-3xl bg-white">
                     <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewbox="0 0 16 16">
                             <path
@@ -22,7 +22,7 @@
             </div>
 
             <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+                <div class="flex items-center px-5 py-6 shadow-sm rounded-3xl bg-white">
                     <div class="p-3 rounded-full bg-orange-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white"
                             viewbox="0 0 16 16">
@@ -39,7 +39,7 @@
             </div>
 
             <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+                <div class="flex items-center px-5 py-6 shadow-sm rounded-3xl bg-white">
                     <div class="p-3 rounded-full bg-pink-600 bg-opacity-75">
                         <svg class="h-8 w-8 text-white" viewBox="0 0 16 16" fill="white"
                             xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@
 
     <div class="flex flex-col mt-8">
         <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-3xl border-b border-gray-200">
                 <table class="min-w-full">
                     <thead>
                         <tr>

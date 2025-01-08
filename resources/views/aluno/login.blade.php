@@ -10,7 +10,7 @@
 
     <meta name="description">
 
-    <title>Login</title>
+    <title>{{ $titulo . " - " . env("APP_NAME")}}</title>
 
     @vite('resources/css/app.css')
     @vite('resources/scss/main.scss')
@@ -19,9 +19,9 @@
 
 <body>
     <div style="background-color: var(--colorWeak);" class="flex justify-center items-center h-screen px-6">
-        <div class="p-6 max-w-sm w-full bg-white shadow-md rounded-md">
+        <div class="p-8 max-w-sm w-full bg-white shadow-md rounded-3xl">
             <div class="flex justify-center items-center">
-                <img src="{{ asset('images/ifmslogo.png') }}" />
+                <img class="object-cover h-24 m-7" src="{{ asset('images/SISCO.png') }}" />
             </div>
 
             @if ($errors->any())
@@ -36,13 +36,13 @@
                 <label class="block">
                     <span class="text-gray-700 text-sm">CPF</span>
                     <input name="cpf" type="text"
-                        class="form-input mt-1 block w-full rounded-md focus:border-green-300">
+                        class="mt-1 block w-full rounded-md focus:ring focus:border-green-300">
                 </label>
 
                 <label class="block mt-3">
                     <span class="text-gray-700 text-sm">Senha</span>
                     <input name="senha" type="password"
-                        class="form-input mt-1 block w-full rounded-md focus:border-green-300">
+                        class="bg-gray-100 block w-full rounded-md ">
                 </label>
 
                 <div class="flex justify-between items-center mt-4">
