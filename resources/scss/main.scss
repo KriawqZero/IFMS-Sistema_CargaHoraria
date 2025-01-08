@@ -4,7 +4,19 @@ $color03: #66B58B;
 $color04: #99CEB1;
 $color05: #CCE6D8;
 
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    font-family: 'Inter', sans-serif;
+}
+
 body {
+
   --colorStrong: #{$color01};
   --colorMdStr: #{$color02};
   --colorMedium: #{$color03};
