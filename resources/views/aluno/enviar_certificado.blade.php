@@ -9,15 +9,20 @@
                 <p class="mt-2 text-sm text-gray-400">Aqui você pode enviar seu arquivo para validação de carga horária.</p>
         </div>
         <form class="mt-8 space-y-3" action="#" method="POST">
-            <div class="grid grid-cols-1 space-y-2">
+        <div class="grid grid-cols-1 space-y-2">
                 <label class="text-sm font-bold text-gray-500 tracking-wide">Tipo</label>
-                <input class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                    type="" placeholder="mail@gmail.com">
+                <select class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" name="tipo">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="optativas">Unidades curriculares optativa/eletivas</option>
+                    <option value="projetos">Projetos de ensino, pesquisa e extensão</option>
+                    <option value="pratica-integradora">Prática Profissional Integradora</option>
+                    <option value="desportivas">Práticas Desportivas</option>
+                    <option value="artistico-culturais">Práticas Artístico-Culturais</option>
+                </select>
             </div>
             <div class="grid grid-cols-1 space-y-2">
-                <label class="text-sm font-bold text-gray-500 tracking-wide">Title</label>
-                <input class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                    type="" placeholder="mail@gmail.com">
+                <label class="text-sm font-bold text-gray-500 tracking-wide">Observação</label>
+                <textarea class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"></textarea>
             </div>
             <div class="grid grid-cols-1 space-y-2">
                 <label class="text-sm font-bold text-gray-500 tracking-wide">Anexar documento</label>
