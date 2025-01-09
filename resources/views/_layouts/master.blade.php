@@ -11,7 +11,7 @@
     <title>{{ $titulo . " - " . env("APP_NAME")}}</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    kadsjakdjakdjakdjsdj
+    
 
 
 
