@@ -12,12 +12,5 @@ export default defineConfig({
             ],
             refresh: true,
         }),
-    ],
-    build: {
-        rollupOptions: {
-            output: {
-                assetFileNames: 'assets/[name].[hash].[ext]', // Pasta organizada para imagens e outros arquivos
-            },
-        },
-    },
+    ]
 });

@@ -1,13 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Aluno;
 
 use App\Models\Certificado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
-class CertificadoController extends Controller
-{
+class AlunoCertificadoController extends Controller {
+    // Exibir a lista de certificados
+    public function index() {
+        $aluno = auth('aluno')->user(); // Obtenha o aluno autenticado
+        $certificados = $aluno->certificados; // Todos os certificados do aluno
+
+        return view('aluno.certificados', [
+            'titulo' => 'Certificados',
+            'certificados' => $certificados,
+        ]);
+    }
+
     // Exibir o formulário de envio de certificado
     public function create() {
         return view('aluno.enviar_certificado', [

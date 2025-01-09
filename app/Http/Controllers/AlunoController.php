@@ -68,23 +68,6 @@ class AlunoController extends Controller {
         return redirect()->route('aluno.login');
     }
 
-    public function showEnviarCertificadoForm() {
-        return view('aluno.enviar_certificado', [
-            'titulo' => 'Enviar Certificado',
-        ]);
-    }
-
-    public function detalhamento() {
-        $aluno = Auth::guard('aluno')->user(); // Obtenha o aluno autenticado
-        $certificados = $aluno->certificados; // Todos os certificados do aluno
-
-        return view('aluno.detalhamento', [
-            'titulo' => 'Detalhamento',
-            'aluno' => $aluno,
-            'certificados' => $certificados,
-        ]);
-    }
-
     // Processa o login do aluno.
     public function processLogin(Request $request) {
         // Valida os campos de entrada.
@@ -123,7 +106,7 @@ class AlunoController extends Controller {
                 );
 
                 // Autentica o aluno usando o guard 'aluno'.
-                Auth::guard('aluno')->login($aluno);
+                auth('aluno')->login($aluno);
 
                 return redirect()->route('aluno.dashboard');
             }

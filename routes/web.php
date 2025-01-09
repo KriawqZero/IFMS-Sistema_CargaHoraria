@@ -2,26 +2,26 @@
 
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\Aluno\AlunoCertificadoController;
+use App\Http\Controllers\Professor\ProfessorCertificadoController;
 use App\Http\Middleware\VerifyAuth;
 use App\Http\Middleware\VerifyJWT;
 use Illuminate\Support\Facades\Route;
 
 // Grupo de rotas do aluno (nomes prefixados com 'aluno.')
 Route::name('aluno.')->group(function() {
-    Route::middleware(VerifyJWT::class)->group(function() {
-        // Rota de processamento do login do aluno
-        Route::post('/', [AlunoController::class, 'processLogin'])
-            ->name('login.post');
+    Route::post('/', [AlunoController::class, 'processLogin'])
+        ->middleware(VerifyJWT::class)
+        ->name('login.post');
 
-        // Rota de logout do aluno
-        Route::get('aluno/logout', [AlunoController::class, 'logout'])
-            ->name('logout');
+    // Rota de logout do aluno
+    Route::get('aluno/logout', [AlunoController::class, 'logout'])
+        ->name('logout');
 
-        Route::get('aluno/sobre', [AlunoController::class, 'sobre'])
-            ->name('sobre');
-    });
+    Route::get('aluno/sobre', [AlunoController::class, 'sobre'])
+        ->name('sobre');
 
-    // Grupo de rotas protegidas por autenticação
+    // Grupo de rotas protegidas por autenticação do aluno
     Route::middleware([VerifyAuth::class . ':aluno'])->group(function() {
         // Rota de formulario de login do aluno
         Route::get('/', [AlunoController::class, 'showLoginForm'])
@@ -31,17 +31,14 @@ Route::name('aluno.')->group(function() {
         Route::get('aluno', [AlunoController::class, 'dashboard'])
             ->name('dashboard');
 
-        // Rota de formulario de envio de certificado
-        Route::get('aluno/enviar-certificado', [AlunoController::class, 'showEnviarCertificadoForm'])
-            ->name('enviar-certificado');
-
-        // Rota de processamento do envio de certificado
-        Route::post('aluno/enviar-certificado', [AlunoController::class, 'processEnviarCertificado'])
-            ->name('enviar-certificado.post');
-
-        // Rota de detalhamento de certificados
-        Route::get('aluno/detalhamento', [AlunoController::class, 'detalhamento'])
-            ->name('detalhamento');
+        // Rotas de certificados do aluno
+        Route::prefix('aluno/certificados')->name('certificados.')->group(function() {
+            // Rota para criar/ enviar certificado
+            Route::get('/', [AlunoCertificadoController::class, 'index']) ->name('index');
+            Route::get('/enviar', [AlunoCertificadoController::class, 'create'])->name('create');
+            Route::post('/enviar', [AlunoCertificadoController::class, 'store'])->name('store');
+            Route::delete('/{id}', [AlunoCertificadoController::class, 'destroy'])->name('destroy');
+        });
     });
 });
 

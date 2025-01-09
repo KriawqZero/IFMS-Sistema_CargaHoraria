@@ -63,8 +63,14 @@
                     </div>
 
                     <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700">Paulo</h4>
-                        <div class="text-gray-500">Professor Responsável</div>
+                        <h4 class="text-2xl font-semibold text-gray-700">
+                            @if($aluno->turma && $aluno->turma->professor)
+                                {{ ucfirst($aluno->turma->professor->nome) }}
+                            @else
+                                Ainda não designado
+                            @endif
+                        </h4>
+                        <div class="text-gray-500">Professor(a) Responsável</div>
                     </div>
                 </div>
             </div>
