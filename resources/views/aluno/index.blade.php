@@ -3,9 +3,24 @@
 @section('body')
     <div class="mt-4">
         <div class="flex flex-wrap -mx-6">
-            <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-3xl bg-white">
-                    <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
+            <div class="w-full px-6 sm:w-1/2 xl:w-1/4 sm:mt-1">
+                <div class="flex items-center px-5 py-6 shadow-xl rounded-3xl bg-white">
+                    <div class="p-3 rounded-full bg-red-600 bg-opacity-75">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewbox="0 0 16 16">
+                          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/>
+                        </svg>
+                    </div>
+
+                    <div class="mx-5">
+                        <h4 class="text-2xl font-semibold text-gray-700">{{ ucfirst(strtok($aluno->nome, ' ')) }}</h4>
+                        <div class="text-gray-500">Aluno(a) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/4 sm:mt-1 xl:mt-1">
+                <div class="flex items-center px-5 py-6 shadow-xl rounded-3xl bg-white">
+                    <div class="p-3 rounded-full bg-green-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewbox="0 0 16 16">
                             <path
                                 d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z" />
@@ -15,15 +30,15 @@
                     </div>
 
                     <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700">20210 - Informática</h4>
-                        <div class="text-gray-500">Turma</div>
+                        <h4 class="text-2xl font-semibold text-gray-700">20210</h4>
+                        <div class="text-gray-500">Turma - Informática</div>
                     </div>
                 </div>
             </div>
 
-            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-3xl bg-white">
-                    <div class="p-3 rounded-full bg-orange-600 bg-opacity-75">
+            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/4 sm:mt-1">
+                <div class="flex items-center px-5 py-6 shadow-xl rounded-3xl bg-white">
+                    <div class="p-3 rounded-full bg-fuchsia-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white"
                             viewbox="0 0 16 16">
                             <path
@@ -38,8 +53,8 @@
                 </div>
             </div>
 
-            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-3xl bg-white">
+            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/4 sm:mt-1 ">
+                <div class="flex items-center px-5 py-6 shadow-xl rounded-3xl bg-white">
                     <div class="p-3 rounded-full bg-pink-600 bg-opacity-75">
                         <svg class="h-8 w-8 text-white" viewBox="0 0 16 16" fill="white"
                             xmlns="http://www.w3.org/2000/svg">
@@ -61,8 +76,8 @@
     </div>
 
     <div class="flex flex-col mt-8">
-        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-3xl border-b border-gray-200">
+        <div class="-my-2 py-2 pb-12 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div class="align-middle inline-block min-w-full shadow-2xl overflow-hidden sm:rounded-3xl border-b border-gray-200">
                 <table class="min-w-full">
                     <thead>
                         <tr>

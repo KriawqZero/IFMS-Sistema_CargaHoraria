@@ -34,15 +34,15 @@
             <form class="mt-4" action="{{ route('aluno.login.post') }}" method="POST">
                 @csrf
                 <label class="block">
-                    <span class="text-gray-700 text-sm">CPF</span>
-                    <input name="cpf" type="text"
-                        class="mt-1 block w-full rounded-md focus:ring focus:border-green-300">
+                    <span class="text-gray-700 text-sm ml-1">CPF</span>
+                    <input name="cpf" type="text" placeholder="012.345.678-90"
+                        class="bg-gray-100 p-2 border border-zinc-300 mt-1 block w-full rounded-2xl">
                 </label>
 
                 <label class="block mt-3">
-                    <span class="text-gray-700 text-sm">Senha</span>
-                    <input name="senha" type="password"
-                        class="bg-gray-100 block w-full rounded-md ">
+                    <span class="text-gray-700 text-sm ml-1">Senha</span>
+                    <input name="senha" type="password" placeholder="********"
+                        class="bg-gray-100 p-2 border border-zinc-300 block w-full rounded-2xl">
                 </label>
 
                 <div class="flex justify-between items-center mt-4">

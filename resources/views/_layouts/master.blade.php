@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div x-data="{ sidebarOpen: false }" style="background-color: var(--colorMdWeak);" class="flex h-screen font-roboto">
+    <div x-data="{ sidebarOpen: false }" class="flex h-screen">
         @include('_layouts.sidebar')
 
         <div class="flex-1 flex flex-col overflow-hidden">

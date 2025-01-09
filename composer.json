@@ -9,6 +9,7 @@
         "php": "^8.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.5",
         "tymon/jwt-auth": "^2.1"
     },
     "require-dev": {
