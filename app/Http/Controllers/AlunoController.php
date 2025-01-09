@@ -65,12 +65,14 @@ class AlunoController extends Controller {
     public function logout() {
         // Usando o guard 'aluno' para garantir que o logout seja feito corretamente.
         Auth::guard('aluno')->logout();
+        Auth::guard('professor')->logout();
         return redirect()->route('aluno.login');
     }
 
     // Processa o login do aluno.
     public function processLogin(Request $request) {
         // Valida os campos de entrada.
+        auth('professor')->logout();
         $credentials = $request->validate([
             'cpf' => 'required|string',
             'senha' => 'required|string',

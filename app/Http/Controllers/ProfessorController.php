@@ -22,6 +22,7 @@ class ProfessorController extends Controller {
 
     public function processLogin(Request $request) {
         // Valida os campos de entrada.
+        auth('aluno')->logout();
         $credentials = $request->validate([
             'login' => 'required|string',
             'senha' => 'required|string',

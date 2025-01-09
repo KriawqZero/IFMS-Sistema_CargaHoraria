@@ -22,7 +22,7 @@
 
         <!-- Validar Certificados -->
         <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('professor.validar') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
-            href="{{ route('professor.certificados.validar') }}">
+            href="">
             <svg class="w-8 h-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
                 <path d="M5 10.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z" />
@@ -32,7 +32,7 @@
 
         <!-- Alunos -->
         <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('professor.alunos') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
-            href="{{ route('professor.alunos') }}">
+            href="">
             <svg class="w-8 h-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 1a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm1 7a4 4 0 1 1 8 0H5z" />
             </svg>
@@ -41,7 +41,7 @@
 
         <!-- Resumo da Turma -->
         <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('professor.resumo') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
-            href="{{ route('professor.turma.resumo') }}">
+            href="">
             <svg class="w-8 h-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 0a9 9 0 1 0 9 9A9 9 0 0 0 9 0zm0 2a7 7 0 1 1-7 7A7 7 0 0 1 9 2z" />
                 <path d="M8 5a1 1 0 0 1 1-1h1v7a1 1 0 0 1-2 0z" />

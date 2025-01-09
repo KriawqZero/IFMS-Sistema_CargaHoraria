@@ -18,7 +18,11 @@
 
 <body>
     <div x-data="{ sidebarOpen: false }" class="flex h-screen">
-        @include('_layouts.sidebar')
+        @if(auth()->guard('professor')->check())
+            @include('_layouts.sidebarprofessor')
+        @elseif(auth()->guard('aluno')->check())
+            @include('_layouts.sidebar')
+        @endif
 
         <div class="flex-1 flex flex-col overflow-hidden">
             @include('_layouts.header')
