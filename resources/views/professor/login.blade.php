@@ -19,7 +19,7 @@
 
 <body>
     <div style="background-color: var(--colorWeak);" class="flex justify-center items-center h-screen px-6">
-        <div class="p-8 max-w-sm w-full bg-white shadow-2xl rounded-3xl">
+        <div class="p-8 max-w-sm w-full bg-white shadow-md rounded-3xl">
             <div class="flex justify-center items-center">
                 <img class="object-cover h-24 m-7" src="{{ asset('images/SISCO.png') }}" />
             </div>
@@ -36,13 +36,13 @@
                 <label class="block">
                     <span class="text-gray-700 text-sm ml-1">CPF</span>
                     <input name="cpf" type="text" placeholder="012.345.678-90"
-                        class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-500 mt-1 block w-full rounded-2xl">
+                        class="bg-gray-100 p-2 border border-zinc-300 mt-1 block w-full rounded-2xl">
                 </label>
 
                 <label class="block mt-3">
                     <span class="text-gray-700 text-sm ml-1">Senha</span>
                     <input name="senha" type="password" placeholder="********"
-                        class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-800 block w-full rounded-2xl">
+                        class="bg-gray-100 p-2 border border-zinc-300 block w-full rounded-2xl">
                 </label>
 
                 <div class="flex justify-between items-center mt-4">
@@ -54,6 +54,8 @@
                     </div>
                 </div>
 
+             
+                
                 <div class="mt-6">
                     <button type="submit"
                         class="py-2 px-4 text-center bg-green-600 rounded-md w-full text-white text-sm hover:bg-green-700">
@@ -61,12 +63,12 @@
                     </button>
                 </div>
 
-                <div class="flex justify-center mt-2">
-            <a href="{{ route('professor.login') }}"
-            class="text-blue-600 underline font-medium hover:text-blue-800 transition duration-300">
-                Login Como Professor
-            </a>
-        </div>
+                  <div class="flex justify-center mt-2">
+    <a href="{{ route('aluno.login') }}"
+       class="text-blue-600 underline font-medium hover:text-blue-800 transition duration-300">
+        Login Como Aluno
+    </a>
+</div>
 
             </form>
         </div>
