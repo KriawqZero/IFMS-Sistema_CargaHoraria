@@ -2,7 +2,7 @@
 
 @section('body')
     <div class="sm:max-w-none w-full max-w-full p-9 bg-white rounded-3xl z-10">
-        <div class="text-center">
+        <div>
             <h3 class="mt-5 text-3xl font-bold text-gray-900">
                 Enviar Certificado!
                 </h2>
@@ -28,14 +28,14 @@
                 <label class="text-sm font-bold text-gray-500 tracking-wide">Anexar documento</label>
                 @livewire('enviar-arquivo')
             </div>
-            <p class="text-sm text-gray-300">
-                <span>File type: doc,pdf,types of images</span>
+            <p class="text-sm text-gray-400">
+                <span>Arquivos permitidos: .jpg, .png, .webp, .pdf</span>
             </p>
             <div>
                 <button type="submit"
                     class="my-5 w-full flex justify-center bg-green-600 text-white p-4  rounded-full tracking-wide
                             font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
-                    Upload
+                    Enviar
                 </button>
             </div>
         </form>

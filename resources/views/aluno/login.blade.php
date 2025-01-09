@@ -19,7 +19,7 @@
 
 <body>
     <div style="background-color: var(--colorWeak);" class="flex justify-center items-center h-screen px-6">
-        <div class="p-8 max-w-sm w-full bg-white shadow-md rounded-3xl">
+        <div class="p-8 max-w-sm w-full bg-white shadow-2xl rounded-3xl">
             <div class="flex justify-center items-center">
                 <img class="object-cover h-24 m-7" src="{{ asset('images/SISCO.png') }}" />
             </div>
@@ -36,13 +36,13 @@
                 <label class="block">
                     <span class="text-gray-700 text-sm ml-1">CPF</span>
                     <input name="cpf" type="text" placeholder="012.345.678-90"
-                        class="bg-gray-100 p-2 border border-zinc-300 mt-1 block w-full rounded-2xl">
+                        class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-500 mt-1 block w-full rounded-2xl">
                 </label>
 
                 <label class="block mt-3">
                     <span class="text-gray-700 text-sm ml-1">Senha</span>
                     <input name="senha" type="password" placeholder="********"
-                        class="bg-gray-100 p-2 border border-zinc-300 block w-full rounded-2xl">
+                        class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-800 block w-full rounded-2xl">
                 </label>
 
                 <div class="flex justify-between items-center mt-4">
