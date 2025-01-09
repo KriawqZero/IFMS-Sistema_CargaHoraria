@@ -31,11 +31,11 @@
                 </div>
             @endif
 
-            <form class="mt-4" action="{{ route('aluno.login.post') }}" method="POST">
+            <form class="mt-4" action="{{ route('professor.login.post') }}" method="POST">
                 @csrf
                 <label class="block">
-                    <span class="text-gray-700 text-sm ml-1">CPF</span>
-                    <input name="cpf" type="text" placeholder="012.345.678-90"
+                    <span class="text-gray-700 text-sm ml-1">Login (nome.sobrenome)</span>
+                    <input name="login" type="text" placeholder="012.345.678-90"
                         class="bg-gray-100 p-2 border border-zinc-300 mt-1 block w-full rounded-2xl">
                 </label>
 
@@ -54,8 +54,6 @@
                     </div>
                 </div>
 
-             
-                
                 <div class="mt-6">
                     <button type="submit"
                         class="py-2 px-4 text-center bg-green-600 rounded-md w-full text-white text-sm hover:bg-green-700">
@@ -63,16 +61,14 @@
                     </button>
                 </div>
 
-                  <div class="flex justify-center mt-2">
-    <a href="{{ route('aluno.login') }}"
-       class="text-blue-600 underline font-medium hover:text-blue-800 transition duration-300">
-        Login Como Aluno
-    </a>
-</div>
-
+                <div class="flex justify-center mt-2">
+                      <a href="{{ route('aluno.login') }}"
+                          class="text-blue-600 underline font-medium hover:text-blue-800 transition duration-300">
+                          Login Como Aluno
+                      </a>
+                  </div>
             </form>
         </div>
     </div>
 </body>
-
 </html>

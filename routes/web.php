@@ -53,7 +53,7 @@ Route::name('professor.')->group(function() {
         ->name('login.post');
 
     // Grupo de rotas protegidas por autenticação
-    Route::middleware(VerifyAuth::class)->group(function() {
+    Route::middleware([VerifyAuth::class . ':professor'])->group(function() {
         // Rota de dashboard do professor
         Route::get('professor/dashboard', [ProfessorController::class, 'dashboard'])
             ->name('dashboard');

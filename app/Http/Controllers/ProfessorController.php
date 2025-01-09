@@ -12,20 +12,28 @@ class ProfessorController extends Controller {
     }
 
     public function dashboard() {
-        return view('professor/dashboard', [
+        $professor = auth('professor')->user();
+
+        return view('professor/index', [
             'titulo' => 'Servidor',
+            'professor' => $professor,
         ]);
     }
 
     public function processLogin(Request $request) {
-        $login = $request->input('login');
-        $senha = $request->input('senha');
+        // Valida os campos de entrada.
+        $credentials = $request->validate([
+            'login' => 'required|string',
+            'senha' => 'required|string',
+        ]);
 
-        if ($login == 'professor' && $senha == '123') {
-            $request->session()->put('usuario', 'professor');
+        if ($credentials['login'] == 'professor.davi' && $credentials['senha'] == '123') {
+            auth('professor')->loginUsingId(1);
             return redirect()->route('professor.dashboard');
         } else {
-            return redirect()->route('professor.login');
+            return redirect()
+                ->route('professor.login')
+                ->withErrors('Login ou senha inválidos');
         }
     }
 }
