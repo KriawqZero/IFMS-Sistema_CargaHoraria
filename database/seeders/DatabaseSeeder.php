@@ -15,16 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Criar 10 professores
-        Professor::factory(10)->create();
+        Professor::factory(3)->create();
 
-        // Criar 10 turmas
-        Turma::factory(10)->create();
+        Turma::factory(5)->create();
 
-        // Criar 20 alunos
-        Aluno::factory(20)->create();
+        Aluno::factory(10)->create();
 
-        // Criar 15 certificados
-        Certificado::factory(15)->create();
+        Certificado::factory(25)->create();
     }
 }

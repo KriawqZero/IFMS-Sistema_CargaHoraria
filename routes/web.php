@@ -16,6 +16,9 @@ Route::name('aluno.')->group(function() {
         // Rota de logout do aluno
         Route::get('aluno/logout', [AlunoController::class, 'logout'])
             ->name('logout');
+
+        Route::get('aluno/sobre', [AlunoController::class, 'sobre'])
+            ->name('sobre');
     });
 
     // Grupo de rotas protegidas por autenticação

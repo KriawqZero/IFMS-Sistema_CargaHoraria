@@ -62,11 +62,11 @@
                 </div>
 
                 <div class="flex justify-center mt-2">
-            <a href="{{ route('professor.login') }}"
-            class="text-blue-600 underline font-medium hover:text-blue-800 transition duration-300">
-                Login Como Professor
-            </a>
-        </div>
+                    <a href="{{ route('professor.login') }}"
+                    class="text-blue-600 underline font-medium hover:text-blue-800 transition duration-300">
+                        Login Como Professor
+                    </a>
+                </div>
 
             </form>
         </div>

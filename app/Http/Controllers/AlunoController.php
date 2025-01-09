@@ -15,6 +15,12 @@ class AlunoController extends Controller {
         ]);
     }
 
+    public function sobre() {
+        return view('sobre.sobre', [
+            'titulo' => 'Sobre',
+        ]);
+    }
+
     public function dashboard() {
         $aluno = Auth::guard('aluno')->user(); // Obtenha o aluno autenticado
         $certificados = $aluno->certificados; // Todos os certificados do aluno
@@ -39,6 +45,10 @@ class AlunoController extends Controller {
         // Definir o valor máximo de carga horária permitida
         $maxCargaHoraria = array_sum($limitesCargaHoraria); // Soma de todos os limites máximos
 
+        if ($aluno->codigo_turma)
+            $curso = $aluno->codigo_turma[2] == '2' ? 'Informática' : 'Metalurgia';
+        else $curso = 'Ainda não designado';
+
         return view('aluno.index', [
             'titulo' => 'Visão Geral',
             'aluno' => $aluno,
@@ -47,6 +57,7 @@ class AlunoController extends Controller {
             'limitesCargaHoraria' => $limitesCargaHoraria,
             'maxCargaHoraria' => $maxCargaHoraria,
             'certificados' => $certificados,
+            'curso' => $curso,
         ]);
     }
 

@@ -79,14 +79,19 @@
                                             andamento</span>
                                     @else
                                         <span
-                                            class="px-2 inline-flex text-xs leading-5 font-bold text-red-600">Não
-                                            validado</span>
+                                            class="px-2 inline-flex text-xs leading-5 font-bold text-red-600">
+                                            Inválido</span>
                                     @endif
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                     <div class="text-sm leading-5 text-gray-900">
-                                        {{ $certificado->carga_horaria ? $certificado->carga_horaria . ' horas' : '' }}
+                                        @php
+                                            if($certificado->carga_horaria)
+                                                $horas = number_format($certificado->carga_horaria / 60, 1, ',', '');
+                                            else $horas = null;
+                                        @endphp
+                                        {{ $horas ? $horas . ' horas' : '' }}
                                     </div>
                                 </td>
 
