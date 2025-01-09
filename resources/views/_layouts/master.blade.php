@@ -10,12 +10,9 @@
 
     <title>{{ $titulo . " - " . env("APP_NAME")}}</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     @vite('resources/js/main.js')
-
     @vite('resources/scss/main.scss')
 </head>
 
