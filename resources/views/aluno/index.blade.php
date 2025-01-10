@@ -3,7 +3,7 @@
 @section('body')
     <div class="mt-4">
         <div class="flex flex-wrap -mx-6">
-            <div class="w-full px-6 sm:w-1/2 xl:w-1/4 sm:mt-1">
+            <div class="w-full xl:mt-6 px-6 sm:w-1/2 xl:w-1/4 md:mt-8 mt-0">
                 <div class="flex items-center px-5 py-6 shadow-xl rounded-3xl bg-white">
                     <div class="p-3 rounded-full bg-red-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewbox="0 0 16 16">
@@ -12,13 +12,15 @@
                     </div>
 
                     <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700">{{ ucfirst(strtok($aluno->nome, ' ')) }}</h4>
-                        <div class="text-gray-500">Aluno(a) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <h4 class="text-2xl font-semibold text-gray-700">
+                            {{ $aluno->nome_completo }}
+                        </h4>
+                        <div class="text-gray-500">Aluno(a)</div>
                     </div>
                 </div>
             </div>
 
-            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/4 sm:mt-1 xl:mt-1">
+            <div class="w-full xl:mt-6 px-6 sm:w-1/2 xl:w-1/4 mt-8">
                 <div class="flex items-center px-5 py-6 shadow-xl rounded-3xl bg-white">
                     <div class="p-3 rounded-full bg-green-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewbox="0 0 16 16">
@@ -31,12 +33,12 @@
 
                     <div class="mx-5">
                         <h4 class="text-2xl font-semibold text-gray-700">{{ $aluno->codigo_turma }}</h4>
-                        <div class="text-gray-500">Turma - {{ $curso }}</div>
+                        <div class="text-gray-500">Turma{{ $aluno->curso ? ' - ' . $aluno->curso : '' }}</div>
                     </div>
                 </div>
             </div>
 
-            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/4 sm:mt-1">
+            <div class="w-full xl:mt-6 px-6 sm:w-1/2 xl:w-1/4 mt-8">
                 <div class="flex items-center px-5 py-6 shadow-xl rounded-3xl bg-white">
                     <div class="p-3 rounded-full bg-fuchsia-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white"
@@ -53,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/4 sm:mt-1 ">
+            <div class="w-full xl:mt-6 px-6 sm:w-1/2 xl:w-1/4 mt-8 ">
                 <div class="flex items-center px-5 py-6 shadow-xl rounded-3xl bg-white">
                     <div class="p-3 rounded-full bg-pink-600 bg-opacity-75">
                         <svg class="h-8 w-8 text-white" viewBox="0 0 16 16" fill="white"
@@ -64,11 +66,7 @@
 
                     <div class="mx-5">
                         <h4 class="text-2xl font-semibold text-gray-700">
-                            @if($aluno->turma && $aluno->turma->professor)
-                                {{ ucfirst($aluno->turma->professor->nome) }}
-                            @else
-                                Ainda não designado
-                            @endif
+                            {{ $aluno->professor ??  "Não designado" }}
                         </h4>
                         <div class="text-gray-500">Professor(a) Responsável</div>
                     </div>
@@ -118,7 +116,7 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <a href="{{ $certificado->src }}"
+                                    <a href="{{ url('storage/' . $certificado->src) }}" target="_blank"
                                         class="text-indigo-600 hover:text-indigo-900 text-sm leading-5 font-medium">Ver
                                         comprovante</a>
                                 </td>
@@ -137,22 +135,9 @@
                                             Inválido</span>
                                     @endif
                                 </td>
-
-                                @if ($certificado->status == 'em_andamento')
-                                    <td
-                                        class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                        <a href="" class="bd-gray text-red-500 hover:text-red-800">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-trash" viewBox="0 0 24 24">
-                                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                            </svg>
-                                        </a>
-                                    </td>
-                                @else
-                                    <td
-                                        class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                    </td>
-                                @endif
+                                <td
+                                    class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

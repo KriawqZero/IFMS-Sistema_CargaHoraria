@@ -1,7 +1,7 @@
 @extends('_layouts.master')
 
 @section('body')
-    <div class="pl-12 pr-12">
+    <div class="sm:pl-12 sm:pr-12">
         <section class="bg-white py-12 px-12 rounded-lg shadow-lg">
             <h1 class="text-3xl font-bold text-gray-800 mb-4">A História por Trás do SISCO (Sistema de Gerenciamento de Carga Horária)</h1>
 

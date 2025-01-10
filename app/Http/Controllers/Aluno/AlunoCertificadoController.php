@@ -4,18 +4,16 @@ namespace App\Http\Controllers\Aluno;
 
 use App\Models\Certificado;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 
 class AlunoCertificadoController extends Controller {
     // Exibir a lista de certificados
     public function index() {
         $aluno = auth('aluno')->user(); // Obtenha o aluno autenticado
-        $certificados = $aluno->certificados; // Todos os certificados do aluno
 
         return view('aluno.certificados', [
             'titulo' => 'Certificados',
-            'certificados' => $certificados,
+            'certificados' => $aluno->certificados,
         ]);
     }
 
@@ -31,7 +29,7 @@ class AlunoCertificadoController extends Controller {
         $request->validate([
             'tipo' => 'required|string|max:255',
             'observacao' => 'nullable|string|max:500',
-            'arquivo' => 'required|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'arquivo' => 'required|file|mimes:pdf,jpg,jpeg,png|max:4096',
         ]);
 
         // Salvar o arquivo no storage
@@ -45,7 +43,7 @@ class AlunoCertificadoController extends Controller {
             'src' => $filePath,
         ]);
 
-        return redirect()->route('certificados.index')->with('success', 'Certificado enviado com sucesso!');
+        return redirect()->route('aluno.certificados.create')->with('success', 'Certificado enviado com sucesso!');
     }
 
     // Excluir um certificado
@@ -54,16 +52,18 @@ class AlunoCertificadoController extends Controller {
 
         // Verificar se o certificado pertence ao aluno autenticado
         if ($certificado->aluno_id !== auth('aluno')->id()) {
-            return redirect()->route('certificados.index')->with('error', 'Você não tem permissão para excluir este certificado.');
+            return redirect()->route('aluno.certificados.index')->with('error', 'Você não tem permissão para excluir este certificado.');
         }
 
         // Remover o arquivo do storage
-        Storage::disk('public')->delete($certificado->src);
+        /*Storage::disk('public')->delete($certificado->src);*/
 
         // Marcar o certificado como deletado
         $certificado->delete();
 
-        return redirect()->route('certificados.index')->with('success', 'Certificado excluído com sucesso!');
+        return redirect()
+            ->route('aluno.certificados.index')
+            ->with('success', 'Certificado excluído com sucesso!');
     }
 }
 

@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "alpinejs": "^3.14.8",
+    "blade-formatter": "^1.42.0",
+    "global": "^4.4.0",
     "tailwind": "^4.0.0"
   }
 }

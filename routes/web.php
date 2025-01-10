@@ -34,10 +34,10 @@ Route::name('aluno.')->group(function() {
         // Rotas de certificados do aluno
         Route::prefix('aluno/certificados')->name('certificados.')->group(function() {
             // Rota para criar/ enviar certificado
-            Route::get('/', [AlunoCertificadoController::class, 'index']) ->name('index');
+            Route::get('/', [AlunoCertificadoController::class, 'index'])->name('index');
             Route::get('/enviar', [AlunoCertificadoController::class, 'create'])->name('create');
             Route::post('/enviar', [AlunoCertificadoController::class, 'store'])->name('store');
-            Route::delete('/{id}', [AlunoCertificadoController::class, 'destroy'])->name('destroy');
+            Route::delete('/delete/{id}', [AlunoCertificadoController::class, 'destroy'])->name('destroy');
         });
     });
 });
@@ -57,9 +57,14 @@ Route::name('professor.')->group(function() {
         // Rota de dashboard do professor
         Route::get('professor/dashboard', [ProfessorController::class, 'dashboard'])
             ->name('dashboard');
+
+        // Rotas de certificados do professor
+        Route::prefix('professor/certificados')->name('certificados.')->group(function() {
+            // Rota para listar certificados
+            Route::get('/', [ProfessorCertificadoController::class, 'index'])->name('index');
+            Route::put('/{id}/aprovar', [ProfessorCertificadoController::class, 'aprovar'])->name('aprovar');
+            Route::put('/{id}/rejeitar', [ProfessorCertificadoController::class, 'rejeitar'])->name('reprovar');
+        });
     });
 });
-
-
-
 
