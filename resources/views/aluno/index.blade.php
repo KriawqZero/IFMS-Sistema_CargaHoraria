@@ -93,7 +93,6 @@
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Status</th>
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
                         </tr>
                     </thead>
 
@@ -116,27 +115,19 @@
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <a href="{{ url('storage/' . $certificado->src) }}" target="_blank"
+                                        <a href="{{ $certificado->src_url }}" target="_blank"
                                         class="text-indigo-600 hover:text-indigo-900 text-sm leading-5 font-medium">Ver
                                         comprovante</a>
                                 </td>
 
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    @if ($certificado->status == 'validado')
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Validado</span>
-                                    @elseif($certificado->status == 'em_andamento')
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Em
-                                            andamento</span>
-                                    @else
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                            Inválido</span>
-                                    @endif
-                                </td>
-                                <td
-                                    class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{
+                                        $certificado->status == 'validado' ? 'bg-green-50 text-green-800' :
+                                        ($certificado->status == 'em_andamento' ? 'bg-yellow-50 text-yellow-800' :
+                                        'bg-red-50 text-red-800') }}">
+                                        {{ $certificado->formatStatus() }}
+                                    </span>
                                 </td>
                             </tr>
                         @endforeach

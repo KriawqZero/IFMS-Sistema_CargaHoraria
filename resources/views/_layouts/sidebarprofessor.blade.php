@@ -49,4 +49,8 @@
             <span class="mx-3">Resumo da Turma</span>
         </a>
     </nav>
+
+    <div class="flex justify-center">
+        <img src="{{ asset('svg/ifms-cb-logo.svg') }}" class="absolute bottom-0 my-6 h-10 mx-6" />
+    </div>
 </div>

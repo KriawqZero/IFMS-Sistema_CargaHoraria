@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('src');
             $table->text('observacao')->nullable();
             $table->integer('carga_horaria')->nullable();
-            $table->enum('status', ['em_andamento', 'invalido', 'validado'])
+            $table->enum('status', ['em_andamento', 'invalido', 'valido'])
                   ->default('em_andamento');
             $table->timestamps();
             $table->softDeletes();

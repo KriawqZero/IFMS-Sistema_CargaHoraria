@@ -27,7 +27,16 @@
                 @include('_layouts.header')
 
                 <main style="" class="flex-1 bg-zinc-300 overflow-x-hidden overflow-y-auto">
-                    @include('_layouts.notificacoes')
+                    @if($errors->any())
+                        <x-alerts::erro-alert :erros="$errors->all()" timeout='10000'/>
+                    @endif
+                    @if(session('success'))
+                        <x-alerts::success-alert :mensagem="session('success')" timeout='10000'/>
+                    @endif
+                    @if(session('info'))
+                        <x-alerts::info-alert :mensagem="session('info')" timeout='10000'/>
+                    @endif
+
                     <div class="container mx-auto px-6 py-8">
                         @yield('body')
                     </div>
