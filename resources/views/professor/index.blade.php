@@ -64,20 +64,21 @@
             <!-- Table Certificados -->
             <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                 <table class="min-w-full">
+                
                     <thead>
                         <tr>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider ">
                                 Certificados Enviados</th>
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Data</th>
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Aluno</th>
+                                Status</th>
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Status</th>
+                                Aluno</th>
                             <th class="px-6 py-3 border-b border-gray-200 bg-gray-100"></th>
                         </tr>
                     </thead>
@@ -86,106 +87,82 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full"
-                                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                            alt="" />
-                                    </div>
-
                                     <div class="ml-4">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">John Doe</div>
-                                        <div class="text-sm leading-5 text-gray-500">john@example.com</div>
+                                        <div class="text-sm leading-5 font-medium text-gray-900">Semana Arte e Cultura 2022</div>
                                     </div>
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">Software Engineer</div>
-                                <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                                <div class="text-sm leading-5 text-gray-900">18/06/2022</div>                        
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Avaliado</span>
                             </td>
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                Owner</td>
+                                Tiririca</td>
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Visualizado</a>
                             </td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full"
-                                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                            alt="" />
-                                    </div>
-
                                     <div class="ml-4">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">John Doe</div>
-                                        <div class="text-sm leading-5 text-gray-500">john@example.com</div>
+                                        <div class="text-sm leading-5 font-medium text-gray-900">Semana Arte e Cultura 2022</div>
                                     </div>
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">Software Engineer</div>
-                                <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                                <div class="text-sm leading-5 text-gray-900">18/06/2022</div>                        
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Avaliado</span>
                             </td>
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                Owner</td>
+                                Danyela</td>
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Não Visualizado</a>
                             </td>
                         </tr>
                         <tr>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full"
-                                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                            alt="" />
-                                    </div>
-
                                     <div class="ml-4">
-                                        <div class="text-sm leading-5 font-medium text-gray-900">John Doe</div>
-                                        <div class="text-sm leading-5 text-gray-500">john@example.com</div>
+                                        <div class="text-sm leading-5 font-medium text-gray-900">Fecipan</div>
                                     </div>
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">Software Engineer</div>
-                                <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                                <div class="text-sm leading-5 text-gray-900">04/09/2024</div>                        
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Avaliado</span>
                             </td>
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                                Owner</td>
+                                Davi</td>
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Visualizado</a>
                             </td>
                         </tr>
                     @endsection
