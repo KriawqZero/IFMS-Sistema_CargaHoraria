@@ -75,7 +75,7 @@ class AlunoController extends Controller {
 
                 auth('aluno')->login($aluno);
 
-                return redirect()->route('aluno.dashboard');
+                return redirect()->route('aluno.dashboard')->with('success', 'Login efetuado com sucesso.');
             }
 
             return redirect()->route("aluno.login")->withErrors(['message' => 'Usuário ou senha incorretos.'])->withInput();

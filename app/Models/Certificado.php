@@ -23,4 +23,19 @@ class Certificado extends Model {
     public function aluno() {
         return $this->belongsTo(Aluno::class);
     }
+
+    public function getSrcUrlAttribute() {
+        return $this->src ? asset('storage/' . $this->src) : null;
+    }
+
+    public function formatStatus(): String {
+        $status = $this->status;
+        if($status == 'em_andamento')
+            return 'Pendente';
+
+        else if($status == 'validado')
+            return 'Válido';
+
+        return 'Inválido';
+    }
 }

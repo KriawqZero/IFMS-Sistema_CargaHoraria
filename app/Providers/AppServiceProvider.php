@@ -3,22 +3,23 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
-class AppServiceProvider extends ServiceProvider
-{
+class AppServiceProvider extends ServiceProvider {
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
+    public function register(): void {
         //
     }
 
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        //
+    public function boot(): void {
+        Blade::componentNamespace('App\\View\\Components\\Master\\Alerts', 'alerts');
+        Blade::componentNamespace('App\\View\\Components\\Master', 'master');
+        Blade::componentNamespace('App\\View\\Components\\Utility\\Buttons', 'buttons');
+        Blade::componentNamespace('App\\View\\Components\\Aluno', 'aluno');
     }
 }
