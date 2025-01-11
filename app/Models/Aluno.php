@@ -54,7 +54,7 @@ class Aluno extends Model implements AuthenticatableContract {
     }
 
     public function getCursoAttribute() {
-        if(!$this->codigo_turma) return 'Ainda não designado';
+        if(!$this->codigo_turma) return null;
 
         $codigo_curso = $this->codigo_turma[2];
 
