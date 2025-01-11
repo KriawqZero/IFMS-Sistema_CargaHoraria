@@ -21,8 +21,9 @@ class ProfessorController extends Controller {
     }
 
     public function processLogin(Request $request) {
-        // Valida os campos de entrada.
         auth('aluno')->logout();
+
+        // Valida os campos de entrada.
         $credentials = $request->validate([
             'login' => 'required|string',
             'senha' => 'required|string',
@@ -30,7 +31,7 @@ class ProfessorController extends Controller {
 
         if ($credentials['login'] == 'professor.davi' && $credentials['senha'] == '123') {
             auth('professor')->loginUsingId(1);
-            return redirect()->route('professor.dashboard');
+                return redirect()->route('professor.dashboard');
         } else {
             return redirect()
                 ->route('professor.login')
