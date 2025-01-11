@@ -35,8 +35,10 @@
             class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
             name="tipo">
             <option value="" disabled selected>Selecione uma opção</option>
-            <option value="Unidades curriculares optativa/eletivas">Unidades curriculares optativa/eletivas</option>
-            <option value="Projetos de ensino, pesquisa e extensão">Projetos de ensino, pesquisa e extensão</option>
+            <option value="Unidades curriculares optativa/eletivas">Unidades curriculares optativa/eletivas
+            </option>
+            <option value="Projetos de ensino, pesquisa e extensão">Projetos de ensino, pesquisa e extensão
+            </option>
             <option value="Prática Profissional Integradora<">Prática Profissional Integradora</option>
             <option value="Práticas Desportivas">Práticas Desportivas</option>
             <option value="Práticas Artístico-Culturais">Práticas Artístico-Culturais</option>

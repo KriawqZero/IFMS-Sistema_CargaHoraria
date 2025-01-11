@@ -1,8 +1,4 @@
-@props([
-  'iconBg',
-  'titulo',
-  'subtitulo',
-])
+@props(['iconBg', 'titulo', 'subtitulo'])
 
 <div {{ $attributes->merge(['class' => 'flex items-center px-5 py-6 shadow-xl rounded-3xl bg-white']) }}>
   <div class="p-3 rounded-full {{ $iconBg }}">
