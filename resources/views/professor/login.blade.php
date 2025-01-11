@@ -35,7 +35,7 @@
                 @csrf
                 <label class="block">
                     <span class="text-gray-700 text-sm ml-1">Login (nome.sobrenome)</span>
-                    <input name="login" type="text" placeholder="012.345.678-90"
+                    <input name="login" type="text" placeholder="fulano.detal"
                         class="bg-gray-100 p-2 border border-zinc-300 mt-1 block w-full rounded-2xl">
                 </label>
 
