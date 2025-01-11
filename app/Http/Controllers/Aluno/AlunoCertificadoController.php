@@ -33,11 +33,11 @@ class AlunoCertificadoController extends Controller {
         ]);
 
         // Salvar o arquivo no storage
-        $filePath = $request->file('arquivo')->store('certificados', 'public');
+        $filePath = $request->file('arquivo')->store('certificados/' . auth('aluno')->id() ,'public');
 
         // Criar o certificado
         Certificado::create([
-            'aluno_id' => auth('aluno')->id(), // Supondo que o aluno está autenticado
+            'aluno_id' => auth('aluno')->id(),
             'tipo' => $request->input('tipo'),
             'observacao' => $request->input('observacao'),
             'src' => $filePath,
