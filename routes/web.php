@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AlunoController;
-use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\Aluno\AlunoController;
+use App\Http\Controllers\Professor\ProfessorController;
 use App\Http\Controllers\Aluno\AlunoCertificadoController;
 use App\Http\Controllers\Professor\ProfessorCertificadoController;
 use App\Http\Middleware\VerifyAuth;

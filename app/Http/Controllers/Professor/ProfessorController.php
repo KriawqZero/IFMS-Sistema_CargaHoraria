@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Professor;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProfessorController extends Controller {
     public function showLoginForm() {
@@ -20,6 +21,15 @@ class ProfessorController extends Controller {
         ]);
     }
 
+    public function validarCertificados() {
+        $professor = auth('professor')->user();
+
+        return view('professor/validar_certificados', [
+            'titulo' => "Validar Certificados",
+            'professor' => $professor,
+        ]);
+    }
+
     public function processLogin(Request $request) {
         auth('aluno')->logout();
 
@@ -29,13 +39,12 @@ class ProfessorController extends Controller {
             'senha' => 'required|string',
         ]);
 
-        if ($credentials['login'] == 'professor.davi' && $credentials['senha'] == '123') {
-            auth('professor')->loginUsingId(1);
-                return redirect()->route('professor.dashboard');
-        } else {
-            return redirect()
-                ->route('professor.login')
-                ->withErrors('Login ou senha inválidos');
-        }
+        // if
+        if ($credentials['login'] !== 'professor.davi' && $credentials['senha'] != '123')
+            return redirect() ->route('professor.login') ->withErrors('Login ou senha inválidos');
+
+        // else
+        auth('professor')->loginUsingId(1);
+            return redirect()->route('professor.dashboard');
     }
 }

@@ -28,12 +28,12 @@ class CertificadoFactory extends Factory {
             'Práticas artístico-culturais',
         ];
 
-        $tipos_status = ['em_andamento', 'invalido', 'validado'];
+        $tipos_status = ['em_andamento', 'invalido', 'valido'];
 
         $status = $this->faker->randomElement($tipos_status);
 
         $carga_horaria = null;
-        if($status == 'validado') {
+        if($status == 'valido') {
             $carga_horaria = $this->gerarMultiploAleatorio(30, 6000);
         }
 

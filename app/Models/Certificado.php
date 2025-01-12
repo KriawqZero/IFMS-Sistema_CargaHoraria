@@ -33,7 +33,7 @@ class Certificado extends Model {
         if($status == 'em_andamento')
             return 'Pendente';
 
-        else if($status == 'validado')
+        else if($status == 'valido')
             return 'Válido';
 
         return 'Inválido';

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Aluno;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -60,28 +61,29 @@ class AlunoController extends Controller {
             ->withHeaders(['Authorization' => 'Bearer ' . $token])
             ->get(env('API_URL') . 'Aluno/login', $credentials);
 
-        if ($response->successful()) {
-            $responseData = $response->json();
-
-            if ($responseData['valido'] === true) {
-                $aluno = Aluno::firstOrCreate(
-                    ['cpf' => $credentials['cpf']],
-                    [
-                        'nome' => $responseData['nome'] ?? 'Nome não informado',
-                        'email' => $responseData['email'] ?? null,
-                        'data_nascimento' => $responseData['data_nascimento'] ?? null,
-                    ]
-                );
-
-                auth('aluno')->login($aluno);
-
-                return redirect()->route('aluno.dashboard')->with('success', 'Login efetuado com sucesso.');
-            }
-
+        // if
+        if (!$response->successful())
             return redirect()->route("aluno.login")->withErrors(['message' => 'Usuário ou senha incorretos.'])->withInput();
-        }
 
-        return redirect()->route("aluno.login")->withErrors(['message' => 'Falha ao autenticar usuário.'])->withInput();
+        $responseData = $response->json();
+
+        // if
+        if (!$responseData['valido'])
+            return redirect()->route("aluno.login")->withErrors(['message' => 'Falha ao autenticar usuário.'])->withInput();
+
+        // else
+        $aluno = Aluno::firstOrCreate(
+            ['cpf' => $credentials['cpf']],
+            [
+                'nome' => $responseData['nome'] ?? 'Nome não informado',
+                'email' => $responseData['email'] ?? null,
+                'data_nascimento' => $responseData['data_nascimento'] ?? null,
+            ]
+        );
+
+        auth('aluno')->login($aluno);
+
+        return redirect()->route('aluno.dashboard')->with('success', 'Login efetuado com sucesso.');
     }
 }
 
