@@ -18,8 +18,8 @@
 </head>
 
 <body>
-  <div style="background-color: var(--colorWeak);" class="flex justify-center items-center h-screen px-6">
-    <div class="p-8 max-w-sm w-full bg-white shadow-md rounded-3xl">
+  <div class="flex bg-stone-400 justify-center items-center h-screen px-6">
+    <div class="p-8 max-w-sm w-full bg-stone-200 shadow-md rounded-3xl">
       <div class="flex justify-center items-center">
         <img class="object-cover h-24 m-7" src="{{ asset('images/SISCO.png') }}" />
       </div>
@@ -61,9 +61,9 @@
         </div>
 
         <div class="flex justify-center mt-2">
-          <a href="{{ route('aluno.login') }}"
+          <a href="{{ route('admin.login') }}"
             class="text-blue-600 underline font-medium hover:text-blue-800 transition duration-300">
-            Login Como Coordenador
+            Login Como Administrador
           </a>
         </div>
       </form>

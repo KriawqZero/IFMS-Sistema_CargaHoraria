@@ -41,6 +41,7 @@ class AlunoController extends Controller {
     public function logout() {
         Auth::guard('aluno')->logout();
         Auth::guard('professor')->logout();
+        Auth::guard('admin')->logout();
         return redirect()->route('aluno.login');
     }
 
@@ -81,9 +82,10 @@ class AlunoController extends Controller {
             ]
         );
 
+        $request->session()->regenerate();
         auth('aluno')->login($aluno);
 
-        return redirect()->route('aluno.dashboard')->with('success', 'Login efetuado com sucesso.');
+        return redirect()->route('aluno.dashboard');
     }
 }
 

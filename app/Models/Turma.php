@@ -26,4 +26,10 @@ class Turma extends Model {
     public function alunos() {
         return $this->hasMany(Aluno::class, 'codigo_turma', 'codigo');
     }
+
+    public function listarTodosCertificados() {
+        return $this->alunos->map(function($aluno) {
+            return $aluno->certificados;
+        })->latest();
+    }
 }

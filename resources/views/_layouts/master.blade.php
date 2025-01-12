@@ -19,7 +19,11 @@
 <body>
   <div x-data="{ sidebarOpen: false }" class="flex h-screen">
     @if (auth()->guard('professor')->check())
-      @include('_layouts.sidebarprofessor')
+      @include('_layouts.sidebar_professor')
+
+    @elseif(auth()->guard('admin')->check())
+      @include('_layouts.sidebar_admin')
+
     @elseif(auth()->guard('aluno')->check())
       @include('_layouts.sidebar')
     @endif
@@ -31,9 +35,11 @@
         @if ($errors->any())
           <x-alerts::erro-alert :erros="$errors->all()" timeout='10000' />
         @endif
+
         @if (session('success'))
           <x-alerts::success-alert :mensagem="session('success')" timeout='10000' />
         @endif
+
         @if (session('info'))
           <x-alerts::info-alert :mensagem="session('info')" timeout='10000' />
         @endif

@@ -44,6 +44,7 @@ class ProfessorController extends Controller {
             return redirect() ->route('professor.login') ->withErrors('Login ou senha inválidos');
 
         // else
+        $request->session()->regenerate();
         auth('professor')->loginUsingId(1);
             return redirect()->route('professor.dashboard');
     }

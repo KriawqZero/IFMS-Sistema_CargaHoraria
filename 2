@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class AdminController extends Controller {
+    public function showLoginForm() {
+        return view('admin.login', [
+            'titulo' => "Login como Admin",
+        ]);
+    }
+
+    public function dashboard() {
+        $admin = auth('admin')->user();
+
+        return view('admin.index', [
+            'titulo' => 'Painel Admin',
+            'admin' => $admin,
+        ]);
+    }
+}

@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Aluno\AlunoController;
 use App\Http\Controllers\Professor\ProfessorController;
 use App\Http\Controllers\Aluno\AlunoCertificadoController;
 use App\Http\Controllers\Professor\ProfessorCertificadoController;
 use App\Http\Middleware\VerifyAuth;
 use App\Http\Middleware\VerifyJWT;
-use Illuminate\Support\Facades\Route;
 
 // Grupo de rotas do aluno (nomes prefixados com 'aluno.')
 Route::name('aluno.')->group(function() {
@@ -67,4 +67,17 @@ Route::name('professor.')->group(function() {
         });
     });
 });
+
+Route::name('admin.')->group(function() {
+    Route::get('admin', [AdminController::class, 'showLoginForm'])->name('login');
+
+    Route::post('admin', [AdminController::class, 'processLogin'])->name('login.post');
+
+    Route::middleware([VerifyAuth::class . ':admin'])->group(function() {
+        Route::get('admin/dashboard', [AdminController::class, 'dashboard'])
+            ->name('dashboard');
+    });
+});
+
+
 
