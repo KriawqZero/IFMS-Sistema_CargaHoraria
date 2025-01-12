@@ -47,7 +47,9 @@
 
   <div class="flex flex-col mt-8">
     <div class="-my-2 py-2 pb-12 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-      <x-aluno::certificados-table :certificados="$certificados" :colunas="['tipo', 'data_enviada', 'status']" />
+      <x-aluno::certificados-table
+        :certificados="$certificados"
+        :colunas="['tipo', 'data_enviada', 'status' ]" />
     </div>
   </div>
 @endsection

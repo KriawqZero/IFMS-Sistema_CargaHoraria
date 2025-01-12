@@ -35,6 +35,7 @@
           </div>
         @endif
         <form class="mt-4" action="{{ route('aluno.login.post') }}" method="POST">
+          @csrf
           <label class="block">
             <span class="ml-1 text-sm text-gray-700">CPF</span>
             <input name="cpf" type="text" placeholder="012.345.678-90"
