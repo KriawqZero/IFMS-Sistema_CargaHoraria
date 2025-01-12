@@ -32,7 +32,7 @@ class VerifyAuth {
         // Redireciona para o login se não estiver autenticado.
         if (!$request->routeIs("$guard.login")) {
             return redirect()
-                ->route("$guard.login")
+                ->route("aluno.login")
                 ->withErrors(['message' => 'Você precisa estar autenticado para acessar esta página.']);
         }
 
