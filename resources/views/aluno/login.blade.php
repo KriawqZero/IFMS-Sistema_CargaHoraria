@@ -38,10 +38,14 @@
             class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-500 mt-1 block w-full rounded-2xl">
         </label>
 
-        <label class="block mt-3">
-          <span class="text-gray-700 text-sm ml-1">Senha</span>
-          <input name="senha" type="password" placeholder="********"
-            class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-800 block w-full rounded-2xl">
+        <label class="block mt-3" x-data="{ formattedDate: '' }">
+          <span class="text-gray-700 text-sm ml-1">Data de Nascimento</span>
+          <input name="data_nascimento" type="text" placeholder="DD/MM/YYYY"
+            x-model="formattedDate"
+            x-on:input="
+            formattedDate = formattedDate.replace(/[^0-9]/g, '').replace(/(\d{2})(\d{2})/, '$1/$2').replace(/(\d{2}\/\d{2})(\d{4})/, '$1/$2')"
+            class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-800 block w-full rounded-2xl"
+            maxlength="10">
         </label>
 
         <div class="flex justify-between items-center mt-4">
@@ -66,8 +70,8 @@
             Login Como Professor
           </a>
         </div>
-
       </form>
+
     </div>
   </div>
 </body>

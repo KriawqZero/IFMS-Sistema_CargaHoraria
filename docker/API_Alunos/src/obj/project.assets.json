@@ -1465,11 +1465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marcilio\\Marcilio\\Projetos\\ASP\\API_Alunos\\API_Alunos.csproj",
+      "projectUniqueName": "C:\\Users\\Marcilio\\Marcilio\\Projetos\\PHP_LARAVEL\\IFMS-Sistema_CargaHoraria\\docker\\API_Alunos\\src\\API_Alunos.csproj",
       "projectName": "API_Alunos",
-      "projectPath": "C:\\Users\\Marcilio\\Marcilio\\Projetos\\ASP\\API_Alunos\\API_Alunos.csproj",
+      "projectPath": "C:\\Users\\Marcilio\\Marcilio\\Projetos\\PHP_LARAVEL\\IFMS-Sistema_CargaHoraria\\docker\\API_Alunos\\src\\API_Alunos.csproj",
       "packagesPath": "C:\\Users\\Marcilio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marcilio\\Marcilio\\Projetos\\ASP\\API_Alunos\\obj\\",
+      "outputPath": "C:\\Users\\Marcilio\\Marcilio\\Projetos\\PHP_LARAVEL\\IFMS-Sistema_CargaHoraria\\docker\\API_Alunos\\src\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Marcilio\\AppData\\Roaming\\NuGet\\NuGet.Config"
