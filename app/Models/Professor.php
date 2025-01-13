@@ -14,9 +14,8 @@ class Professor extends Model implements AuthenticatableContract {
 
     protected $fillable = [
         'nome',
-        'data_nascimento',
-        'cpf',
-        'senha'
+        'sobrenome',
+        'senha',
     ];
 
     protected $hidden = [

@@ -10,6 +10,8 @@
           Enviar Certificado</a>
       </div>
 
+    
+
       <!-- Certificados Table -->
       <!---aluno::certificados-table :certificados="$certificados" />-->
       @livewire('certificados-table')

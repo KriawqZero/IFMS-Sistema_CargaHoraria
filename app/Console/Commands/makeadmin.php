@@ -6,8 +6,8 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use App\Models\Admin;
 
-class superadmin extends Command {
-    protected $signature = 'ifms:makesuperadmin';
+class makeadmin extends Command {
+    protected $signature = 'ifms:makeadmin';
 
     public function handle() {
         $nome = $this->ask('Qual será o nome do Super Admin?');

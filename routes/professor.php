@@ -6,7 +6,6 @@ use App\Http\Middleware\VerifyAuth;
 
 // Grupo de rotas do professor (nomes prefixados com 'professor.')
 Route::name('professor.')->group(function() {
-
     // Rota de processamento do login do professor
     Route::post('professor', [ProfessorController::class, 'processLogin'])
         ->name('login.post');
@@ -20,6 +19,9 @@ Route::name('professor.')->group(function() {
         // Rota de dashboard do professor
         Route::get('professor/dashboard', [ProfessorController::class, 'dashboard'])
             ->name('dashboard');
+        
+        Route::get('professor/alunos', [ProfessorController::class, 'listarAlunos'])
+            ->name('alunos');
 
         // Rotas de certificados do professor
         Route::prefix('professor/certificados')->name('certificados.')->group(function() {
