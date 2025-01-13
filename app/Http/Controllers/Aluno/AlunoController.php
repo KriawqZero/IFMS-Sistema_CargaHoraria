@@ -89,6 +89,7 @@ class AlunoController extends Controller {
     /*    return redirect()->route('aluno.dashboard');*/
     /*}*/
     /**/
+
     public function processLogin(Request $request) {
         auth('admin')->logout();
         auth('professor')->logout();

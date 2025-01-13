@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class AlunoCertificadoController extends Controller {
     // Exibir a lista de certificados
-    public function index() {
+    public function index(Request $request) {
         $aluno = auth('aluno')->user(); // Obtenha o aluno autenticado
 
         return view('aluno.certificados', [
