@@ -93,7 +93,7 @@ class Aluno extends Model implements AuthenticatableContract {
     }
 
     public function maxCargaHoraria() {
-        return array_sum($this->limitesCargaHoraria());
+        return array_sum($this->limitesCargaHoraria()) * 60;
     }
 
     public function paginarCertificados($maxItens = 10) {

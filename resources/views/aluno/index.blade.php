@@ -45,11 +45,21 @@
     </div>
   </div>
 
-     <div class="mt-3 h-5 bg-gray-200 rounded-full">
-    <div class="h-full bg-green-500 text-xs font-semibold text-center text-white rounded-full" 
-         style="width: {{ ($cargaHorariaTotal / $maxCargaHoraria) * 100 }}%;">
-        {{ round(($cargaHorariaTotal / $maxCargaHoraria) * 100) }}% Completo
+
+  <div class="flex justify-between my-5 mb-1">
+    <span class="text-base font-medium text-gray-600 dark:text-gray-600">Progresso</span>
+    <span class="text-sm font-small text-gray-600 dark:text-gray-600">
+      {{ round(min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100)) }}%
+    </span>
+  </div>
+  <div class="w-full bg-slate-600 rounded-full h-2.5">
+    <div class="bg-green-500 h-2.5 rounded-full" style="
+        width: {{ min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100) }}%;
+      ">
     </div>
+  </div>
+
+
 </div>
 
 

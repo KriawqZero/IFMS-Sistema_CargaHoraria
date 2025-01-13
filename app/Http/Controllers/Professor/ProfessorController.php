@@ -14,20 +14,32 @@ class ProfessorController extends Controller {
         ]);
     }
 
-    public function listarAlunos() {
+    public function listarAlunos(Request $request) {
         $professor = auth('professor')->user();
-    
+        
+        // Recupera todas as turmas associadas ao professor e os alunos relacionados
+        $turmas = $professor->turmas;
+        $alunos = $turmas->pluck('alunos')->flatten();
+        
         // Recupera todas as turmas associadas ao professor e os alunos relacionados.
-        $alunos = $professor->turmas()->with('alunos')->get()->pluck('alunos')->flatten();
-
+        //$alunos = $professor->turmas()->with('alunos')->get()->pluck('alunos')->flatten();
+    
+        // Se houver um filtro de turma
+        if ($request->has('turma') && $request->turma != 'todas') {
+            $turmaSelecionada = $request->turma;
+            $alunos = $alunos->filter(function($aluno) use ($turmaSelecionada) {
+                return $aluno->turma->codigo == $turmaSelecionada;
+            });
+        }
+    
         return view('professor/alunos', [
             'titulo' => 'Alunos',
             'professor' => $professor,
             'alunos' => $alunos,
+            'turmas' => $turmas,
         ]);
     }
     
-
     public function dashboard() {
         $professor = auth('professor')->user();
 
