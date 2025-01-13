@@ -2,23 +2,33 @@
 
 namespace App\Livewire;
 
+use App\Models\Certificado;
 use Livewire\Component;
+use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
 class CertificadosTable extends Component {
     use WithPagination;
 
-    public $certificados; // Propriedade para receber os certificados
-    public $perPage = 10; // Número de itens por página (padrão)
+    public $perPage = 10; // Itens por página
+    public $page = 1;
 
-    public function mount($certificados) {
-        $this->certificados = $certificados;
+    protected $queryString = ['page', 'perPage'];
+
+    // Reagir às mudanças na propriedade `perPage`
+    function updatedPerPage($value) {
+        // Reinicia a paginação ao mudar a quantidade por página
+        $this->resetPage();
     }
 
     public function render() {
+
         return view('livewire.certificados-table', [
-            'certificados' => $this->certificados,
-            /*'paginator' => $this->paginator,*/
+            'certificados' => auth('aluno')->user()
+            ->certificados()
+            ->latest()
+            ->paginate($this->perPage),
         ]);
     }
 }
+

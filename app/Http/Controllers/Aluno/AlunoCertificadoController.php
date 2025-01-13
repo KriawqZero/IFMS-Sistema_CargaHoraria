@@ -5,20 +5,15 @@ namespace App\Http\Controllers\Aluno;
 use App\Models\Certificado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class AlunoCertificadoController extends Controller {
     // Exibir a lista de certificados
     public function index(Request $request) {
-        $aluno = Auth::guard('aluno')->user(); // Obtenha o aluno autenticado
-
-        $certificados = $aluno->certificados()->latest()->paginate(10);
-
+        $alunoId = auth('aluno')->id(); // Obtenha o aluno autenticado
 
         return view('aluno.certificados', [
             'titulo' => 'Certificados',
-            'certificados' => $certificados->items(),
-            'paginator' => $certificados,
+            'alunoId' => $alunoId,
         ]);
     }
 

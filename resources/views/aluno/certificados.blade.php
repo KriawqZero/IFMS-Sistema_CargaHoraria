@@ -11,8 +11,8 @@
       </div>
 
       <!-- Certificados Table -->
-      <x-aluno::certificados-table :certificados="$certificados" />
-      <!--livewire:certificados-table :certificados="$certificados" />-->
+      <!---aluno::certificados-table :certificados="$certificados" />-->
+      @livewire('certificados-table')
     </div>
   </div>
 @endsection
