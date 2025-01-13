@@ -16,10 +16,9 @@ class CertificadosTable extends Component {
     }
 
     public function render() {
-        $certificadosPaginados = $this->certificados->paginate($this->perPage);
-
         return view('livewire.certificados-table', [
-            'certificados' => $certificadosPaginados,
+            'certificados' => $this->certificados,
+            /*'paginator' => $this->paginator,*/
         ]);
     }
 }

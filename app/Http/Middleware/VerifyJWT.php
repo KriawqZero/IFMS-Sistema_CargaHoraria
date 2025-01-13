@@ -20,7 +20,7 @@ class VerifyJWT
         $username = 'laravel';
         $password = 'certificado123';
 
-        $response = Http::post('http://localhost:5000/api/Auth/login', [
+        $response = Http::post(env('API_URL') . 'Auth/login', [
             'username' => $username,
             'password' => $password,
         ]);

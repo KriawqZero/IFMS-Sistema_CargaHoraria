@@ -35,17 +35,15 @@
         <label class="block">
           <span class="text-gray-700 text-sm ml-1">CPF</span>
           <input name="cpf" type="text" placeholder="012.345.678-90"
-            class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-500 mt-1 block w-full rounded-2xl">
+            class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-500 mt-1 block w-full rounded-2xl"
+            maxlength="14" id="cpf_form">
         </label>
 
         <label class="block mt-3" x-data="{ formattedDate: '' }">
           <span class="text-gray-700 text-sm ml-1">Data de Nascimento</span>
           <input name="data_nascimento" type="text" placeholder="DD/MM/YYYY"
-            x-model="formattedDate"
-            x-on:input="
-            formattedDate = formattedDate.replace(/[^0-9]/g, '').replace(/(\d{2})(\d{2})/, '$1/$2').replace(/(\d{2}\/\d{2})(\d{4})/, '$1/$2')"
             class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-800 block w-full rounded-2xl"
-            maxlength="10">
+            maxlength="10" id="data_nasc_form">
         </label>
 
         <div class="flex justify-between items-center mt-4">
@@ -74,6 +72,34 @@
 
     </div>
   </div>
+
+  <script>
+    const input = document.getElementById("cpf_form");
+    input.addEventListener('input', () => {
+      let inputlength = input.value.length;
+
+      // Adiciona pontos no CPF após 3 e 7 caracteres
+      if (inputlength === 3 || inputlength === 7) {
+        input.value += '.';
+      }
+
+      // Adiciona o hífen após o 11º caractere
+      if (inputlength === 11) {
+        input.value += '-';
+      }
+    });
+
+    const input_nasc = document.getElementById('data_nasc_form');
+    input_nasc.addEventListener('input', () => {
+      let inputlength_nasc = input_nasc.value.length;
+
+      // Adiciona barra após 2 e 5 caracteres na data
+      if (inputlength_nasc === 2 || inputlength_nasc === 5) {
+        input_nasc.value += '/';
+      }
+    });
+  </script>
+
 </body>
 
 </html>

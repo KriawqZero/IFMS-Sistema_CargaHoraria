@@ -10,6 +10,6 @@
 
     <x-aluno::certificados-table :certificados="$certificados" />
 
-    <!-- Paginação -->
-    {{ $certificados->links() }}
+     <!--Paginação -->
+    <!--{ $paginator->links() }}-->
 </div>

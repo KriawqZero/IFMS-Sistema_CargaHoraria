@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-app
+    networks:
+      - shared_network  # Conectando o container do Laravel à rede existente
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/sites-available/default
+    environment:
+      - APP_ENV=production
+      - APP_TIMEZONE=America/Cuiaba
+      - APP_URL=http://localhost
+      - API_URL=http://localhost:5000/api/
+      - APP_LOCALE=pt_BR
+      - APP_FALLBACK_LOCALE=pt_BR
+      - APP_FAKER_LOCALE=pt_BR
+      - DB_CONNECTION=mariadb
+      - DB_HOST=mariadb_local
+      - DB_PORT=3306
+      - DB_DATABASE=sistema_carga_horaria
+      - DB_USERNAME=user
+      - DB_PASSWORD=user123
+      - JWT_SECRET=3UQRwY1sg7OmNkrgOL2CMD9h05k09VhTIGMJPBW7V82OD77YwuGxOR894ECRUEvYyDHcw6h5kl2mKIOctwb0zjKgkf3CPDolxttDOMpC8irTSHiavmHO6CfD8EQ6ATum
+      - API_URL=http://api_csharp_local:8080/api/
+    env_file:
+      - .env
+
+
+networks:
+  shared_network:
+    external: true  # Isso indica que a rede 'shared_network' já existe fora do docker-compose
+
+
