@@ -45,6 +45,24 @@
     </div>
   </div>
 
+
+  <div class="flex justify-between my-5 mb-1">
+    <span class="text-base font-medium text-gray-600 dark:text-gray-600">Progresso</span>
+    <span class="text-sm font-small text-gray-600 dark:text-gray-600">
+      {{ round(min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100)) }}%
+    </span>
+  </div>
+  <div class="w-full bg-slate-600 rounded-full h-2.5">
+    <div class="bg-green-500 h-2.5 rounded-full" style="
+        width: {{ min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100) }}%;
+      ">
+    </div>
+  </div>
+
+
+</div>
+
+
   <div class="flex flex-col mt-8">
     <div class="-my-2 py-2 pb-12 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
       <x-aluno::certificados-table

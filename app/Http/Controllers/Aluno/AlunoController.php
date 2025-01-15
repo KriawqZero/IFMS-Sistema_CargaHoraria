@@ -22,7 +22,7 @@ class AlunoController extends Controller {
     }
 
     public function dashboard() {
-        $aluno = Auth::guard('aluno')->user(); // Obter aluno autenticado
+        $aluno = auth('aluno')->user(); // Obter aluno autenticado
 
         /** @disregard P1013 Undefined Method */
         return view('aluno.index', [
