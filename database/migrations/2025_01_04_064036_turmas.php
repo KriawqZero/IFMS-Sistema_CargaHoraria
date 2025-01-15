@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('turmas', function (Blueprint $table) {
             $table->string('codigo')->primary();
-            $table->foreignId('professor_id')->constrained('professores')->ondelete('cascade');
+            $table->foreignId('professor_id')
+                ->nullable()
+                ->constrained('professores')
+                ->ondelete('cascade');
             $table->timestamps();
         });
     }

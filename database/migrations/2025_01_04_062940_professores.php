@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('nome');
             $table->string('sobrenome');
             $table->string('senha');
+            $table->string('foto_src')->nullable();
+            $table->boolean('primeiro_acesso')->default(true);
             $table->timestamps();
         });
     }

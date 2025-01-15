@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
 
         Aluno::factory(10)->create();
 
-        Certificado::factory(50)->create();
+        Certificado::factory(500)->create();
     }
 }

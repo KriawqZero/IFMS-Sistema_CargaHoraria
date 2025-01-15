@@ -15,9 +15,10 @@ return new class extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
             $table->string('cpf')->unique();
-            $table->string('nome');
+            $table->string('nome')->nullable();
             $table->date('data_nascimento');
             $table->string('codigo_turma')->references('codigo')->on('turmas')->nullable()->ondelete('cascade');
+            $table->string('foto_src')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -35,7 +35,7 @@ class AdminController extends Controller {
 
         // Verifique se o usuário existe
         if (!$admin) {
-            return back()->withErrors(['login' => 'Usuário não encontrado.'])->withInput();
+            return back()->withInput()->withErrors(['login' => 'Usuário não encontrado.']);
         }
 
         // Compare a senha fornecida com o hash armazenado no banco de dados

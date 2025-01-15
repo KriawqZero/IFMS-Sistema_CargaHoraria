@@ -17,7 +17,9 @@ return new class extends Migration {
             $table->string('nome');
             $table->string('login')->unique();
             $table->string('senha');
-            $table->boolean('is_superadmin')->default(false);
+            $table->string('foto_src')->nullable();
+            $table->boolean('primeiro_acesso')->default(true);
+            $table->boolean('superadmin')->default(false);
             $table->timestamps();
         });
     }

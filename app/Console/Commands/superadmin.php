@@ -20,7 +20,8 @@ class superadmin extends Command {
             'nome' => $nome,
             'login' => $login,
             'senha' => bcrypt($senha),
-            'is_superadmin' => true,
+            'superadmin' => true,
+            'primeiro_acesso' => false,
         ]);
 
         $this->info("Superadministrador criado com sucesso!");
