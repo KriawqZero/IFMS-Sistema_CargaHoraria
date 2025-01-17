@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Models\Aluno;
+use App\Models\Certificado;
 
 class AlunoController extends Controller {
     public function showLoginForm() {
@@ -24,6 +25,10 @@ class AlunoController extends Controller {
     public function dashboard() {
         $aluno = auth('aluno')->user(); // Obter aluno autenticado
 
+        $certificados = Certificado::where('aluno_id', $aluno->id)
+            ->latest()
+            ->paginate(5);
+
         /** @disregard P1013 Undefined Method */
         return view('aluno.index', [
             'titulo' => 'Visão Geral',
@@ -32,7 +37,7 @@ class AlunoController extends Controller {
             'cargaHorariaPorTipo' => $aluno->cargaHorariaPorTipo(),
             'limitesCargaHoraria' => $aluno->limitesCargaHorariaPorTipo(),
             'maxCargaHoraria' => $aluno->maxCargaHoraria(),
-            'certificados' => $aluno->certificados,
+            'certificados' => $certificados->items(),
             'curso' => $aluno->curso,
         ]);
 

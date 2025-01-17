@@ -9,14 +9,33 @@ use App\Http\Controllers\Controller;
 class AlunoCertificadoController extends Controller {
     // Exibir a lista de certificados
     public function index(Request $request) {
-        $alunoId = auth('aluno')->id(); // Obtenha o aluno autenticado
+        $alunoId = auth('aluno')->id(); // Obtém o ID do aluno autenticado
+
+        // Recupera os parâmetros da requisição
+        $pesquisa = $request->input('pesquisa');
+        $perPage = $request->input('per_page'); // Valor padrão: 10 por página
+
+        // Valida o valor de perPage para garantir que é um número permitido
+        if(!in_array($perPage, [5, 10, 25, 50])){
+            $perPage = 10; // Valor padrão caso o valor fornecido não seja permitido
+        }
+
+        // Consulta os certificados com filtragem opcional e paginação
+        $certificados = Certificado::where('aluno_id', $alunoId)
+            ->when($pesquisa, function($query, $search) {
+                return $query->where('observacao', 'like', '%' . $search . '%');
+            })
+            ->latest()
+            ->paginate($perPage)
+            ->appends(['search' => $pesquisa, 'per_page' => $perPage]); // Mantém os parâmetros na URL das páginas
 
         return view('aluno.certificados', [
             'titulo' => 'Certificados',
             'alunoId' => $alunoId,
+            'certificados' => $certificados,
+            'perPage' => $perPage, // Passa o valor de perPage para a view
         ]);
     }
-
     // Exibir o formulário de envio de certificado
     public function create() {
         return view('aluno.enviar_certificado', [
