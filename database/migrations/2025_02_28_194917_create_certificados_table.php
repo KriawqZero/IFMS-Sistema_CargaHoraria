@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('certificados', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('aluno_id')->constrained('alunos')->ondelete('cascade');
             $table->string('tipo');
             $table->string('src');
             $table->text('observacao')->nullable();
-            $table->integer('carga_horaria')->nullable();
-            $table->enum('status', ['em_andamento', 'invalido', 'valido'])
-                  ->default('em_andamento');
+            $table->integer('carga_horaria');
+            $table->enum('status', ['pendente', 'invalido', 'valido'])->default('pendente');
+            $table->foreignId('aluno_id')->constrained('alunos')->ondelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

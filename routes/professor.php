@@ -3,6 +3,7 @@
 use App\Http\Controllers\Professor\ProfessorController;
 use App\Http\Controllers\Professor\ProfessorCertificadoController;
 use App\Http\Middleware\VerifyAuth;
+use Illuminate\Support\Facades\Route;
 
 // Grupo de rotas do professor (nomes prefixados com 'professor.')
 Route::name('professor.')->group(function() {
@@ -19,7 +20,7 @@ Route::name('professor.')->group(function() {
         // Rota de dashboard do professor
         Route::get('professor/dashboard', [ProfessorController::class, 'dashboard'])
             ->name('dashboard');
-        
+
         Route::get('professor/alunos', [ProfessorController::class, 'listarAlunos'])
             ->name('alunos');
 

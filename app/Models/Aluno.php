@@ -6,10 +6,9 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Aluno extends Model implements AuthenticatableContract {
-    use HasFactory, SoftDeletes, Authenticatable;
+    use HasFactory, Authenticatable;
 
     // ####### PROPRIEDADES #######
     protected $table = 'alunos';
@@ -18,7 +17,7 @@ class Aluno extends Model implements AuthenticatableContract {
         'cpf',
         'nome',
         'data_nascimento',
-        'codigo_turma',
+        'id_turma',
     ];
     // ####### FIM PROPRIEDADES #######
 
@@ -26,11 +25,15 @@ class Aluno extends Model implements AuthenticatableContract {
 
     // ####### RELACIONAMENTOS #######
     public function turma() {
-        return $this->belongsTo(Turma::class, 'codigo_turma', 'codigo');
+        return $this->belongsTo(Turma::class);
     }
 
     public function certificados() {
         return $this->hasMany(Certificado::class);
+    }
+
+    public function notificacoes() {
+        return $this->morphMany(Notificacao::class, 'receptor', 'receptor_tipo', 'receptor_id');
     }
     // ####### FIM RELACIONAMENTOS #######
 

@@ -14,8 +14,10 @@ class Professor extends Model implements AuthenticatableContract {
 
     protected $fillable = [
         'nome',
-        'sobrenome',
         'senha',
+        'primeiro_acesso',
+        'foto_src',
+        'cargo',
     ];
 
     protected $hidden = [
@@ -24,5 +26,9 @@ class Professor extends Model implements AuthenticatableContract {
 
     public function turmas() {
         return $this->hasMany(Turma::class);
+    }
+
+    public function notificacoes() {
+        return $this->morphMany(Notificacao::class, 'receptor', 'receptor_tipo', 'receptor_id');
     }
 }

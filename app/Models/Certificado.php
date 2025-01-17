@@ -12,12 +12,12 @@ class Certificado extends Model {
     protected $table = 'certificados';
 
     protected $fillable = [
-        'aluno_id',
         'tipo',
         'src',
         'observacao',
         'carga_horaria',
-        'status'
+        'status',
+        'aluno_id',
     ];
 
     public function aluno() {
@@ -30,7 +30,7 @@ class Certificado extends Model {
 
     public function formatStatus(): String {
         $status = $this->status;
-        if($status == 'em_andamento')
+        if($status == 'pendente')
             return 'Pendente';
 
         else if($status == 'valido')

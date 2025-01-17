@@ -82,7 +82,7 @@ class CertificadoFactory extends Factory {
             "Workshop de Gestão de Carreira",
             "Curso de Comunicação Interpessoal"
         ];
-        
+
 
         $tipos = [
             'Unidades curriculares optativas/eletivas',
@@ -92,14 +92,11 @@ class CertificadoFactory extends Factory {
             'Práticas artístico-culturais',
         ];
 
-        $tipos_status = ['em_andamento', 'invalido', 'valido'];
+        $tipos_status = ['pendente', 'invalido', 'valido'];
 
         $status = $this->faker->randomElement($tipos_status);
 
-        $carga_horaria = null;
-        if($status == 'valido') {
-            $carga_horaria = $this->gerarMultiploAleatorio(30, 6000);
-        }
+        $carga_horaria = $this->gerarMultiploAleatorio(60, 1800);
 
         return [
             'tipo' => $this->faker->randomElement($tipos),

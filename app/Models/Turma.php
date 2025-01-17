@@ -10,12 +10,9 @@ class Turma extends Model {
 
     protected $table = 'turmas';
 
-    protected $primaryKey = 'codigo';
-    public $incrementing = false;
-    protected $keyType = 'string';
-
     protected $fillable = [
         'codigo',
+        'curso',
         'professor_id'
     ];
 
@@ -24,7 +21,7 @@ class Turma extends Model {
     }
 
     public function alunos() {
-        return $this->hasMany(Aluno::class, 'codigo_turma', 'codigo');
+        return $this->hasMany(Aluno::class);
     }
 
     public function listarTodosCertificados() {

@@ -5,31 +5,25 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up() {
-        Schema::create('admins', function (Blueprint $table) {
+    public function up(): void {
+        Schema::create('professores', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('login')->unique();
             $table->string('senha');
-            $table->string('foto_src')->nullable();
             $table->boolean('primeiro_acesso')->default(true);
-            $table->boolean('superadmin')->default(false);
+            $table->string('foto_src')->nullable();
+            $table->enum('cargo', ['professor', 'coordenador', 'admin']);
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down() {
-        Schema::dropIfExists('admins');
+    public function down(): void {
+        Schema::dropIfExists('professores');
     }
 };

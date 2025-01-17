@@ -11,13 +11,15 @@ class TurmaFactory extends Factory {
     public function definition() {
         $turnos = ['10', '20', '30']; // manhã, tarde, noite
         $cursos = ['2', '7']; // informática e metalurgia
-        $sala = str_pad($this->faker->numberBetween(1, 99), 2, '0', STR_PAD_LEFT); // Sala de 1 até 99
+        $sala = str_pad($this->faker->numberBetween(1, 50), 2, '0', STR_PAD_LEFT); // Sala de 1 até 99
 
         $turno = $this->faker->randomElement($turnos);
         $curso = $this->faker->randomElement($cursos);
 
+        $tecnico = $curso == '2' ? 'Informática' : 'Metalurgia'; // Técnico em Informática ou Técnico em Metalurgia
         return [
             'codigo' => $turno . $curso . $sala, // Gera o código da turma
+            'curso' => $tecnico,
             'professor_id' => Professor::inRandomOrder()->first()->id, // Seleciona um professor aleatório
         ];
     }

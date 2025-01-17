@@ -1,6 +1,9 @@
 @extends('_layouts.master')
 
 @section('body')
+<div>
+
+  <!-- Cards -->
   <div class="mt-4">
     <div class="flex flex-wrap -mx-6">
       <div class="w-full xl:mt-6 px-6 sm:w-1/2 xl:w-1/4 md:mt-8 mt-0">
@@ -44,8 +47,10 @@
       </div>
     </div>
   </div>
+  <!-- Fim dos cards -->
 
 
+  <!-- Barra de progresso -->
   <div class="flex justify-between my-5 mb-1">
     <span class="text-base font-medium text-gray-600 dark:text-gray-600">Progresso</span>
     <span class="text-sm font-small text-gray-600 dark:text-gray-600">
@@ -58,11 +63,10 @@
       ">
     </div>
   </div>
+  <!-- Fim da barra de progresso -->
 
 
-</div>
-
-
+  <!-- Certificados -->
   <div class="flex flex-col mt-8">
     <div class="-my-2 py-2 pb-12 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
       <x-aluno::certificados-table
@@ -70,4 +74,7 @@
         :colunas="['tipo', 'data_enviada', 'status' ]" />
     </div>
   </div>
+  <!-- Fim dos certificados -->
+
+</div>
 @endsection

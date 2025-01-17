@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Aluno\AlunoCertificadoController;
 use App\Http\Controllers\Aluno\AlunoController;
 use App\Http\Middleware\VerifyAuth;

@@ -9,9 +9,9 @@ class ProfessorFactory extends Factory {
 
     public function definition() {
         return [
-            'nome' => $this->faker->firstName(),
-            'sobrenome' => $this->faker->lastName(),
+            'nome'  => $this->faker->firstName(),
             'senha' => $this->faker->password(),
+            'cargo' => 'professor',
         ];
     }
 }

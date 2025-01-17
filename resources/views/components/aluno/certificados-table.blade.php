@@ -35,7 +35,7 @@
                 <x-aluno::certificados-table-row :certificado="$certificado" :colunas="$colunas" />
             @empty
                 <tr>
-                    <td class="text-center py-4 text-gray-500">
+                    <td colspan="{{ count($colunas) }}" class="text-center py-4 text-gray-500">
                         Nenhum certificado encontrado.
                     </td>
                 </tr>
@@ -46,7 +46,7 @@
                 <x-aluno::certificados-table-row-mobile :certificado="$certificado" :colunas="$colunas" />
             @empty
                 <tr>
-                    <td colspan="{{ count($colunas) }}" class="text-center py-4 text-gray-500">
+                    <td class="text-center py-4 text-gray-500">
                         Nenhum certificado encontrado.
                     </td>
                 </tr>

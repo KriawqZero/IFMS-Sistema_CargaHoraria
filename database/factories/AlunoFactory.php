@@ -21,9 +21,9 @@ class AlunoFactory extends Factory {
     public function definition() {
         return [
             'cpf' => $this->faker->numerify('###.###.###-##'),
-            'nome' => $this->faker->name(),
+            'nome' => $this->faker->firstName() . " " . $this->faker->lastName(),
             'data_nascimento' => $this->faker->date(),
-            'codigo_turma' => Turma::inRandomOrder()->first()->codigo, // Gera um código de turma aleatório a partir das turmas existentes
+            'turma_id' => Turma::inRandomOrder()->first()->id, // Gera um código de turma aleatório a partir das turmas existentes
         ];
     }
 }

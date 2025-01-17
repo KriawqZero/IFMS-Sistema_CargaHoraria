@@ -9,14 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up(): void {
         Schema::create('turmas', function (Blueprint $table) {
-            $table->string('codigo')->primary();
+            $table->id();
+            $table->string('codigo');
+            $table->string('curso');
             $table->foreignId('professor_id')
                 ->nullable()
                 ->constrained('professores')
-                ->ondelete('cascade');
+                ->ondelete('set null');
             $table->timestamps();
         });
     }
@@ -24,8 +25,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
+    public function down(): void {
         Schema::dropIfExists('turmas');
     }
 };
