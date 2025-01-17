@@ -102,8 +102,9 @@ class CertificadoFactory extends Factory {
             'tipo' => $this->faker->randomElement($tipos),
             'src' => $this->faker->url(),
             'observacao' => $this->faker->randomElement($observs),
-            'carga_horaria' => $carga_horaria, // Carga horária como múltiplos de 30 minutos
+            'carga_horaria' => $carga_horaria, // Carga horária com múltiplos de 30 minutos
             'status' => $status,
+            'data_constante' => $this->faker->dateTimeBetween('-2 years', 'now'),
             'aluno_id' => Aluno::inRandomOrder()->first()->id, // Seleciona um aluno aleatório
         ];
     }

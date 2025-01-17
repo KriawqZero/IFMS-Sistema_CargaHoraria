@@ -30,7 +30,7 @@ class AlunoController extends Controller {
             'aluno' => $aluno,
             'cargaHorariaTotal' => $aluno->cargaHorariaTotal(),
             'cargaHorariaPorTipo' => $aluno->cargaHorariaPorTipo(),
-            'limitesCargaHoraria' => $aluno->limitesCargaHoraria(),
+            'limitesCargaHoraria' => $aluno->limitesCargaHorariaPorTipo(),
             'maxCargaHoraria' => $aluno->maxCargaHoraria(),
             'certificados' => $aluno->certificados,
             'curso' => $aluno->curso,
@@ -91,7 +91,6 @@ class AlunoController extends Controller {
     /**/
 
     public function processLogin(Request $request) {
-        auth('admin')->logout();
         auth('professor')->logout();
 
         $credentials = $request->validate([
@@ -126,11 +125,10 @@ class AlunoController extends Controller {
         }
 
         // Verificar se o aluno já existe e criar se não
-        $aluno = Aluno::firstOrCreate(
+        $aluno = Aluno::updateOrCreate(
             ['cpf' => $credentials['cpf']],
             [
                 'nome' => $responseData['nome'] ?? 'Nome não informado',
-                'email' => $responseData['email'] ?? null,
                 'data_nascimento' => $responseData['data_nascimento'] ?? null,
             ]
         );

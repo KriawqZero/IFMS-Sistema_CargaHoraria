@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="2B8E-4C-6E17-F7-E0EF-13-3E">
+<DIAGRAMA ID="1" TIPO="tpConceitual" UniversalUnicID="627B-6F-A8D4-D9-ED4-59-A7">
     <InfoDiagrama ID="1">
         <Versao Valor="3.2.0"/>
         <Autores>Marcilio Ortiz
@@ -9,9 +9,9 @@ Davi Nunes</Autores>
         <Height Valor="4096"/>
         <Alinhamento_v Valor="500"/>
         <Alinhamento_h Valor="600"/>
-        <Zoom Valor="125"/>
+        <Zoom Valor="175"/>
         <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
-        <Localizacao Left="0" Top="0"/>
+        <Localizacao Left="18" Top="147"/>
         <Realce Valor="false"/>
     </InfoDiagrama>
     <Entidade ID="18">
@@ -54,13 +54,15 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="19" PontaB="18"/>
         <Pontos>
-            <Ponto Left="44" Top="11"/>
+            <Ponto Left="43" Top="11"/>
             <Ponto Left="34" Top="11"/>
+            <Ponto Left="34" Top="66"/>
+            <Ponto Left="34" Top="66"/>
             <Ponto Left="34" Top="113"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="21">
-        <Bounds Height="14" Left="61" Top="26" Width="53"/>
+        <Bounds Height="14" Left="61" Top="26" Width="55"/>
         <DisablePainted Valor="false"/>
         <Texto>nome</Texto>
         <Observacao/>
@@ -89,8 +91,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="21" PontaB="18"/>
         <Pontos>
-            <Ponto Left="58" Top="30"/>
+            <Ponto Left="57" Top="30"/>
             <Ponto Left="48" Top="30"/>
+            <Ponto Left="48" Top="75"/>
+            <Ponto Left="48" Top="75"/>
             <Ponto Left="48" Top="113"/>
         </Pontos>
     </Ligacao>
@@ -130,7 +134,7 @@ Davi Nunes</Autores>
         </Pontos>
     </Ligacao>
     <Atributo ID="25">
-        <Bounds Height="14" Left="89" Top="64" Width="117"/>
+        <Bounds Height="14" Left="89" Top="64" Width="121"/>
         <DisablePainted Valor="false"/>
         <Texto>data_nascimento</Texto>
         <Observacao/>
@@ -159,8 +163,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="25" PontaB="18"/>
         <Pontos>
-            <Ponto Left="86" Top="68"/>
+            <Ponto Left="85" Top="68"/>
             <Ponto Left="76" Top="68"/>
+            <Ponto Left="76" Top="94"/>
+            <Ponto Left="76" Top="94"/>
             <Ponto Left="76" Top="113"/>
         </Pontos>
     </Ligacao>
@@ -175,7 +181,7 @@ Davi Nunes</Autores>
         <AtributosOcultos Valor=""/>
     </Entidade>
     <Atributo ID="39">
-        <Bounds Height="14" Left="451" Top="64" Width="60"/>
+        <Bounds Height="14" Left="451" Top="64" Width="61"/>
         <DisablePainted Valor="false"/>
         <Texto>código</Texto>
         <Observacao/>
@@ -204,8 +210,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="39" PontaB="36"/>
         <Pontos>
-            <Ponto Left="448" Top="68"/>
+            <Ponto Left="447" Top="68"/>
             <Ponto Left="438" Top="68"/>
+            <Ponto Left="438" Top="94"/>
+            <Ponto Left="438" Top="94"/>
             <Ponto Left="438" Top="113"/>
         </Pontos>
     </Ligacao>
@@ -228,7 +236,7 @@ Davi Nunes</Autores>
             <Ponto Left="140" Top="143"/>
         </Pontos>
         <Cardinalidade ID="52">
-            <Bounds Height="14" Left="150" Top="131" Width="35"/>
+            <Bounds Height="14" Left="150" Top="131" Width="36"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_1</Texto>
             <Observacao/>
@@ -269,7 +277,7 @@ Davi Nunes</Autores>
             <Ponto Left="340" Top="143"/>
         </Pontos>
         <Cardinalidade ID="54">
-            <Bounds Height="14" Left="368" Top="131" Width="34"/>
+            <Bounds Height="14" Left="367" Top="131" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_2</Texto>
             <Observacao/>
@@ -322,13 +330,15 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="80" PontaB="75"/>
         <Pontos>
-            <Ponto Left="894" Top="47"/>
+            <Ponto Left="893" Top="47"/>
             <Ponto Left="884" Top="47"/>
+            <Ponto Left="884" Top="111"/>
+            <Ponto Left="884" Top="111"/>
             <Ponto Left="884" Top="168"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="82">
-        <Bounds Height="14" Left="911" Top="62" Width="53"/>
+        <Bounds Height="14" Left="911" Top="62" Width="55"/>
         <DisablePainted Valor="false"/>
         <Texto>nome</Texto>
         <Observacao/>
@@ -357,13 +367,15 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="82" PontaB="75"/>
         <Pontos>
-            <Ponto Left="908" Top="66"/>
+            <Ponto Left="907" Top="66"/>
             <Ponto Left="898" Top="66"/>
+            <Ponto Left="898" Top="121"/>
+            <Ponto Left="898" Top="121"/>
             <Ponto Left="898" Top="168"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="86">
-        <Bounds Height="14" Left="925" Top="81" Width="56"/>
+        <Bounds Height="14" Left="925" Top="81" Width="57"/>
         <DisablePainted Valor="false"/>
         <Texto>senha</Texto>
         <Observacao/>
@@ -392,8 +404,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="86" PontaB="75"/>
         <Pontos>
-            <Ponto Left="922" Top="85"/>
+            <Ponto Left="921" Top="85"/>
             <Ponto Left="912" Top="85"/>
+            <Ponto Left="912" Top="130"/>
+            <Ponto Left="912" Top="130"/>
             <Ponto Left="912" Top="168"/>
         </Pontos>
     </Ligacao>
@@ -416,7 +430,7 @@ Davi Nunes</Autores>
             <Ponto Left="869" Top="198"/>
         </Pontos>
         <Cardinalidade ID="92">
-            <Bounds Height="14" Left="831" Top="186" Width="34"/>
+            <Bounds Height="14" Left="830" Top="186" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_3</Texto>
             <Observacao/>
@@ -457,7 +471,7 @@ Davi Nunes</Autores>
             <Ponto Left="620" Top="167"/>
         </Pontos>
         <Cardinalidade ID="94">
-            <Bounds Height="14" Left="537" Top="131" Width="35"/>
+            <Bounds Height="14" Left="537" Top="131" Width="36"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_4</Texto>
             <Observacao/>
@@ -481,7 +495,7 @@ Davi Nunes</Autores>
         <AtributosOcultos Valor=""/>
     </Entidade>
     <Atributo ID="120">
-        <Bounds Height="14" Left="236" Top="246" Width="32"/>
+        <Bounds Height="14" Left="236" Top="227" Width="32"/>
         <DisablePainted Valor="false"/>
         <Texto>id</Texto>
         <Observacao/>
@@ -510,13 +524,13 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="120" PontaB="119"/>
         <Pontos>
-            <Ponto Left="233" Top="250"/>
-            <Ponto Left="223" Top="250"/>
+            <Ponto Left="233" Top="231"/>
+            <Ponto Left="223" Top="231"/>
             <Ponto Left="223" Top="371"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="122">
-        <Bounds Height="14" Left="250" Top="265" Width="44"/>
+        <Bounds Height="14" Left="250" Top="246" Width="44"/>
         <DisablePainted Valor="false"/>
         <Texto>tipo</Texto>
         <Observacao/>
@@ -545,13 +559,13 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="122" PontaB="119"/>
         <Pontos>
-            <Ponto Left="247" Top="269"/>
-            <Ponto Left="237" Top="269"/>
+            <Ponto Left="247" Top="250"/>
+            <Ponto Left="237" Top="250"/>
             <Ponto Left="237" Top="371"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="124">
-        <Bounds Height="14" Left="264" Top="284" Width="40"/>
+        <Bounds Height="14" Left="264" Top="265" Width="40"/>
         <DisablePainted Valor="false"/>
         <Texto>src</Texto>
         <Observacao/>
@@ -580,13 +594,13 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="124" PontaB="119"/>
         <Pontos>
-            <Ponto Left="261" Top="288"/>
-            <Ponto Left="251" Top="288"/>
+            <Ponto Left="261" Top="269"/>
+            <Ponto Left="251" Top="269"/>
             <Ponto Left="251" Top="371"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="126">
-        <Bounds Height="14" Left="278" Top="303" Width="88"/>
+        <Bounds Height="14" Left="278" Top="284" Width="91"/>
         <DisablePainted Valor="false"/>
         <Texto>observação</Texto>
         <Observacao/>
@@ -615,13 +629,13 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="126" PontaB="119"/>
         <Pontos>
-            <Ponto Left="275" Top="307"/>
-            <Ponto Left="265" Top="307"/>
+            <Ponto Left="275" Top="288"/>
+            <Ponto Left="265" Top="288"/>
             <Ponto Left="265" Top="371"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="128">
-        <Bounds Height="14" Left="292" Top="322" Width="100"/>
+        <Bounds Height="14" Left="299" Top="322" Width="102"/>
         <DisablePainted Valor="false"/>
         <Texto>carga_horaria</Texto>
         <Observacao/>
@@ -650,13 +664,13 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="128" PontaB="119"/>
         <Pontos>
-            <Ponto Left="289" Top="326"/>
-            <Ponto Left="279" Top="326"/>
-            <Ponto Left="279" Top="371"/>
+            <Ponto Left="296" Top="326"/>
+            <Ponto Left="286" Top="326"/>
+            <Ponto Left="286" Top="371"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="130">
-        <Bounds Height="14" Left="306" Top="341" Width="56"/>
+        <Bounds Height="14" Left="313" Top="341" Width="58"/>
         <DisablePainted Valor="false"/>
         <Texto>status</Texto>
         <Observacao/>
@@ -685,9 +699,9 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="130" PontaB="119"/>
         <Pontos>
-            <Ponto Left="303" Top="345"/>
-            <Ponto Left="293" Top="345"/>
-            <Ponto Left="293" Top="371"/>
+            <Ponto Left="310" Top="345"/>
+            <Ponto Left="300" Top="345"/>
+            <Ponto Left="300" Top="371"/>
         </Pontos>
     </Ligacao>
     <Relacionamento ID="140">
@@ -717,7 +731,7 @@ Davi Nunes</Autores>
             <Ponto Left="79" Top="281"/>
         </Pontos>
         <Cardinalidade ID="143">
-            <Bounds Height="14" Left="169" Top="389" Width="35"/>
+            <Bounds Height="14" Left="168" Top="389" Width="36"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_6</Texto>
             <Observacao/>
@@ -749,7 +763,7 @@ Davi Nunes</Autores>
             <Ponto Left="79" Top="231"/>
         </Pontos>
         <Cardinalidade ID="148">
-            <Bounds Height="14" Left="47" Top="182" Width="34"/>
+            <Bounds Height="14" Left="46" Top="182" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_5</Texto>
             <Observacao/>
@@ -763,7 +777,7 @@ Davi Nunes</Autores>
         </Cardinalidade>
     </Ligacao>
     <Atributo ID="224">
-        <Bounds Height="14" Left="944" Top="100" Width="116"/>
+        <Bounds Height="14" Left="944" Top="100" Width="118"/>
         <DisablePainted Valor="false"/>
         <Texto>primeiro_acesso</Texto>
         <Observacao/>
@@ -792,13 +806,15 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="224" PontaB="75"/>
         <Pontos>
-            <Ponto Left="941" Top="104"/>
+            <Ponto Left="940" Top="104"/>
             <Ponto Left="931" Top="104"/>
+            <Ponto Left="931" Top="140"/>
+            <Ponto Left="931" Top="140"/>
             <Ponto Left="931" Top="168"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="230">
-        <Bounds Height="14" Left="959" Top="119" Width="68"/>
+        <Bounds Height="14" Left="959" Top="119" Width="70"/>
         <DisablePainted Valor="false"/>
         <Texto>foto_src</Texto>
         <Observacao/>
@@ -827,13 +843,15 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="230" PontaB="75"/>
         <Pontos>
-            <Ponto Left="956" Top="123"/>
+            <Ponto Left="955" Top="123"/>
             <Ponto Left="946" Top="123"/>
+            <Ponto Left="946" Top="149"/>
+            <Ponto Left="946" Top="149"/>
             <Ponto Left="946" Top="168"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="232">
-        <Bounds Height="14" Left="103" Top="83" Width="68"/>
+        <Bounds Height="14" Left="103" Top="83" Width="70"/>
         <DisablePainted Valor="false"/>
         <Texto>foto_src</Texto>
         <Observacao/>
@@ -862,13 +880,15 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="232" PontaB="18"/>
         <Pontos>
-            <Ponto Left="100" Top="87"/>
+            <Ponto Left="99" Top="87"/>
             <Ponto Left="90" Top="87"/>
+            <Ponto Left="90" Top="104"/>
+            <Ponto Left="90" Top="104"/>
             <Ponto Left="90" Top="113"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="238">
-        <Bounds Height="14" Left="973" Top="138" Width="54"/>
+        <Bounds Height="14" Left="973" Top="138" Width="55"/>
         <DisablePainted Valor="false"/>
         <Texto>cargo</Texto>
         <Observacao/>
@@ -897,8 +917,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="238" PontaB="75"/>
         <Pontos>
-            <Ponto Left="970" Top="142"/>
+            <Ponto Left="969" Top="142"/>
             <Ponto Left="960" Top="142"/>
+            <Ponto Left="960" Top="159"/>
+            <Ponto Left="960" Top="159"/>
             <Ponto Left="960" Top="168"/>
         </Pontos>
     </Ligacao>
@@ -942,8 +964,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="252" PontaB="36"/>
         <Pontos>
-            <Ponto Left="435" Top="49"/>
+            <Ponto Left="434" Top="49"/>
             <Ponto Left="425" Top="49"/>
+            <Ponto Left="425" Top="85"/>
+            <Ponto Left="425" Top="85"/>
             <Ponto Left="425" Top="113"/>
         </Pontos>
     </Ligacao>
@@ -977,8 +1001,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="265" PontaB="247"/>
         <Pontos>
-            <Ponto Left="718" Top="269"/>
+            <Ponto Left="717" Top="269"/>
             <Ponto Left="708" Top="269"/>
+            <Ponto Left="708" Top="324"/>
+            <Ponto Left="708" Top="324"/>
             <Ponto Left="708" Top="371"/>
         </Pontos>
     </Ligacao>
@@ -1012,8 +1038,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="267" PontaB="247"/>
         <Pontos>
-            <Ponto Left="729" Top="288"/>
+            <Ponto Left="728" Top="288"/>
             <Ponto Left="719" Top="288"/>
+            <Ponto Left="719" Top="333"/>
+            <Ponto Left="719" Top="333"/>
             <Ponto Left="719" Top="371"/>
         </Pontos>
     </Ligacao>
@@ -1047,13 +1075,15 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="269" PontaB="247"/>
         <Pontos>
-            <Ponto Left="750" Top="307"/>
+            <Ponto Left="749" Top="307"/>
             <Ponto Left="740" Top="307"/>
+            <Ponto Left="740" Top="343"/>
+            <Ponto Left="740" Top="343"/>
             <Ponto Left="740" Top="371"/>
         </Pontos>
     </Ligacao>
     <Atributo ID="273">
-        <Bounds Height="14" Left="767" Top="322" Width="83"/>
+        <Bounds Height="14" Left="767" Top="322" Width="86"/>
         <DisablePainted Valor="false"/>
         <Texto>mensagem</Texto>
         <Observacao/>
@@ -1082,8 +1112,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="273" PontaB="247"/>
         <Pontos>
-            <Ponto Left="764" Top="326"/>
+            <Ponto Left="763" Top="326"/>
             <Ponto Left="754" Top="326"/>
+            <Ponto Left="754" Top="352"/>
+            <Ponto Left="754" Top="352"/>
             <Ponto Left="754" Top="371"/>
         </Pontos>
     </Ligacao>
@@ -1117,8 +1149,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="275" PontaB="247"/>
         <Pontos>
-            <Ponto Left="778" Top="345"/>
+            <Ponto Left="777" Top="345"/>
             <Ponto Left="768" Top="345"/>
+            <Ponto Left="768" Top="362"/>
+            <Ponto Left="768" Top="362"/>
             <Ponto Left="768" Top="371"/>
         </Pontos>
     </Ligacao>
@@ -1141,7 +1175,7 @@ Davi Nunes</Autores>
             <Ponto Left="683" Top="401"/>
         </Pontos>
         <Cardinalidade ID="304">
-            <Bounds Height="14" Left="644" Top="389" Width="35"/>
+            <Bounds Height="14" Left="643" Top="389" Width="36"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_7</Texto>
             <Observacao/>
@@ -1182,7 +1216,7 @@ Davi Nunes</Autores>
             <Ponto Left="420" Top="401"/>
         </Pontos>
         <Cardinalidade ID="306">
-            <Bounds Height="14" Left="339" Top="389" Width="34"/>
+            <Bounds Height="14" Left="339" Top="389" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_8</Texto>
             <Observacao/>
@@ -1196,7 +1230,7 @@ Davi Nunes</Autores>
         </Cardinalidade>
     </Ligacao>
     <Atributo ID="333">
-        <Bounds Height="14" Left="462" Top="83" Width="54"/>
+        <Bounds Height="14" Left="462" Top="83" Width="55"/>
         <DisablePainted Valor="false"/>
         <Texto>curso</Texto>
         <Observacao/>
@@ -1225,9 +1259,46 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="333" PontaB="36"/>
         <Pontos>
-            <Ponto Left="459" Top="87"/>
+            <Ponto Left="458" Top="87"/>
             <Ponto Left="449" Top="87"/>
+            <Ponto Left="449" Top="104"/>
+            <Ponto Left="449" Top="104"/>
             <Ponto Left="449" Top="113"/>
+        </Pontos>
+    </Ligacao>
+    <Atributo ID="335">
+        <Bounds Height="14" Left="287" Top="303" Width="112"/>
+        <DisablePainted Valor="false"/>
+        <Texto>data_constante</Texto>
+        <Observacao/>
+        <Dicionario/>
+        <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        <Ancorado Valor="false"/>
+        <DirecaoFromInspector Valor="0"/>
+        <Autosize Valor="true"/>
+        <Identificador Valor="false"/>
+        <Opcional Valor="false"/>
+        <Multivalorado Valor="false"/>
+        <CardMinFromString Valor="1"/>
+        <CardMaxFromString Valor="n"/>
+        <TipoAtributo Valor="date"/>
+    </Atributo>
+    <Ligacao ID="336">
+        <DisablePainted Valor="false"/>
+        <Tag LinhaMestre="-1"/>
+        <Dashed Valor="false"/>
+        <Ancorado Valor="false"/>
+        <TemSetaPontaA Valor="false"/>
+        <TemSetaPontaB Valor="false"/>
+        <SetaAberta Valor="true"/>
+        <SetaLargura Valor="10"/>
+        <Inteligente Valor="true"/>
+        <Largura Valor="1"/>
+        <Ligacoes PontaA="335" PontaB="119"/>
+        <Pontos>
+            <Ponto Left="284" Top="307"/>
+            <Ponto Left="274" Top="307"/>
+            <Ponto Left="274" Top="371"/>
         </Pontos>
     </Ligacao>
 </DIAGRAMA>

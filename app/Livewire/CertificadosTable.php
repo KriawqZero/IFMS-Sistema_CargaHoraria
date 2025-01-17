@@ -10,10 +10,8 @@ use Livewire\WithPagination;
 class CertificadosTable extends Component {
     use WithPagination;
 
-    public $perPage = 10; // Itens por página
+    public $perPage = 5; // Itens por página
     public $page = 1;
-
-    protected $queryString = ['page', 'perPage'];
 
     // Reagir às mudanças na propriedade `perPage`
     function updatedPerPage($value) {
@@ -22,12 +20,12 @@ class CertificadosTable extends Component {
     }
 
     public function render() {
-
+        /** @var \App\Models\Aluno $aluno */
+        $aluno = auth('aluno')->user();
         return view('livewire.certificados-table', [
-            'certificados' => auth('aluno')->user()
-            ->certificados()
-            ->latest()
-            ->paginate($this->perPage),
+            'certificados' => Certificado::where('aluno_id', $aluno->id)
+                ->latest()
+                ->paginate($this->perPage),
         ]);
     }
 }

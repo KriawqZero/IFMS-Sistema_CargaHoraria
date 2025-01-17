@@ -54,7 +54,8 @@
   <div class="flex justify-between my-5 mb-1">
     <span class="text-base font-medium text-gray-600 dark:text-gray-600">Progresso</span>
     <span class="text-sm font-small text-gray-600 dark:text-gray-600">
-      {{ round(min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100)) }}%
+      {{ $cargaHorariaTotal }}h de {{ $maxCargaHoraria }}h
+      ({{ round(min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100)) }}%)
     </span>
   </div>
   <div class="w-full bg-slate-600 rounded-full h-2.5">

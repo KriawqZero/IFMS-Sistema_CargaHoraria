@@ -26,7 +26,7 @@
         @if (in_array('status', $colunas))
           <p><strong>Status:</strong>
             <span
-              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $certificado->status == 'validado' ? 'bg-green-50 text-green-800' : ($certificado->status == 'em_andamento' ? 'bg-yellow-50 text-yellow-800' : 'bg-red-50 text-red-800') }}">
+              class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $certificado->status == 'valido' ? 'bg-green-50 text-green-800' : ($certificado->status == 'pendente' ? 'bg-yellow-50 text-yellow-800' : 'bg-red-50 text-red-800') }}">
               {{ $certificado->formatStatus() }}
             </span>
           </p>

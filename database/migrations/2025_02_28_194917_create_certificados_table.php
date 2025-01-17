@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('observacao')->nullable();
             $table->integer('carga_horaria');
             $table->enum('status', ['pendente', 'invalido', 'valido'])->default('pendente');
+            $table->date('data_constante');
             $table->foreignId('aluno_id')->constrained('alunos')->ondelete('cascade');
             $table->timestamps();
             $table->softDeletes();

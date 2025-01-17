@@ -17,6 +17,7 @@ class Certificado extends Model {
         'observacao',
         'carga_horaria',
         'status',
+        'data_constante',
         'aluno_id',
     ];
 
@@ -24,9 +25,11 @@ class Certificado extends Model {
         return $this->belongsTo(Aluno::class);
     }
 
+    // #### ACESSORS ####
     public function getSrcUrlAttribute() {
         return $this->src ? asset('storage/' . $this->src) : null;
     }
+    // ### FIM ACESSORS ###
 
     public function formatStatus(): String {
         $status = $this->status;
