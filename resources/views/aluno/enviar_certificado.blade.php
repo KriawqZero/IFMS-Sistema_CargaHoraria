@@ -28,11 +28,13 @@
 
       <form enctype="multipart/form-data" class="mt-8 space-y-3" action="{{ route('aluno.certificados.store') }}"
         method="POST">
+
         @csrf
         <div class="grid grid-cols-1 space-y-2">
           <label class="text-sm font-bold text-gray-500 tracking-wide">Tipo</label>
+
           <select name="tipo"
-            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
+            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
             name="tipo">
             <option value="" disabled selected>Selecione uma opção</option>
             <option value="Unidades curriculares optativa/eletivas">Unidades curriculares optativa/eletivas
@@ -43,11 +45,20 @@
             <option value="Práticas Desportivas">Práticas Desportivas</option>
             <option value="Práticas Artístico-Culturais">Práticas Artístico-Culturais</option>
           </select>
+
         </div>
         <div class="grid grid-cols-1 space-y-2">
           <label class="text-sm font-bold text-gray-500 tracking-wide">Observação</label>
           <textarea name="observacao"
-            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"></textarea>
+            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"></textarea>
+          <label class="text-sm font-bold text-gray-500 tracking-wide">Carga Horária (em horas)</label>
+          <input type="text" name="carga_horaria"
+            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
+            placeholder="2,5"/>
+          <label class="text-sm font-bold text-gray-500 tracking-wide">Data do Certificado</label>
+          <input x-data="{ today: new Date().toISOString().split('T')[0], selectedDate: '' }"
+                type="date" name="data_do_certificado" min="2021-01-01" x-bind:max="today"
+              class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" />
         </div>
         <div class="grid grid-cols-1 space-y-2">
           <label class="text-sm font-bold text-gray-500 tracking-wide">Anexar documento</label>
@@ -60,6 +71,8 @@
           <span>Arquivos permitidos: .jpg, .png, .webp, .pdf</span>
         </p>
         <div>
+
+
           <button type="submit"
             class="my-5 w-full flex justify-center bg-green-600 text-white p-4  rounded-full tracking-wide
                                 font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
@@ -67,6 +80,8 @@
           </button>
         </div>
       </form>
+
+
     </div>
   </div>
 @endsection

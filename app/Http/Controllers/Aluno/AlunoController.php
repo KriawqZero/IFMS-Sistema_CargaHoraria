@@ -46,94 +46,42 @@ class AlunoController extends Controller {
     public function logout() {
         Auth::guard('aluno')->logout();
         Auth::guard('professor')->logout();
-        Auth::guard('admin')->logout();
         return redirect()->route('aluno.login');
     }
 
     // Pra login com senha
-    /*public function processLogin(Request $request) {*/
-    /*    auth('professor')->logout();*/
-    /**/
-    /*    $credentials = $request->validate([*/
-    /*        'cpf' => 'required|string',*/
-    /*        'senha' => 'required|string',*/
-    /*    ]);*/
-    /**/
-    /*    $token = session('token');*/
-    /*    if (!$token) {*/
-    /*        return back()->withErrors(['message' => 'Permissão negada. Token ausente.'])->withInput();*/
-    /*    }*/
-    /**/
-    /*    $response = Http::retry(3, 100)*/
-    /*        ->withHeaders(['Authorization' => 'Bearer ' . $token])*/
-    /*        ->get(env('API_URL') . 'Aluno/login', $credentials);*/
-    /**/
-    /*    // if*/
-    /*    if (!$response->successful())*/
-    /*        return redirect()->route("aluno.login")->withErrors(['message' => 'Usuário ou senha incorretos.'])->withInput();*/
-    /**/
-    /*    $responseData = $response->json();*/
-    /**/
-    /*    // if*/
-    /*    if (!$responseData['valido'])*/
-    /*        return redirect()->route("aluno.login")->withErrors(['message' => 'Falha ao autenticar usuário.'])->withInput();*/
-    /**/
-    /*    // else*/
-    /*    $aluno = Aluno::firstOrCreate(*/
-    /*        ['cpf' => $credentials['cpf']],*/
-    /*        [*/
-    /*            'nome' => $responseData['nome'] ?? 'Nome não informado',*/
-    /*            'email' => $responseData['email'] ?? null,*/
-    /*            'data_nascimento' => $responseData['data_nascimento'] ?? null,*/
-    /*        ]*/
-    /*    );*/
-    /**/
-    /*    $request->session()->regenerate();*/
-    /*    auth('aluno')->login($aluno);*/
-    /**/
-    /*    return redirect()->route('aluno.dashboard');*/
-    /*}*/
-    /**/
-
     public function processLogin(Request $request) {
         auth('professor')->logout();
 
         $credentials = $request->validate([
             'cpf' => 'required|string',
-            'data_nascimento' => 'required|date_format:d/m/Y', // Validar o formato da data
+            'senha' => 'required|string',
         ]);
-
-        // Converter a data para o formato yyyy-mm-dd
-        $data_nascimento_formatada = \Carbon\Carbon::createFromFormat('d/m/Y', $credentials['data_nascimento'])
-        ->format('Y-m-d'); // Formatar para yyyy-mm-dd
 
         $token = session('token');
         if (!$token) {
             return back()->withErrors(['message' => 'Permissão negada. Token ausente.'])->withInput();
         }
 
-        $response = Http::retry(3, 100)
-            ->withHeaders(['Authorization' => 'Bearer ' . $token])
-            ->get(env('API_URL') . 'Aluno/login/data', [
-                'cpf' => $credentials['cpf'],
-                'data_nascimento' => $data_nascimento_formatada, // Passar a data de nascimento para autenticação
-            ]);
+        $response = Http::withToken($token)
+                ->get(env('API_URL') . 'Aluno/login', $credentials);
 
         if (!$response->successful()) {
-            return redirect()->route("aluno.login")->withErrors(['message' => 'Usuário ou dados incorretos.'])->withInput();
+            return redirect()->route("aluno.login")->withErrors(['message' => 'Falha ao autenticar usuário.'])->withInput();
         }
 
         $responseData = $response->json();
 
         if (!$responseData['valido']) {
-            return redirect()->route("aluno.login")->withErrors(['message' => 'Falha ao autenticar usuário.'])->withInput();
+            return redirect()->route("aluno.login")->withErrors(['message' => 'CPF ou senha incorretos.'])->withInput();
         }
 
-        // Verificar se o aluno já existe e criar se não
+        // else
         $aluno = Aluno::updateOrCreate(
             ['cpf' => $credentials['cpf']],
             [
                 'nome' => $responseData['nome'] ?? 'Nome não informado',
+                'email' => $responseData['email'] ?? null,
                 'data_nascimento' => $responseData['data_nascimento'] ?? null,
             ]
         );
@@ -143,5 +91,54 @@ class AlunoController extends Controller {
 
         return redirect()->route('aluno.dashboard');
     }
+
+
+    /*public function processLogin(Request $request) {*/
+    /*    auth('professor')->logout();*/
+    /**/
+    /*    $credentials = $request->validate([*/
+    /*        'cpf' => 'required|string',*/
+    /*        'data_nascimento' => 'required|date_format:d/m/Y', // Validar o formato da data*/
+    /*    ]);*/
+    /**/
+    /*    // Converter a data para o formato yyyy-mm-dd*/
+    /*    $data_nascimento_formatada = \Carbon\Carbon::createFromFormat('d/m/Y', $credentials['data_nascimento'])*/
+    /*    ->format('Y-m-d'); // Formatar para yyyy-mm-dd*/
+    /**/
+    /*    $token = session('token');*/
+    /*    if (!$token) {*/
+    /*        return back()->withErrors(['message' => 'Permissão negada. Token ausente.'])->withInput();*/
+    /*    }*/
+    /**/
+    /*    $response = Http::withToken($token)*/
+    /*        ->get(env('API_URL') . 'Aluno/login/data', [*/
+    /*            'cpf' => $credentials['cpf'],*/
+    /*            'data_nascimento' => $data_nascimento_formatada, // Passar a data de nascimento para autenticação*/
+    /*        ]);*/
+    /**/
+    /*    if (!$response->successful()) {*/
+    /*        return redirect()->route("aluno.login")->withErrors(['message' => 'Falha ao autenticar usuário.'])->withInput();*/
+    /*    }*/
+    /**/
+    /*    $responseData = $response->json();*/
+    /**/
+    /*    if (!$responseData['valido']) {*/
+    /*        return redirect()->route("aluno.login")->withErrors(['message' => 'Usuário ou dados incorretos.'])->withInput();*/
+    /*    }*/
+    /**/
+    /*    // Verificar se o aluno já existe e criar se não*/
+    /*    $aluno = Aluno::updateOrCreate(*/
+    /*        ['cpf' => $credentials['cpf']],*/
+    /*        [*/
+    /*            'nome' => $responseData['nome'] ?? 'Nome não informado',*/
+    /*            'data_nascimento' => $responseData['data_nascimento'] ?? null,*/
+    /*        ]*/
+    /*    );*/
+    /**/
+    /*    $request->session()->regenerate();*/
+    /*    auth('aluno')->login($aluno);*/
+    /**/
+    /*    return redirect()->route('aluno.dashboard');*/
+    /*}*/
 }
 

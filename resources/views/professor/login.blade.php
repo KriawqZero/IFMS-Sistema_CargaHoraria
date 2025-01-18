@@ -44,15 +44,6 @@
             class="bg-gray-100 p-2 border border-zinc-300 block w-full rounded-2xl">
         </label>
 
-        <div class="flex justify-between items-center mt-4">
-          <div>
-            <label class="inline-flex items-center">
-              <input type="checkbox" class="form-checkbox text-indigo-600">
-              <span class="mx-2 text-gray-600 text-sm">Lembrar de mim</span>
-            </label>
-          </div>
-        </div>
-
         <div class="mt-6">
           <button type="submit"
             class="py-2 px-4 text-center bg-green-600 rounded-md w-full text-white text-sm hover:bg-green-700">
@@ -61,9 +52,9 @@
         </div>
 
         <div class="flex justify-center mt-2">
-          <a href="{{ route('admin.login') }}"
+          <a href="{{ route('aluno.login') }}"
             class="text-blue-600 underline font-medium hover:text-blue-800 transition duration-300">
-            Login Como Administrador
+            Login Como Aluno
           </a>
         </div>
       </form>

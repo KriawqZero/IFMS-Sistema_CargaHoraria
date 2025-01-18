@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <div style="background-color: var(--colorWeak);" class="flex justify-center items-center h-screen px-6">
+  <div style="background-color: #CCE6D8;" class="flex justify-center items-center h-screen px-6">
     <div class="p-8 max-w-sm w-full bg-white shadow-2xl rounded-[50px]">
       <div class="flex justify-center items-center">
         <img class="object-cover h-24 m-7" src="{{ asset('images/SISCO.png') }}" />
@@ -40,20 +40,20 @@
         </label>
 
         <label class="block mt-3" x-data="{ formattedDate: '' }">
-          <span class="text-gray-700 text-sm ml-1">Data de Nascimento</span>
-          <input name="data_nascimento" type="text" placeholder="DD/MM/YYYY"
+          <span class="text-gray-700 text-sm ml-1">Senha</span>
+          <input name="password" type="text" placeholder="********"
             class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-800 block w-full rounded-2xl"
-            maxlength="10" id="data_nasc_form">
+            id="senha_form">
         </label>
 
-        <div class="flex justify-between items-center mt-4">
-          <div>
-            <label class="inline-flex items-center">
-              <input type="checkbox" class="form-checkbox text-indigo-600">
-              <span class="mx-2 text-gray-600 text-sm">Lembrar de mim</span>
-            </label>
-          </div>
-        </div>
+        <!--<div class="flex justify-between items-center mt-4">-->
+        <!--  <div>-->
+        <!--    <label class="inline-flex items-center">-->
+        <!--      <input type="checkbox" class="form-checkbox text-indigo-600">-->
+        <!--      <span class="mx-2 text-gray-600 text-sm">Lembrar de mim</span>-->
+        <!--    </label>-->
+        <!--  </div>-->
+        <!--</div>-->
 
         <div class="mt-6">
           <button type="submit"
@@ -65,7 +65,7 @@
         <div class="flex justify-center mt-2">
           <a href="{{ route('professor.login') }}"
             class="text-blue-600 underline font-medium hover:text-blue-800 transition duration-300">
-            Login Como Professor
+            Login Como Servidor
           </a>
         </div>
       </form>
@@ -78,26 +78,24 @@
     input.addEventListener('input', () => {
       let inputlength = input.value.length;
 
-      // Adiciona pontos no CPF após 3 e 7 caracteres
       if (inputlength === 3 || inputlength === 7) {
         input.value += '.';
       }
 
-      // Adiciona o hífen após o 11º caractere
       if (inputlength === 11) {
         input.value += '-';
       }
     });
 
-    const input_nasc = document.getElementById('data_nasc_form');
-    input_nasc.addEventListener('input', () => {
-      let inputlength_nasc = input_nasc.value.length;
-
-      // Adiciona barra após 2 e 5 caracteres na data
-      if (inputlength_nasc === 2 || inputlength_nasc === 5) {
-        input_nasc.value += '/';
-      }
-    });
+    //const input_nasc = document.getElementById('data_nasc_form');
+    //input_nasc.addEventListener('input', () => {
+    //  let inputlength_nasc = input_nasc.value.length;
+    //
+    //  // Adiciona barra após 2 e 5 caracteres na data
+    //  if (inputlength_nasc === 2 || inputlength_nasc === 5) {
+    //    input_nasc.value += '/';
+    //  }
+    //});
   </script>
 
 </body>

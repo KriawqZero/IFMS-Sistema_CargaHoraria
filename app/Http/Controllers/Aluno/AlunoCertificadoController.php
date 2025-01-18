@@ -27,7 +27,7 @@ class AlunoCertificadoController extends Controller {
             })
             ->latest()
             ->paginate($perPage)
-            ->appends(['search' => $pesquisa, 'per_page' => $perPage]); // Mantém os parâmetros na URL das páginas
+            ->appends(['pesquisa' => $pesquisa, 'per_page' => $perPage]); // Mantém os parâmetros na URL das páginas
 
         return view('aluno.certificados', [
             'titulo' => 'Certificados',
@@ -36,6 +36,7 @@ class AlunoCertificadoController extends Controller {
             'perPage' => $perPage, // Passa o valor de perPage para a view
         ]);
     }
+
     // Exibir o formulário de envio de certificado
     public function create() {
         return view('aluno.enviar_certificado', [
@@ -45,20 +46,32 @@ class AlunoCertificadoController extends Controller {
 
     // Armazenar o certificado
     public function store(Request $request) {
-        $request->validate([
+        $input = $request->validate([
             'tipo' => 'required|string|max:255',
             'observacao' => 'nullable|string|max:500',
+            'carga_horaria' => 'required|string',
+            'data_do_certificado' => 'required|date',
             'arquivo' => 'required|file|mimes:pdf,jpg,jpeg,png|max:4096',
         ]);
 
         // Salvar o arquivo no storage
-        $filePath = $request->file('arquivo')->store('certificados/' . auth('aluno')->id() ,'public');
+        $filePath = $input['arquivo']->store('certificados/' . auth('aluno')->id() ,'public');
+
+        // Substituir vírgula por ponto na carga horária se tiver
+        if (str_contains($input['carga_horaria'], ','))
+            $input['carga_horaria'] = str_replace(',', '.', $input['carga_horaria']);
+
+        // Verificar se a carga horária é um número válido
+        if(!is_numeric($input['carga_horaria']))
+            return redirect()->back()->withInput()->withErrors('A carga horária deve ser um número válido.');
 
         // Criar o certificado
         Certificado::create([
             'aluno_id' => auth('aluno')->id(),
-            'tipo' => $request->input('tipo'),
-            'observacao' => $request->input('observacao'),
+            'tipo' => $input['tipo'],
+            'observacao' => $input['observacao'],
+            'carga_horaria' => $input['carga_horaria'] * 60,
+            'data_constante' => $input['data_do_certificado'],
             'src' => $filePath,
         ]);
 

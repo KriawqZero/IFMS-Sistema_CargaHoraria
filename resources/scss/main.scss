@@ -1,9 +1,3 @@
-$color01: #00843D;
-$color02: #339D64;
-$color03: #66B58B;
-$color04: #99CEB1;
-$color05: #CCE6D8;
-
 @font-face {
     font-family: 'Inter';
     src: url('../fonts/Inter.ttf') format('truetype');
@@ -13,13 +7,4 @@ $color05: #CCE6D8;
 
 *{
     font-family: 'Inter', sans-serif;
-}
-
-body {
-
-  --colorStrong: #{$color01};
-  --colorMdStr: #{$color02};
-  --colorMedium: #{$color03};
-  --colorMdWeak: #{$color04};
-  --colorWeak: #{$color05};
 }

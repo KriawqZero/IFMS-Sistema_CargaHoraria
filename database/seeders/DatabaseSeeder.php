@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void {
         Professor::create([
-            'nome' => 'Marcilio Ortiz',
+            'nome' => 'Marcilio Prof',
             'senha' => Hash::make('123456'),
             'cargo' => 'professor',
         ]);
@@ -45,6 +45,6 @@ class DatabaseSeeder extends Seeder
 
         Aluno::factory(10)->create();
 
-        Certificado::factory(300)->create();
+        Certificado::factory(100)->create();
     }
 }

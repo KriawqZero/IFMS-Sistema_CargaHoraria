@@ -47,6 +47,22 @@
       <span class="mx-3">Alunos</span>
     </a>
 
+    <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('professor.create.alunos') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
+       href="{{ route('professor.create.alunos') }}">
+      <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.5,4.5c0-1.381,1.119-2.5,2.5-2.5s2.5,1.119,2.5,2.5-1.119,2.5-2.5,2.5-2.5-1.119-2.5-2.5Zm7.5,14.5h-2v5h-2v-5h-2v5h-2v-5h-2V11c0-1.654,1.346-3,3-3h4c1.654,0,3,1.346,3,3v8Zm2.5-14c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5-2.5,1.119-2.5,2.5,1.119,2.5,2.5,2.5ZM7,2.5C7,1.119,5.881,0,4.5,0S2,1.119,2,2.5c0,1.381,1.119,2.5,2.5,2.5s2.5-1.119,2.5-2.5Zm-2,8.5c0-2.161,1.387-3.989,3.311-4.686h0c-.398-.195-.839-.314-1.311-.314H3c-1.654,0-3,1.346-3,3v8H2v5h2v-5l1-.037v-5.963Zm14,5.963l1,.037v5s2,0,2,0v-5h2s0-8,0-8c0-1.654-1.346-3-3-3h-4c-.472,0-.913,.119-1.311,.314h0c1.924,.697,3.311,2.524,3.311,4.686v5.963Z"/>
+      </svg>
+      <span class="mx-3">Cadastrar Alunos</span>
+    </a>
+
+    <a class="flex items-center px-6 py-2 mt-4 {{ request()->routeIs('') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }}"
+       href="">
+      <svg class="w-8 h-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z"/>
+        <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z"/>
+      </svg>
+      <span class="mx-3">Turmas</span>
+    </a>
 
   </nav>
 </div>

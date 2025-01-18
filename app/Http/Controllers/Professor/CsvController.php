@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Professor;
 
 use Illuminate\Http\Request;
 use App\Models\Turma;
@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class CsvController extends Controller {
     public function create() {
-        return view('admin.cadastrar_alunos', [
+        return view('professor.cadastrar_alunos', [
             'titulo' => "Cadastrar alunos",
         ]);
     }

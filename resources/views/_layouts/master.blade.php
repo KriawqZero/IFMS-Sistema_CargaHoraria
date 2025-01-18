@@ -21,9 +21,6 @@
     @if (auth()->guard('professor')->check())
       @include('_layouts.sidebar_professor')
 
-    @elseif(auth()->guard('admin')->check())
-      @include('_layouts.sidebar_admin')
-
     @elseif(auth()->guard('aluno')->check())
       @include('_layouts.sidebar')
     @endif

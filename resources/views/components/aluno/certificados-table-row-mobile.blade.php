@@ -43,7 +43,7 @@
             <p><strong>Carga Horária:</strong> {{ $horas . ' horas' }}</p>
           @endif
         @endif
-        @if (in_array('acoes', $colunas) && $certificado->status == 'em_andamento')
+        @if (in_array('acoes', $colunas) && $certificado->status == 'pendente')
           <x-aluno::certificados-delete-button :certificadoId="$certificado->id" />
         @endif
       </div>

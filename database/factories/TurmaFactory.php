@@ -17,10 +17,12 @@ class TurmaFactory extends Factory {
         $curso = $this->faker->randomElement($cursos);
 
         $tecnico = $curso == '2' ? 'Informática' : 'Metalurgia'; // Técnico em Informática ou Técnico em Metalurgia
+
+        $professor_id = Professor::where('cargo', 'professor')->inRandomOrder()->first()->id; // Seleciona um professor aleatório
         return [
             'codigo' => $turno . $curso . $sala, // Gera o código da turma
             'curso' => $tecnico,
-            'professor_id' => Professor::inRandomOrder()->first()->id, // Seleciona um professor aleatório
+            'professor_id' => $professor_id, // Seleciona um professor aleatório
         ];
     }
 }

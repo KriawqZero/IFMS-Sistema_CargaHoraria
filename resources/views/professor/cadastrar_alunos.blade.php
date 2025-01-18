@@ -22,7 +22,7 @@
     <!--@endif-->
     <!---->
 
-    <form action="{{ route('admin.create.alunos.post') }}" method="POST" class="space-y-6">
+    <form action="{{ route('professor.create.alunos.post') }}" method="POST" class="space-y-6">
         @csrf
         <div>
             <label for="csv_text" class="block text-gray-700 font-medium mb-2">Conteúdo CSV</label>
