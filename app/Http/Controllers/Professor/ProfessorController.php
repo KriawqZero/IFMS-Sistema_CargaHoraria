@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class ProfessorController extends Controller {
     public function showLoginForm() {
         return view('professor/login', [
-            'titulo' => 'Login Servidor',
+            'titulo' => 'Login Professor',
         ]);
     }
 
@@ -20,9 +20,6 @@ class ProfessorController extends Controller {
         // Recupera todas as turmas associadas ao professor e os alunos relacionados
         $turmas = $professor->turmas;
         $alunos = $turmas->pluck('alunos')->flatten();
-
-        // Recupera todas as turmas associadas ao professor e os alunos relacionados.
-        //$alunos = $professor->turmas()->with('alunos')->get()->pluck('alunos')->flatten();
 
         // Se houver um filtro de turma
         if ($request->has('turma') && $request->turma != 'todas') {
@@ -42,10 +39,12 @@ class ProfessorController extends Controller {
 
     public function dashboard() {
         $professor = auth('professor')->user();
+        $turmas = $professor->turmas;
 
         return view('professor/index', [
-            'titulo' => 'Servidor',
+            'titulo' => 'Professor',
             'professor' => $professor,
+            'turmas' => $turmas,
         ]);
     }
 

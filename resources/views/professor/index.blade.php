@@ -13,8 +13,8 @@
                         </svg>
                     </div>
                     <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700">{{ ucfirst(strtok($professor->nome, ' ')) }}</h4>
-                        <div class="text-gray-500">Professor(a)</div>
+                        <div class="text-gray-500">Olá, Professor(a)</div>
+                        <h4 class="text-2xl font-semibold text-gray-700">{{ ucfirst($professor->nome) }}</h4>
                     </div>
                 </div>
             </div>
@@ -25,28 +25,19 @@
             <div class="bg-white shadow-lg rounded-2xl p-8">
                 <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Turmas Designadas</h3>
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <!-- Turma 1 -->
-                    <div
-                        class="flex items-center bg-blue-100 shadow-md p-5 rounded-xl transition-transform transform hover:scale-105">
-                        <div class="flex items-center justify-center bg-green-200 rounded-full w-14 h-14 mr-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-700" fill="currentColor"
-                                viewBox="0 0 16 16">
-                                <path d="M4 4h8v1H4V4zm0 3h8v1H4V7zm0 3h8v1H4v-1zm0 3h8v1H4v-1z" />
-                            </svg>
-                        </div>
-                        <span class="text-gray-900 text-xl font-semibold">Turma 20210</span>
-                    </div>
+                    @foreach ($turmas as $turma)
                     <!-- Turma 2 -->
-                    <div
-                        class="flex items-center bg-blue-100 shadow-md p-5 rounded-xl transition-transform transform hover:scale-105">
-                        <div class="flex items-center justify-center bg-green-200 rounded-full w-14 h-14 mr-5">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-700" fill="currentColor"
+                    <div style="background-color: #CCE6D8;"
+                        class="flex items-center shadow-md p-5 rounded-xl transition-transform transform hover:scale-105">
+                        <div class="flex items-center justify-center bg-white rounded-full w-14 h-14 mr-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="currentColor"
                                 viewBox="0 0 16 16">
                                 <path d="M4 4h8v1H4V4zm0 3h8v1H4V7zm0 3h8v1H4v-1zm0 3h8v1H4v-1z" />
                             </svg>
                         </div>
-                        <span class="text-gray-900 text-xl font-semibold">Turma 1079</span>
+                        <span class="text-gray-900 text-xl font-semibold">Turma {{ $turma->codigo }}</span>
                     </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -126,7 +117,7 @@
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                
+
                             </td>
 
                         </tr>
@@ -180,7 +171,7 @@
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                                
+
                             </td>
                         </tr>
                         <tr>
@@ -234,7 +225,7 @@
 
                             <td
                                 class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                               
+
                             </td>
                         </tr>
                     </tbody>
