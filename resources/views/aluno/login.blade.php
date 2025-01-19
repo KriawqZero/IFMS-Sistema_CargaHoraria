@@ -41,7 +41,7 @@
 
         <label class="block mt-3" x-data="{ formattedDate: '' }">
           <span class="text-gray-700 text-sm ml-1">Senha</span>
-          <input name="password" type="text" placeholder="********"
+          <input name="senha" type="password" placeholder="********"
             class="bg-gray-100 p-2 border border-zinc-300 focus:border-green-800 block w-full rounded-2xl"
             id="senha_form">
         </label>
