@@ -14,10 +14,14 @@ return new class extends Migration
             $table->id();
             $table->string('codigo');
             $table->string('curso');
+            $table->integer('carga_horaria_maxima');
             $table->foreignId('professor_id')
                 ->nullable()
                 ->constrained('professores')
                 ->ondelete('set null');
+            $table->foreingId('curso_id')
+                ->constrained('cursos')
+                ->ondelete('cascade');
             $table->timestamps();
         });
     }

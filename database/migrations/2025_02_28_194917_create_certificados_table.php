@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('certificados', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
+            $table->string('titulo');
             $table->string('src');
             $table->text('observacao')->nullable();
             $table->integer('carga_horaria');

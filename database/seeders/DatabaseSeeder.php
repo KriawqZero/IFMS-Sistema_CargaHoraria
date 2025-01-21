@@ -6,11 +6,11 @@ use App\Models\Aluno;
 use App\Models\Turma;
 use App\Models\Certificado;
 use App\Models\Professor;
+use App\Models\Curso;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class DatabaseSeeder extends Seeder
-{
+class DatabaseSeeder extends Seeder {
     /**
      * Seed the application's database.
      */
@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
 
         /*Professor::factory(3)->create();*/
 
+        Curso::factory(2)->create();
         Turma::factory(5)->create();
 
         Aluno::create([

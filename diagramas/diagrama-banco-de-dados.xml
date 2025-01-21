@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpLogico" UniversalUnicID="66B6-FC-766D-D6-1EDE-AA-7B">
+<DIAGRAMA ID="1" TIPO="tpLogico" UniversalUnicID="472-C8-2F94-BF-5A39-76-F7">
     <InfoDiagrama ID="1">
         <Versao Valor="3.2.0"/>
         <Autores/>
@@ -16,7 +16,7 @@
         <Prefixo Valor=""/>
     </InfoDiagrama>
     <Tabela ID="2">
-        <Bounds Height="193" Left="8" Top="10" Width="150"/>
+        <Bounds Height="193" Left="14" Top="11" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Aluno</Texto>
         <Observacao/>
@@ -53,6 +53,16 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
+                <Texto>data_nascimento</Texto>
+                <Tipo>date</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
                 <Texto>cpf</Texto>
                 <Tipo>varchar</Tipo>
                 <Complemento/>
@@ -65,16 +75,6 @@
             <Campo>
                 <Texto>nome</Texto>
                 <Tipo>varchar</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
-                <Texto>data_nascimento</Texto>
-                <Tipo>date</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -129,7 +129,7 @@
         </Constraints>
     </Tabela>
     <Tabela ID="3">
-        <Bounds Height="193" Left="540" Top="10" Width="150"/>
+        <Bounds Height="193" Left="546" Top="11" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Turma</Texto>
         <Observacao/>
@@ -166,16 +166,6 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>curso</Texto>
-                <Tipo>varchar</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
                 <Texto>código</Texto>
                 <Tipo>varchar</Tipo>
                 <Complemento/>
@@ -188,6 +178,16 @@
             <Campo>
                 <Texto>carga_horaria_máxima</Texto>
                 <Tipo>int</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>curso</Texto>
+                <Tipo>varchar</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -253,7 +253,7 @@
         </Constraints>
     </Tabela>
     <Tabela ID="4">
-        <Bounds Height="193" Left="991" Top="11" Width="150"/>
+        <Bounds Height="193" Left="981" Top="40" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Servidor</Texto>
         <Observacao/>
@@ -290,16 +290,6 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>nome</Texto>
-                <Tipo>varchar</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
                 <Texto>cargo</Texto>
                 <Tipo>enum</Tipo>
                 <Complemento/>
@@ -310,8 +300,18 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>primeiro_acesso</Texto>
-                <Tipo>boolean</Tipo>
+                <Texto>senha</Texto>
+                <Tipo>varchar</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>nome</Texto>
+                <Tipo>varchar</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -330,8 +330,8 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>senha</Texto>
-                <Tipo>varchar</Tipo>
+                <Texto>primeiro_acesso</Texto>
+                <Tipo>boolean</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -355,7 +355,7 @@
         </Constraints>
     </Tabela>
     <Tabela ID="5">
-        <Bounds Height="237" Left="265" Top="267" Width="150"/>
+        <Bounds Height="259" Left="292" Top="319" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Certificados</Texto>
         <Observacao/>
@@ -392,8 +392,18 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>status</Texto>
-                <Tipo>enum</Tipo>
+                <Texto>carga_horaria</Texto>
+                <Tipo>int</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>data_constante</Texto>
+                <Tipo>date</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -422,27 +432,27 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>carga_horaria</Texto>
-                <Tipo>int</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
-                <Texto>data_constante</Texto>
-                <Tipo>date</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
                 <Texto>tipo</Texto>
+                <Tipo>varchar</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>status</Texto>
+                <Tipo>enum</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>titulo</Texto>
                 <Tipo>varchar</Tipo>
                 <Complemento/>
                 <Dicionario/>
@@ -483,12 +493,12 @@
                 <DdlOnUpdate/>
                 <DdlOnDelete>CASCADE</DdlOnDelete>
                 <LigacaoParaOrigem ID="14"/>
-                <ConstraintOrigem CamposDestino="[7]" CamposOrigem="[0]" ID="2,0">IR chave primária</ConstraintOrigem>
+                <ConstraintOrigem CamposDestino="[8]" CamposOrigem="[0]" ID="2,0">IR chave primária</ConstraintOrigem>
             </Constraint>
         </Constraints>
     </Tabela>
     <Tabela ID="6">
-        <Bounds Height="193" Left="525" Top="289" Width="150"/>
+        <Bounds Height="193" Left="671" Top="469" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Notificações</Texto>
         <Observacao/>
@@ -525,8 +535,8 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>receptor</Texto>
-                <Tipo>enum</Tipo>
+                <Texto>receptor_id</Texto>
+                <Tipo>int</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -535,8 +545,8 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>receptor_id</Texto>
-                <Tipo>int</Tipo>
+                <Texto>lida</Texto>
+                <Tipo>boolean</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -555,8 +565,8 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>lida</Texto>
-                <Tipo>boolean</Tipo>
+                <Texto>receptor</Texto>
+                <Tipo>enum</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -601,7 +611,7 @@
         </Constraints>
     </Tabela>
     <Tabela ID="7">
-        <Bounds Height="105" Left="759" Top="235" Width="150"/>
+        <Bounds Height="105" Left="547" Top="284" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Curso</Texto>
         <Observacao/>
@@ -676,13 +686,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="3" PontaB="2"/>
         <Pontos>
-            <Ponto Left="537" Top="106"/>
-            <Ponto Left="346" Top="106"/>
-            <Ponto Left="346" Top="78"/>
-            <Ponto Left="155" Top="78"/>
+            <Ponto Left="543" Top="107"/>
+            <Ponto Left="352" Top="107"/>
+            <Ponto Left="352" Top="79"/>
+            <Ponto Left="161" Top="79"/>
         </Pontos>
         <LogicoCardinalidade ID="9">
-            <Bounds Height="14" Left="498" Top="94" Width="35"/>
+            <Bounds Height="14" Left="504" Top="95" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_1</Texto>
             <Observacao/>
@@ -696,7 +706,7 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
         <LogicoCardinalidade ID="10">
-            <Bounds Height="14" Left="165" Top="66" Width="35"/>
+            <Bounds Height="14" Left="171" Top="67" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_2</Texto>
             <Observacao/>
@@ -724,13 +734,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="4" PontaB="3"/>
         <Pontos>
-            <Ponto Left="988" Top="107"/>
-            <Ponto Left="837" Top="107"/>
-            <Ponto Left="837" Top="106"/>
-            <Ponto Left="687" Top="106"/>
+            <Ponto Left="978" Top="136"/>
+            <Ponto Left="835" Top="136"/>
+            <Ponto Left="835" Top="107"/>
+            <Ponto Left="693" Top="107"/>
         </Pontos>
         <LogicoCardinalidade ID="12">
-            <Bounds Height="14" Left="949" Top="95" Width="35"/>
+            <Bounds Height="14" Left="939" Top="124" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_3</Texto>
             <Observacao/>
@@ -744,7 +754,7 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
         <LogicoCardinalidade ID="13">
-            <Bounds Height="14" Left="697" Top="94" Width="35"/>
+            <Bounds Height="14" Left="703" Top="95" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_4</Texto>
             <Observacao/>
@@ -772,13 +782,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="2" PontaB="5"/>
         <Pontos>
-            <Ponto Left="155" Top="135"/>
-            <Ponto Left="208" Top="135"/>
-            <Ponto Left="208" Top="385"/>
-            <Ponto Left="262" Top="385"/>
+            <Ponto Left="161" Top="136"/>
+            <Ponto Left="225" Top="136"/>
+            <Ponto Left="225" Top="448"/>
+            <Ponto Left="289" Top="448"/>
         </Pontos>
         <LogicoCardinalidade ID="15">
-            <Bounds Height="14" Left="165" Top="123" Width="35"/>
+            <Bounds Height="14" Left="171" Top="124" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_5</Texto>
             <Observacao/>
@@ -792,7 +802,7 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
         <LogicoCardinalidade ID="16">
-            <Bounds Height="14" Left="223" Top="373" Width="35"/>
+            <Bounds Height="14" Left="250" Top="436" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_6</Texto>
             <Observacao/>
@@ -820,13 +830,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="5" PontaB="6"/>
         <Pontos>
-            <Ponto Left="412" Top="385"/>
-            <Ponto Left="467" Top="385"/>
-            <Ponto Left="467" Top="385"/>
-            <Ponto Left="522" Top="385"/>
+            <Ponto Left="439" Top="448"/>
+            <Ponto Left="553" Top="448"/>
+            <Ponto Left="553" Top="565"/>
+            <Ponto Left="668" Top="565"/>
         </Pontos>
         <LogicoCardinalidade ID="18">
-            <Bounds Height="14" Left="422" Top="373" Width="35"/>
+            <Bounds Height="14" Left="449" Top="436" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_7</Texto>
             <Observacao/>
@@ -840,7 +850,7 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
         <LogicoCardinalidade ID="19">
-            <Bounds Height="14" Left="483" Top="373" Width="35"/>
+            <Bounds Height="14" Left="629" Top="553" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_8</Texto>
             <Observacao/>
@@ -868,12 +878,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="7" PontaB="3"/>
         <Pontos>
-            <Ponto Left="834" Top="232"/>
-            <Ponto Left="834" Top="160"/>
-            <Ponto Left="687" Top="160"/>
+            <Ponto Left="622" Top="281"/>
+            <Ponto Left="622" Top="241"/>
+            <Ponto Left="621" Top="241"/>
+            <Ponto Left="621" Top="201"/>
         </Pontos>
         <LogicoCardinalidade ID="21">
-            <Bounds Height="14" Left="801" Top="214" Width="35"/>
+            <Bounds Height="14" Left="589" Top="263" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_9</Texto>
             <Observacao/>
@@ -887,7 +898,7 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
         <LogicoCardinalidade ID="22">
-            <Bounds Height="14" Left="697" Top="148" Width="35"/>
+            <Bounds Height="14" Left="588" Top="211" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_10</Texto>
             <Observacao/>
