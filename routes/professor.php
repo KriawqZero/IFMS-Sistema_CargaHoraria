@@ -36,8 +36,8 @@ Route::name('professor.')->group(function() {
         Route::prefix('professor/certificados')->name('certificados.')->group(function() {
             // Rota para listar certificados
             Route::get('/', [ProfessorCertificadoController::class, 'index'])->name('index');
-            Route::put('/aprovar/{id}', [ProfessorCertificadoController::class, 'aprovar'])->name('aprovar');
-            Route::put('/rejeitar/{id}', [ProfessorCertificadoController::class, 'rejeitar'])->name('reprovar');
+            Route::put('/aprovar/{id}', [ProfessorCertificadoController::class, 'validar'])->name('validar');
+            Route::put('/rejeitar/{id}', [ProfessorCertificadoController::class, 'invalidar'])->name('invalidar');
         });
     });
 });

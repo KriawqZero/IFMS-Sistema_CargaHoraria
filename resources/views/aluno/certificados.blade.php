@@ -51,13 +51,12 @@
     </div>
 
 
-      <!-- Tabela de Certificados -->
-      <x-aluno::certificados-table :certificados="$certificados->items()" />
+    <!-- Tabela de Certificados -->
+    <x-aluno::certificados-table :certificados="$certificados->items()" />
 
-      <!-- Links de Paginação -->
-      <div class="mt-4">
-        {{ $certificados->links() }}
-      </div>
+    <!-- Links de Paginação -->
+    <div class="mt-4">
+      {{ $certificados->links() }}
     </div>
   </div>
 @endsection

@@ -7,18 +7,37 @@
     <!-- Filtro por Turmas -->
     <div class="bg-white shadow-md rounded-lg p-6 mb-6">
         <h2 class="text-lg font-semibold mb-4">Filtrar Certificados</h2>
-        <form>
-            <div class="mb-4">
-                <label for="turma" class="block text-sm font-medium text-gray-700">Selecione a Turma</label>
-                <select id="turma" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
-                    <option value="">Todos os Alunos</option>
-                    <option value="turma_a">Turma A</option>
-                    <option value="turma_b">Turma B</option>
-                    <option value="turma_c">Turma C</option>
+        <!-- Filtro de Turma e Pesquisa -->
+        <div class="flex items-center gap-4 mb-6">
+            <form action="{{ route('professor.certificados.index') }}" method="GET" class="flex gap-4 w-full">
+                <input
+                    type="text"
+                    name="pesquisa"
+                    placeholder="Pesquisar aluno..."
+                    value="{{ request('pesquisa') }}"
+                    class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                />
+
+                <select
+                    name="turma"
+                    class="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                >
+                    <option value="todas">Todas as turmas</option>
+                    @foreach ($turmas as $turma)
+                        <option value="{{ $turma->id }}" {{ request('turma') == $turma->id ? 'selected' : '' }}>
+                            {{ $turma->codigo }}
+                        </option>
+                    @endforeach
                 </select>
-            </div>
-            <button type="button" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">Filtrar</button>
-        </form>
+
+                <button
+                    type="submit"
+                    class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+                >
+                    Filtrar
+                </button>
+            </form>
+        </div>
     </div>
 
     <!-- Certificados Enviados -->
@@ -41,11 +60,12 @@
             </thead>
             <tbody>
                 <!-- Dados simulados -->
+                @foreach($certificados->items() as $certificado)
                 <tr>
-                    <td class="border-b border-gray-200 px-4 py-2">João Silva</td>
-                    <td class="border-b border-gray-200 px-4 py-2">Turma A</td>
-                    <td class="border-b border-gray-200 px-4 py-2"><a href="#" class="text-green-600 hover:underline" target="_blank">Visualizar</a></td>
-                    <td class="border-b border-gray-200 px-4 py-2">Curso de Extensão</td>
+                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->nome}}</td>
+                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->turma->codigo}}</td>
+                    <td class="border-b border-gray-200 px-4 py-2"><a href="{{url($certificado->src_url)}}" class="text-green-600 hover:underline" target="_blank">Visualizar</a></td>
+                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->tipo}}</td>
                     <td class="border-b border-gray-200 px-4 py-2 space-y-2">
                         <!-- Marcar como Visto fora do modal -->
                         <div class="inline-flex items-center">
@@ -64,6 +84,7 @@
                         <button onclick="openModal('modal-joao')" class="text-gray-600 hover:text-gray-900">⬇️</button>
                     </td>
                 </tr>
+                @endforeach
                 <tr>
                     <td class="border-b border-gray-200 px-4 py-2">Maria Oliveira</td>
                     <td class="border-b border-gray-200 px-4 py-2">Turma B</td>
@@ -89,6 +110,9 @@
                 </tr>
             </tbody>
         </table>
+        <div class="mt-8">
+        {{ $certificados->links() }}
+        </div>
     </div>
 </div>
 
