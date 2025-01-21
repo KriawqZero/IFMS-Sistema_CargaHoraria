@@ -27,10 +27,4 @@
 - **Segurança Robusta:** Proteção contra ataques comuns e armazenamento seguro de dados.
 - **Alta Disponibilidade:** Sistema confiável com uptime de 99,5%.
 
-### **Como Participar:**
-- **Contribua no GitHub:** [Repositório IFMS-Sistema_CargaHoraria](https://github.com/KriawqZero/IFMS-Sistema_CargaHoraria)
-- **Faça Parte da Inovação:** Ajude a transformar a gestão acadêmica no Campus Corumbá!
-
 ---
-
-Transforme a maneira como as atividades acadêmicas são gerenciadas com o IFMS Sistema de Carga Horária. Mais organização, eficiência e facilidade para todos!
