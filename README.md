@@ -11,12 +11,12 @@
 - **Autenticação Segura:** Perfis diferenciados para alunos, professores e coordenadores.
 - **Cadastro Simplificado:** Inscrição de turmas e alunos via importação de CSV ou manualmente.
 - **Gestão de Certificados:** Upload, validação e acompanhamento de certificados de atividades.
-- **Relatórios Detalhados:** Geração de relatórios individuais e consolidados em PDF ou Excel.
+- **Relatórios Detalhados:** Geração de relatórios individuais e consolidados em Excel.
 - **Notificações Automáticas:** Atualizações sobre o status dos certificados e progresso das horas.
 
 ### **Tecnologias Utilizadas:**
 - **Backend:** Laravel 11
-- **Frontend:** Tailwind CSS e Bootstrap
+- **Frontend:** Tailwind CSS
 - **Banco de Dados:** MariaDB
 - **Prototipagem:** Figma
 - **Containerização:** Docker
@@ -25,6 +25,5 @@
 - **Interface Intuitiva:** Fácil de usar em qualquer dispositivo.
 - **Performance Rápida:** Tempo de resposta abaixo de 2 segundos.
 - **Segurança Robusta:** Proteção contra ataques comuns e armazenamento seguro de dados.
-- **Alta Disponibilidade:** Sistema confiável com uptime de 99,5%.
 
 ---
