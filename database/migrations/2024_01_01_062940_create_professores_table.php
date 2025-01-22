@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->string('nome');
             $table->string('senha');
             $table->boolean('primeiro_acesso')->default(true);
-            $table->string('foto_src')->nullable();
+            $table->string('foto_src')->default('default-profile.svg');
             $table->enum('cargo', ['professor', 'coordenador', 'admin'])->default('professor');
             $table->timestamps();
         });

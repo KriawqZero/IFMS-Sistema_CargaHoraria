@@ -6,6 +6,7 @@ use App\Models\Certificado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCertificadoRequest;
+use App\Models\Notificacao;
 
 class AlunoCertificadoController extends Controller {
     // Exibir a lista de certificados
@@ -48,12 +49,13 @@ class AlunoCertificadoController extends Controller {
     // Armazenar o certificado
     public function store(StoreCertificadoRequest $request) {
         $input = $request->validated();
+        $aluno = auth('aluno')->user();
 
         // Salvar o arquivo no storage
         $filePath = $input['arquivo']->store('certificados/' . auth('aluno')->id() ,'public');
 
         // Criar o certificado
-        Certificado::create([
+        $certificado = Certificado::create([
             'aluno_id' => auth('aluno')->id(),
             'tipo' => $input['tipo'],
             'titulo' => $input['titulo'],
@@ -61,6 +63,15 @@ class AlunoCertificadoController extends Controller {
             'carga_horaria' => $input['carga_horaria'] * 60,
             'data_constante' => $input['data_do_certificado'],
             'src' => $filePath,
+        ]);
+
+        $mensagem_notificacao = "O aluno " .  $aluno->nome_completo . " (" . $aluno->turma->codigo . ") " . " enviou um novo certificado.";
+        Notificacao::create([
+            'receptor_tipo' => 'professor',
+            'receptor_id' => $aluno->professor_id,
+            'mensagem' => $mensagem_notificacao,
+            'certificado_id' => $certificado->id,
+            'lida' => false,
         ]);
 
         return redirect()->route('aluno.certificados.create')->with('success', 'Certificado enviado com sucesso!');

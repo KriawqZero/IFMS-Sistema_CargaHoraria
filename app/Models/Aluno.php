@@ -48,6 +48,14 @@ class Aluno extends Model implements AuthenticatableContract {
         return null;
     }
 
+    public function getProfessorIdAttribute() {
+      if($this->turma && $this->turma->professor) {
+        return $this->turma->professor->id;
+      }
+
+      return null;
+    }
+
     public function getNomeCompletoAttribute() {
         $nomeArray = explode(' ', $this->nome);
         $primeiroNome = $nomeArray[0];

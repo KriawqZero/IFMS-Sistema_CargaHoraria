@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class ProfessorController extends Controller {
     public function showLoginForm() {
         return view('professor/login', [
-            'titulo' => 'Login Professor',
-        ]);
+            'titulo' => 'Login Professor', ]);
     }
 
     public function listarAlunos(Request $request) {
@@ -40,6 +39,8 @@ class ProfessorController extends Controller {
     public function dashboard() {
         $professor = auth('professor')->user();
         $turmas = $professor->turmas;
+        $notificacoes = auth('professor')->user()->notificacoes();
+        dd($notificacoes);
 
         return view('professor/index', [
             'titulo' => 'Professor',

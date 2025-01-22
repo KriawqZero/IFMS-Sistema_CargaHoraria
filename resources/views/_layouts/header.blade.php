@@ -67,7 +67,7 @@
     <div x-data="{ dropdownOpen: false }" class="relative">
       <button @click="dropdownOpen = ! dropdownOpen"
         class="relative block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none">
-        <img class="object-cover w-full h-full" src="https://dummyimage.com/32x32" alt="Your avatar">
+        <img class="object-cover w-full h-full" src="{{ asset("storage/" . auth()->user()->foto_src) }}" alt="Your avatar">
       </button>
 
       <div x-cloak x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 z-10 w-full h-full">

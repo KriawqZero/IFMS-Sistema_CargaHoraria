@@ -19,18 +19,21 @@ class DatabaseSeeder extends Seeder {
             'nome' => 'Marcilio Prof',
             'senha' => Hash::make('123456'),
             'cargo' => 'professor',
+            'foto_src' => 'default-profile.svg',
         ]);
 
         Professor::create([
             'nome' => 'Marcilio Coord',
             'senha' => Hash::make('123456'),
             'cargo' => 'coordenador',
+            'foto_src' => 'default-profile.svg',
         ]);
 
         Professor::create([
             'nome' => 'Marcilio Adm',
             'senha' => Hash::make('123456'),
             'cargo' => 'admin',
+            'foto_src' => 'default-profile.svg',
         ]);
 
         /*Professor::factory(3)->create();*/
@@ -42,6 +45,7 @@ class DatabaseSeeder extends Seeder {
             'cpf' => '000.000.000-00',
             'data_nascimento' => '2006-09-01',
             'turma_id' => Turma::inRandomOrder()->first()->id,
+            'foto_src' => 'default-profile.svg',
         ]);
 
         Aluno::factory(10)->create();
