@@ -28,8 +28,8 @@
 
       <form enctype="multipart/form-data" class="mt-8 space-y-3" action="{{ route('aluno.certificados.store') }}"
         method="POST">
-
         @csrf
+
         <div class="grid grid-cols-1 space-y-2">
           <label class="text-sm font-bold text-gray-500 tracking-wide">Tipo</label>
 
@@ -45,12 +45,13 @@
             <option value="Práticas Desportivas">Práticas Desportivas</option>
             <option value="Práticas Artístico-Culturais">Práticas Artístico-Culturais</option>
           </select>
-
         </div>
+
         <div class="grid grid-cols-1 space-y-2">
-          <label class="text-sm font-bold text-gray-500 tracking-wide">Observação</label>
-          <textarea name="observacao"
-            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"></textarea>
+          <label class="text-sm font-bold text-gray-500 tracking-wide">Titulo do Certificado</label>
+          <input type="text" name="titulo"
+            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
+            placeholder="Oficina/Workshop - Brinquedos com materiais reciclados" />
           <label class="text-sm font-bold text-gray-500 tracking-wide">Carga Horária (em horas)</label>
           <input type="text" name="carga_horaria"
             class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
@@ -59,6 +60,9 @@
           <input x-data="{ today: new Date().toISOString().split('T')[0], selectedDate: '' }"
                 type="date" name="data_do_certificado" min="2021-01-01" x-bind:max="today"
               class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" />
+          <label class="text-sm font-bold text-gray-500 tracking-wide">Observação</label>
+          <textarea name="observacao"
+            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"></textarea>
         </div>
         <div class="grid grid-cols-1 space-y-2">
           <label class="text-sm font-bold text-gray-500 tracking-wide">Anexar documento</label>

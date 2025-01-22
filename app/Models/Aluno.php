@@ -57,12 +57,9 @@ class Aluno extends Model implements AuthenticatableContract {
     }
 
     public function getCursoAttribute() {
-        if(!$this->codigo_turma) return null;
-
-        $codigo_curso = $this->codigo_turma[2];
-
-        if($codigo_curso == 2) return 'Informática';
-        else if($codigo_curso == 7) return 'Metalurgia';
+        if($this->turma && $this->turma->curso) {
+            return $this->turma->curso->nome;
+        }
 
         return null;
     }
@@ -96,7 +93,7 @@ class Aluno extends Model implements AuthenticatableContract {
     }
 
     public function maxCargaHoraria() {
-        return 125;
+        return $this->turma->carga_horaria_maxima;
     }
 
     public function paginarCertificados($maxItens = 10) {

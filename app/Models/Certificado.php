@@ -13,6 +13,7 @@ class Certificado extends Model {
 
     protected $fillable = [
         'tipo',
+        'titulo',
         'src',
         'observacao',
         'carga_horaria',

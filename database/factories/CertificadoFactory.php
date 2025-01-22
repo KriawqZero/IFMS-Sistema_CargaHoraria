@@ -21,8 +21,8 @@ class CertificadoFactory extends Factory {
 
     public function definition() {
         $observs = [
-            "",
-            "",
+            null,
+            null,
             "Curso de Extensão",
             "Evento Científico",
             "Curso de Inglês Técnico",
@@ -100,11 +100,12 @@ class CertificadoFactory extends Factory {
 
         return [
             'tipo' => $this->faker->randomElement($tipos),
+            'titulo' => $this->faker->sentence(6),
             'src' => $this->faker->url(),
             'observacao' => $this->faker->randomElement($observs),
             'carga_horaria' => $carga_horaria, // Carga horária com múltiplos de 30 minutos
             'status' => $status,
-            'data_constante' => $this->faker->dateTimeBetween('-2 years', 'now'),
+            'data_constante' => $this->faker->dateTimeBetween('-1 years', 'now'),
             'aluno_id' => Aluno::inRandomOrder()->first()->id, // Seleciona um aluno aleatório
         ];
     }

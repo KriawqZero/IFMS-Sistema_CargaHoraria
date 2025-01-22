@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Aluno;
 use App\Models\Certificado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCertificadoRequest;
 
 class AlunoCertificadoController extends Controller {
     // Exibir a lista de certificados
@@ -45,30 +46,17 @@ class AlunoCertificadoController extends Controller {
     }
 
     // Armazenar o certificado
-    public function store(Request $request) {
-        $input = $request->validate([
-            'tipo' => 'required|string|max:255',
-            'observacao' => 'nullable|string|max:500',
-            'carga_horaria' => 'required|string',
-            'data_do_certificado' => 'required|date',
-            'arquivo' => 'required|file|mimes:pdf,jpg,jpeg,png|max:4096',
-        ]);
+    public function store(StoreCertificadoRequest $request) {
+        $input = $request->validated();
 
         // Salvar o arquivo no storage
         $filePath = $input['arquivo']->store('certificados/' . auth('aluno')->id() ,'public');
-
-        // Substituir vírgula por ponto na carga horária se tiver
-        if (str_contains($input['carga_horaria'], ','))
-            $input['carga_horaria'] = str_replace(',', '.', $input['carga_horaria']);
-
-        // Verificar se a carga horária é um número válido
-        if(!is_numeric($input['carga_horaria']))
-            return redirect()->back()->withInput()->withErrors('A carga horária deve ser um número válido.');
 
         // Criar o certificado
         Certificado::create([
             'aluno_id' => auth('aluno')->id(),
             'tipo' => $input['tipo'],
+            'titulo' => $input['titulo'],
             'observacao' => $input['observacao'],
             'carga_horaria' => $input['carga_horaria'] * 60,
             'data_constante' => $input['data_do_certificado'],
@@ -85,6 +73,10 @@ class AlunoCertificadoController extends Controller {
         // Verificar se o certificado pertence ao aluno autenticado
         if ($certificado->aluno_id !== auth('aluno')->id()) {
             return redirect()->route('aluno.certificados.index')->with('error', 'Você não tem permissão para excluir este certificado.');
+        }
+
+        if ($certificado->validado) {
+            return redirect()->route('aluno.certificados.index')->with('error', 'Certificado validado não pode ser excluído.');
         }
 
         // Remover o arquivo do storage

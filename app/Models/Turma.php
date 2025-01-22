@@ -16,12 +16,16 @@ class Turma extends Model {
         'professor_id'
     ];
 
+    public function alunos() {
+        return $this->hasMany(Aluno::class);
+    }
+
     public function professor() {
         return $this->belongsTo(Professor::class);
     }
 
-    public function alunos() {
-        return $this->hasMany(Aluno::class);
+    public function curso() {
+        return $this->belongsTo(Curso::class);
     }
 
     public function listarTodosCertificados() {

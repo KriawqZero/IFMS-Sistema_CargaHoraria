@@ -20,7 +20,7 @@ class VerifyPermission
 
         if($professor->cargo != $cargo) {
             return back()
-                ->withErrors(['message' => 'Você não tem permissão pra realizar essa ação, contate um superior.']);
+                ->withErrors(['message' => 'Você não tem permissão pra realizar essa ação.']);
         }
 
         return $next($request);

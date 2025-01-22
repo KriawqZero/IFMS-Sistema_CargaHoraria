@@ -3,6 +3,7 @@ namespace Database\Factories;
 
 use App\Models\Turma;
 use App\Models\Professor;
+use App\Models\Curso;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TurmaFactory extends Factory {
@@ -16,12 +17,17 @@ class TurmaFactory extends Factory {
         $turno = $this->faker->randomElement($turnos);
         $curso = $this->faker->randomElement($cursos);
 
-        $tecnico = $curso == '2' ? 'Informática' : 'Metalurgia'; // Técnico em Informática ou Técnico em Metalurgia
+        $carga_horaria_maximas = [
+            125, 50,
+        ];
+
+        $tecnico = Curso::inrandomOrder()->first()->id; // Seleciona um curso aleatório
 
         $professor_id = Professor::where('cargo', 'professor')->inRandomOrder()->first()->id; // Seleciona um professor aleatório
         return [
             'codigo' => $turno . $curso . $sala, // Gera o código da turma
-            'curso' => $tecnico,
+            'curso_id' => $tecnico,
+            'carga_horaria_maxima' => $this->faker->randomElement($carga_horaria_maximas),
             'professor_id' => $professor_id, // Seleciona um professor aleatório
         ];
     }

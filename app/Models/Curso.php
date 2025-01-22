@@ -12,6 +12,10 @@ class Curso extends Model {
         'nome',
     ];
 
+    public function coordenador() {
+        return $this->belongsTo(Professor::class);
+    }
+
     public function turmas() {
         return $this->hasMany(Turma::class);
     }

@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
+            $table->string("sigla");
+            $table->foreignId("coordenador_id")
+                ->nullable()
+                ->constrained("professores")
+                ->onDelete("set null");
             $table->timestamps();
         });
     }

@@ -20,8 +20,15 @@ class CursoFactory extends Factory
             'Técnico em Informática',
             'Técnico em Metalurgia'
         ];
+
+        $siglas = [
+            'TecnoINF',
+            'TecnoMET'
+        ];
+
         return [
             'nome' => $this->faker->unique()->randomElement($cursos),
+            'sigla' => $this->faker->unique()->randomElement($siglas),
         ];
     }
 }
