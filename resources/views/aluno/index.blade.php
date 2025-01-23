@@ -28,7 +28,7 @@
       </div>
 
       <div class="w-full xl:mt-6 px-6 sm:w-1/2 xl:w-1/4 mt-8">
-        <x-master::card iconBg="bg-fuchsia-600 bg-opacity-75" titulo="{{ count($certificados) }}"
+        <x-master::card iconBg="bg-fuchsia-600 bg-opacity-75" titulo="{{ count($aluno->certificados()->get()) }}"
           subtitulo="Certificados Enviados">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewBox="0 0 16 16">
             <path

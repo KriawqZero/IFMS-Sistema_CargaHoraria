@@ -12,6 +12,13 @@
       </div>
     </td>
   @endif
+  @if (in_array('titulo', $colunas))
+    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+      <div class="text-sm leading-5 text-gray-900">
+        {{ $certificado->titulo }}
+      </div>
+    </td>
+  @endif
   @if (in_array('data_enviada', $colunas))
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
       <div class="text-sm leading-5 text-gray-900">
@@ -29,6 +36,13 @@
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
       <div class="text-sm leading-5 text-gray-900">
         {{ $certificado->observacao ?? 'Sem observações' }}
+      </div>
+    </td>
+  @endif
+  @if (in_array('data_constante', $colunas))
+    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+      <div class="text-sm leading-5 text-gray-900">
+        {{ $certificado->data_constante ? \Carbon\Carbon::parse($certificado->data_constante)->format('d/m/Y') : '' }}
       </div>
     </td>
   @endif

@@ -19,16 +19,20 @@ class ProfessorCertificadoController extends Controller {
         $pesquisa = $request->input('pesquisa', null);
         $turmaId = $request->input('turma', 'todas');
         $perPage = $request->input('per_page', 10);
+        $certificadoId = $request->input('id', null);
 
         $certificados = Certificado::query()
+            ->when($certificadoId, function ($query) use ($certificadoId) {
+                $query->where('id', $certificadoId); // Filtra por ID do certificado, se fornecido
+            })
             ->whereHas('aluno', function ($query) use ($turmas, $pesquisa, $turmaId) {
                 $query->whereIn('turma_id', $turmas->pluck('id')) // Filtra pelas turmas do professor
                 ->when($pesquisa, function ($query, $pesquisa) {
                     $query->where('nome', 'like', '%' . $pesquisa . '%'); // Adiciona a pesquisa por nome do aluno, se fornecida
                 })
-                    ->when($turmaId && $turmaId !== 'todas', function ($query) use ($turmaId) {
-                        $query->where('turma_id', $turmaId); // Filtra por turma, se fornecida
-                    });
+                ->when($turmaId && $turmaId !== 'todas', function ($query) use ($turmaId) {
+                    $query->where('turma_id', $turmaId); // Filtra por turma, se fornecida
+                });
             })
             ->with(['aluno.turma']) // Carrega as relações aluno e turma
             ->latest() // Ordena por data de criação

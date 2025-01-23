@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCertificadoRequest;
 use App\Models\Notificacao;
+use App\Notifications\AlunoEnviouCertificado;
 
 class AlunoCertificadoController extends Controller {
     // Exibir a lista de certificados
@@ -65,14 +66,13 @@ class AlunoCertificadoController extends Controller {
             'src' => $filePath,
         ]);
 
-        $mensagem_notificacao = "O aluno " .  $aluno->nome_completo . " (" . $aluno->turma->codigo . ") " . " enviou um novo certificado.";
-        Notificacao::create([
-            'receptor_tipo' => 'professor',
-            'receptor_id' => $aluno->professor_id,
-            'mensagem' => $mensagem_notificacao,
-            'certificado_id' => $certificado->id,
-            'lida' => false,
-        ]);
+        // Notificar o professsor
+        $professor = $aluno->professor;
+        $professor->notify(
+            new AlunoEnviouCertificado(
+                $aluno,
+                $certificado,
+            ));
 
         return redirect()->route('aluno.certificados.create')->with('success', 'Certificado enviado com sucesso!');
     }

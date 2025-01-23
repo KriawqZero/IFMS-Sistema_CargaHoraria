@@ -19,12 +19,20 @@ class ProfessorController extends Controller {
         // Recupera todas as turmas associadas ao professor e os alunos relacionados
         $turmas = $professor->turmas;
         $alunos = $turmas->pluck('alunos')->flatten();
+        $alunoId = $request->input('id');
 
         // Se houver um filtro de turma
         if ($request->has('turma') && $request->turma != 'todas') {
             $turmaSelecionada = $request->turma;
             $alunos = $alunos->filter(function($aluno) use ($turmaSelecionada) {
                 return $aluno->turma->codigo == $turmaSelecionada;
+            });
+        }
+
+        // Se houver um filtro de aluno
+        if ($alunoId) {
+            $alunos = $alunos->filter(function($aluno) use ($alunoId) {
+                return $aluno->id == $alunoId;
             });
         }
 
@@ -39,8 +47,6 @@ class ProfessorController extends Controller {
     public function dashboard() {
         $professor = auth('professor')->user();
         $turmas = $professor->turmas;
-        $notificacoes = auth('professor')->user()->notificacoes();
-        dd($notificacoes);
 
         return view('professor/index', [
             'titulo' => 'Professor',

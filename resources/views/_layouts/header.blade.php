@@ -27,47 +27,45 @@
 
       <div x-cloak x-show="notificationOpen"
         class="absolute right-0 z-10 mt-2 overflow-hidden bg-white rounded-lg shadow-xl w-80" style="width:20rem;">
-        <a href="#" class="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600">
-          <img class="object-cover w-8 h-8 mx-1 rounded-full"
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-            alt="avatar">
-          <p class="mx-2 text-sm">
-            <span class="font-bold" href="#">Sara Salah</span> replied on the <span
-              class="font-bold text-indigo-400" href="#">Upload Image</span> artical . 2m
-          </p>
-        </a>
-        <a href="#" class="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600">
-          <img class="object-cover w-8 h-8 mx-1 rounded-full"
-            src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-            alt="avatar">
-          <p class="mx-2 text-sm">
-            <span class="font-bold" href="#">Slick Net</span> start following you . 45m
-          </p>
-        </a>
-        <a href="#" class="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600">
-          <img class="object-cover w-8 h-8 mx-1 rounded-full"
-            src="https://images.unsplash.com/photo-1450297350677-623de575f31c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-            alt="avatar">
-          <p class="mx-2 text-sm">
-            <span class="font-bold" href="#">Jane Doe</span> Like Your reply on <span
-              class="font-bold text-indigo-400" href="#">Test with TDD</span> artical . 1h
-          </p>
-        </a>
-        <a href="#" class="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-600">
-          <img class="object-cover w-8 h-8 mx-1 rounded-full"
-            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=398&q=80"
-            alt="avatar">
-          <p class="mx-2 text-sm">
-            <span class="font-bold" href="#">Abigail Bennett</span> start following you . 3h
-          </p>
-        </a>
+        @forelse($usuarioLogado->notifications as $notificacao)
+          @php
+            if($notificacao->data['aluno']) {
+              $id =  $notificacao->data['certificado_id'];
+              $url = route('professor.certificados.index', ['id' => $id]);
+            } else {
+              $url = '';
+            }
+          @endphp
+          <a href="{{ $url }}" class="flex items-center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-green-300">
+            <img class="object-cover w-8 h-8 mx-1 rounded-full" src="{{ asset("storage/" . $notificacao->data['foto_src']) }}" alt="avatar">
+            <span class="mx-2 text-sm">
+              {!! $notificacao->data['mensagem'] !!}
+              <small class="text-gray-400 font-xs">
+                . {{ $notificacao->created_at->diffForHumans() }}
+              </small>
+            </span>
+          </a>
+        @empty
+          <a href="#" class="flex items>center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-300">
+            <p class="mx-2 text-sm">
+              Nenhuma notificação
+            </p>
+          </a>
+        @endforelse
       </div>
     </div>
 
     <div x-data="{ dropdownOpen: false }" class="relative">
-      <button @click="dropdownOpen = ! dropdownOpen"
-        class="relative block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none">
-        <img class="object-cover w-full h-full" src="{{ asset("storage/" . auth()->user()->foto_src) }}" alt="Your avatar">
+      <button @click="dropdownOpen = ! dropdownOpen" class="flex items-center space-x-2">
+        <!-- Imagem de perfil -->
+        <div class="relative block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none">
+          <img class="object-cover w-full h-full" src="{{ asset('storage/' . $usuarioLogado->foto_src) }}" alt="Foto de perfil">
+        </div>
+        <!-- Ícone SVG ao lado direito -->
+        <svg class="w-5 h-5 text-gray-600" viewBox="0 0 16 16" fill="#9CA3AF" xmlns="http://www.w3.org/2000/svg">
+          <path x-show="!dropdownOpen" d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+          <path x-show="dropdownOpen" d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+        </svg>
       </button>
 
       <div x-cloak x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 z-10 w-full h-full">

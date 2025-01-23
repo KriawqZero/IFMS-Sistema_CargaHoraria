@@ -60,7 +60,7 @@
             </thead>
             <tbody>
                 <!-- Dados simulados -->
-                @foreach($certificados->items() as $certificado)
+                @forelse($certificados->items() as $certificado)
                 <tr>
                     <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->nome}}</td>
                     <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->turma->codigo}}</td>
@@ -84,30 +84,11 @@
                         <button onclick="openModal('modal-joao')" class="text-gray-600 hover:text-gray-900">⬇️</button>
                     </td>
                 </tr>
-                @endforeach
+                @empty
                 <tr>
-                    <td class="border-b border-gray-200 px-4 py-2">Maria Oliveira</td>
-                    <td class="border-b border-gray-200 px-4 py-2">Turma B</td>
-                    <td class="border-b border-gray-200 px-4 py-2"><a href="#" class="text-green-600 hover:underline" target="_blank">Visualizar</a></td>
-                    <td class="border-b border-gray-200 px-4 py-2">Evento Científico</td>
-                    <td class="border-b border-gray-200 px-4 py-2 space-y-2">
-                        <!-- Marcar como Visto fora do modal -->
-                        <div class="inline-flex items-center">
-                            <label class="flex items-center cursor-pointer relative" for="check-maria">
-                                <input type="checkbox" checked class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800" id="check-maria" />
-                                <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor" stroke="currentColor" stroke-width="1">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </span>
-                            </label>
-                            <span class="ml-2 text-sm">Marcar como Visto</span>
-                        </div>
-
-                        <!-- Ícone para abrir o modal -->
-                        <button onclick="openModal('modal-maria')" class="text-gray-600 hover:text-gray-900">⬇️</button>
-                    </td>
+                    <td class="border-b border-gray-200 px-4 py-2 text-center" colspan="5">Nenhum certificado encontrado.</td>
                 </tr>
+                @endforelse
             </tbody>
         </table>
         <div class="mt-8">

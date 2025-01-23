@@ -11,7 +11,7 @@
         <!-- Filtro por Turma -->
         <div class="bg-white p-4 rounded-lg shadow-md mb-6">
             <h2 class="text-lg font-medium text-gray-700 mb-4">Filtrar Alunos</h2>
-            <form method="GET" action="{{ route('professor.alunos') }}">
+            <form method="GET" action="{{ route('professor.alunos.index') }}">
                 <div class="flex items-center gap-4">
                     <label for="turma" class="text-gray-600">Selecione a Turma:</label>
                     <select id="turma" name="turma" class="w-1/3 p-2 border border-gray-300 rounded-md">

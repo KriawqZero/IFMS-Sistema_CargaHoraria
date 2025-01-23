@@ -1,6 +1,6 @@
 @props([
     'certificados',
-    'colunas' => ['tipo', 'data_enviada', 'comprovante', 'observacao', 'status', 'carga_horaria', 'acoes'],
+    'colunas' => ['tipo', 'titulo', 'data_enviada', 'comprovante', 'observacao', 'data_constante', 'status', 'carga_horaria', 'acoes'],
 ])
 
 <div class="align-middle shadow-2xl inline-block min-w-full overflow-hidden rounded-3xl border-b border-gray-200">
@@ -10,6 +10,9 @@
                 @if (in_array('tipo', $colunas))
                     <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
                 @endif
+                @if (in_array('titulo', $colunas))
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Título</th>
+                @endif
                 @if (in_array('data_enviada', $colunas))
                     <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Data Enviada</th>
                 @endif
@@ -18,6 +21,9 @@
                 @endif
                 @if (in_array('observacao', $colunas))
                     <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Observação</th>
+                @endif
+                @if (in_array('data_constante', $colunas))
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Data Constante</th>
                 @endif
                 @if (in_array('status', $colunas))
                     <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Status</th>

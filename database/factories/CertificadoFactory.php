@@ -3,6 +3,7 @@ namespace Database\Factories;
 
 use App\Models\Certificado;
 use App\Models\Aluno;
+use App\Notifications\AlunoEnviouCertificado;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CertificadoFactory extends Factory {
@@ -93,10 +94,10 @@ class CertificadoFactory extends Factory {
         ];
 
         $tipos_status = ['pendente', 'invalido', 'valido'];
-
         $status = $this->faker->randomElement($tipos_status);
-
         $carga_horaria = $this->gerarMultiploAleatorio(60, 1800);
+
+        $aluno = Aluno::inRandomOrder()->first();
 
         return [
             'tipo' => $this->faker->randomElement($tipos),
@@ -106,8 +107,17 @@ class CertificadoFactory extends Factory {
             'carga_horaria' => $carga_horaria, // Carga horária com múltiplos de 30 minutos
             'status' => $status,
             'data_constante' => $this->faker->dateTimeBetween('-1 years', 'now'),
-            'aluno_id' => Aluno::inRandomOrder()->first()->id, // Seleciona um aluno aleatório
+            'aluno_id' => $aluno->id, // Seleciona um aluno aleatório
         ];
+    }
+
+    public function configure() {
+        return $this->afterCreating(function (Certificado $certificado) {
+            $aluno = Aluno::find($certificado->aluno_id);
+            $professor = $aluno->turma->professor;
+
+            $professor->notify(new AlunoEnviouCertificado($aluno, $certificado));
+        });
     }
 }
 

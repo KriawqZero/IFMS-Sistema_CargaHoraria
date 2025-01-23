@@ -6,9 +6,10 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
 class Aluno extends Model implements AuthenticatableContract {
-    use HasFactory, Authenticatable;
+    use HasFactory, Authenticatable, Notifiable;
 
     // ####### PROPRIEDADES #######
     protected $table = 'alunos';
@@ -30,10 +31,6 @@ class Aluno extends Model implements AuthenticatableContract {
 
     public function certificados() {
         return $this->hasMany(Certificado::class);
-    }
-
-    public function notificacoes() {
-        return $this->morphMany(Notificacao::class, 'receptor', 'receptor_tipo', 'receptor_id');
     }
     // ####### FIM RELACIONAMENTOS #######
 

@@ -50,6 +50,6 @@ class DatabaseSeeder extends Seeder {
 
         Aluno::factory(10)->create();
 
-        Certificado::factory(100)->create();
+        Certificado::factory(2)->create();
     }
 }

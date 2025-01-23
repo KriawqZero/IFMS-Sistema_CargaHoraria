@@ -13,7 +13,7 @@ migrate:
 	php artisan migrate:fresh --seed
 
 # Comando para iniciar o servidor de desenvolvimento
-serve:
+dev:
 	php artisan serve
 
 # Comando para limpar o cache e otimizações
