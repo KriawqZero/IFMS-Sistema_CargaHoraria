@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder {
         /*Professor::factory(3)->create();*/
 
         Curso::factory(2)->create();
-        Turma::factory(5)->create();
+        Turma::factory(3)->create();
 
         Aluno::create([
             'cpf' => '000.000.000-00',
@@ -50,6 +50,6 @@ class DatabaseSeeder extends Seeder {
 
         Aluno::factory(10)->create();
 
-        Certificado::factory(2)->create();
+        Certificado::factory(10)->create();
     }
 }

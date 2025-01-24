@@ -50,6 +50,8 @@ class AlunoCertificadoController extends Controller {
     // Armazenar o certificado
     public function store(StoreCertificadoRequest $request) {
         $input = $request->validated();
+
+        /** @var \App\Models\Aluno $aluno */
         $aluno = auth('aluno')->user();
 
         // Salvar o arquivo no storage
@@ -67,7 +69,11 @@ class AlunoCertificadoController extends Controller {
         ]);
 
         // Notificar o professsor
-        $professor = $aluno->professor;
+        if (!$aluno->turma || !$aluno->turma->professor)
+            return redirect()->route('aluno.certificados.create')
+                ->withErrors('Não foi possível enviar o certificado. O aluno não está matriculado em uma turma.');
+
+        $professor = $aluno->turma->professor;
         $professor->notify(
             new AlunoEnviouCertificado(
                 $aluno,

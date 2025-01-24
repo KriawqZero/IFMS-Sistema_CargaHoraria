@@ -1,10 +1,9 @@
 @extends('_layouts.master')
 
 @section('body')
-<div class="bg-gray-100 min-h-screen rounded-md">
-    <!-- Header -->
-    <div class="p-4 bg-white shadow-md">
-        <h1 class="text-xl font-semibold text-gray-800">Alunos</h1>
+<div>
+    <div class="p-4 rounded-lg text-center bg-green-600 shadow-md">
+        <h1 class="text-xl font-semibold text-white">{{ $titulo }}</h1>
     </div>
 
     <div class="p-6">
@@ -32,24 +31,28 @@
         <!-- Lista de Alunos -->
         <div class="bg-white p-4 rounded-md shadow-md">
             <h2 class="text-lg font-medium text-gray-700 mb-4">Alunos</h2>
-            <table class="min-w-full border-collapse border border-gray-200">
+            <!-- Tabela de Certificados -->
+            <table class="w-full text-left border-collapse">
                 <thead>
-                    <tr class="bg-gray-100">
-                        <th class="p-3 text-left border border-gray-300">Nome</th>
-                        <th class="p-3 text-left border border-gray-300">Turma</th>
-                        <th class="p-3 text-left border border-gray-300">Ações</th>
+                    <tr>
+                        <th class="border-b border-gray-300 px-4 py-2">Nome</th>
+                        <th class="border-b border-gray-300 px-4 py-2">Turma</th>
+                        <th class="border-b border-gray-300 px-4 py-2">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($alunos as $aluno)
+                    <!-- Dados simulados -->
+                    @forelse($alunos as $aluno)
                     <tr>
-                        <td class="p-3 border border-gray-300">{{ $aluno->nome }}</td>
-                        <td class="p-3 border border-gray-300">{{ $aluno->turma->codigo }}</td>
-                        <td class="p-3 border border-gray-300">
-                            <a href="#" class="text-blue-500 hover:underline">Ver Detalhes</a>
-                        </td>
+                        <td class="border-b border-gray-200 px-4 py-2">{{$aluno->nome}}</td>
+                        <td class="border-b border-gray-200 px-4 py-2">{{$aluno->turma->codigo}}</td>
+                        <td class="border-b border-gray-200 px-4 py-2"><a href="#" class="text-green-600 hover:underline" target="_blank">Ver detalhes</a></td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td class="border-b border-gray-200 px-4 py-2 text-center" colspan="3">Nenhum aluno encontrado.</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

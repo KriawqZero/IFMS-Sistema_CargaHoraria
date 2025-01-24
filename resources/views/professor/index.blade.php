@@ -27,7 +27,7 @@
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($turmas as $turma)
                     <!-- Turma 2 -->
-                    <div style="background-color: #CCE6D8;"
+                    <a href="{{ route('professor.alunos.index', ['turma' => $turma->codigo]) }}" style="background-color: #CCE6D8;"
                         class="flex items-center shadow-md p-5 rounded-xl transition-transform transform hover:scale-105">
                         <div class="flex items-center justify-center bg-white rounded-full w-14 h-14 mr-5">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="currentColor"
@@ -36,7 +36,7 @@
                             </svg>
                         </div>
                         <span class="text-gray-900 text-xl font-semibold">Turma {{ $turma->codigo }}</span>
-                    </div>
+                    </a>
                     @endforeach
                 </div>
             </div>

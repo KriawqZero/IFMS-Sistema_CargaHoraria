@@ -36,20 +36,20 @@
               $url = '';
             }
           @endphp
-              <form action="{{ $url }}" method="GET" class="flex items-center px-4 py-3 -mx-2">
-                @if(isset($id))
-                  <input name="id" type="hidden" value={{$id}}>
-                @endif
-                <button type="submit" class="flex items-center w-full text-left px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-green-300">
-                  <img class="object-cover w-8 h-8 mx-1 rounded-full" src="{{ asset('storage/' . $notificacao->data['foto_src']) }}" alt="avatar">
-                  <p class="mx-2 text-sm">
-                  {!! $notificacao->data['mensagem'] !!}
+          <form action="{{ $url }}" method="GET" class="flex items-center px-4 py-3 -mx-2">
+            @if(isset($id))
+              <input name="id" type="hidden" value={{$id}}>
+            @endif
+            <button type="submit" class="flex items-center w-full text-left px-4 py-3 -mx-2 text-gray-600 hover:bg-green-100">
+              <img class="object-cover w-8 h-8 mx-1 rounded-full" src="{{ asset('storage/' . $notificacao->data['foto_src']) }}" alt="avatar">
+              <p class="mx-2 text-sm">
+                {!! $notificacao->data['mensagem'] !!}
                 <small class="text-gray-400 font-xs">
                   . {{ $notificacao->created_at->diffForHumans() }}
                 </small>
-            </p>
-        </button>
-    </form>
+              </p>
+              </button>
+          </form>
         @empty
           <a href="#" class="flex items>center px-4 py-3 -mx-2 text-gray-600 hover:text-white hover:bg-indigo-300">
             <p class="mx-2 text-sm">

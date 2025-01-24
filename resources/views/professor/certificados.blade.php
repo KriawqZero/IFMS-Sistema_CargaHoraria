@@ -1,8 +1,10 @@
 @extends('_layouts.master')
 
 @section('body')
-<div class="container mx-auto mt-10">
-    <h1 class="text-2xl font-bold mb-6">Validar Certificados</h1>
+<div class="container mx-auto">
+    <div class="p-4 mb-5 rounded-lg text-center bg-green-600 shadow-md">
+        <h1 class="text-xl font-semibold text-white">{{ $titulo }}</h1>
+    </div>
 
     <!-- Filtro por Turmas -->
     <div class="bg-white shadow-md rounded-lg p-6 mb-6">
@@ -43,9 +45,6 @@
     <!-- Certificados Enviados -->
     <div class="bg-white shadow-md rounded-lg p-6">
         <h2 class="text-lg font-semibold mb-4">Certificados Enviados</h2>
-
-        <!-- Caso não haja certificados -->
-        <p class="text-sm text-gray-500" id="no-certificates" style="display: none;">Nenhum certificado enviado para validação.</p>
 
         <!-- Tabela de Certificados -->
         <table class="w-full text-left border-collapse">
