@@ -21,6 +21,10 @@ class ProfessorCertificadoController extends Controller {
         $perPage = $request->input('per_page', 10);
         $certificadoId = $request->input('id', null);
 
+        if($certificadoId && $professor->notifications()->where('data->certificado_id', $certificadoId)->exists()) {
+            $professor->notifications()->where('data->certificado_id', $certificadoId)->get()->markAsRead();
+        }
+
         $certificados = Certificado::query()
             ->when($certificadoId, function ($query) use ($certificadoId) {
                 $query->where('id', $certificadoId); // Filtra por ID do certificado, se fornecido

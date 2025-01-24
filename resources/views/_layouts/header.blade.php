@@ -20,6 +20,18 @@
             d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
+        <!-- Badge -->
+        @if($usuarioLogado->unreadNotifications->count() > 0)
+          <span
+            class="absolute top-0 right-0 -translate-y-1/2 bg-red-600 text-white text-xs font-bold rounded-full px-2"
+          >
+            @if($usuarioLogado->unreadNotifications->count() > 9)
+              9+
+            @else
+              {{ $usuarioLogado->unreadNotifications->count() }}
+            @endif
+          </span>
+        @endif
       </button>
 
       <div x-cloak x-show="notificationOpen" @click="notificationOpen = false" class="fixed inset-0 z-10 w-full h-full">
@@ -40,7 +52,9 @@
             @if(isset($id))
               <input name="id" type="hidden" value={{$id}}>
             @endif
-            <button type="submit" class="flex items-center w-full text-left px-4 py-3 -mx-2 text-gray-600 hover:bg-green-100">
+            <button type="submit" class="flex items-center w-full text-left px-4 py-3 -mx-2
+              {{ $notificacao->read_at != null ? 'bg-gray-200 hover:bg-stone-100' : 'bg-white hover:bg-green-200' }}
+              text-gray-600">
               <img class="object-cover w-8 h-8 mx-1 rounded-full" src="{{ asset('storage/' . $notificacao->data['foto_src']) }}" alt="avatar">
               <p class="mx-2 text-sm">
                 {!! $notificacao->data['mensagem'] !!}
