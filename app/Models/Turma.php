@@ -12,8 +12,8 @@ class Turma extends Model {
 
     protected $fillable = [
         'codigo',
-        'curso',
-        'professor_id'
+        'professor_id',
+        'curso_id',
     ];
 
     public function alunos() {

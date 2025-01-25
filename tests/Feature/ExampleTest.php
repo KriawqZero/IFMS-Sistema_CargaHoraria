@@ -44,7 +44,7 @@ it('permite que alunos enviem certificados', function () {
     actingAs($aluno, 'aluno');
 
     $response = post('/certificados', [
-        'tipo' => 'Curso',
+        'categoria' => 'Curso',
         'arquivo' => \Illuminate\Http\UploadedFile::fake()->create('certificado.pdf'),
         'observacao' => 'Certificado de teste',
     ]);

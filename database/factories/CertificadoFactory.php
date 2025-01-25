@@ -22,8 +22,6 @@ class CertificadoFactory extends Factory {
 
     public function definition() {
         $observs = [
-            null,
-            null,
             "Curso de Extensão",
             "Evento Científico",
             "Curso de Inglês Técnico",
@@ -85,7 +83,7 @@ class CertificadoFactory extends Factory {
         ];
 
 
-        $tipos = [
+        $categorias = [
             'Unidades curriculares optativas/eletivas',
             'Projetos de ensino, pesquisa e extensão',
             'Prática profissional integradora',
@@ -93,17 +91,17 @@ class CertificadoFactory extends Factory {
             'Práticas artístico-culturais',
         ];
 
-        $tipos_status = ['pendente', 'invalido', 'valido'];
-        $status = $this->faker->randomElement($tipos_status);
+        $categorias_status = ['pendente', 'invalido', 'valido'];
+        $status = $this->faker->randomElement($categorias_status);
         $carga_horaria = $this->gerarMultiploAleatorio(60, 1800);
 
         $aluno = Aluno::inRandomOrder()->first();
 
         return [
-            'tipo' => $this->faker->randomElement($tipos),
-            'titulo' => $this->faker->sentence(6),
+            'categoria' => $this->faker->randomElement($categorias),
+            'titulo' => $this->faker->randomElement($observs),
             'src' => $this->faker->url(),
-            'observacao' => $this->faker->randomElement($observs),
+            /*'observacao' => $this->faker->randomElement($observs),*/
             'carga_horaria' => $carga_horaria, // Carga horária com múltiplos de 30 minutos
             'status' => $status,
             'data_constante' => $this->faker->dateTimeBetween('-1 years', 'now'),

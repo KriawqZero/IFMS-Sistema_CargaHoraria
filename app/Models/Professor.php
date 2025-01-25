@@ -30,6 +30,6 @@ class Professor extends Model implements AuthenticatableContract {
     }
 
     /*public function notificacoes() {*/
-    /*    return $this->morphMany(Notificacao::class, 'receptor_tipo', 'receptor_tipo', 'receptor_id');*/
+    /*    return $this->morphMany(Notificacao::class, 'receptor_categoria', 'receptor_categoria', 'receptor_id');*/
     /*}*/
 }

@@ -1,14 +1,14 @@
 @props([
     'certificados',
-    'colunas' => ['tipo', 'titulo', 'data_enviada', 'comprovante', 'observacao', 'data_constante', 'status', 'carga_horaria', 'acoes'],
+    'colunas' => ['categoria', 'titulo', 'data_enviada', 'comprovante', 'observacao', 'data_constante', 'status', 'carga_horaria', 'acoes'],
 ])
 
 <div class="align-middle shadow-2xl inline-block min-w-full overflow-hidden rounded-3xl border-b border-gray-200">
     <table class="min-w-full">
         <thead class="hidden md:table-header-group">
             <tr>
-                @if (in_array('tipo', $colunas))
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
+                @if (in_array('categoria', $colunas))
+                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">categoria</th>
                 @endif
                 @if (in_array('titulo', $colunas))
                     <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Título</th>

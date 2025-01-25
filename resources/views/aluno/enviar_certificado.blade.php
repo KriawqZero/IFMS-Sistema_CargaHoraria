@@ -31,11 +31,11 @@
         @csrf
 
         <div class="grid grid-cols-1 space-y-2">
-          <label class="text-sm font-bold text-gray-500 tracking-wide">Tipo</label>
+          <label class="text-sm font-bold text-gray-500 tracking-wide">categoria</label>
 
-          <select name="tipo"
+          <select name="categoria"
             class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
-            name="tipo">
+            name="categoria">
             <option value="" disabled selected>Selecione uma opção</option>
             <option value="Unidades curriculares optativa/eletivas">Unidades curriculares optativa/eletivas
             </option>

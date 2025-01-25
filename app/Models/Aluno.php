@@ -77,7 +77,7 @@ class Aluno extends Model implements AuthenticatableContract {
 
 
     // ####### MÉTODOS #######
-    public function limitesCargaHorariaPorTipo() {
+    public function limitesCargaHorariaPorcategoria() {
         return [
             'Unidades curriculares optativas/eletivas' => 120,
             'Projetos de ensino, pesquisa e extensão' => 80,
@@ -91,8 +91,8 @@ class Aluno extends Model implements AuthenticatableContract {
         return $this->certificados->where('status', 'valido')->sum('carga_horaria') / 60;
     }
 
-    public function cargaHorariaPorTipo() {
-        return $this->certificados->groupBy('tipo')->map(function ($certificados) {
+    public function cargaHorariaPorcategoria() {
+        return $this->certificados->groupBy('categoria')->map(function ($certificados) {
             return $certificados->where('status', 'valido')->sum('carga_horaria') / 60;
         });
     }

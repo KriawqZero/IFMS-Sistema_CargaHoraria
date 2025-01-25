@@ -25,7 +25,7 @@ class StoreCertificadoRequest extends FormRequest {
      */
     public function rules(): array {
         return [
-            'tipo' => 'required|string|max:255',
+            'categoria' => 'required|string|max:255',
             'titulo' => 'nullable|string|max:100',
             'carga_horaria' => 'required|numeric',
             'data_do_certificado' => 'required|date',
@@ -39,9 +39,9 @@ class StoreCertificadoRequest extends FormRequest {
      */
     public function messages(): array {
         return [
-            'tipo.required' => 'O campo tipo é obrigatório.',
-            'tipo.string' => 'O campo tipo deve ser uma string.',
-            'tipo.max' => 'O campo tipo deve ter no máximo 255 caracteres.',
+            'categoria.required' => 'O campo categoria é obrigatório.',
+            'categoria.string' => 'O campo categoria deve ser uma string.',
+            'categoria.max' => 'O campo categoria deve ter no máximo 255 caracteres.',
             'titulo.max' => 'O campo título deve ter no máximo 100 caracteres.',
             'carga_horaria.required' => 'A carga horária é obrigatória.',
             'carga_horaria.numeric' => 'A carga horária deve ser um número válido.',
@@ -49,7 +49,7 @@ class StoreCertificadoRequest extends FormRequest {
             'data_do_certificado.date' => 'O campo data do certificado deve ser uma data válida.',
             'arquivo.required' => 'O arquivo é obrigatório.',
             'arquivo.file' => 'O arquivo deve ser um arquivo válido.',
-            'arquivo.mimes' => 'O arquivo deve ser do tipo: pdf, jpg, jpeg ou png.',
+            'arquivo.mimes' => 'O arquivo deve ser do categoria: pdf, jpg, jpeg ou png.',
             'arquivo.max' => 'O arquivo deve ter no máximo 4 MB.',
         ];
     }

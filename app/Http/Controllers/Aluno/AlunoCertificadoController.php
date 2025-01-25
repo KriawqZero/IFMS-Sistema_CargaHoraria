@@ -60,7 +60,7 @@ class AlunoCertificadoController extends Controller {
         // Criar o certificado
         $certificado = Certificado::create([
             'aluno_id' => auth('aluno')->id(),
-            'tipo' => $input['tipo'],
+            'categoria' => $input['categoria'],
             'titulo' => $input['titulo'],
             'observacao' => $input['observacao'],
             'carga_horaria' => $input['carga_horaria'] * 60,

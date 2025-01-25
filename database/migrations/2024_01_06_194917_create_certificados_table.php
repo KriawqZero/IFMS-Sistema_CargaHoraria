@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('certificados', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo');
+            $table->string('categoria');
             $table->string('titulo');
             $table->string('src');
             $table->text('observacao')->nullable();

@@ -12,7 +12,7 @@ class Certificado extends Model {
     protected $table = 'certificados';
 
     protected $fillable = [
-        'tipo',
+        'categoria',
         'titulo',
         'src',
         'observacao',

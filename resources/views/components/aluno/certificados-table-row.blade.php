@@ -1,12 +1,12 @@
 @props(['certificado', 'colunas'])
 
 <tr>
-  @if (in_array('tipo', $colunas))
+  @if (in_array('categoria', $colunas))
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
       <div class="flex items-center">
         <div class="ml-4">
           <div class="text-sm leading-5 font-medium text-gray-900">
-            {{ $certificado->tipo }}
+            {{ $certificado->categoria }}
           </div>
         </div>
       </div>

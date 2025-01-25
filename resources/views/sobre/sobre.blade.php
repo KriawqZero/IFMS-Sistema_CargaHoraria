@@ -67,7 +67,7 @@
           entidade-relacionamento (ER), fundamentais para garantir a organização e eficiência do sistema.</li>
         <li><strong>Escolha das Tecnologias:</strong> Para o backend, foi escolhido o Laravel 11, uma plataforma
           robusta e segura. O frontend foi desenvolvido com Tailwind CSS para garantir um design moderno e
-          responsivo, fácil de usar para todos os tipos de usuários.</li>
+          responsivo, fácil de usar para todos os categorias de usuários.</li>
         <li><strong>Banco de Dados:</strong> O banco de dados foi estruturado com MariaDB, garantindo a organização
           e integridade das informações dos alunos e certificados.</li>
       </ul>

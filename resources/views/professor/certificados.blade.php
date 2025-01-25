@@ -64,7 +64,7 @@
                     <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->nome}}</td>
                     <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->turma->codigo}}</td>
                     <td class="border-b border-gray-200 px-4 py-2"><a href="{{url($certificado->src_url)}}" class="text-green-600 hover:underline" target="_blank">Visualizar</a></td>
-                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->tipo}}</td>
+                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->categoria}}</td>
                     <td class="border-b border-gray-200 px-4 py-2 space-y-2">
                         <!-- Marcar como Visto fora do modal -->
                         <div class="inline-flex items-center">
@@ -109,10 +109,10 @@
                 <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 w-full">Rejeitar</button>
             </div>
 
-            <!-- Alterar Tipo -->
+            <!-- Alterar categoria -->
             <div>
-                <label for="tipo-certificado-joao" class="block text-sm font-medium text-gray-700">Tipo</label>
-                <select id="tipo-certificado-joao" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                <label for="categoria-certificado-joao" class="block text-sm font-medium text-gray-700">categoria</label>
+                <select id="categoria-certificado-joao" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
                     <option value="participacao">Participação</option>
                     <option value="carga_horaria">Carga Horária</option>
                     <option value="outros">Outros</option>
@@ -141,10 +141,10 @@
                 <button class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 w-full">Rejeitar</button>
             </div>
 
-            <!-- Alterar Tipo -->
+            <!-- Alterar categoria -->
             <div>
-                <label for="tipo-certificado-maria" class="block text-sm font-medium text-gray-700">Tipo</label>
-                <select id="tipo-certificado-maria" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
+                <label for="categoria-certificado-maria" class="block text-sm font-medium text-gray-700">categoria</label>
+                <select id="categoria-certificado-maria" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
                     <option value="participacao">Participação</option>
                     <option value="carga_horaria">Carga Horária</option>
                     <option value="outros">Outros</option>

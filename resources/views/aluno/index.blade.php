@@ -72,7 +72,7 @@
     <div class=" -mt-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
       <x-aluno::certificados-table
         :certificados="$certificados"
-        :colunas="['tipo', 'data_enviada', 'status' ]" />
+        :colunas="['categoria', 'data_enviada', 'status' ]" />
     </div>
   </div>
   <!-- Fim dos certificados -->

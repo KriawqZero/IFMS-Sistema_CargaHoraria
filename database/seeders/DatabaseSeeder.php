@@ -48,8 +48,8 @@ class DatabaseSeeder extends Seeder {
             'foto_src' => 'default-profile.svg',
         ]);
 
-        Aluno::factory(10)->create();
+        Aluno::factory(5)->create();
 
-        Certificado::factory(10)->create();
+        Certificado::factory(100)->create();
     }
 }

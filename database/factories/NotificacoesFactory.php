@@ -25,7 +25,7 @@ class NotificacoesFactory extends Factory {
         // Busca um certificado existente ou define como nulo
         $certificadoId = Certificado::query()->inRandomOrder()->value('id');
 
-        // Define a mensagem com base no tipo de receptor
+        // Define a mensagem com base no categoria de receptor
         if ($receptorType === Aluno::class) {
             $mensagem = sprintf(
                 "O professor %s validou/indeferiu seu certificado.",
@@ -39,7 +39,7 @@ class NotificacoesFactory extends Factory {
         }
 
         return [
-            'receptor_tipo' => $receptorType,
+            'receptor_categoria' => $receptorType,
             'receptor_id' => $receptor->id,
             'mensagem' => $mensagem,
             'certificado_id' => $certificadoId, // Pode ser nulo, conforme sua migration
