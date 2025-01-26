@@ -31,7 +31,7 @@
         @csrf
 
         <div class="grid grid-cols-1 space-y-2">
-          <label class="text-sm font-bold text-gray-500 tracking-wide">categoria</label>
+          <label class="text-sm font-bold text-gray-500 tracking-wide">Categoria</label>
 
           <select name="categoria"
             class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
