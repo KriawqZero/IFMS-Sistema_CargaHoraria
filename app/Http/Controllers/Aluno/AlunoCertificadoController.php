@@ -6,7 +6,6 @@ use App\Models\Certificado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCertificadoRequest;
-use App\Models\Notificacao;
 use App\Notifications\AlunoEnviouCertificado;
 
 class AlunoCertificadoController extends Controller {

@@ -10,9 +10,6 @@
 
   <title>{{ $titulo . ' - ' . env('APP_NAME') }}</title>
 
-  @vite('resources/css/app.css')
-  @vite('resources/js/app.js')
-  @vite('resources/js/main.js')
   @vite('resources/scss/main.scss')
 </head>
 

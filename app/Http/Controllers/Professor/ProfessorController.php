@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Professor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Professor;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ProfessorController extends Controller {
     public function showLoginForm() {
         return view('professor/login', [
             'titulo' => 'Login Professor', ]);
+    }
+
+    public function logout() {
+        auth('professor')->logout();
+
+        return redirect()->route('aluno.login');
     }
 
     public function listarAlunos(Request $request) {
@@ -66,6 +73,7 @@ class ProfessorController extends Controller {
 
     public function processLogin(Request $request) {
         auth('aluno')->logout();
+        auth('professor')->logout();
 
         // Valida os campos de entrada.
         $credentials = $request->validate([
@@ -77,17 +85,22 @@ class ProfessorController extends Controller {
         $loginParts = explode('.', strtolower($credentials['login']));
         if (count($loginParts) !== 2) {
             return redirect()->route('professor.login')
-                ->withErrors(['login' => 'Formato de login inválido. Use {primeironome}.{ultimonome}.']);
+                ->withErrors(['login' => 'Formato de login inválido. Use primeironome.ultimonome.']);
         }
 
         [$primeiroNome, $ultimoNome] = $loginParts;
 
         // Buscar o professor onde o primeiro e o último nome correspondem ao login fornecido.
-        $professor = Professor::whereRaw('LOWER(SUBSTRING_INDEX(nome, " ", 1)) = ?', [$primeiroNome])
-            ->whereRaw('LOWER(SUBSTRING_INDEX(nome, " ", -1)) = ?', [$ultimoNome])
+        $professor = Professor::where(DB::raw('LOWER(SUBSTRING_INDEX(nome, " ", 1))'), $primeiroNome)
+            ->where(DB::raw('LOWER(SUBSTRING_INDEX(nome, " ", -1))'), $ultimoNome)
+            ->get() // Busca todos os professores com esse nome.
+            ->filter(function ($professor) use ($credentials) {
+                // Filtra pelo professor cuja senha bate com o hash.
+                return Hash::check($credentials['senha'], $professor->senha);
+            })
             ->first();
 
-        if (!$professor || !Hash::check($request->senha, $professor->senha)) {
+        if (!$professor) {
             return redirect()->route('professor.login')
                 ->withErrors(['login' => 'Credenciais inválidas.']);
         }
@@ -98,5 +111,6 @@ class ProfessorController extends Controller {
         // Redirecionar para o dashboard em caso de sucesso.
         return redirect()->route('professor.dashboard');
     }
+
 
 }
