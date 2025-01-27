@@ -16,7 +16,6 @@ Route::name('aluno.')->group(function() {
     Route::get('aluno/logout', [AlunoController::class, 'logout'])
         ->name('logout');
 
-
     // Grupo de rotas protegidas por autenticação do aluno
     Route::middleware([VerifyAuth::class . ':aluno'])->group(function() {
         // Rota de formulario de login do aluno

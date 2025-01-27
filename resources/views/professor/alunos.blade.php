@@ -35,7 +35,7 @@
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr>
-                        <th class="border-b border-gray-300 px-4 py-2">Nome</th>
+                        <th class="border-b border-gray-300 px-4 py-2">Aluno</th>
                         <th class="border-b border-gray-300 px-4 py-2">Turma</th>
                         <th class="border-b border-gray-300 px-4 py-2">Ações</th>
                     </tr>
@@ -44,7 +44,14 @@
                     <!-- Dados simulados -->
                     @forelse($alunos as $aluno)
                     <tr>
-                        <td class="border-b border-gray-200 px-4 py-2">{{$aluno->nome}}</td>
+                        <td class="flex border-b border-gray-200 px-4 py-2">
+                            <div class="flex row relative block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none">
+                                <img class="object-cover w-full h-full" src="{{ asset('storage/' . $aluno->foto_src) }}" alt="Foto de perfil">
+                            </div>
+                            <span class="mx-2 my-1 flex row">
+                           {{$aluno->nome}}
+                           </span>
+                        </td>
                         <td class="border-b border-gray-200 px-4 py-2">{{$aluno->turma->codigo}}</td>
                         <td class="border-b border-gray-200 px-4 py-2"><a href="#" class="text-green-600 hover:underline" target="_blank">Ver detalhes</a></td>
                     </tr>

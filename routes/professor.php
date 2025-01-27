@@ -13,6 +13,10 @@ Route::name('professor.')->group(function() {
     Route::post('professor', [ProfessorController::class, 'processLogin'])
         ->name('login.post');
 
+    // Rota de logout do professor
+    Route::get('professor/logout', [ProfessorController::class, 'logout'])
+        ->name('logout');
+
     // Grupo de rotas protegidas por autenticação
     Route::middleware([VerifyAuth::class . ':professor'])->group(function() {
         // Rota de formulario de login do professor

@@ -1,8 +1,8 @@
 @extends('_layouts.master')
 
 @section('body')
-  <div class="pl-12 pr-12 pb-12">
-    <div class="sm:max-w-none shadow-2xl w-full max-w-full p-9 bg-white rounded-3xl z-10">
+  <div class="lg:pl-12 lg:pr-12 lg:pb-12">
+    <div class="sm:max-w-none shadow-2xl w-full lg:max-w-full p-9 bg-white rounded-3xl z-10">
       <div>
         <h3 class="mt-5 text-3xl font-bold text-gray-900">
           Enviar Certificado!

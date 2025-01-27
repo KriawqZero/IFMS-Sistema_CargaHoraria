@@ -92,12 +92,19 @@
 
       <div x-cloak x-show="dropdownOpen"
         class="absolute right-0 z-10 w-48 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
-        <a href="#"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Products</a>
-        <a href="{{ route('aluno.logout') }}"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Sair</a>
+          <a href="{{ route('perfil.index') }}"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Perfil</a>
+        @if(auth('professor')->check())
+          <a href="{{ route('professor.logout') }}"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Sair</a>
+        @else
+          <a href="{{ route('aluno.certificados.index') }}"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Certificados</a>
+          <a href="{{ route('aluno.logout') }}"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Sair</a>
+        @endif
       </div>
+
     </div>
   </div>
 </header>

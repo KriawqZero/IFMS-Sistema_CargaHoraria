@@ -43,9 +43,12 @@
         <!-- Botão Enviar Certificado -->
         <a
           href="{{ route('aluno.certificados.create') }}"
-          class="px-6 py-2 bg-green-600 text-white rounded-full font-medium shadow-lg hover:bg-green-700 transition"
+          class="px-5 text-center py-2 flex text-blue-600 visited:text-violet-600 visited:underline rounded-full font-medium"
         >
-          Enviar Certificado
+        <span class="hover:underline flex col"> Enviar Certificado </span>
+          <svg class="w-6 ml-2 flex col h-6" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707"/>
+          </svg>
         </a>
       </div>
     </div>
