@@ -43,10 +43,7 @@ class NotificacaoDropdown extends Component {
 
 
     public function render() {
-        /*$notifications = $this->usuarioLogado->notifications()->take($this->limit)->get();*/
-        $notifications = $this->usuarioLogado->notifications->sortBy([
-            fn ($a, $b) => is_null($a->read_at) <=> is_null($b->read_at) * -1,
-        ]);
+        $notifications = $this->usuarioLogado->notifications()->take($this->limit)->get();
 
         return view('livewire.notificacao-dropdown', [
             'notifications' => $notifications,
