@@ -10,6 +10,7 @@ class Certificado extends Model {
     use HasFactory, SoftDeletes;
 
     protected $table = 'certificados';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'categoria',

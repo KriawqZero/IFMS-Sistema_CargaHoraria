@@ -122,7 +122,7 @@
     >
         <form
             method="POST"
-            action="{{ route('professor.certificados.patch') }}"
+            :action="`{{ route('professor.certificados.patch', '') }}/${modalData.id}`"
             class="bg-white p-8 rounded-lg w-full max-w-3xl relative"
         >
             @csrf
@@ -160,7 +160,7 @@
                             type="text"
                             id="titulo"
                             name="titulo"
-                            class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                            class="disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
                             x-model="modalData.titulo"
                             :value="modalData.titulo"
                             disabled
@@ -187,7 +187,7 @@
                         <select
                             id="categoria"
                             name="categoria"
-                            class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                            class="disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
                             x-model="modalData.categoria"
                             disabled
                             :value="modalData.categoria"
@@ -231,8 +231,8 @@
                         <input
                             type="number"
                             id="carga-horaria"
-                            name="cargahoraria"
-                            class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                            name="carga_horaria"
+                            class="disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
                             x-model="modalData.cargaHoraria"
                             :value="modalData.cargaHoraria"
                             min="0"
@@ -274,15 +274,12 @@
                     <!-- Botão para Submeter -->
                     <button
                         type="submit"
-                        class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 w-full"
+                        class="bg-green-500 text-white px-6 py-3 rounded-md hover:bg-green-600 w-full"
                     >
                         Atualizar
                     </button>
                 </div>
             </div>
-
-            <!-- Campo oculto para ID do certificado -->
-            <input type="hidden" name="id" :value="modalData.id" />
         </form>
     </div>
 

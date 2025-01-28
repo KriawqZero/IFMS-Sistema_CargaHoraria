@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Certificado;
 
 class ProfessorCertificadoController extends Controller {
-
     public function index(Request $request) {
         /** @var \App\Models\Professor $professor */
         $professor = auth('professor')->user(); // Obtenha o professor autenticado
@@ -61,11 +60,31 @@ class ProfessorCertificadoController extends Controller {
             'per_page' => $perPage,
         ]);
     }
-    public function validar() {
 
-    }
+    public function patch(Request $request, $id) {
+        // Obtenha o certificado pelo ID
+        $certificado = Certificado::findOrFail($id);
 
-    public function invalidar() {
+        // Validação dos dados recebidos
+        $atualizacao = $request->validate([
+            'titulo' => 'nullable|string|max:255', // Limite de caracteres para evitar inputs inválidos
+            'categoria' => 'nullable|string|max:255',
+            'carga_horaria' => 'nullable|integer|min:1', // A carga horária deve ser um número inteiro positivo
+            'status' => 'nullable|in:valido,invalido,pendente',
+        ]);
 
+        // Verifica se há dados para atualizar antes de chamar o método update
+        if (!empty(array_filter(array_diff_key($atualizacao, ['status' => true])))) {
+            $certificado->update($atualizacao);
+
+            return redirect()
+                ->route('professor.certificados.index')
+                ->with('success', 'Certificado atualizado com sucesso!');
+        }
+
+        // Retorna uma mensagem caso nenhum dado tenha sido enviado
+        return redirect()
+            ->route('professor.certificados.index')
+            ->with('info', 'Nenhum dado enviado para atualizar o certificado.');
     }
 }

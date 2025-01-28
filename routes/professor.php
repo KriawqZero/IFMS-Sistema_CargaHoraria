@@ -40,7 +40,7 @@ Route::name('professor.')->group(function() {
         Route::prefix('professor/certificados')->name('certificados.')->group(function() {
             // Rota para listar certificados
             Route::get('/', [ProfessorCertificadoController::class, 'index'])->name('index');
-            Route::put('/patch', [ProfessorCertificadoController::class, 'patch'])->name('patch');
+            Route::patch('/patch/{id}', [ProfessorCertificadoController::class, 'patch'])->name('patch');
         });
     });
 });

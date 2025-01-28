@@ -8,7 +8,72 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCertificadoRequest;
 use App\Notifications\AlunoEnviouCertificado;
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class AlunoCertificadoController extends Controller {
+    public function exportarCertificados() {
+        /** @var \App\Models\Aluno $usuarioLogado */
+        $usuarioLogado = auth('aluno')->user();
+
+        // Obtém os certificados válidos
+        $certificados = $usuarioLogado->certificados()
+            ->where('status', 'valido')
+            ->get(['categoria', 'titulo', 'carga_horaria']);
+
+        // Calcula o total de carga horária
+        $totalCargaHoraria = $certificados->sum('carga_horaria');
+
+        // Cria a planilha
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        // Define o cabeçalho
+        $sheet->setCellValue('A1', 'Aluno');
+        $sheet->setCellValue('B1', 'Categoria');
+        $sheet->setCellValue('C1', 'Título');
+        $sheet->setCellValue('D1', 'Carga Horária');
+
+        // Adiciona os dados
+        $linhaAtual = 2;
+        foreach ($certificados as $certificado) {
+            $sheet->setCellValue("A{$linhaAtual}", $usuarioLogado->nome . ' ' . $usuarioLogado->sobrenome);
+            $sheet->setCellValue("B{$linhaAtual}", $certificado->categoria);
+            $sheet->setCellValue("C{$linhaAtual}", $certificado->titulo);
+            $sheet->setCellValue("D{$linhaAtual}", $certificado->carga_horaria / 60);
+            $linhaAtual++;
+        }
+
+        // Adiciona o total
+        $sheet->setCellValue("C{$linhaAtual}", 'Total:');
+        $sheet->setCellValue("D{$linhaAtual}", $totalCargaHoraria / 60);
+
+        // Adiciona a verificação do limite
+        $linhaAtual++;
+        $limiteHoras = 125;
+        $mensagem = $totalCargaHoraria >= $limiteHoras ? 'Bateu o limite de 125 horas!' : 'Não atingiu o limite de 125 horas.';
+        $sheet->setCellValue("C{$linhaAtual}", 'Limite:');
+        $sheet->setCellValue("D{$linhaAtual}", $mensagem);
+
+        // Formatações
+        $sheet->getStyle("A1:D1")->getFont()->setBold(true); // Cabeçalhos em negrito
+        $sheet->getStyle("C{$linhaAtual}:D{$linhaAtual}")->getFont()->setBold(true); // Limite destacado
+        $sheet->getColumnDimension('A')->setAutoSize(true);
+        $sheet->getColumnDimension('B')->setAutoSize(true);
+        $sheet->getColumnDimension('C')->setAutoSize(true);
+        $sheet->getColumnDimension('D')->setAutoSize(true);
+
+        // Define o nome do arquivo
+        $nomeArquivo = $usuarioLogado->nome . '.certificados_validos.xlsx';
+
+        // Retorna o arquivo como download
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . $nomeArquivo . '"');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
+    }
+
     // Exibir a lista de certificados
     public function index(Request $request) {
         $alunoId = auth('aluno')->id(); // Obtém o ID do aluno autenticado
