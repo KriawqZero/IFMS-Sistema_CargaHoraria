@@ -85,7 +85,7 @@
                       </span>
                     </td>
                     <td class="border-b border-gray-200 px-4 py-2"><a href="{{url($certificado->src_url)}}" class="text-green-600 hover:underline" target="_blank">Visualizar</a></td>
-                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->categoria}}</td>
+                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->categoria->nome}}</td>
                     <td class="border-b border-gray-200 px-4 py-2 space-y-2">
                         <!-- Ícone para abrir o modal -->
                         <button
@@ -93,7 +93,7 @@
                                 id: {{$certificado->id}},
                                 aluno: '{{$certificado->aluno->nome}}',
                                 turma: '{{$certificado->aluno->turma->codigo}}',
-                                categoria: '{{$certificado->categoria}}',
+                                categoria: '{{$certificado->categoria->nome}}',
                                 titulo: '{{$certificado->titulo}}',
                                 cargaHoraria: '{{$certificado->carga_horaria ?? ''}}'
                             };"
@@ -189,28 +189,17 @@
                         </label>
                         <select
                             id="categoria"
-                            name="categoria"
+                            name="categoria_id"
                             class="disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
                             x-model="modalData.categoria"
                             disabled
                             :value="modalData.categoria"
                         >
-                            <option value="" disabled selected>Selecione uma opção</option>
-                            <option value="Unidades curriculares optativa/eletivas" :selected="modalData.categoria === 'Unidades curriculares optativa/eletivas'">
-                                Unidades curriculares optativa/eletivas
+                        @foreach ($categorias as $categoria)
+                            <option value="{{ $categoria->id}}" :selected="modalData.categoria === '{{ $categoria->nome }}'">
+                                {{ $categoria->nome }}
                             </option>
-                            <option value="Projetos de ensino, pesquisa e extensão" :selected="modalData.categoria === 'Projetos de ensino, pesquisa e extensão'">
-                                Projetos de ensino, pesquisa e extensão
-                            </option>
-                            <option value="Prática Profissional Integradora" :selected="modalData.categoria === 'Prática profissional integradora'">
-                                Prática Profissional Integradora
-                            </option>
-                            <option value="Práticas Desportivas" :selected="modalData.categoria === 'Práticas desportivas'">
-                                Práticas Desportivas
-                            </option>
-                            <option value="Práticas Artístico-Culturais" :selected="modalData.categoria === 'Práticas artístico-culturais'">
-                                Práticas Artístico-Culturais
-                            </option>
+                        @endforeach
                         </select>
                     </div>
                     <button

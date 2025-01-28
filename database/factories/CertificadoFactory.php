@@ -3,6 +3,7 @@ namespace Database\Factories;
 
 use App\Models\Certificado;
 use App\Models\Aluno;
+use App\Models\Categoria;
 use App\Notifications\AlunoEnviouCertificado;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -83,13 +84,6 @@ class CertificadoFactory extends Factory {
         ];
 
 
-        $categorias = [
-            'Unidades curriculares optativas/eletivas',
-            'Projetos de ensino, pesquisa e extensão',
-            'Prática profissional integradora',
-            'Práticas desportivas',
-            'Práticas artístico-culturais',
-        ];
 
         $categorias_status = ['pendente', 'invalido', 'valido'];
         $status = $this->faker->randomElement($categorias_status);
@@ -98,7 +92,6 @@ class CertificadoFactory extends Factory {
         $aluno = Aluno::inRandomOrder()->first();
 
         return [
-            'categoria' => $this->faker->randomElement($categorias),
             'titulo' => $this->faker->randomElement($observs),
             'src' => $this->faker->url(),
             /*'observacao' => $this->faker->randomElement($observs),*/
@@ -106,6 +99,7 @@ class CertificadoFactory extends Factory {
             'status' => $status,
             'data_constante' => $this->faker->dateTimeBetween('-1 years', 'now'),
             'aluno_id' => $aluno->id, // Seleciona um aluno aleatório
+            'categoria_id' => Categoria::inRandomOrder()->first()->id, // Seleciona uma categoria aleatória
         ];
     }
 

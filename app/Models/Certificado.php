@@ -13,18 +13,22 @@ class Certificado extends Model {
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'categoria',
         'titulo',
         'src',
         'observacao',
         'carga_horaria',
         'status',
         'data_constante',
+        'categoria_id',
         'aluno_id',
     ];
 
     public function aluno() {
         return $this->belongsTo(Aluno::class);
+    }
+
+    public function categoria() {
+        return $this->belongsTo(Categoria::class);
     }
 
     // #### ACESSORS ####

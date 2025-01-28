@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Professor;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Categoria;
 use App\Models\Certificado;
 
 class ProfessorCertificadoController extends Controller {
@@ -58,6 +59,7 @@ class ProfessorCertificadoController extends Controller {
             'pesquisa' => $pesquisa,
             'turma' => $turmaId,
             'per_page' => $perPage,
+            'categorias' => Categoria::all(),
         ]);
     }
 

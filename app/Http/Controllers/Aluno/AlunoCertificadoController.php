@@ -6,6 +6,7 @@ use App\Models\Certificado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCertificadoRequest;
+use App\Models\Categoria;
 use App\Notifications\AlunoEnviouCertificado;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -38,7 +39,7 @@ class AlunoCertificadoController extends Controller {
         $linhaAtual = 2;
         foreach ($certificados as $certificado) {
             $sheet->setCellValue("A{$linhaAtual}", $usuarioLogado->nome . ' ' . $usuarioLogado->sobrenome);
-            $sheet->setCellValue("B{$linhaAtual}", $certificado->categoria);
+            $sheet->setCellValue("B{$linhaAtual}", $certificado->categoria->nome);
             $sheet->setCellValue("C{$linhaAtual}", $certificado->titulo);
             $sheet->setCellValue("D{$linhaAtual}", $certificado->carga_horaria / 60);
             $linhaAtual++;
@@ -108,6 +109,7 @@ class AlunoCertificadoController extends Controller {
     public function create() {
         return view('aluno.enviar_certificado', [
             'titulo' => 'Enviar Certificado',
+            'categorias' => Categoria::all(),
         ]);
     }
 
@@ -124,12 +126,12 @@ class AlunoCertificadoController extends Controller {
         // Criar o certificado
         $certificado = Certificado::create([
             'aluno_id' => auth('aluno')->id(),
-            'categoria' => $input['categoria'],
             'titulo' => $input['titulo'],
             'observacao' => $input['observacao'],
             'carga_horaria' => $input['carga_horaria'] * 60,
             'data_constante' => $input['data_do_certificado'],
             'src' => $filePath,
+            'categoria_id' => $input['categoria_id'],
         ]);
 
         // Notificar o professsor

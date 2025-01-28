@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<DIAGRAMA ID="1" TIPO="tpLogico" UniversalUnicID="B713-45-1E77-DA-F9B-3A-97">
+<DIAGRAMA ID="1" TIPO="tpLogico" UniversalUnicID="9A87-C7-2D67-47-B2B-99-7D">
     <InfoDiagrama ID="1">
         <Versao Valor="3.2.0"/>
         <Autores/>
@@ -16,7 +16,7 @@
         <Prefixo Valor=""/>
     </InfoDiagrama>
     <Tabela ID="2">
-        <Bounds Height="193" Left="10" Top="9" Width="150"/>
+        <Bounds Height="215" Left="2" Top="2" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Aluno</Texto>
         <Observacao/>
@@ -63,6 +63,16 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
+                <Texto>foto_src</Texto>
+                <Tipo>varchar</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
                 <Texto>nome</Texto>
                 <Tipo>varchar</Tipo>
                 <Complemento/>
@@ -83,8 +93,8 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>foto_src</Texto>
-                <Tipo>varchar</Tipo>
+                <Texto>concluido</Texto>
+                <Tipo>boolean</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -123,13 +133,13 @@
                 <Observacao/>
                 <DdlOnUpdate/>
                 <DdlOnDelete>SET NULL</DdlOnDelete>
-                <LigacaoParaOrigem ID="7"/>
-                <ConstraintOrigem CamposDestino="[5]" CamposOrigem="[0]" ID="3,0">IR chave primária</ConstraintOrigem>
+                <LigacaoParaOrigem ID="8"/>
+                <ConstraintOrigem CamposDestino="[6]" CamposOrigem="[0]" ID="3,0">IR chave primária</ConstraintOrigem>
             </Constraint>
         </Constraints>
     </Tabela>
     <Tabela ID="3">
-        <Bounds Height="171" Left="310" Top="9" Width="165"/>
+        <Bounds Height="171" Left="270" Top="24" Width="173"/>
         <DisablePainted Valor="false"/>
         <Texto>Turma</Texto>
         <Observacao/>
@@ -166,17 +176,7 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>código</Texto>
-                <Tipo>varchar</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
-                <Texto>carga_horaria_máxima</Texto>
+                <Texto>carga_horaria_maxima</Texto>
                 <Tipo>int</Tipo>
                 <Complemento/>
                 <Dicionario/>
@@ -186,7 +186,17 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>fk_Professor_id</Texto>
+                <Texto>codigo</Texto>
+                <Tipo>varchar</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>fk_Servidor_id</Texto>
                 <Tipo>int</Tipo>
                 <Complemento/>
                 <Dicionario/>
@@ -226,7 +236,7 @@
                 <Observacao/>
                 <DdlOnUpdate/>
                 <DdlOnDelete>SET NULL</DdlOnDelete>
-                <LigacaoParaOrigem ID="10"/>
+                <LigacaoParaOrigem ID="11"/>
                 <ConstraintOrigem CamposDestino="[3]" CamposOrigem="[0]" ID="4,0">IR chave primária</ConstraintOrigem>
             </Constraint>
             <Constraint>
@@ -237,13 +247,13 @@
                 <Observacao/>
                 <DdlOnUpdate/>
                 <DdlOnDelete>CASCADE</DdlOnDelete>
-                <LigacaoParaOrigem ID="16"/>
+                <LigacaoParaOrigem ID="17"/>
                 <ConstraintOrigem CamposDestino="[4]" CamposOrigem="[0]" ID="6,0">IR chave primária</ConstraintOrigem>
             </Constraint>
         </Constraints>
     </Tabela>
     <Tabela ID="4">
-        <Bounds Height="193" Left="931" Top="9" Width="161"/>
+        <Bounds Height="193" Left="876" Top="16" Width="166"/>
         <DisablePainted Valor="false"/>
         <Texto>Servidor</Texto>
         <Observacao/>
@@ -300,16 +310,6 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>primeiro_acesso</Texto>
-                <Tipo>boolean</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
                 <Texto>foto_src</Texto>
                 <Tipo>varchar</Tipo>
                 <Complemento/>
@@ -322,6 +322,16 @@
             <Campo>
                 <Texto>cargo</Texto>
                 <Tipo>enum</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>primeiro_acesso</Texto>
+                <Tipo>boolean</Tipo>
                 <Complemento/>
                 <Dicionario/>
                 <Observacao/>
@@ -345,7 +355,7 @@
         </Constraints>
     </Tabela>
     <Tabela ID="5">
-        <Bounds Height="259" Left="134" Top="350" Width="150"/>
+        <Bounds Height="259" Left="78" Top="295" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Certificados</Texto>
         <Observacao/>
@@ -392,37 +402,7 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>status</Texto>
-                <Tipo>enum</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
-                <Texto>src</Texto>
-                <Tipo>varchar</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
-                <Texto>data_constante</Texto>
-                <Tipo>date</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
-                <Texto>tipo</Texto>
+                <Texto>observacao</Texto>
                 <Tipo>varchar</Tipo>
                 <Complemento/>
                 <Dicionario/>
@@ -442,7 +422,17 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
-                <Texto>observação</Texto>
+                <Texto>data_constante</Texto>
+                <Tipo>date</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>src</Texto>
                 <Tipo>varchar</Tipo>
                 <Complemento/>
                 <Dicionario/>
@@ -452,7 +442,27 @@
                 <Unique Valor="false"/>
             </Campo>
             <Campo>
+                <Texto>status</Texto>
+                <Tipo>enum</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
                 <Texto>fk_Aluno_id</Texto>
+                <Tipo>int</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="true"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>fk_Categoria_id</Texto>
                 <Tipo>int</Tipo>
                 <Complemento/>
                 <Dicionario/>
@@ -482,15 +492,119 @@
                 <Observacao/>
                 <DdlOnUpdate/>
                 <DdlOnDelete>CASCADE</DdlOnDelete>
-                <LigacaoParaOrigem ID="13"/>
-                <ConstraintOrigem CamposDestino="[8]" CamposOrigem="[0]" ID="2,0">IR chave primária</ConstraintOrigem>
+                <LigacaoParaOrigem ID="14"/>
+                <ConstraintOrigem CamposDestino="[7]" CamposOrigem="[0]" ID="2,0">IR chave primária</ConstraintOrigem>
+            </Constraint>
+            <Constraint>
+                <Nome Valor=""/>
+                <Nomeada Valor="false"/>
+                <Tipo Valor="2"/>
+                <Dicionario/>
+                <Observacao/>
+                <DdlOnUpdate/>
+                <DdlOnDelete>CASCADE</DdlOnDelete>
+                <LigacaoParaOrigem ID="23"/>
+                <ConstraintOrigem CamposDestino="[8]" CamposOrigem="[0]" ID="7,0">IR chave primária</ConstraintOrigem>
             </Constraint>
         </Constraints>
     </Tabela>
     <Tabela ID="6">
-        <Bounds Height="149" Left="614" Top="118" Width="150"/>
+        <Bounds Height="149" Left="557" Top="136" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Curso</Texto>
+        <Observacao/>
+        <Dicionario/>
+        <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        <Ancorado Valor="false"/>
+        <Delimite Valor="true"/>
+        <Roundrect Valor="22"/>
+        <Gradiente Valor="true"/>
+        <GradienteStartColor Valor="0,0,0,255"/>
+        <GradienteEndColor Valor="204,204,204,255"/>
+        <CorBorda Valor="0,0,0,255"/>
+        <GDirecao Valor="0"/>
+        <Alfa Valor="25"/>
+        <Autosize Valor="true"/>
+        <Gradiente Valor="true"/>
+        <GradienteStartColor Valor="0,0,0,255"/>
+        <GradienteEndColor Valor="204,204,204,255"/>
+        <GDirecao Valor="0"/>
+        <Alfa Valor="25"/>
+        <ShowDDL Valor="false"/>
+        <ShowInPlain Valor="false"/>
+        <MostrarConstraints Valor="true"/>
+        <PlainIR Valor="true"/>
+        <Campos>
+            <Campo>
+                <Texto>id</Texto>
+                <Tipo>int</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="true"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>sigla</Texto>
+                <Tipo>varchar</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>nome</Texto>
+                <Tipo>varchar</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="false"/>
+                <Unique Valor="false"/>
+            </Campo>
+            <Campo>
+                <Texto>fk_Servidor_id</Texto>
+                <Tipo>int</Tipo>
+                <Complemento/>
+                <Dicionario/>
+                <Observacao/>
+                <Key Valor="false"/>
+                <Fkey Valor="true"/>
+                <Unique Valor="false"/>
+            </Campo>
+        </Campos>
+        <Constraints>
+            <Constraint>
+                <Nome Valor=""/>
+                <Nomeada Valor="false"/>
+                <Tipo Valor="0"/>
+                <Dicionario/>
+                <Observacao/>
+                <DdlOnUpdate/>
+                <DdlOnDelete/>
+                <LigacaoParaOrigem ID="-1"/>
+                <ConstraintOrigem CamposDestino="[-1]" CamposOrigem="[0]" ID="-1,-1"/>
+            </Constraint>
+            <Constraint>
+                <Nome Valor=""/>
+                <Nomeada Valor="false"/>
+                <Tipo Valor="2"/>
+                <Dicionario/>
+                <Observacao/>
+                <DdlOnUpdate/>
+                <DdlOnDelete>CASCADE</DdlOnDelete>
+                <LigacaoParaOrigem ID="20"/>
+                <ConstraintOrigem CamposDestino="[3]" CamposOrigem="[0]" ID="4,0">IR chave primária</ConstraintOrigem>
+            </Constraint>
+        </Constraints>
+    </Tabela>
+    <Tabela ID="7">
+        <Bounds Height="105" Left="348" Top="372" Width="150"/>
+        <DisablePainted Valor="false"/>
+        <Texto>Categorias</Texto>
         <Observacao/>
         <Dicionario/>
         <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
@@ -534,26 +648,6 @@
                 <Fkey Valor="false"/>
                 <Unique Valor="false"/>
             </Campo>
-            <Campo>
-                <Texto>sigla</Texto>
-                <Tipo>varchar</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="false"/>
-                <Unique Valor="false"/>
-            </Campo>
-            <Campo>
-                <Texto>fk_Coordenador_id</Texto>
-                <Tipo>int</Tipo>
-                <Complemento/>
-                <Dicionario/>
-                <Observacao/>
-                <Key Valor="false"/>
-                <Fkey Valor="true"/>
-                <Unique Valor="false"/>
-            </Campo>
         </Campos>
         <Constraints>
             <Constraint>
@@ -567,20 +661,9 @@
                 <LigacaoParaOrigem ID="-1"/>
                 <ConstraintOrigem CamposDestino="[-1]" CamposOrigem="[0]" ID="-1,-1"/>
             </Constraint>
-            <Constraint>
-                <Nome Valor=""/>
-                <Nomeada Valor="false"/>
-                <Tipo Valor="2"/>
-                <Dicionario/>
-                <Observacao/>
-                <DdlOnUpdate/>
-                <DdlOnDelete>CASCADE</DdlOnDelete>
-                <LigacaoParaOrigem ID="19"/>
-                <ConstraintOrigem CamposDestino="[3]" CamposOrigem="[0]" ID="4,0">IR chave primária</ConstraintOrigem>
-            </Constraint>
         </Constraints>
     </Tabela>
-    <LogicoLinha ID="7">
+    <LogicoLinha ID="8">
         <DisablePainted Valor="false"/>
         <Tag LinhaMestre="-1"/>
         <Dashed Valor="false"/>
@@ -594,13 +677,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="3" PontaB="2"/>
         <Pontos>
-            <Ponto Left="306" Top="105"/>
-            <Ponto Left="232" Top="105"/>
-            <Ponto Left="232" Top="105"/>
-            <Ponto Left="157" Top="105"/>
+            <Ponto Left="266" Top="109"/>
+            <Ponto Left="208" Top="109"/>
+            <Ponto Left="208" Top="109"/>
+            <Ponto Left="149" Top="109"/>
         </Pontos>
-        <LogicoCardinalidade ID="8">
-            <Bounds Height="14" Left="267" Top="93" Width="35"/>
+        <LogicoCardinalidade ID="9">
+            <Bounds Height="14" Left="227" Top="97" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_1</Texto>
             <Observacao/>
@@ -613,8 +696,8 @@
             <Papel Valor=""/>
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
-        <LogicoCardinalidade ID="9">
-            <Bounds Height="14" Left="167" Top="93" Width="35"/>
+        <LogicoCardinalidade ID="10">
+            <Bounds Height="14" Left="159" Top="97" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_2</Texto>
             <Observacao/>
@@ -628,7 +711,7 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
     </LogicoLinha>
-    <LogicoLinha ID="10">
+    <LogicoLinha ID="11">
         <DisablePainted Valor="false"/>
         <Tag LinhaMestre="-1"/>
         <Dashed Valor="false"/>
@@ -642,13 +725,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="4" PontaB="3"/>
         <Pontos>
-            <Ponto Left="927" Top="77"/>
-            <Ponto Left="700" Top="77"/>
-            <Ponto Left="700" Top="77"/>
-            <Ponto Left="473" Top="77"/>
+            <Ponto Left="872" Top="84"/>
+            <Ponto Left="656" Top="84"/>
+            <Ponto Left="656" Top="84"/>
+            <Ponto Left="441" Top="84"/>
         </Pontos>
-        <LogicoCardinalidade ID="11">
-            <Bounds Height="14" Left="888" Top="65" Width="35"/>
+        <LogicoCardinalidade ID="12">
+            <Bounds Height="14" Left="833" Top="72" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_3</Texto>
             <Observacao/>
@@ -661,8 +744,8 @@
             <Papel Valor=""/>
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
-        <LogicoCardinalidade ID="12">
-            <Bounds Height="14" Left="483" Top="65" Width="35"/>
+        <LogicoCardinalidade ID="13">
+            <Bounds Height="14" Left="451" Top="72" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_4</Texto>
             <Observacao/>
@@ -676,7 +759,7 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
     </LogicoLinha>
-    <LogicoLinha ID="13">
+    <LogicoLinha ID="14">
         <DisablePainted Valor="false"/>
         <Tag LinhaMestre="-1"/>
         <Dashed Valor="false"/>
@@ -690,13 +773,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="2" PontaB="5"/>
         <Pontos>
-            <Ponto Left="85" Top="199"/>
-            <Ponto Left="85" Top="273"/>
-            <Ponto Left="209" Top="273"/>
-            <Ponto Left="209" Top="346"/>
+            <Ponto Left="77" Top="214"/>
+            <Ponto Left="77" Top="253"/>
+            <Ponto Left="153" Top="253"/>
+            <Ponto Left="153" Top="292"/>
         </Pontos>
-        <LogicoCardinalidade ID="14">
-            <Bounds Height="14" Left="52" Top="209" Width="35"/>
+        <LogicoCardinalidade ID="15">
+            <Bounds Height="14" Left="44" Top="224" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_5</Texto>
             <Observacao/>
@@ -709,8 +792,8 @@
             <Papel Valor=""/>
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
-        <LogicoCardinalidade ID="15">
-            <Bounds Height="14" Left="176" Top="328" Width="35"/>
+        <LogicoCardinalidade ID="16">
+            <Bounds Height="14" Left="120" Top="274" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_6</Texto>
             <Observacao/>
@@ -724,7 +807,7 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
     </LogicoLinha>
-    <LogicoLinha ID="16">
+    <LogicoLinha ID="17">
         <DisablePainted Valor="false"/>
         <Tag LinhaMestre="-1"/>
         <Dashed Valor="false"/>
@@ -738,13 +821,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="6" PontaB="3"/>
         <Pontos>
-            <Ponto Left="610" Top="192"/>
-            <Ponto Left="541" Top="192"/>
-            <Ponto Left="541" Top="134"/>
-            <Ponto Left="473" Top="134"/>
+            <Ponto Left="554" Top="210"/>
+            <Ponto Left="497" Top="210"/>
+            <Ponto Left="497" Top="133"/>
+            <Ponto Left="441" Top="133"/>
         </Pontos>
-        <LogicoCardinalidade ID="17">
-            <Bounds Height="14" Left="571" Top="180" Width="35"/>
+        <LogicoCardinalidade ID="18">
+            <Bounds Height="14" Left="515" Top="198" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_7</Texto>
             <Observacao/>
@@ -757,8 +840,8 @@
             <Papel Valor=""/>
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
-        <LogicoCardinalidade ID="18">
-            <Bounds Height="14" Left="483" Top="122" Width="35"/>
+        <LogicoCardinalidade ID="19">
+            <Bounds Height="14" Left="451" Top="121" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_8</Texto>
             <Observacao/>
@@ -772,7 +855,7 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
     </LogicoLinha>
-    <LogicoLinha ID="19">
+    <LogicoLinha ID="20">
         <DisablePainted Valor="false"/>
         <Tag LinhaMestre="-1"/>
         <Dashed Valor="false"/>
@@ -786,13 +869,13 @@
         <Largura Valor="1"/>
         <Ligacoes PontaA="4" PontaB="6"/>
         <Pontos>
-            <Ponto Left="927" Top="134"/>
-            <Ponto Left="844" Top="134"/>
-            <Ponto Left="844" Top="192"/>
-            <Ponto Left="761" Top="192"/>
+            <Ponto Left="872" Top="141"/>
+            <Ponto Left="788" Top="141"/>
+            <Ponto Left="788" Top="210"/>
+            <Ponto Left="704" Top="210"/>
         </Pontos>
-        <LogicoCardinalidade ID="20">
-            <Bounds Height="14" Left="888" Top="122" Width="35"/>
+        <LogicoCardinalidade ID="21">
+            <Bounds Height="14" Left="833" Top="129" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_9</Texto>
             <Observacao/>
@@ -805,8 +888,8 @@
             <Papel Valor=""/>
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
-        <LogicoCardinalidade ID="21">
-            <Bounds Height="14" Left="771" Top="180" Width="35"/>
+        <LogicoCardinalidade ID="22">
+            <Bounds Height="14" Left="714" Top="198" Width="35"/>
             <DisablePainted Valor="false"/>
             <Texto>Cardinalidade_10</Texto>
             <Observacao/>
@@ -820,11 +903,59 @@
             <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         </LogicoCardinalidade>
     </LogicoLinha>
-    <Legenda ID="28">
-        <Bounds Height="25" Left="615" Top="55" Width="150"/>
+    <LogicoLinha ID="23">
+        <DisablePainted Valor="false"/>
+        <Tag LinhaMestre="-1"/>
+        <Dashed Valor="false"/>
+        <Ancorado Valor="false"/>
+        <TemSetaPontaA Valor="false"/>
+        <TemSetaPontaB Valor="true"/>
+        <SetaAberta Valor="true"/>
+        <SetaLargura Valor="10"/>
+        <Inteligente Valor="true"/>
+        <SetaAutomatica Valor="true"/>
+        <Largura Valor="1"/>
+        <Ligacoes PontaA="7" PontaB="5"/>
+        <Pontos>
+            <Ponto Left="345" Top="424"/>
+            <Ponto Left="285" Top="424"/>
+            <Ponto Left="285" Top="424"/>
+            <Ponto Left="225" Top="424"/>
+        </Pontos>
+        <LogicoCardinalidade ID="24">
+            <Bounds Height="14" Left="306" Top="412" Width="35"/>
+            <DisablePainted Valor="false"/>
+            <Texto>Cardinalidade_11</Texto>
+            <Observacao/>
+            <Dicionario/>
+            <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+            <Ancorado Valor="false"/>
+            <TamanhoAutmatico Valor="true"/>
+            <Card Valor="0"/>
+            <MovimentacaoManual Valor="false"/>
+            <Papel Valor=""/>
+            <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        </LogicoCardinalidade>
+        <LogicoCardinalidade ID="25">
+            <Bounds Height="14" Left="235" Top="412" Width="35"/>
+            <DisablePainted Valor="false"/>
+            <Texto>Cardinalidade_12</Texto>
+            <Observacao/>
+            <Dicionario/>
+            <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+            <Ancorado Valor="false"/>
+            <TamanhoAutmatico Valor="true"/>
+            <Card Valor="3"/>
+            <MovimentacaoManual Valor="false"/>
+            <Papel Valor=""/>
+            <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
+        </LogicoCardinalidade>
+    </LogicoLinha>
+    <Legenda ID="26">
+        <Bounds Height="21" Left="588" Top="66" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Professor</Texto>
-        <Observacao>Professor</Observacao>
+        <Observacao/>
         <Dicionario/>
         <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         <Ancorado Valor="false"/>
@@ -832,11 +963,11 @@
         <Tipo Valor="0"/>
         <Itens/>
     </Legenda>
-    <Legenda ID="30">
-        <Bounds Height="25" Left="774" Top="201" Width="150"/>
+    <Legenda ID="27">
+        <Bounds Height="24" Left="730" Top="213" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Coordenador</Texto>
-        <Observacao>Professor</Observacao>
+        <Observacao/>
         <Dicionario/>
         <Fonte Estilo="1" Nome="Arial" Tamanho="12"/>
         <Ancorado Valor="false"/>

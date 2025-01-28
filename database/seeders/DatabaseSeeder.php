@@ -7,6 +7,7 @@ use App\Models\Turma;
 use App\Models\Certificado;
 use App\Models\Professor;
 use App\Models\Curso;
+use App\Models\Categoria;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -49,6 +50,26 @@ class DatabaseSeeder extends Seeder {
         ]);
 
         Aluno::factory(5)->create();
+
+        Categoria::create([
+            'nome' => 'Unidades curriculares optativas/eletivas',
+        ]);
+
+        Categoria::create([
+            'nome' => 'Projetos de ensino, pesquisa e extensão',
+        ]);
+
+        Categoria::create([
+            'nome' => 'Prática profissional integradora',
+        ]);
+
+        Categoria::create([
+            'nome' => 'Práticas desportivas',
+        ]);
+
+        Categoria::create([
+            'nome' => 'Práticas artístico-culturais',
+        ]);
 
         Certificado::factory(100)->create();
     }

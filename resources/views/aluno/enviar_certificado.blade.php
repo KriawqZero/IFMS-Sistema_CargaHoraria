@@ -33,17 +33,12 @@
         <div class="grid grid-cols-1 space-y-2">
           <label class="text-sm font-bold text-gray-500 tracking-wide">Categoria</label>
 
-          <select name="categoria"
-            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
-            name="categoria">
+          <select name="categoria_id"
+            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" >
             <option value="" disabled selected>Selecione uma opção</option>
-            <option value="Unidades curriculares optativa/eletivas">Unidades curriculares optativa/eletivas
-            </option>
-            <option value="Projetos de ensino, pesquisa e extensão">Projetos de ensino, pesquisa e extensão
-            </option>
-            <option value="Prática Profissional Integradora<">Prática Profissional Integradora</option>
-            <option value="Práticas Desportivas">Práticas Desportivas</option>
-            <option value="Práticas Artístico-Culturais">Práticas Artístico-Culturais</option>
+            @foreach ($categorias as $categoria)
+              <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+            @endforeach
           </select>
         </div>
 

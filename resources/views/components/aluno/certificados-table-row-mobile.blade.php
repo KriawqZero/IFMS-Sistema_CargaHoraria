@@ -16,7 +16,7 @@
       </button>
       <div x-show="open" class="mt-2 text-base text-gray-900">
         @if (in_array('categoria', $colunas))
-          <p><strong>Categoria:</strong> {{ $certificado->categoria }}</p>
+          <p><strong>Categoria:</strong> {{ $certificado->categoria->nome }}</p>
         @endif
         @if (in_array('titulo', $colunas))
           <p><strong>Título:</strong> {{ $certificado->titulo }}</p>
