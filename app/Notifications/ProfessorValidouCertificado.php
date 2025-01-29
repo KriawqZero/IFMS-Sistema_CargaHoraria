@@ -37,12 +37,12 @@ class ProfessorValidouCertificado extends Notification {
      */
     public function toDatabase(object $notifiable): array {
         return [
-            'aluno' => true,
+            'professor' => true,
             'foto_src' => $this->professor->foto_src,
             'certificado_id' => $this->certificado->id,
             'mensagem' => "
             O Professor <span class='font-bold text-green-400 hover:underline'>{$this->professor->nome_completo}</span>
-            validou um de seus certificados",
+            validou seu certificado",
         ];
     }
 }

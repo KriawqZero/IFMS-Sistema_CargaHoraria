@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use App\Models\Certificado;
+use App\Notifications\ProfessorValidouCertificado;
 
 class ProfessorCertificadoController extends Controller {
     public function index(Request $request) {
@@ -80,19 +81,29 @@ class ProfessorCertificadoController extends Controller {
         $minutos_ch = ($partes[0] * 60) + $partes[1];
         $atualizacao['carga_horaria'] = $minutos_ch;
 
+        try {
+            // Verifica se há dados para atualizar antes de chamar o método update
+            if (!empty(array_filter(array_diff_key($atualizacao, ['status' => true])))) {
+                $certificado->update($atualizacao);
+                
+                // Retorna uma mensagem de sucesso após a atualização
+                if($request->has('status') && $request->input('status') === 'valido')
+                    $certificado->aluno->notify(new ProfessorValidouCertificado(auth('professor')->user(), $certificado));
 
-        // Verifica se há dados para atualizar antes de chamar o método update
-        if (!empty(array_filter(array_diff_key($atualizacao, ['status' => true])))) {
-            $certificado->update($atualizacao);
+                return redirect()
+                    ->route('professor.certificados.index')
+                    ->with('success', 'Certificado atualizado com sucesso!');
+            }
 
+            // Retorna uma mensagem caso nenhum dado tenha sido enviado
             return redirect()
                 ->route('professor.certificados.index')
-                ->with('success', 'Certificado atualizado com sucesso!');
+                ->with('info', 'Nenhum dado enviado para atualizar o certificado.');
+        } catch (\Exception $e) {
+            // Retorna uma mensagem de erro caso ocorra uma exceção
+            return redirect()
+                ->route('professor.certificados.index')
+                ->withErrors('Erro ao atualizar o certificado, por favor tente novamente.');
         }
-
-        // Retorna uma mensagem caso nenhum dado tenha sido enviado
-        return redirect()
-            ->route('professor.certificados.index')
-            ->with('info', 'Nenhum dado enviado para atualizar o certificado.');
     }
 }

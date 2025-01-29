@@ -82,6 +82,7 @@ class AlunoCertificadoController extends Controller {
         // Recupera os parâmetros da requisição
         $pesquisa = $request->input('pesquisa');
         $perPage = $request->input('per_page'); // Valor padrão: 10 por página
+        $certificadoId = $request->input('id');
 
         // Valida o valor de perPage para garantir que é um número permitido
         if(!in_array($perPage, [5, 10, 25, 50])){
@@ -92,6 +93,9 @@ class AlunoCertificadoController extends Controller {
         $certificados = Certificado::where('aluno_id', $alunoId)
             ->when($pesquisa, function($query, $search) {
                 return $query->where('titulo', 'like', '%' . $search . '%');
+            })
+            ->when($certificadoId, function($query, $certificadoId) {
+                return $query->where('id', $certificadoId);
             })
             ->latest()
             ->paginate($perPage)

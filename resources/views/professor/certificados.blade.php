@@ -224,7 +224,6 @@
                         <input
                             type="text"
                             id="carga-horaria"
-                            name="carga_horaria"
                             pattern="^\d{1,3}:[0-5]\d$"
                             class="disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
                             x-model="modalData.formattedCargaHoraria"
@@ -235,6 +234,7 @@
                             }"
                             placeholder="HH:mm (ex: 02:30)"
                         >
+                        <input type="hidden" name="carga_horaria" x-model="modalData.formattedCargaHoraria">
                         <p x-show="!/^\d{1,3}:[0-5]\d$/.test(modalData.formattedCargaHoraria)"
                            class="text-red-500 text-xs mt-1">
                             Formato inválido. Use HH:mm (ex: 02:30)

@@ -20,9 +20,12 @@
         @forelse($notifications as $notification)
             <div class="group flex items-center justify-between px-4 py-3 bg-white rounded-lg shadow hover:shadow-md transition hover:ring-2 ring-green-300">
                 @php
-                  if($notification->data['aluno']) {
+                  if(isset($notification->data['aluno'])) {
                     $id =  $notification->data['certificado_id'];
                     $url = route('professor.certificados.index');
+                  } else if(isset($notification->data['professor'])) {
+                    $id =  $notification->data['certificado_id'];
+                    $url = route('aluno.certificados.index');
                   } else {
                     $url = '#';
                   }
