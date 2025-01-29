@@ -26,7 +26,7 @@
             type="text"
             name="pesquisa"
             value="{{ request('pesquisa') }}"
-            placeholder="Pesquisar observações"
+            placeholder="Pesquisar por titulo"
             class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
           />
 
@@ -55,7 +55,7 @@
 
 
     <!-- Tabela de Certificados -->
-    <x-aluno::certificados-table :certificados="$certificados->items()" />
+    <x-aluno::certificados-table class="shadow-3xl" :certificados="$certificados->items()" />
 
     <!-- Links de Paginação -->
     <div class="mt-4">

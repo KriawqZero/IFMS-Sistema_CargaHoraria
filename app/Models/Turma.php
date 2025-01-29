@@ -12,6 +12,7 @@ class Turma extends Model {
 
     protected $fillable = [
         'codigo',
+        'carga_horaria_minima',
         'professor_id',
         'curso_id',
     ];

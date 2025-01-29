@@ -1,8 +1,7 @@
 @extends('_layouts.master')
 
 @section('body')
-<div>
-
+<div x-data="{ showProgressModal: false }">
   <!-- Cards -->
   <div class="mt-4">
     <div class="flex flex-wrap -mx-6">
@@ -50,24 +49,40 @@
   <!-- Fim dos cards -->
 
 
-  <!-- Barra de progresso -->
-  <div class="flex justify-between my-5 mb-1">
-    <span class="text-base font-medium text-gray-600 dark:text-gray-600">Progresso</span>
-    <span class="text-sm font-small text-gray-600 dark:text-gray-600">
-      {{ $cargaHorariaTotal }}h de {{ $maxCargaHoraria }}h
-      ({{ round(min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100)) }}%)
-    </span>
-  </div>
-  <div class="w-full bg-slate-600 rounded-full h-2.5">
-    <div class="bg-green-500 h-2.5 rounded-full" style="
-        width: {{ min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100) }}%;
-      ">
+  <!-- Seção de Progresso -->
+  <div class="flex items-center justify-between gap-4 my-5 mb-1">
+    <div class="flex-1">
+      <div class="flex justify-between mb-1">
+        <span class="text-sm font-medium text-gray-600">Progresso</span>
+        <span class="text-sm text-gray-600">
+          {{ $cargaHorariaTotal }}h de {{ $maxCargaHoraria }}h
+          ({{ round(min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100)) }}%)
+        </span>
+      </div>
+      <div class="w-full bg-gray-500 rounded-full h-2.5">
+        <div class="bg-green-500 h-2.5 rounded-full transition-all duration-300"
+             style="width: {{ min(($cargaHorariaTotal / $maxCargaHoraria) * 100, 100) }}%">
+        </div>
+      </div>
     </div>
+
+    <!-- Botão do Modal -->
+    <button
+      @click="showProgressModal = true"
+      class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full transition-colors"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      Detalhes
+    </button>
   </div>
-  <!-- Fim da barra de progresso -->
+
+  <!-- Modal de progresso -->
+  <x-aluno::modal-progresso :aluno="$aluno" />
 
   <!-- Certificados -->
-  <div class="flex flex-col mt-8 bg-zinc-200 rounded-3xl">
+  <div class="shadow-2xl flex flex-col mt-8 bg-zinc-200 rounded-3xl">
     <h1 class="px-5 my-2 py-2 text-3xl font-regular text-gray-700">Ultimos Certificados Enviados</h1>
     <div class=" -mt-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
       <x-aluno::certificados-table

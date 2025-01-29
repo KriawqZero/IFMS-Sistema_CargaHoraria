@@ -12,21 +12,13 @@ class StoreCertificadoRequest extends FormRequest {
         return true;
     }
 
-    protected function prepareForValidation() {
-        if ($this->has('carga_horaria')) {
-            $this->merge([
-                'carga_horaria' => str_replace(',', '.', $this->input('carga_horaria')),
-            ]);
-        }
-    }
-
     /**
      * Obtenha as regras de validação aplicáveis à solicitação.
      */
     public function rules(): array {
         return [
             'titulo' => 'nullable|string|max:100',
-            'carga_horaria' => 'required|numeric',
+            'carga_horaria' => 'required|regex:/^\d{1,3}:[0-5]\d$/',
             'data_do_certificado' => 'required|date',
             'observacao' => 'nullable|string|max:500',
             'arquivo' => 'required|file|mimes:pdf,jpg,jpeg,png|max:2048',
@@ -43,7 +35,7 @@ class StoreCertificadoRequest extends FormRequest {
             'categoria_id.exists' => 'A categoria selecionada é inválida.',
             'titulo.max' => 'O campo título deve ter no máximo 100 caracteres.',
             'carga_horaria.required' => 'A carga horária é obrigatória.',
-            'carga_horaria.numeric' => 'A carga horária deve ser um número válido.',
+            'carga_horaria.regex' => 'O formato deve ser Hh:mm (Ex: 12:30)',
             'data_do_certificado.required' => 'A data do certificado é obrigatória.',
             'data_do_certificado.date' => 'O campo data do certificado deve ser uma data válida.',
             'arquivo.required' => 'O arquivo é obrigatório.',

@@ -17,7 +17,7 @@
     <livewire:notificacao-dropdown :usuarioLogado="$usuarioLogado"/>
 
     <div x-data="{ dropdownOpen: false }" class="relative">
-      <button @click="dropdownOpen = ! dropdownOpen" class="flex items-center space-x-2">
+      <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2">
         <!-- Imagem de perfil -->
         <div class="relative block w-8 h-8 overflow-hidden rounded-full shadow focus:outline-none">
           <img class="object-cover w-full h-full" src="{{ asset('storage/' . $usuarioLogado->foto_src) }}" alt="Foto de perfil">

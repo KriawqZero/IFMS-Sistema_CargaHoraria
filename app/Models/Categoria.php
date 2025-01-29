@@ -11,6 +11,7 @@ class Categoria extends Model {
 
     protected $fillable = [
         'nome',
+        'limite_horas'
     ];
 
     public function certificados() {

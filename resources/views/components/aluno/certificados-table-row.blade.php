@@ -58,7 +58,7 @@
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
       <div class="text-sm leading-5 text-gray-900">
         @php
-          if ($certificado->carga_horaria) {
+          if ($certificado->carga_horaria && $certificado->status != 'invalido') {
               $horas = number_format($certificado->carga_horaria / 60, 1, ',', '');
           } else {
               $horas = null;

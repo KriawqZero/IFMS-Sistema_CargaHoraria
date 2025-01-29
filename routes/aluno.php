@@ -11,7 +11,7 @@ Route::name('aluno.')->group(function() {
     Route::get('aluno/certificados/exportar', [AlunoCertificadoController::class, 'exportarCertificados'])
         ->name('certificados.exportar');
 
-    Route::post('/', [AlunoController::class, 'processLogin'])
+    Route::post('/login', [AlunoController::class, 'processLogin'])
         ->middleware(VerifyJWT::class)
         ->name('login.post');
 
@@ -22,11 +22,11 @@ Route::name('aluno.')->group(function() {
     // Grupo de rotas protegidas por autenticação do aluno
     Route::middleware([VerifyAuth::class . ':aluno'])->group(function() {
         // Rota de formulario de login do aluno
-        Route::get('/', [AlunoController::class, 'showLoginForm'])
+        Route::get('/login', [AlunoController::class, 'showLoginForm'])
             ->name('login');
 
         // Rota de dashboard do aluno
-        Route::get('aluno', [AlunoController::class, 'dashboard'])
+        Route::get('/', [AlunoController::class, 'dashboard'])
             ->name('dashboard');
 
         Route::get('aluno/sobre', [AlunoController::class, 'sobre'])

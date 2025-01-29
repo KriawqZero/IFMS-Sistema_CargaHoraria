@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Models\Aluno;
 use App\Models\Certificado;
+use Illuminate\Support\Facades\App;
 
 class AlunoController extends Controller {
     public function showLoginForm() {
@@ -23,6 +24,7 @@ class AlunoController extends Controller {
     }
 
     public function dashboard() {
+        /** @var App\Models\Aluno $aluno */
         $aluno = auth('aluno')->user(); // Obter aluno autenticado
 
         $certificados = Certificado::where('aluno_id', $aluno->id)
@@ -34,8 +36,6 @@ class AlunoController extends Controller {
             'titulo' => 'Visão Geral',
             'aluno' => $aluno,
             'cargaHorariaTotal' => $aluno->cargaHorariaTotal(),
-            'cargaHorariaPorcategoria' => $aluno->cargaHorariaPorcategoria(),
-            'limitesCargaHoraria' => $aluno->limitesCargaHorariaPorcategoria(),
             'maxCargaHoraria' => $aluno->maxCargaHoraria(),
             'certificados' => $certificados->items(),
             'curso' => $aluno->curso,

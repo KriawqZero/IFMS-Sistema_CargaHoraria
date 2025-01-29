@@ -71,9 +71,15 @@ class ProfessorCertificadoController extends Controller {
         $atualizacao = $request->validate([
             'titulo' => 'nullable|string|max:255', // Limite de caracteres para evitar inputs inválidos
             'categoria' => 'nullable|string|max:255',
-            'carga_horaria' => 'nullable|integer|min:1', // A carga horária deve ser um número inteiro positivo
+            'carga_horaria' => 'required|regex:/^\d{1,3}:[0-5]\d$/',
             'status' => 'nullable|in:valido,invalido,pendente',
         ]);
+
+        // Converter Hh:mm para minutos
+        $partes = explode(':', $atualizacao['carga_horaria']);
+        $minutos_ch = ($partes[0] * 60) + $partes[1];
+        $atualizacao['carga_horaria'] = $minutos_ch;
+
 
         // Verifica se há dados para atualizar antes de chamar o método update
         if (!empty(array_filter(array_diff_key($atualizacao, ['status' => true])))) {

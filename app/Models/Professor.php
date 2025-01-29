@@ -29,6 +29,11 @@ class Professor extends Model implements AuthenticatableContract {
         return $this->hasMany(Turma::class);
     }
 
+    public function getNomeCompletoAttribute() {
+        $nomeCompleto = explode(' ', $this->nome);
+        return ucfirst($nomeCompleto[0]) . ' ' . ucfirst($nomeCompleto[count($nomeCompleto) - 1]);
+    }
+
     /*public function notificacoes() {*/
     /*    return $this->morphMany(Notificacao::class, 'receptor_categoria', 'receptor_categoria', 'receptor_id');*/
     /*}*/

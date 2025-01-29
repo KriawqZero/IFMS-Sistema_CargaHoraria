@@ -17,7 +17,7 @@ class TurmaFactory extends Factory {
         $turno = $this->faker->randomElement($turnos);
         $curso = $this->faker->randomElement($cursos);
 
-        $carga_horaria_maximas = [
+        $carga_horaria_minimas = [
             125, 50,
         ];
 
@@ -27,7 +27,7 @@ class TurmaFactory extends Factory {
         return [
             'codigo' => $turno . $curso . $sala, // Gera o código da turma
             'curso_id' => $tecnico,
-            'carga_horaria_maxima' => $this->faker->randomElement($carga_horaria_maximas),
+            'carga_horaria_minima' => $this->faker->randomElement($carga_horaria_minimas),
             'professor_id' => $professor_id, // Seleciona um professor aleatório
         ];
     }

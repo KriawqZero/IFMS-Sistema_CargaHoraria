@@ -79,28 +79,50 @@ class Aluno extends Model implements AuthenticatableContract {
 
 
     // ####### MÉTODOS #######
-    public function limitesCargaHorariaPorcategoria() {
-        return [
-            'Unidades curriculares optativas/eletivas' => 120,
-            'Projetos de ensino, pesquisa e extensão' => 80,
-            'Prática profissional integrada' => 80,
-            'Práticas desportivas' => 80,
-            'Práticas artístico-culturais' => 80,
-        ];
+        // Substituir o método hardcoded por consulta dinâmica
+    public function categoriasComLimites() {
+        return Categoria::all()->keyBy('id');
     }
 
+    // Carga horária total considerando os limites
     public function cargaHorariaTotal() {
-        return $this->certificados->where('status', 'valido')->sum('carga_horaria') / 60;
+        $total = 0;
+
+        foreach ($this->cargaHorariaDetalhadaPorCategoria() as $dados) {
+            $total += $dados['aproveitado'];
+        }
+
+        return $total;
     }
 
-    public function cargaHorariaPorcategoria() {
-        return $this->certificados->groupBy('categoria')->map(function ($certificados) {
-            return $certificados->where('status', 'valido')->sum('carga_horaria') / 60;
-        });
+    // Carga horária por categoria com detalhes
+    public function cargaHorariaDetalhadaPorCategoria() {
+        $categorias = $this->categoriasComLimites();
+        $detalhes = [];
+
+        foreach ($categorias as $categoria) {
+            $horasBrutas = $this->certificados
+                ->where('categoria_id', $categoria->id)
+                ->where('status', 'valido')
+                ->sum('carga_horaria') / 60;
+
+            $detalhes[$categoria->nome] = [
+                'total' => $horasBrutas,
+                'limite' => $categoria->limite_horas,
+                'aproveitado' => min($horasBrutas, $categoria->limite_horas)
+            ];
+        }
+
+        return $detalhes;
+    }
+
+    // Verificação de aprovação
+    public function estaAprovado() {
+        return $this->cargaHorariaTotal() >= $this->turma->carga_horaria_minima;
     }
 
     public function maxCargaHoraria() {
-        return $this->turma->carga_horaria_maxima;
+        return $this->turma->carga_horaria_minima;
     }
 
     public function paginarCertificados($maxItens = 10) {

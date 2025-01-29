@@ -48,9 +48,8 @@
             class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
             placeholder="Oficina/Workshop - Brinquedos com materiais reciclados" />
           <label class="text-sm font-bold text-gray-500 tracking-wide">Carga Horária (em horas)</label>
-          <input type="text" name="carga_horaria"
-            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
-            placeholder="2,5"/>
+          <input type="text" name="carga_horaria" placeholder="hh:mm (Ex: 12:30)" pattern="^\d{1,3}:[0-5]\d$"
+            class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500">
           <label class="text-sm font-bold text-gray-500 tracking-wide">Data do Certificado</label>
           <input x-data="{ today: new Date().toISOString().split('T')[0], selectedDate: '' }"
                 type="date" name="data_do_certificado" min="2021-01-01" x-bind:max="today"
@@ -64,7 +63,7 @@
           <input type="file" name="arquivo"
             class="mt-2 block w-full text-sm file:mr-4 file:rounded-md file:border-0 file:bg-green-600 file:py-2
                         file:px-4 file:text-sm file:font-semibold file:text-white hover:file:bg-green-700 focus:outline-none
-                        disabled:pointer-events-none disabled:opacity-60" />
+                        disabled:pointer-events-none disabled:opacity-60 file:transition file:ease-in file:duration-300" />
         </div>
         <p class="text-sm text-gray-400">
           <span>Arquivos permitidos: .jpg, .png, .webp, .pdf</span>
@@ -73,8 +72,8 @@
 
 
           <button type="submit"
-            class="my-5 w-full flex justify-center bg-green-600 text-white p-4  rounded-full tracking-wide
-                                font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
+            class="my-5 w-full flex justify-center bg-green-600 text-white p-4 rounded-full tracking-wide
+            font-semibold focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer transition ease-in duration-300">
             Enviar
           </button>
         </div>

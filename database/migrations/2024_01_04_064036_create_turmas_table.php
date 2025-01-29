@@ -13,7 +13,7 @@ return new class extends Migration
         Schema::create('turmas', function (Blueprint $table) {
             $table->id();
             $table->string('codigo');
-            $table->integer('carga_horaria_maxima');
+            $table->integer('carga_horaria_minima');
             $table->foreignId('professor_id')
                 ->nullable()
                 ->constrained('professores')

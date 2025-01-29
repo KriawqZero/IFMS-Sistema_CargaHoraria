@@ -91,7 +91,7 @@ class AlunoCertificadoController extends Controller {
         // Consulta os certificados com filtragem opcional e paginação
         $certificados = Certificado::where('aluno_id', $alunoId)
             ->when($pesquisa, function($query, $search) {
-                return $query->where('observacao', 'like', '%' . $search . '%');
+                return $query->where('titulo', 'like', '%' . $search . '%');
             })
             ->latest()
             ->paginate($perPage)
@@ -120,33 +120,49 @@ class AlunoCertificadoController extends Controller {
         /** @var \App\Models\Aluno $aluno */
         $aluno = auth('aluno')->user();
 
-        // Salvar o arquivo no storage
-        $filePath = $input['arquivo']->store('certificados/' . auth('aluno')->id() ,'public');
+        // Salvar arquivo
+        $filePath = $input['arquivo']->store('certificados/' . auth('aluno')->id(), 'public');
 
-        // Criar o certificado
+        // Converter Hh:mm para minutos
+        $partes = explode(':', $input['carga_horaria']);
+        $minutos_ch = ($partes[0] * 60) + $partes[1];
+
+        // Criar certificado
         $certificado = Certificado::create([
-            'aluno_id' => auth('aluno')->id(),
+            'aluno_id' => $aluno->id,
             'titulo' => $input['titulo'],
             'observacao' => $input['observacao'],
-            'carga_horaria' => $input['carga_horaria'] * 60,
+            'carga_horaria' => $minutos_ch,
             'data_constante' => $input['data_do_certificado'],
             'src' => $filePath,
             'categoria_id' => $input['categoria_id'],
         ]);
 
-        // Notificar o professsor
-        if (!$aluno->turma || !$aluno->turma->professor)
+        // Verificar limites da categoria
+        $categoria = Categoria::find($input['categoria_id']);
+        $horasValidas = $aluno->certificados()
+            ->where('categoria_id', $input['categoria_id'])
+            ->where('status', 'valido')
+            ->sum('carga_horaria') / 60;
+
+        $totalPotencial = $horasValidas + ($minutos_ch / 60);
+
+        // Notificação para o professor
+        if ($aluno->turma?->professor) {
+            $aluno->turma->professor->notify(new AlunoEnviouCertificado($aluno, $certificado));
+        }
+
+
+        if ($totalPotencial > $categoria->limite_horas) {
+            $excedente = $totalPotencial - $categoria->limite_horas;
             return redirect()->route('aluno.certificados.create')
-                ->withErrors('Não foi possível enviar o certificado. O aluno não está matriculado em uma turma.');
+                ->with('info',
+                    "Certificado enviado mas atenção! O limite de {$categoria->limite_horas}h para {$categoria->nome}
+                    será excedido em {$excedente}h caso este certificado seja aprovado.");
+        }
 
-        $professor = $aluno->turma->professor;
-        $professor->notify(
-            new AlunoEnviouCertificado(
-                $aluno,
-                $certificado,
-            ));
-
-        return redirect()->route('aluno.certificados.create')->with('success', 'Certificado enviado com sucesso!');
+        return redirect()->route('aluno.certificados.create')
+            ->with('success', 'Certificado enviado com sucesso!');
     }
 
     // Excluir um certificado

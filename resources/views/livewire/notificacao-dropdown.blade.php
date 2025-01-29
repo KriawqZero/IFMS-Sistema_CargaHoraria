@@ -24,7 +24,7 @@
                     $id =  $notification->data['certificado_id'];
                     $url = route('professor.certificados.index', ['id'=>$id]);
                   } else {
-                    $url = '';
+                    $url = '#';
                   }
                 @endphp
                 <!-- Form que cobre toda a área clicável -->

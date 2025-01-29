@@ -3,7 +3,7 @@
     'colunas' => ['categoria', 'titulo', 'data_enviada', 'comprovante', 'observacao', 'data_constante', 'status', 'carga_horaria', 'acoes'],
 ])
 
-<div class="align-middle shadow-2xl inline-block min-w-full overflow-hidden rounded-3xl border-b border-gray-200">
+<div  {{ $attributes->merge(['class' => "align-middle inline-block min-w-full overflow-hidden rounded-3xl border-b border-gray-200"]) }}>
     <table class="min-w-full">
         <thead class="hidden md:table-header-group">
             <tr>

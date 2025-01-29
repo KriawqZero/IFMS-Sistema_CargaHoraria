@@ -63,10 +63,10 @@
                     <th class="border-b border-gray-300 px-4 py-2">Aluno</th>
                     <th class="border-b border-gray-300 px-4 py-2">Turma</th>
                     <th class="border-b border-gray-300 px-4 py-2">Titulo</th>
+                    <th class="border-b border-gray-300 px-4 py-2">Categoria</th>
                     <th class="border-b border-gray-300 px-4 py-2">Carga Horaria</th>
                     <th class="border-b border-gray-300 px-4 py-2">Status</th>
                     <th class="border-b border-gray-300 px-4 py-2">Arquivo</th>
-                    <th class="border-b border-gray-300 px-4 py-2">Categoria</th>
                     <th class="border-b border-gray-300 px-4 py-2"></th>
                 </tr>
             </thead>
@@ -77,16 +77,27 @@
                     <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->nome}}</td>
                     <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->turma->codigo}}</td>
                     <td class="border-b border-gray-200 px-4 py-2">{{$certificado->titulo}}</td>
-                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->carga_horaria ?? ''}}</td>
+                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->categoria->nome}}</td>
+                    <td class="border-b border-gray-200 px-4 py-2">
+                    @php
+                      if ($certificado->carga_horaria) {
+                          $horas = number_format($certificado->carga_horaria / 60, 1, ',', '');
+                      } else {
+                          $horas = null;
+                      }
+                    @endphp
+                    {{ $horas ? $horas . ' horas' : '' }}
+                    </td>
                     <td class="border-b border-gray-200 px-4 py-2">
                       <span
                         class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $certificado->status == 'valido' ? 'bg-green-50 text-green-800' : ($certificado->status == 'pendente' ? 'bg-yellow-50 text-yellow-800' : 'bg-red-50 text-red-800') }}">
                         {{ $certificado->formatStatus() }}
                       </span>
                     </td>
-                    <td class="border-b border-gray-200 px-4 py-2"><a href="{{url($certificado->src_url)}}" class="text-green-600 hover:underline" target="_blank">Visualizar</a></td>
-                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->categoria->nome}}</td>
-                    <td class="border-b border-gray-200 px-4 py-2 space-y-2">
+                    <td class="border-b border-gray-200 px-4 py-2">
+                        <a href="{{url($certificado->src_url)}}" class="text-green-600 hover:text-green-900 hover:underline" target="_blank">Visualizar</a>
+                    </td>
+                    <td class="border-b border-gray-200 px-6 py-2 space-y-2">
                         <!-- Ícone para abrir o modal -->
                         <button
                             @click="showModal = true; modalData = {
@@ -95,13 +106,14 @@
                                 turma: '{{$certificado->aluno->turma->codigo}}',
                                 categoria: '{{$certificado->categoria->nome}}',
                                 titulo: '{{$certificado->titulo}}',
-                                cargaHoraria: '{{$certificado->carga_horaria ?? ''}}'
-                            };"
-                            class="text-gray-600 hover:text-gray-900"
+                                cargaHoraria: '{{$certificado->carga_horaria}}',
+                                formattedCargaHoraria: '{{ floor($certificado->carga_horaria / 60) }}:{{ str_pad($certificado->carga_horaria % 60, 2, '0', STR_PAD_LEFT) }}'
+                                };"
+                            class="text-green-600 hover:text-green-900"
                             title="Validar Certificado"
                         >
-                            <svg class="w-6 h-6 text-gray-600" viewBox="0 0 16 16" fill="#9CA3AF" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.0025 1.26315C9.97489 1.25099 9.94466 1.24597 9.9146 1.24855C9.88455 1.25113 9.85562 1.26122 9.83048 1.27789C9.80534 1.29457 9.78479 1.3173 9.77073 1.34399C9.75667 1.37068 9.74954 1.40048 9.75 1.43065V2.6844C9.75 2.85016 9.68415 3.00913 9.56694 3.12634C9.44973 3.24355 9.29076 3.3094 9.125 3.3094H1.25V6.9344H9.125C9.29076 6.9344 9.44973 7.00024 9.56694 7.11746C9.68415 7.23467 9.75 7.39364 9.75 7.5594V8.81315C9.75 8.94815 9.8875 9.03315 10.0025 8.98065L14.9825 5.3144L15.035 5.2794C15.0622 5.26306 15.0847 5.23998 15.1003 5.21238C15.1159 5.18478 15.1241 5.15361 15.1241 5.1219C15.1241 5.09019 15.1159 5.05902 15.1003 5.03142C15.0847 5.00382 15.0622 4.98073 15.035 4.9644L14.9825 4.9294L10.0025 1.26315ZM8.5 1.43065C8.49988 1.17323 8.56925 0.92056 8.70079 0.69929C8.83232 0.478019 9.02115 0.296357 9.24734 0.17347C9.47352 0.0505835 9.72869 -0.00897007 9.9859 0.00109343C10.2431 0.0111569 10.4929 0.0904642 10.7088 0.230647L15.7013 3.90565C15.9076 4.03448 16.0779 4.21373 16.1959 4.4265C16.3139 4.63928 16.3758 4.87859 16.3758 5.1219C16.3758 5.36521 16.3139 5.60451 16.1959 5.81729C16.0779 6.03007 15.9076 6.20931 15.7013 6.33815L10.7088 10.0131C10.4929 10.1533 10.2431 10.2326 9.9859 10.2427C9.72869 10.2528 9.47352 10.1932 9.24734 10.0703C9.02115 9.94744 8.83232 9.76578 8.70079 9.54451C8.56925 9.32323 8.49988 9.07056 8.5 8.81315V8.1844H0.625C0.45924 8.1844 0.300268 8.11855 0.183058 8.00134C0.065848 7.88413 0 7.72516 0 7.5594V2.6844C0 2.51864 0.065848 2.35967 0.183058 2.24246C0.300268 2.12525 0.45924 2.0594 0.625 2.0594H8.5V1.43065Z" fill="#59BE64"/>
+                            <svg class="w-6 h-6" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.0025 1.26315C9.97489 1.25099 9.94466 1.24597 9.9146 1.24855C9.88455 1.25113 9.85562 1.26122 9.83048 1.27789C9.80534 1.29457 9.78479 1.3173 9.77073 1.34399C9.75667 1.37068 9.74954 1.40048 9.75 1.43065V2.6844C9.75 2.85016 9.68415 3.00913 9.56694 3.12634C9.44973 3.24355 9.29076 3.3094 9.125 3.3094H1.25V6.9344H9.125C9.29076 6.9344 9.44973 7.00024 9.56694 7.11746C9.68415 7.23467 9.75 7.39364 9.75 7.5594V8.81315C9.75 8.94815 9.8875 9.03315 10.0025 8.98065L14.9825 5.3144L15.035 5.2794C15.0622 5.26306 15.0847 5.23998 15.1003 5.21238C15.1159 5.18478 15.1241 5.15361 15.1241 5.1219C15.1241 5.09019 15.1159 5.05902 15.1003 5.03142C15.0847 5.00382 15.0622 4.98073 15.035 4.9644L14.9825 4.9294L10.0025 1.26315ZM8.5 1.43065C8.49988 1.17323 8.56925 0.92056 8.70079 0.69929C8.83232 0.478019 9.02115 0.296357 9.24734 0.17347C9.47352 0.0505835 9.72869 -0.00897007 9.9859 0.00109343C10.2431 0.0111569 10.4929 0.0904642 10.7088 0.230647L15.7013 3.90565C15.9076 4.03448 16.0779 4.21373 16.1959 4.4265C16.3139 4.63928 16.3758 4.87859 16.3758 5.1219C16.3758 5.36521 16.3139 5.60451 16.1959 5.81729C16.0779 6.03007 15.9076 6.20931 15.7013 6.33815L10.7088 10.0131C10.4929 10.1533 10.2431 10.2326 9.9859 10.2427C9.72869 10.2528 9.47352 10.1932 9.24734 10.0703C9.02115 9.94744 8.83232 9.76578 8.70079 9.54451C8.56925 9.32323 8.49988 9.07056 8.5 8.81315V8.1844H0.625C0.45924 8.1844 0.300268 8.11855 0.183058 8.00134C0.065848 7.88413 0 7.72516 0 7.5594V2.6844C0 2.51864 0.065848 2.35967 0.183058 2.24246C0.300268 2.12525 0.45924 2.0594 0.625 2.0594H8.5V1.43065Z"/>
                             </svg>
                         </button>
                     </td>
@@ -150,69 +162,58 @@
                     <p class="text-lg">Turma: <span x-text="modalData.turma"></span></p>
                 </div>
 
-                <!-- Input para título -->
-                <div class="flex items-center">
-                    <div class="w-full">
-                        <label
-                            for="titulo"
-                            class="block text-sm font-medium text-gray-700"
+                    <!-- Input para título -->
+                    <div class="flex items-center" x-data="{ isTituloEditable: false }">
+                        <div class="w-full">
+                            <label class="block text-sm font-medium text-gray-700">Título</label>
+                            <input
+                                type="text"
+                                id="titulo"
+                                name="titulo"
+                                class="disabled:bg-gray-200 disabled:cursor-not-allowed mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
+                                x-model="modalData.titulo"
+                                :disabled="!isTituloEditable"
+                            >
+                            <input type="hidden" name="titulo" x-model="modalData.titulo">
+                        </div>
+                        <button
+                            type="button"
+                            @click="isTituloEditable = !isTituloEditable"
+                            class="ml-4 text-blue-500 hover:text-blue-700"
                         >
-                            Título
-                        </label>
-                        <input
-                            type="text"
-                            id="titulo"
-                            name="titulo"
-                            class="disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                            x-model="modalData.titulo"
-                            :value="modalData.titulo"
-                            disabled
-                        />
+                            <span x-text="isTituloEditable ? 'Bloquear' : 'Alterar'"></span>
+                        </button>
                     </div>
-                    <button
-                        type="button"
-                        @click="document.getElementById('titulo').disabled = !document.getElementById('titulo').disabled"
-                        class="ml-4 text-blue-500 hover:text-blue-700"
-                    >
-                        Alterar
-                    </button>
-                </div>
 
-                <!-- Alterar categoria -->
-                <div class="flex items-center">
-                    <div class="w-full">
-                        <label
-                            for="categoria"
-                            class="block text-sm font-medium text-gray-700"
+                    <!-- Alterar categoria -->
+                    <div class="flex items-center" x-data="{ isCategoriaEditable: false  }">
+                        <div class="w-full">
+                            <label class="block text-sm font-medium text-gray-700">Categoria</label>
+                            <select
+                                id="categoria"
+                                name="categoria_id"
+                                class="disabled:bg-gray-200 disabled:cursor-not-allowed mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm"
+                                x-model="modalData.categoria_id"
+                                :disabled="!isCategoriaEditable"
+                            >
+                                @foreach ($categorias as $categoria)
+                                    <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                                @endforeach
+                            </select>
+                            <input type="hidden" name="categoria_id" x-model="modalData.categoria_id">
+                        </div>
+                        <button
+                            type="button"
+                            @click="isCategoriaEditable = !isCategoriaEditable"
+                            class="ml-4 text-blue-500 hover:text-blue-700"
                         >
-                            Categoria
-                        </label>
-                        <select
-                            id="categoria"
-                            name="categoria_id"
-                            class="disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                            x-model="modalData.categoria"
-                            disabled
-                            :value="modalData.categoria"
-                        >
-                        @foreach ($categorias as $categoria)
-                            <option value="{{ $categoria->id}}" :selected="modalData.categoria === '{{ $categoria->nome }}'">
-                                {{ $categoria->nome }}
-                            </option>
-                        @endforeach
-                        </select>
+                            <span x-text="isCategoriaEditable ? 'Bloquear' : 'Alterar'"></span>
+                        </button>
                     </div>
-                    <button
-                        type="button"
-                        @click="document.getElementById('categoria').disabled = !document.getElementById('categoria').disabled"
-                        class="ml-4 text-blue-500 hover:text-blue-700"
-                    >
-                        Alterar
-                    </button>
-                </div>
+
 
                 <!-- Carga Horária -->
-                <div class="flex items-center">
+                <div class="flex items-center" x-data="{ isCargaHorariaEditable: false }">
                     <div class="w-full">
                         <label
                             for="carga-horaria"
@@ -221,22 +222,30 @@
                             Quantidade de Carga Horária
                         </label>
                         <input
-                            type="number"
+                            type="text"
                             id="carga-horaria"
                             name="carga_horaria"
+                            pattern="^\d{1,3}:[0-5]\d$"
                             class="disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500 mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                            x-model="modalData.cargaHoraria"
-                            :value="modalData.cargaHoraria"
-                            min="0"
-                            disabled
-                        />
+                            x-model="modalData.formattedCargaHoraria"
+                            :disabled="!isCargaHorariaEditable"
+                            x-effect="if(modalData.formattedCargaHoraria && isCargaHorariaEditable) {
+                                const [hours, minutes] = modalData.formattedCargaHoraria.split(':').map(Number);
+                                modalData.cargaHoraria = (hours * 60) + minutes;
+                            }"
+                            placeholder="HH:mm (ex: 02:30)"
+                        >
+                        <p x-show="!/^\d{1,3}:[0-5]\d$/.test(modalData.formattedCargaHoraria)"
+                           class="text-red-500 text-xs mt-1">
+                            Formato inválido. Use HH:mm (ex: 02:30)
+                        </p>
                     </div>
                     <button
                         type="button"
-                        @click="document.getElementById('carga-horaria').disabled = !document.getElementById('carga-horaria').disabled"
+                        @click="isCargaHorariaEditable = !isCargaHorariaEditable"
                         class="ml-4 text-blue-500 hover:text-blue-700"
                     >
-                        Alterar
+                        <span x-text="isCargaHorariaEditable ? 'Bloquear' : 'Alterar'"></span>
                     </button>
                 </div>
 

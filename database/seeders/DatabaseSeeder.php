@@ -53,24 +53,29 @@ class DatabaseSeeder extends Seeder {
 
         Categoria::create([
             'nome' => 'Unidades curriculares optativas/eletivas',
+            'limite_horas' => 120,
         ]);
 
         Categoria::create([
             'nome' => 'Projetos de ensino, pesquisa e extensão',
+            'limite_horas' => 80,
         ]);
 
         Categoria::create([
             'nome' => 'Prática profissional integradora',
+            'limite_horas' => 80,
         ]);
 
         Categoria::create([
             'nome' => 'Práticas desportivas',
+            'limite_horas' => 80,
         ]);
 
         Categoria::create([
             'nome' => 'Práticas artístico-culturais',
+            'limite_horas' => 80,
         ]);
 
-        Certificado::factory(100)->create();
+        Certificado::factory(10)->create();
     }
 }
