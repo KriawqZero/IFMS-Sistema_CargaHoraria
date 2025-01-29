@@ -22,14 +22,13 @@
                 @php
                   if($notification->data['aluno']) {
                     $id =  $notification->data['certificado_id'];
-                    $url = route('professor.certificados.index', ['id'=>$id]);
+                    $url = route('professor.certificados.index');
                   } else {
                     $url = '#';
                   }
                 @endphp
                 <!-- Form que cobre toda a área clicável -->
-                <form
-                    action="{{ $url }}" method="GET"
+                <form action="{{ $url }}" method="GET"
                     class="flex items-center w-full cursor-pointer">
                     @if(isset($id))
                       <input name="id" type="hidden" value={{$id}}>
@@ -66,15 +65,13 @@
             @if ($notifications->count() >= $this->limit)
                 <div wire:loading>
                     <div class="flex justify-center">
-                        <svg class="animate-spin h-6 w-6 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        <svg class="animate-spin h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor"
-                                d="M4 12a8 8 0 018-8v4a4 4 0 100 8H4z"></path>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 100 8H4z"></path>
                         </svg>
                     </div>
                 </div>
-                <button wire:click="loadMore" wire:loading.remove class="text-blue-500 hover:underline">
+                <button wire:click="loadMore" wire:loading.remove class="text-green-500 hover:underline">
                     Carregar mais
                 </button>
             @endif
