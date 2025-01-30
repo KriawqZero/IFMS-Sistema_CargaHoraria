@@ -10,7 +10,7 @@
 
   <title>{{ $titulo . ' - ' . env('APP_NAME') }}</title>
 
-  @vite('resources/scss/main.scss')
+  @vite(['resources/css/main.css', 'resources/css/app.css'])
 </head>
 
 <body>

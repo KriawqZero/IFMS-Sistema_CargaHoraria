@@ -33,6 +33,8 @@ WORKDIR /var/www/html
 # Copie o código da aplicação para dentro do container
 COPY . .
 
+RUN git config --global --add safe.directory /var/www/html
+
 # Instale as dependências do Composer
 RUN composer install --optimize-autoloader --no-dev
 

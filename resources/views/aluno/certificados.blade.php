@@ -53,7 +53,6 @@
       </div>
     </div>
 
-
     <!-- Tabela de Certificados -->
     <x-aluno::certificados-table class="shadow-3xl" :certificados="$certificados->items()" />
 

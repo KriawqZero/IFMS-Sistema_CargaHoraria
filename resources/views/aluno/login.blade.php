@@ -13,7 +13,7 @@
   <title>{{ $titulo . ' - ' . env('APP_NAME') }}</title>
 
   @vite('resources/css/app.css')
-  @vite('resources/scss/main.scss')
+  @vite('resources/css/main.css')
   @vite('resources/js/main.js')
 </head>
 

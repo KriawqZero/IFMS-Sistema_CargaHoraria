@@ -22,7 +22,7 @@
                             </div>
                             <div>
                                 <p class="text-gray-600">Aproveitado:</p>
-                                <p class="font-medium {{ $dados['aproveitado'] >= $dados['limite'] ? 'text-red-500' : 'text-green-600' }}">
+                                <p class="font-medium {{ $dados['aproveitado'] > $dados['limite'] ? 'text-red-500' : 'text-green-600' }}">
                                     {{ $dados['aproveitado'] }}h
                                 </p>
                             </div>

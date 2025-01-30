@@ -89,8 +89,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="21" PontaB="18"/>
         <Pontos>
-            <Ponto Left="58" Top="37"/>
+            <Ponto Left="57" Top="37"/>
             <Ponto Left="48" Top="37"/>
+            <Ponto Left="48" Top="92"/>
+            <Ponto Left="48" Top="92"/>
             <Ponto Left="48" Top="139"/>
         </Pontos>
     </Ligacao>
@@ -159,8 +161,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="25" PontaB="18"/>
         <Pontos>
-            <Ponto Left="86" Top="75"/>
+            <Ponto Left="85" Top="75"/>
             <Ponto Left="76" Top="75"/>
+            <Ponto Left="76" Top="111"/>
+            <Ponto Left="76" Top="111"/>
             <Ponto Left="76" Top="139"/>
         </Pontos>
     </Ligacao>
@@ -357,8 +361,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="82" PontaB="75"/>
         <Pontos>
-            <Ponto Left="911" Top="37"/>
+            <Ponto Left="910" Top="37"/>
             <Ponto Left="901" Top="37"/>
+            <Ponto Left="901" Top="92"/>
+            <Ponto Left="901" Top="92"/>
             <Ponto Left="901" Top="139"/>
         </Pontos>
     </Ligacao>
@@ -392,8 +398,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="86" PontaB="75"/>
         <Pontos>
-            <Ponto Left="925" Top="56"/>
+            <Ponto Left="924" Top="56"/>
             <Ponto Left="915" Top="56"/>
+            <Ponto Left="915" Top="101"/>
+            <Ponto Left="915" Top="101"/>
             <Ponto Left="915" Top="139"/>
         </Pontos>
     </Ligacao>
@@ -545,8 +553,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="124" PontaB="119"/>
         <Pontos>
-            <Ponto Left="197" Top="352"/>
+            <Ponto Left="196" Top="352"/>
             <Ponto Left="187" Top="352"/>
+            <Ponto Left="187" Top="407"/>
+            <Ponto Left="187" Top="407"/>
             <Ponto Left="187" Top="454"/>
         </Pontos>
     </Ligacao>
@@ -580,8 +590,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="126" PontaB="119"/>
         <Pontos>
-            <Ponto Left="212" Top="371"/>
+            <Ponto Left="211" Top="371"/>
             <Ponto Left="202" Top="371"/>
+            <Ponto Left="202" Top="416"/>
+            <Ponto Left="202" Top="416"/>
             <Ponto Left="202" Top="454"/>
         </Pontos>
     </Ligacao>
@@ -615,8 +627,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="128" PontaB="119"/>
         <Pontos>
-            <Ponto Left="244" Top="409"/>
+            <Ponto Left="243" Top="409"/>
             <Ponto Left="234" Top="409"/>
+            <Ponto Left="234" Top="435"/>
+            <Ponto Left="234" Top="435"/>
             <Ponto Left="234" Top="454"/>
         </Pontos>
     </Ligacao>
@@ -650,8 +664,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="130" PontaB="119"/>
         <Pontos>
-            <Ponto Left="258" Top="428"/>
+            <Ponto Left="257" Top="428"/>
             <Ponto Left="248" Top="428"/>
+            <Ponto Left="248" Top="445"/>
+            <Ponto Left="248" Top="445"/>
             <Ponto Left="248" Top="454"/>
         </Pontos>
     </Ligacao>
@@ -757,8 +773,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="224" PontaB="75"/>
         <Pontos>
-            <Ponto Left="944" Top="75"/>
+            <Ponto Left="943" Top="75"/>
             <Ponto Left="934" Top="75"/>
+            <Ponto Left="934" Top="111"/>
+            <Ponto Left="934" Top="111"/>
             <Ponto Left="934" Top="139"/>
         </Pontos>
     </Ligacao>
@@ -792,8 +810,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="230" PontaB="75"/>
         <Pontos>
-            <Ponto Left="959" Top="94"/>
+            <Ponto Left="958" Top="94"/>
             <Ponto Left="949" Top="94"/>
+            <Ponto Left="949" Top="120"/>
+            <Ponto Left="949" Top="120"/>
             <Ponto Left="949" Top="139"/>
         </Pontos>
     </Ligacao>
@@ -827,8 +847,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="232" PontaB="18"/>
         <Pontos>
-            <Ponto Left="100" Top="94"/>
+            <Ponto Left="99" Top="94"/>
             <Ponto Left="90" Top="94"/>
+            <Ponto Left="90" Top="120"/>
+            <Ponto Left="90" Top="120"/>
             <Ponto Left="90" Top="139"/>
         </Pontos>
     </Ligacao>
@@ -862,8 +884,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="238" PontaB="75"/>
         <Pontos>
-            <Ponto Left="973" Top="113"/>
+            <Ponto Left="972" Top="113"/>
             <Ponto Left="963" Top="113"/>
+            <Ponto Left="963" Top="130"/>
+            <Ponto Left="963" Top="130"/>
             <Ponto Left="963" Top="139"/>
         </Pontos>
     </Ligacao>
@@ -932,8 +956,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="335" PontaB="119"/>
         <Pontos>
-            <Ponto Left="230" Top="390"/>
+            <Ponto Left="229" Top="390"/>
             <Ponto Left="220" Top="390"/>
+            <Ponto Left="220" Top="426"/>
+            <Ponto Left="220" Top="426"/>
             <Ponto Left="220" Top="454"/>
         </Pontos>
     </Ligacao>
@@ -967,8 +993,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="346" PontaB="36"/>
         <Pontos>
-            <Ponto Left="464" Top="113"/>
+            <Ponto Left="463" Top="113"/>
             <Ponto Left="454" Top="113"/>
+            <Ponto Left="454" Top="130"/>
+            <Ponto Left="454" Top="130"/>
             <Ponto Left="454" Top="139"/>
         </Pontos>
     </Ligacao>
@@ -1047,8 +1075,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="366" PontaB="361"/>
         <Pontos>
-            <Ponto Left="629" Top="246"/>
+            <Ponto Left="628" Top="246"/>
             <Ponto Left="619" Top="246"/>
+            <Ponto Left="619" Top="269"/>
+            <Ponto Left="619" Top="269"/>
             <Ponto Left="619" Top="284"/>
         </Pontos>
     </Ligacao>
@@ -1155,8 +1185,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="374" PontaB="119"/>
         <Pontos>
-            <Ponto Left="183" Top="333"/>
+            <Ponto Left="182" Top="333"/>
             <Ponto Left="173" Top="333"/>
+            <Ponto Left="173" Top="397"/>
+            <Ponto Left="173" Top="397"/>
             <Ponto Left="173" Top="454"/>
         </Pontos>
     </Ligacao>
@@ -1262,8 +1294,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="399" PontaB="361"/>
         <Pontos>
-            <Ponto Left="643" Top="265"/>
+            <Ponto Left="642" Top="265"/>
             <Ponto Left="633" Top="265"/>
+            <Ponto Left="633" Top="278"/>
+            <Ponto Left="633" Top="278"/>
             <Ponto Left="633" Top="284"/>
         </Pontos>
     </Ligacao>
@@ -1415,8 +1449,10 @@ Davi Nunes</Autores>
         <Largura Valor="1"/>
         <Ligacoes PontaA="426" PontaB="406"/>
         <Pontos>
-            <Ponto Left="591" Top="409"/>
+            <Ponto Left="590" Top="409"/>
             <Ponto Left="581" Top="409"/>
+            <Ponto Left="581" Top="435"/>
+            <Ponto Left="581" Top="435"/>
             <Ponto Left="581" Top="454"/>
         </Pontos>
     </Ligacao>
@@ -1433,7 +1469,7 @@ Davi Nunes</Autores>
         <Itens/>
     </Legenda>
     <Legenda ID="433">
-        <Bounds Height="24" Left="776" Top="355" Width="150"/>
+        <Bounds Height="24" Left="779" Top="344" Width="150"/>
         <DisablePainted Valor="false"/>
         <Texto>Coordenador</Texto>
         <Observacao/>

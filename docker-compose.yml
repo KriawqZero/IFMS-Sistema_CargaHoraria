@@ -15,9 +15,10 @@ services:
       - ./nginx/default.conf:/etc/nginx/sites-available/default
     environment:
       - APP_ENV=production
+      - APP_DEBUG=false
+      - VITE_ENV=production
       - APP_TIMEZONE=America/Cuiaba
       - APP_URL=http://localhost
-      - API_URL=http://localhost:5000/api/
       - APP_LOCALE=pt_BR
       - APP_FALLBACK_LOCALE=pt_BR
       - APP_FAKER_LOCALE=pt_BR
