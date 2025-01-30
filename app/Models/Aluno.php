@@ -47,6 +47,12 @@ class Aluno extends Model implements AuthenticatableContract {
         return null;
     }
 
+    public function getFormatCpfAttribute() {
+        $cpf = $this->cpf;
+        $cpfFormatado = substr($cpf, 0, 3) . '.' . substr($cpf, 3, 3) . '.' . substr($cpf, 6, 3) . '-' . substr($cpf, 9, 2);
+        return $cpfFormatado;
+    }
+
     public function getProfessorIdAttribute() {
       if($this->turma && $this->turma->professor) {
         return $this->turma->professor->id;

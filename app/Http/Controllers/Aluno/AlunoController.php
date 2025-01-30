@@ -58,6 +58,8 @@ class AlunoController extends Controller {
             'senha' => 'required|string',
         ]);
 
+        $credentials['cpf'] = preg_replace('/[^0-9]/', '', $credentials['cpf']);
+
         $token = session('token');
         if (!$token) {
             return back()->withErrors(['message' => 'Permissão negada. Token ausente.'])->withInput();

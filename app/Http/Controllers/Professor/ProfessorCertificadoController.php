@@ -11,56 +11,59 @@ use App\Notifications\ProfessorValidouCertificado;
 class ProfessorCertificadoController extends Controller {
     public function index(Request $request) {
         /** @var \App\Models\Professor $professor */
-        $professor = auth('professor')->user(); // Obtenha o professor autenticado
+        $professor = auth('professor')->user();
+        $turmas = $professor->turmas;
 
-        // Obtenha as turmas do professor
-        $turmas = $professor->turmas()->get();
-
-        // Parâmetros de filtro e pesquisa
-        $pesquisa = $request->input('pesquisa', null);
+        // Parâmetros de filtro
+        $pesquisa = $request->input('pesquisa');
         $turmaId = $request->input('turma', 'todas');
-        $perPage = $request->input('per_page', 10);
         $status = $request->input('status', 'pendentes');
-        $certificadoId = $request->input('id', null);
+        $perPage = $request->input('per_page', 10);
+        $certificadoId = $request->input('id');
 
-        if($certificadoId && $professor->notifications()->where('data->certificado_id', $certificadoId)->exists()) {
-            $professor->notifications()->where('data->certificado_id', $certificadoId)->get()->markAsRead();
+        // Marcar notificação como lida
+        if ($certificadoId) {
+            $professor->notifications()
+                ->where('data->certificado_id', $certificadoId)
+                ->get()
+                ->markAsRead();
         }
 
         $certificados = Certificado::query()
-            ->when($certificadoId, function ($query) use ($certificadoId) {
-                $query->where('id', $certificadoId); // Filtra por ID do certificado, se fornecido
-            })
+            ->when($certificadoId, fn($q) => $q->where('id', $certificadoId))
             ->whereHas('aluno', function ($query) use ($turmas, $status, $pesquisa, $turmaId) {
-                $query->whereIn('turma_id', $turmas->pluck('id')) // Filtra pelas turmas do professor
-                ->when($pesquisa, function ($query, $pesquisa) {
-                    $query->where('nome', 'like', '%' . $pesquisa . '%'); // Adiciona a pesquisa por nome do aluno, se fornecida
-                })
-                ->when($turmaId && $turmaId !== 'todas', function ($query) use ($turmaId) {
-                    $query->where('turma_id', $turmaId); // Filtra por turma, se fornecida
-                })->when($status === 'pendentes', function ($query) {
-                    $query->where('status', 'pendente'); // Filtra por certificados pendentes
-                })->when($status === 'validos', function ($query) {
-                    $query->where('status', 'valido'); // Filtra por certificados validados
-                })->when($status === 'invalidos', function ($query) {
-                    $query->where('status', 'invalido'); // Filtra por certificados invalidados
-                })->when($status === 'todos', function ($query) {
-                    $query->whereIn('status', ['pendente', 'valido', 'invalido']); // Filtra por todos os certificados
-                });
+                $query->whereIn('turma_id', $turmas->pluck('id'))
+                    ->when($turmaId !== 'todas', fn($q) => $q->where('turma_id', $turmaId))
+                    ->when($status !== 'todos', function ($q) use ($status) {
+                        $statusMap = [
+                            'pendentes' => 'pendente',
+                            'validos' => 'valido',
+                            'invalidos' => 'invalido'
+                        ];
+                        $q->where('status', $statusMap[$status]);
+                    })
+                    ->when($pesquisa, function ($q) use ($pesquisa) {
+                        $q->where(function ($query) use ($pesquisa) {
+                            $query->where('nome', 'like', "%$pesquisa%")
+                                ->when(is_numeric(str_replace(['.', '-'], '', $pesquisa)), function ($q) use ($pesquisa) {
+                                    $q->orWhere('cpf', 'like', '%' . preg_replace('/[^0-9]/', '', $pesquisa) . '%');
+                                });
+                        });
+                    });
             })
-            ->with(['aluno.turma']) // Carrega as relações aluno e turma
-            ->latest() // Ordena por data de criação
+            ->with(['aluno.turma'])
+            ->latest()
             ->paginate($perPage)
-            ->appends($request->all()); // Mantém os parâmetros na URL das páginas
+            ->appends($request->query());
 
         return view('professor.certificados', [
             'titulo' => 'Certificados',
             'certificados' => $certificados,
             'turmas' => $turmas,
+            'categorias' => Categoria::all(),
             'pesquisa' => $pesquisa,
             'turma' => $turmaId,
             'per_page' => $perPage,
-            'categorias' => Categoria::all(),
         ]);
     }
 
@@ -85,7 +88,7 @@ class ProfessorCertificadoController extends Controller {
             // Verifica se há dados para atualizar antes de chamar o método update
             if (!empty(array_filter(array_diff_key($atualizacao, ['status' => true])))) {
                 $certificado->update($atualizacao);
-                
+
                 // Retorna uma mensagem de sucesso após a atualização
                 if($request->has('status') && $request->input('status') === 'valido')
                     $certificado->aluno->notify(new ProfessorValidouCertificado(auth('professor')->user(), $certificado));

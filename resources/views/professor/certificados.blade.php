@@ -52,81 +52,77 @@
         </div>
     </div>
 
-    <!-- Certificados Enviados -->
-    <div class="bg-white shadow-md rounded-lg p-6">
+    <div class="bg-white shadow-md rounded-lg p-4 sm:p-6">
         <h2 class="text-lg font-semibold mb-4">Certificados Enviados</h2>
 
-        <!-- Tabela de Certificados -->
-        <table class="w-full text-left border-collapse">
-            <thead>
-                <tr>
-                    <th class="border-b border-gray-300 px-4 py-2">Aluno</th>
-                    <th class="border-b border-gray-300 px-4 py-2">Turma</th>
-                    <th class="border-b border-gray-300 px-4 py-2">Titulo</th>
-                    <th class="border-b border-gray-300 px-4 py-2">Categoria</th>
-                    <th class="border-b border-gray-300 px-4 py-2">Carga Horaria</th>
-                    <th class="border-b border-gray-300 px-4 py-2">Status</th>
-                    <th class="border-b border-gray-300 px-4 py-2">Arquivo</th>
-                    <th class="border-b border-gray-300 px-4 py-2"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Dados simulados -->
-                @forelse($certificados->items() as $certificado)
-                <tr>
-                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->nome}}</td>
-                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->aluno->turma->codigo}}</td>
-                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->titulo}}</td>
-                    <td class="border-b border-gray-200 px-4 py-2">{{$certificado->categoria->nome}}</td>
-                    <td class="border-b border-gray-200 px-4 py-2">
-                    @php
-                      if ($certificado->carga_horaria) {
-                          $horas = number_format($certificado->carga_horaria / 60, 1, ',', '');
-                      } else {
-                          $horas = null;
-                      }
-                    @endphp
-                    {{ $horas ? $horas . ' horas' : '' }}
-                    </td>
-                    <td class="border-b border-gray-200 px-4 py-2">
-                      <span
-                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $certificado->status == 'valido' ? 'bg-green-50 text-green-800' : ($certificado->status == 'pendente' ? 'bg-yellow-50 text-yellow-800' : 'bg-red-50 text-red-800') }}">
-                        {{ $certificado->formatStatus() }}
-                      </span>
-                    </td>
-                    <td class="border-b border-gray-200 px-4 py-2">
-                        <a href="{{url($certificado->src_url)}}" class="text-green-600 hover:text-green-900 hover:underline" target="_blank">Visualizar</a>
-                    </td>
-                    <td class="border-b border-gray-200 px-6 py-2 space-y-2">
-                        <!-- Ícone para abrir o modal -->
-                        <button
-                            @click="showModal = true; modalData = {
-                                id: {{$certificado->id}},
-                                aluno: '{{$certificado->aluno->nome}}',
-                                turma: '{{$certificado->aluno->turma->codigo}}',
-                                categoria: '{{$certificado->categoria->nome}}',
-                                titulo: '{{$certificado->titulo}}',
-                                cargaHoraria: '{{$certificado->carga_horaria}}',
-                                formattedCargaHoraria: '{{ floor($certificado->carga_horaria / 60) }}:{{ str_pad($certificado->carga_horaria % 60, 2, '0', STR_PAD_LEFT) }}'
-                                };"
-                            class="text-green-600 hover:text-green-900"
-                            title="Validar Certificado"
-                        >
-                            <svg class="w-6 h-6" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.0025 1.26315C9.97489 1.25099 9.94466 1.24597 9.9146 1.24855C9.88455 1.25113 9.85562 1.26122 9.83048 1.27789C9.80534 1.29457 9.78479 1.3173 9.77073 1.34399C9.75667 1.37068 9.74954 1.40048 9.75 1.43065V2.6844C9.75 2.85016 9.68415 3.00913 9.56694 3.12634C9.44973 3.24355 9.29076 3.3094 9.125 3.3094H1.25V6.9344H9.125C9.29076 6.9344 9.44973 7.00024 9.56694 7.11746C9.68415 7.23467 9.75 7.39364 9.75 7.5594V8.81315C9.75 8.94815 9.8875 9.03315 10.0025 8.98065L14.9825 5.3144L15.035 5.2794C15.0622 5.26306 15.0847 5.23998 15.1003 5.21238C15.1159 5.18478 15.1241 5.15361 15.1241 5.1219C15.1241 5.09019 15.1159 5.05902 15.1003 5.03142C15.0847 5.00382 15.0622 4.98073 15.035 4.9644L14.9825 4.9294L10.0025 1.26315ZM8.5 1.43065C8.49988 1.17323 8.56925 0.92056 8.70079 0.69929C8.83232 0.478019 9.02115 0.296357 9.24734 0.17347C9.47352 0.0505835 9.72869 -0.00897007 9.9859 0.00109343C10.2431 0.0111569 10.4929 0.0904642 10.7088 0.230647L15.7013 3.90565C15.9076 4.03448 16.0779 4.21373 16.1959 4.4265C16.3139 4.63928 16.3758 4.87859 16.3758 5.1219C16.3758 5.36521 16.3139 5.60451 16.1959 5.81729C16.0779 6.03007 15.9076 6.20931 15.7013 6.33815L10.7088 10.0131C10.4929 10.1533 10.2431 10.2326 9.9859 10.2427C9.72869 10.2528 9.47352 10.1932 9.24734 10.0703C9.02115 9.94744 8.83232 9.76578 8.70079 9.54451C8.56925 9.32323 8.49988 9.07056 8.5 8.81315V8.1844H0.625C0.45924 8.1844 0.300268 8.11855 0.183058 8.00134C0.065848 7.88413 0 7.72516 0 7.5594V2.6844C0 2.51864 0.065848 2.35967 0.183058 2.24246C0.300268 2.12525 0.45924 2.0594 0.625 2.0594H8.5V1.43065Z"/>
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td class="border-b border-gray-200 px-4 py-2 text-center" colspan="5">Nenhum certificado encontrado.</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
+        <div class="overflow-x-auto xl:overflow-visible">
+            <table class="w-full xl:table-fixed min-w-[1100px] xl:min-w-full">
+                <thead>
+                    <tr class="text-xs sm:text-sm xl:text-base">
+                        <th class="border-b border-gray-300 px-1.5 xl:px-3 py-2 w-[14%]">Aluno</th>
+                        <th class="border-b border-gray-300 px-1.5 xl:px-3 py-2 w-[12%]">CPF</th>
+                        <th class="border-b border-gray-300 px-1.5 xl:px-3 py-2 w-[8%]">Turma</th>
+                        <th class="border-b border-gray-300 px-1.5 xl:px-3 py-2 w-[16%]">Titulo</th>
+                        <th class="border-b border-gray-300 px-1.5 xl:px-3 py-2 w-[12%]">Categoria</th>
+                        <th class="border-b border-gray-300 px-1.5 xl:px-3 py-2 w-[10%]">Carga Horária</th>
+                        <th class="border-b border-gray-300 px-1.5 xl:px-3 py-2 w-[10%]">Status</th>
+                        <th class="border-b border-gray-300 px-1.5 xl:px-3 py-2 w-[8%]">Arquivo</th>
+                        <th class="border-b border-gray-300 px-1.5 xl:px-3 py-2 w-[5%]"></th>
+                    </tr>
+                </thead>
+                <tbody class="text-xs sm:text-sm xl:text-base">
+                    @forelse($certificados->items() as $certificado)
+                    <tr>
+                        <td class="border-b border-gray-200 px-1.5 xl:px-3 py-2 truncate max-w-[140px]">{{$certificado->aluno->nome}}</td>
+                        <td class="border-b border-gray-200 px-1.5 xl:px-3 py-2 whitespace-nowrap">{{$certificado->aluno->format_cpf}}</td>
+                        <td class="border-b border-gray-200 px-1.5 xl:px-3 py-2">{{$certificado->aluno->turma->codigo}}</td>
+                        <td class="border-b border-gray-200 px-1.5 xl:px-3 py-2 truncate max-w-[180px]">{{$certificado->titulo}}</td>
+                        <td class="border-b border-gray-200 px-1.5 xl:px-3 py-2 truncate max-w-[120px]">{{$certificado->categoria->nome}}</td>
+                        <td class="border-b border-gray-200 px-1.5 xl:px-3 py-2 whitespace-nowrap">
+                            @php
+                                $horas = $certificado->carga_horaria ? number_format($certificado->carga_horaria / 60, 1, ',', '') : null;
+                            @endphp
+                            {{ $horas ? $horas . 'h' : '' }}
+                        </td>
+                        <td class="border-b border-gray-200 px-1.5 xl:px-3 py-2">
+                            <span class="px-1.5 xl:px-2 inline-flex text-[10px] xl:text-xs leading-5 font-semibold rounded-full {{ $certificado->status == 'valido' ? 'bg-green-50 text-green-800' : ($certificado->status == 'pendente' ? 'bg-yellow-50 text-yellow-800' : 'bg-red-50 text-red-800') }}">
+                                {{ $certificado->formatStatus() }}
+                            </span>
+                        </td>
+                        <td class="border-b border-gray-200 px-1.5 xl:px-3 py-2">
+                            <a href="{{url($certificado->src_url)}}" class="text-green-600 hover:text-green-900 hover:underline text-xs xl:text-sm" target="_blank">Visualizar</a>
+                        </td>
+                        <td class="border-b border-gray-200 px-1.5 xl:px-3 py-2">
+                            <button
+                                @click="showModal = true; modalData = {
+                                    id: {{$certificado->id}},
+                                    aluno: '{{$certificado->aluno->nome}}',
+                                    turma: '{{$certificado->aluno->turma->codigo}}',
+                                    categoria: '{{$certificado->categoria->nome}}',
+                                    titulo: '{{$certificado->titulo}}',
+                                    cargaHoraria: '{{$certificado->carga_horaria}}',
+                                    formattedCargaHoraria: '{{ floor($certificado->carga_horaria / 60) }}:{{ str_pad($certificado->carga_horaria % 60, 2, '0', STR_PAD_LEFT) }}'
+                                    };"
+                                class="text-green-600 hover:text-green-900"
+                                title="Validar Certificado"
+                            >
+                                <svg class="w-6 h-6" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.0025 1.26315C9.97489 1.25099 9.94466 1.24597 9.9146 1.24855C9.88455 1.25113 9.85562 1.26122 9.83048 1.27789C9.80534 1.29457 9.78479 1.3173 9.77073 1.34399C9.75667 1.37068 9.74954 1.40048 9.75 1.43065V2.6844C9.75 2.85016 9.68415 3.00913 9.56694 3.12634C9.44973 3.24355 9.29076 3.3094 9.125 3.3094H1.25V6.9344H9.125C9.29076 6.9344 9.44973 7.00024 9.56694 7.11746C9.68415 7.23467 9.75 7.39364 9.75 7.5594V8.81315C9.75 8.94815 9.8875 9.03315 10.0025 8.98065L14.9825 5.3144L15.035 5.2794C15.0622 5.26306 15.0847 5.23998 15.1003 5.21238C15.1159 5.18478 15.1241 5.15361 15.1241 5.1219C15.1241 5.09019 15.1159 5.05902 15.1003 5.03142C15.0847 5.00382 15.0622 4.98073 15.035 4.9644L14.9825 4.9294L10.0025 1.26315ZM8.5 1.43065C8.49988 1.17323 8.56925 0.92056 8.70079 0.69929C8.83232 0.478019 9.02115 0.296357 9.24734 0.17347C9.47352 0.0505835 9.72869 -0.00897007 9.9859 0.00109343C10.2431 0.0111569 10.4929 0.0904642 10.7088 0.230647L15.7013 3.90565C15.9076 4.03448 16.0779 4.21373 16.1959 4.4265C16.3139 4.63928 16.3758 4.87859 16.3758 5.1219C16.3758 5.36521 16.3139 5.60451 16.1959 5.81729C16.0779 6.03007 15.9076 6.20931 15.7013 6.33815L10.7088 10.0131C10.4929 10.1533 10.2431 10.2326 9.9859 10.2427C9.72869 10.2528 9.47352 10.1932 9.24734 10.0703C9.02115 9.94744 8.83232 9.76578 8.70079 9.54451C8.56925 9.32323 8.49988 9.07056 8.5 8.81315V8.1844H0.625C0.45924 8.1844 0.300268 8.11855 0.183058 8.00134C0.065848 7.88413 0 7.72516 0 7.5594V2.6844C0 2.51864 0.065848 2.35967 0.183058 2.24246C0.300268 2.12525 0.45924 2.0594 0.625 2.0594H8.5V1.43065Z"/>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td class="border-b border-gray-200 px-4 py-2 text-center" colspan="9">Nenhum certificado encontrado.</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
         <div class="mt-8">
-        {{ $certificados->links() }}
+            {{ $certificados->links() }}
         </div>
     </div>
 

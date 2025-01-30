@@ -13,7 +13,7 @@
               name="per_page"
               id="per_page"
               onchange="this.form.submit()"
-              class="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
+              class="px-3 py-2 border bg-white border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
             >
               <option value="5" {{ $perPage == 5 ? 'selected' : '' }}>5</option>
               <option value="10" {{ $perPage == 10 ? 'selected' : '' }}>10</option>
@@ -27,14 +27,14 @@
             name="pesquisa"
             value="{{ request('pesquisa') }}"
             placeholder="Pesquisar por titulo"
-            class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
+            class="w-full bg-white sm:w-auto px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none"
           />
 
 
           <!-- Botão de Buscar -->
           <button
             type="submit"
-            class="w-full sm:w-auto px-6 py-2 bg-green-600 text-white rounded-md font-medium hover:bg-green-700 transition"
+            class="w-full sm:w-auto px-6 py-2 bg-green-600 text-white rounded-xl font-medium hover:bg-green-700 transition"
           >
             Buscar
           </button>
