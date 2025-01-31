@@ -4,113 +4,119 @@ namespace App\Http\Controllers\Professor;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Professor;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Services\Professor\AlunoService;
+use App\Http\Services\Professor\AuthService;
 
-class ProfessorController extends Controller {
+class ProfessorController extends Controller
+{
+    // Injeção de dependência dos serviços
+    public function __construct(
+        private AuthService $authService,
+        private AlunoService $alunoService
+    ) { }
+
+    /**
+     * Exibe o formulário de login
+     *
+     * @return \Illuminate\View\View
+     */
     public function showLoginForm() {
         return view('professor/login', [
-            'titulo' => 'Login Professor', ]);
+            'titulo' => 'Login Professor',
+        ]);
     }
 
+    /**
+     * Processa o login do professor
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function processLogin(Request $request) {
+        try {
+            // Validação básica dos campos
+            $credentials = $request->validate([
+                'login' => 'required|string',
+                'senha' => 'required|string',
+            ]);
+
+            // Tenta autenticar usando o serviço
+            $professor = $this->authService->authenticate(
+                $credentials['login'],
+                $credentials['senha']
+            );
+
+            // Login e redirecionamento
+            auth('professor')->login($professor);
+            return redirect()->route('professor.dashboard');
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors());
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['login' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * Logout do professor
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout() {
         auth('professor')->logout();
-
         return redirect()->route('aluno.login');
     }
 
-    public function listarAlunos(Request $request) {
-        $professor = auth('professor')->user();
-
-        // Recupera todas as turmas associadas ao professor e os alunos relacionados
-        $turmas = $professor->turmas;
-        $alunos = $turmas->pluck('alunos')->flatten();
-        $alunoId = $request->input('id');
-
-        // Se houver um filtro de turma
-        if ($request->has('turma') && $request->turma != 'todas') {
-            $turmaSelecionada = $request->turma;
-            $alunos = $alunos->filter(function($aluno) use ($turmaSelecionada) {
-                return $aluno->turma->codigo == $turmaSelecionada;
-            });
-        }
-
-        // Se houver um filtro de aluno
-        if ($alunoId) {
-            $alunos = $alunos->filter(function($aluno) use ($alunoId) {
-                return $aluno->id == $alunoId;
-            });
-        }
-
-        return view('professor/alunos', [
-            'titulo' => 'Alunos',
-            'professor' => $professor,
-            'alunos' => $alunos,
-            'turmas' => $turmas,
-        ]);
-    }
-
+    /**
+     * Dashboard principal do professor
+     *
+     * @return \Illuminate\View\View
+     */
     public function dashboard() {
-        $professor = auth('professor')->user();
-        $turmas = $professor->turmas;
-
         return view('professor/index', [
             'titulo' => 'Professor',
-            'professor' => $professor,
-            'turmas' => $turmas,
+            'professor' => auth('professor')->user(),
+            'turmas' => $this->alunoService->getTurmasProfessor(auth('professor')->user())
         ]);
     }
 
+    /**
+     * Lista alunos com filtros
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function listarAlunos(Request $request) {
+        try {
+            $filters = [
+                'turma' => $request->input('turma', 'todas'),
+                'aluno_id' => $request->input('id')
+            ];
+
+            return view('professor/alunos', [
+                'titulo' => 'Alunos',
+                'alunos' => $this->alunoService->getAlunosFiltrados(
+                    auth('professor')->user(),
+                    $filters
+                ),
+                'turmas' => $this->alunoService->getTurmasProfessor(auth('professor')->user()),
+                'filters' => $filters
+            ]);
+
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * Tela de validação de certificados
+     *
+     * @return \Illuminate\View\View
+     */
     public function validarCertificados() {
-        $professor = auth('professor')->user();
-
-        return view('professor/validar_certificados', [
+        return view('professor/certificados', [
             'titulo' => "Validar Certificados",
-            'professor' => $professor,
+            'professor' => auth('professor')->user(),
         ]);
     }
-
-    public function processLogin(Request $request) {
-        auth('aluno')->logout();
-        auth('professor')->logout();
-
-        // Valida os campos de entrada.
-        $credentials = $request->validate([
-            'login' => 'required|string',
-            'senha' => 'required|string',
-        ]);
-
-        // Dividir o login em partes para correspondência.
-        $loginParts = explode('.', strtolower($credentials['login']));
-        if (count($loginParts) !== 2) {
-            return redirect()->route('professor.login')
-                ->withErrors(['login' => 'Formato de login inválido. Use primeironome.ultimonome.']);
-        }
-
-        [$primeiroNome, $ultimoNome] = $loginParts;
-
-        // Buscar o professor onde o primeiro e o último nome correspondem ao login fornecido.
-        $professor = Professor::where(DB::raw('LOWER(SUBSTRING_INDEX(nome, " ", 1))'), $primeiroNome)
-            ->where(DB::raw('LOWER(SUBSTRING_INDEX(nome, " ", -1))'), $ultimoNome)
-            ->get() // Busca todos os professores com esse nome.
-            ->filter(function ($professor) use ($credentials) {
-                // Filtra pelo professor cuja senha bate com o hash.
-                return Hash::check($credentials['senha'], $professor->senha);
-            })
-            ->first();
-
-        if (!$professor) {
-            return redirect()->route('professor.login')
-                ->withErrors(['login' => 'Credenciais inválidas.']);
-        }
-
-        // Autenticar o professor.
-        auth('professor')->login($professor);
-
-        // Redirecionar para o dashboard em caso de sucesso.
-        return redirect()->route('professor.dashboard');
-    }
-
-
 }

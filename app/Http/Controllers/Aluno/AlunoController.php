@@ -3,95 +3,90 @@
 namespace App\Http\Controllers\Aluno;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Aluno\AuthService;
+use App\Http\Services\Aluno\CertificadoService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
-use App\Models\Aluno;
-use App\Models\Certificado;
-use Illuminate\Support\Facades\App;
 
 class AlunoController extends Controller {
+    public function __construct(
+        private AuthService $authService,
+        private CertificadoService $certificadoService
+    ) { }
+
+    /**
+     * Exibe o formulário de login do aluno
+     *
+     * @return \Illuminate\View\View
+     */
     public function showLoginForm() {
         return view('aluno/login', [
             'titulo' => 'Entrar',
         ]);
     }
 
+    /**
+     * Página sobre o sistema
+     *
+     * @return \Illuminate\View\View
+     */
     public function sobre() {
         return view('sobre.sobre', [
             'titulo' => 'Sobre',
         ]);
     }
 
+    /**
+     * Dashboard principal do aluno
+     *
+     * @return \Illuminate\View\View
+     */
     public function dashboard() {
-        /** @var App\Models\Aluno $aluno */
-        $aluno = auth('aluno')->user(); // Obter aluno autenticado
+        /** @var \App\Models\Aluno $aluno */
+        $aluno = auth('aluno')->user();
 
-        $certificados = Certificado::where('aluno_id', $aluno->id)
-            ->latest()
-            ->paginate(5);
-
-        /** @disregard P1013 Undefined Method */
         return view('aluno.index', [
             'titulo' => 'Visão Geral',
             'aluno' => $aluno,
             'cargaHorariaTotal' => $aluno->cargaHorariaTotal(),
             'maxCargaHoraria' => $aluno->maxCargaHoraria(),
-            'certificados' => $certificados->items(),
+            'certificados' => $this->certificadoService->getCertificadosAluno($aluno)->items(),
             'curso' => $aluno->curso,
         ]);
-
     }
 
+    /**
+     * Processa o logout do aluno
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout() {
-        Auth::guard('aluno')->logout();
-        Auth::guard('professor')->logout();
+        auth('aluno')->logout();
+        auth('professor')->logout();
         return redirect()->route('aluno.login');
     }
 
-    // Pra login com senha
+    /**
+     * Processa o login do aluno
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function processLogin(Request $request) {
-        auth('professor')->logout();
+        try {
+            $aluno = $this->authService->authenticate(
+                $request->only('cpf', 'senha'),
+                session('token')
+            );
 
-        $credentials = $request->validate([
-            'cpf' => 'required|string',
-            'senha' => 'required|string',
-        ]);
+            auth('aluno')->login($aluno);
+            $request->session()->regenerate();
 
-        $credentials['cpf'] = preg_replace('/[^0-9]/', '', $credentials['cpf']);
+            return redirect()->route('aluno.dashboard');
 
-        $token = session('token');
-        if (!$token) {
-            return back()->withErrors(['message' => 'Permissão negada. Token ausente.'])->withInput();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->errors())->withInput();
+        } catch (\Exception $e) {
+            return back()->withErrors(['message' => $e->getMessage()])->withInput();
         }
-
-        $response = Http::withToken($token)
-                ->get(env('API_URL') . 'Aluno/login', $credentials);
-
-        if (!$response->successful()) {
-            return redirect()->route("aluno.login")->withErrors(['message' => 'Falha ao autenticar usuário.'])->withInput();
-        }
-
-        $responseData = $response->json();
-
-        if (!$responseData['valido']) {
-            return redirect()->route("aluno.login")->withErrors(['message' => 'CPF ou senha incorretos.'])->withInput();
-        }
-
-        // else
-        $aluno = Aluno::updateOrCreate(
-            ['cpf' => $credentials['cpf']],
-            [
-                'nome' => $responseData['nome'] ?? 'Nome não informado',
-                'email' => $responseData['email'] ?? null,
-                'data_nascimento' => $responseData['data_nascimento'] ?? null,
-            ]
-        );
-
-        $request->session()->regenerate();
-        auth('aluno')->login($aluno);
-
-        return redirect()->route('aluno.dashboard');
     }
 }
-
