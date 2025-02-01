@@ -9,7 +9,7 @@ all:
 	php artisan serve
 
 format:
-	blade-formatter "resources/views/**/*.blade.php"
+	blade-formatter "resources/views/**/*.blade.php" --write
 
 # Comando para migrar e popular o banco de dados
 migrate:
