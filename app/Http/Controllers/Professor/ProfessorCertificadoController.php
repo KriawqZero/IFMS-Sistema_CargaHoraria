@@ -79,7 +79,7 @@ class ProfessorCertificadoController extends Controller {
         return [
             'pesquisa' => $request->input('pesquisa'),
             'turma' => $request->input('turma', 'todas'),
-            'status' => $request->input('status', 'pendentes'),
+            'status' => $request->input('status', 'pendente'),
             'per_page' => $request->input('per_page', 10),
             'certificado_id' => $request->input('id')
         ];

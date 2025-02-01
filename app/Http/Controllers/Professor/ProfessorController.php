@@ -87,10 +87,10 @@ class ProfessorController extends Controller
      * @return \Illuminate\View\View
      */
     public function listarAlunos(Request $request) {
-        try {
             $filters = [
                 'turma' => $request->input('turma', 'todas'),
-                'aluno_id' => $request->input('id')
+                'aluno_id' => $request->input('id'),
+                'pesquisa' => $request->input('pesquisa'),
             ];
 
             return view('professor/alunos', [
@@ -103,9 +103,6 @@ class ProfessorController extends Controller
                 'filters' => $filters
             ]);
 
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
     }
 
     /**

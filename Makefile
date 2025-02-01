@@ -1,12 +1,15 @@
 # Makefile para comandos Artisan e Yarn
 
-.PHONY: all serve migrate clear build seed
+.PHONY: all format dev migrate clear build seed
 
 all:
 	yarn build
 	php artisan optimize:clear
 	php artisan migrate:fresh --seed
 	php artisan serve
+
+format:
+	blade-formatter "resources/views/**/*.blade.php"
 
 # Comando para migrar e popular o banco de dados
 migrate:
