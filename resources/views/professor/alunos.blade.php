@@ -16,8 +16,7 @@
             <input type="text" name="pesquisa" placeholder="Nome ou CPF..." value="{{ request('pesquisa') }}"
               class="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-green-300" />
             <select id="turma" name="turma" class="w-1/3 rounded-md border border-gray-300 p-2">
-              <option value="todas" {{ request('turma') == 'todas' ? 'selected' : '' }}>Todas as Turmas
-              </option>
+              <option value="todas" {{ request('turma') == 'todas' ? 'selected' : '' }}>Todas as Turmas</option>
               @foreach ($turmas as $turma)
                 <option value="{{ $turma->codigo }}" {{ request('turma') == $turma->codigo ? 'selected' : '' }}>
                   {{ $turma->codigo }} - {{ $turma->curso->nome ?? 'Sem curso' }}
@@ -47,6 +46,7 @@
               <th class="border-b border-gray-300 px-4 py-2">Ações</th>
             </tr>
           </thead>
+
           <tbody>
             <!-- Dados simulados -->
             @forelse($alunos as $aluno)

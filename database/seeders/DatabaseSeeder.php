@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder {
             'foto_src' => 'default-profile.svg',
         ]);
 
-        Aluno::factory(5)->create();
+        Aluno::factory(20)->create();
 
         Categoria::create([
             'nome' => 'Unidades curriculares optativas/eletivas',
@@ -76,6 +76,6 @@ class DatabaseSeeder extends Seeder {
             'limite_horas' => 80,
         ]);
 
-        Certificado::factory(10)->create();
+        Certificado::factory(200)->create();
     }
 }

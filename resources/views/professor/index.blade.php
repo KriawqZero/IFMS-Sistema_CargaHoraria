@@ -42,14 +42,14 @@
         </div>
       </div>
 
-    <!-- Certificados -->
-    <div class="mt-8 flex flex-col rounded-3xl bg-zinc-200 shadow-2xl">
-      <h1 class="font-regular my-2 px-5 py-2 text-3xl text-gray-700">Ultimos Certificados Recebidos</h1>
-      <div class="-mt-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <x-aluno::certificados-table :certificados="$certificados->items()" :colunas="['aluno', 'categoria', 'data_enviada', 'status']" />
+      <!-- Certificados -->
+      <div class="mt-8 flex flex-col rounded-3xl bg-zinc-200 shadow-2xl">
+        <h1 class="font-regular my-2 px-5 py-2 text-3xl text-gray-700">Ultimos Certificados Recebidos</h1>
+        <div class="-mt-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+          <x-aluno::certificados-table :certificados="$certificados->items()" :colunas="['aluno', 'categoria', 'data_enviada', 'status']" />
+        </div>
       </div>
-    </div>
-    <!-- Fim dos certificados -->
+      <!-- Fim dos certificados -->
 
     </div>
   </div>

@@ -2,25 +2,35 @@
 namespace App\Http\Services\Aluno;
 
 use App\Models\{Aluno, Certificado, Categoria};
+use App\Notifications\AlunoEnviouCertificado;
+use Illuminate\Support\Str;
 
 class CertificadoStorageService {
     public function armazenarCertificado(Aluno $aluno, array $dados): array {
-        $certificado = $this->criarCertificado($aluno, $dados);
-        $this->notificarProfessor($aluno, $certificado);
-
-        return $this->verificarLimitesCategoria($aluno, $certificado);
-    }
-
-    private function criarCertificado(Aluno $aluno, array $dados): Certificado {
-        return Certificado::create([
+        $certificado = Certificado::create([
             'aluno_id' => $aluno->id,
             'titulo' => $dados['titulo'],
             'observacao' => $dados['observacao'],
             'carga_horaria' => $this->converterParaMinutos($dados['carga_horaria']),
             'data_constante' => $dados['data_do_certificado'],
-            'src' => $dados['arquivo']->store("certificados/{$aluno->id}", 'public'),
+            'src' => $this->armazenarArquivoCertificado($aluno->id, $dados['arquivo']),
             'categoria_id' => $dados['categoria_id'],
         ]);
+
+        $this->notificarProfessor($aluno, $certificado);
+
+        return $this->verificarLimitesCategoria($aluno, $certificado);
+    }
+
+    public function armazenarArquivoCertificado(int $alunoId, $arquivo): string {
+        // Gerar nome do arquivo com padrão UUID___pendente.ext
+        $extension = $arquivo->getClientOriginalExtension();
+        $fileName = Str::uuid().'___pendente.'.$extension;
+
+        // Fazer upload com nome personalizado
+        $path = $arquivo->storeAs("certificados/{$alunoId}", $fileName, 'public');
+
+        return $path;
     }
 
     private function converterParaMinutos(string $horas): int {
@@ -31,7 +41,7 @@ class CertificadoStorageService {
     private function notificarProfessor(Aluno $aluno, Certificado $certificado): void {
         if ($aluno->turma?->professor) {
             $aluno->turma->professor->notify(
-                new \App\Notifications\AlunoEnviouCertificado($aluno, $certificado)
+                new AlunoEnviouCertificado($aluno, $certificado)
             );
         }
     }

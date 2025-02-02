@@ -1,11 +1,10 @@
 <?php
 namespace App\Http\Services\Professor;
 
-use App\Models\Categoria;
-use App\Models\Certificado;
-use App\Models\Professor;
+use App\Models\{ Certificado, Categoria, Professor };
 use App\Notifications\ProfessorValidouCertificado;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
 
 class CertificadoService {
     public function getCertificadosFiltrados(Professor $professor, array $filters): LengthAwarePaginator {
@@ -50,12 +49,19 @@ class CertificadoService {
 
     public function atualizarCertificado(int $id, array $data, Professor $professor): Certificado {
         $certificado = Certificado::findOrFail($id);
+        $oldStatus = $certificado->status;
 
         if (isset($data['carga_horaria'])) {
             $data['carga_horaria'] = $this->converterHorasPraMinutos($data['carga_horaria']);
         }
 
         $certificado->update(array_filter($data));
+
+        // Verificar se houve mudança de status
+        if (isset($data['status']) && $data['status'] !== $oldStatus) {
+            $this->atualizarNomeArquivo($certificado, $oldStatus, $data['status']);
+        }
+
 
         if (($data['status'] ?? null) === 'valido') {
             $certificado->aluno->notify(
@@ -64,6 +70,24 @@ class CertificadoService {
         }
 
         return $certificado;
+    }
+
+    private function atualizarNomeArquivo(Certificado $certificado, string $oldStatus, string $novoStatus): void {
+        $caminhoAntigo = $certificado->src;
+
+        // Substituir o status no nome do arquivo
+        $novoCaminho = str_replace(
+            "___$oldStatus",
+            "___$novoStatus",
+            $caminhoAntigo
+        );
+
+        // Renomear arquivo no filesystem
+        if (Storage::disk('public')->exists($caminhoAntigo)) {
+            Storage::disk('public')->move($caminhoAntigo, $novoCaminho);
+            $certificado->src = $novoCaminho;
+            $certificado->save();
+        }
     }
 
     private function converterHorasPraMinutos(string $time): int {

@@ -6,6 +6,8 @@ all:
 	yarn build
 	php artisan optimize:clear
 	php artisan migrate:fresh --seed
+	- rmdir /s /q "./storage/app/public/certificados"
+	- rmdir /s /q "./storage/app/public/perfil"
 	php artisan serve
 
 format:

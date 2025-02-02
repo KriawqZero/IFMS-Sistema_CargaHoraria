@@ -1,12 +1,18 @@
 @props(['certificado', 'colunas'])
 
 <tr>
-  @if(in_array('aluno', $colunas))
+  @if (in_array('aluno', $colunas))
     <td class="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
       <div class="flex items-center">
         <div class="ml-4">
-          <div class="text-sm font-medium leading-5 text-gray-900">
-            {{ $certificado->aluno->nome }}
+          <div class="flex text-sm font-medium leading-5 text-gray-900">
+            <div class="row relative block flex h-8 w-8 overflow-hidden rounded-full shadow focus:outline-none">
+              <img class="h-full w-full object-cover" src="{{ asset('storage/' . $certificado->aluno->foto_src) }}"
+                alt="Foto de perfil">
+            </div>
+            <span class="row mx-2 my-1 flex">
+              {{ $certificado->aluno->nome }} ({{ $certificado->aluno->turma->codigo }})
+            </span>
           </div>
         </div>
       </div>

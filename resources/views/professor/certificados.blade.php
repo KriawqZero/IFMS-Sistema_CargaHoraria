@@ -20,19 +20,24 @@
             <option value="todas">Todas as turmas</option>
             @foreach ($turmas as $turma)
               <option value="{{ $turma->id }}" {{ request('turma') == $turma->id ? 'selected' : '' }}>
-                {{ $turma->codigo }}
+              @php
+                $certificadosPendentes = $turma->alunos->reduce(function ($carry, $aluno) {
+                    return $carry + $aluno->certificados->where('status', 'pendente')->count();
+                }, 0);
+              @endphp
+              {{ $turma->codigo }} ({{ $certificadosPendentes }}) - {{ $turma->curso->nome ?? 'Sem curso' }}
               </option>
             @endforeach
           </select>
 
           <select name="status"
             class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-green-300">
-            <option value="pendente"> Apenas Pendentes</option>
+            <option value="todos" {{ request('status') == 'todos' ? 'selected' : '' }}>Todos</option>
+            <option value="pendente" {{ request('status') == 'pendente' ? 'selected' : '' }}> Apenas Pendentes</option>
             <option value="valido" {{ request('status') == 'valido' ? 'selected' : '' }}> Apenas Válidos
             </option>
             <option value="invalido" {{ request('status') == 'invalido' ? 'selected' : '' }}> Apenas Inválidos
             </option>
-            <option value="todos" {{ request('status') == 'todos' ? 'selected' : '' }}>Todos</option>
           </select>
 
           <button type="submit"
@@ -44,7 +49,7 @@
     </div>
 
     <div class="rounded-lg bg-white p-4 shadow-md sm:p-6">
-      <h2 class="mb-4 text-lg font-semibold">Certificados Enviados</h2>
+      <h2 class="mb-4 text-lg font-semibold">Certificados de Alunos</h2>
 
       <div class="overflow-x-auto xl:overflow-visible">
         <table class="w-full min-w-[1100px] xl:min-w-full xl:table-fixed">
@@ -98,6 +103,7 @@
                     @click="showModal = true; modalData = {
                                     id: {{ $certificado->id }},
                                     aluno: '{{ $certificado->aluno->nome }}',
+                                    cert_src: '{{ url($certificado->src_url) }}',
                                     turma: '{{ $certificado->aluno->turma->codigo }}',
                                     categoria: '{{ $certificado->categoria->nome }}',
                                     titulo: '{{ $certificado->titulo }}',
@@ -149,6 +155,13 @@
               Certificado de <span x-text="modalData.aluno"></span>
             </h3>
             <p class="text-lg">Turma: <span x-text="modalData.turma"></span></p>
+          </div>
+
+          <!-- Arquivo -->
+          <div class="flex items-center">
+            <label class="block text-sm font-medium text-gray-700">Arquivo:</label>
+            <a :href="modalData.cert_src" target="_blank"
+              class="hover:underline ml-4 text-green-500 hover:text-green-700">Visualizar Arquivo</a>
           </div>
 
           <!-- Input para título -->

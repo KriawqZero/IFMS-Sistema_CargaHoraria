@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Professor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CertificadoUpdateRequest;
-use App\Http\Services\Professor\CertificadoService;
-use App\Http\Services\Professor\NotificacaoService;
+use App\Http\Services\Professor\{ CertificadoService, NotificacaoService };
 
 class ProfessorCertificadoController extends Controller {
     public function __construct(
@@ -56,15 +55,13 @@ class ProfessorCertificadoController extends Controller {
                 auth('professor')->user()
             );
 
-            return redirect()
-                ->route('professor.certificados.index')
+            return redirect(url()->previous())
                 ->with('success', $certificado->wasChanged()
                     ? 'Certificado atualizado com sucesso!'
                     : 'Nenhuma alteração realizada.');
 
         } catch (\Exception $e) {
-            return redirect()
-                ->route('professor.certificados.index')
+            return redirect(url()->previous())
                 ->withErrors('Erro ao atualizar o certificado: ' . $e->getMessage());
         }
     }
@@ -79,7 +76,7 @@ class ProfessorCertificadoController extends Controller {
         return [
             'pesquisa' => $request->input('pesquisa'),
             'turma' => $request->input('turma', 'todas'),
-            'status' => $request->input('status', 'pendente'),
+            'status' => $request->input('status', 'todos'),
             'per_page' => $request->input('per_page', 10),
             'certificado_id' => $request->input('id')
         ];
