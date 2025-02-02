@@ -1,17 +1,26 @@
-version: '3.8'
-
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: laravel-app
-    restart: unless-stopped
     networks:
-      - shared_network
+      - shared_network  # Conectando o container do Laravel à rede existente
+    ports:
+      - "80:80"
     volumes:
       - .:/var/www/html
     environment:
       - APP_ENV=production
       - APP_DEBUG=false
+      - VITE_ENV=production
+      - APP_TIMEZONE=America/Cuiaba
+      - COMPOSER_ALLOW_SUPERUSER=1
+      - APP_URL=http://localhost
+      - APP_LOCALE=pt_BR
+      - APP_FALLBACK_LOCALE=pt_BR
+      - APP_FAKER_LOCALE=pt_BR
+      - DB_CONNECTION=mariadb
       - DB_HOST=mariadb_local
       - DB_PORT=3306
       - DB_DATABASE=sistema_carga_horaria
@@ -22,20 +31,9 @@ services:
     env_file:
       - .env
 
-  webserver:
-    image: nginx:alpine
-    container_name: laravel-webserver
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    networks:
-      - shared_network
-    volumes:
-      - .:/var/www/html
-      - ./docker/nginx:/etc/nginx/conf.d
-    depends_on:
-      - app
 
 networks:
   shared_network:
-    external: true
+    external: true  # Isso indica que a rede 'shared_network' já existe fora do docker-compose
+
+
