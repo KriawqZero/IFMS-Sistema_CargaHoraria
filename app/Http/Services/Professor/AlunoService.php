@@ -6,16 +6,6 @@ use App\Models\Professor;
 
 class AlunoService {
     /**
-     * Obtém turmas do professor
-     *
-     * @param  Professor  $professor
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getTurmasProfessor(Professor $professor) {
-        return $professor->turmas()->withCount('alunos')->get();
-    }
-
-    /**
      * Obtém alunos filtrados
      *
      * @param  Professor  $professor

@@ -6,15 +6,13 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerifyPermission
-{
+class VerifyPermission {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $cargo): Response
-    {
+    public function handle(Request $request, Closure $next, string $cargo): Response {
         /** @var \App\Models\Professor $professor */
         $professor = auth('professor')->user();
 

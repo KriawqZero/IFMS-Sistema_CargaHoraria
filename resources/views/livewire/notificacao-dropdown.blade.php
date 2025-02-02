@@ -1,4 +1,4 @@
-<div x-data="{ notificationOpen: false }" class="relative">
+<div wire:poll.10s wire:poll.keep-alive x-data="{ notificationOpen: false }" class="relative">
   <button @click="notificationOpen = !notificationOpen" class="mx-4 flex text-gray-400 focus:outline-none">
     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -19,6 +19,13 @@
   <div x-cloak x-show="notificationOpen"
     class="absolute right-0 z-10 mt-2 w-80 overflow-hidden rounded-lg bg-white shadow-xl"
     style="max-height: 30rem; overflow-y: auto;">
+    <div class="flex items-center justify-between bg-green-50 px-4 py-3 shadow">
+      <h3 class="text-sm font-medium text-green-800">Notificações</h3>
+      @if ($usuarioLogado->unreadNotifications->count() > 0)
+        <button wire:click="markAllAsRead" class="text-green-500 transition hover:underline focus:outline-none">Marcar
+          todas como lidas</button>
+      @endif
+    </div>
     @forelse($notifications as $notification)
       <div
         class="group flex items-center justify-between rounded-lg bg-white px-4 py-3 shadow ring-green-300 transition hover:shadow-md hover:ring-2">

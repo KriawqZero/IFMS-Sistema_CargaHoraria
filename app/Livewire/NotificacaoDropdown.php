@@ -5,11 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-
 class NotificacaoDropdown extends Component {
-     use WithPagination;
-
-    protected $paginationTheme = 'tailwind'; // Estilização de paginação
+    use WithPagination;
 
     protected $listeners = ['loadMore']; // Ouve o evento loadMore
 
@@ -31,15 +28,11 @@ class NotificacaoDropdown extends Component {
 
     public function removeNotification($notificationId) {
         $notification = $this->usuarioLogado->notifications()->find($notificationId);
-        if ($notification) {
+        if ($notification)
             $notification->delete();
-            session()->flash('success', 'Notificação removida com sucesso.');
-        } else {
-            session()->flash('error', 'Falha ao remover a notificação.');
-        }
+
         $this->dispatch('notificationsUpdated'); // Atualiza a lista após a remoção
     }
-
 
 
     public function render() {
@@ -51,11 +44,8 @@ class NotificacaoDropdown extends Component {
         ]);
     }
 
-    public function markAsRead($notificationId) {
-        $notification = $this->usuarioLogado->notifications()->find($notificationId);
-
-        if ($notification) {
-            $notification->markAsRead();
-        }
+    public function markAllAsRead() {
+        $this->usuarioLogado->unreadNotifications->markAsRead();
+        $this->dispatch('notificationsUpdated'); // Atualiza a lista após marcar como lido
     }
 }

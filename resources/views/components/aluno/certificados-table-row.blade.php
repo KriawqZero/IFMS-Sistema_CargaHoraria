@@ -1,6 +1,17 @@
 @props(['certificado', 'colunas'])
 
 <tr>
+  @if(in_array('aluno', $colunas))
+    <td class="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
+      <div class="flex items-center">
+        <div class="ml-4">
+          <div class="text-sm font-medium leading-5 text-gray-900">
+            {{ $certificado->aluno->nome }}
+          </div>
+        </div>
+      </div>
+    </td>
+  @endif
   @if (in_array('categoria', $colunas))
     <td class="whitespace-no-wrap border-b border-gray-200 px-6 py-4">
       <div class="flex items-center">

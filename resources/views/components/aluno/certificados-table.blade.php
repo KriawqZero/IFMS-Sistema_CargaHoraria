@@ -18,6 +18,11 @@
   <table class="min-w-full">
     <thead class="hidden md:table-header-group">
       <tr>
+        @if (in_array('aluno', $colunas))
+          <th
+            class="border-b border-gray-200 bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">
+            Aluno</th>
+        @endif
         @if (in_array('categoria', $colunas))
           <th
             class="border-b border-gray-200 bg-gray-50 px-6 py-3 text-left text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">

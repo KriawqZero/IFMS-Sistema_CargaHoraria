@@ -1,11 +1,8 @@
 <?php
 
-use App\Http\Controllers\Professor\ProfessorController;
-use App\Http\Controllers\Professor\ProfessorCertificadoController;
-use App\Http\Middleware\VerifyAuth;
+use App\Http\Controllers\Professor\{ ProfessorController, ProfessorCursoController, ProfessorCertificadoController, ProfessorAlunoController, CsvController }; use App\Http\Middleware\VerifyPermission;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Professor\CsvController;
-use App\Http\Middleware\VerifyPermission;
+use App\Http\Middleware\VerifyAuth;
 
 // Grupo de rotas do professor (nomes prefixados com 'professor.')
 Route::name('professor.')->group(function() {
@@ -27,7 +24,7 @@ Route::name('professor.')->group(function() {
         Route::get('professor/dashboard', [ProfessorController::class, 'dashboard'])
             ->name('dashboard');
 
-        Route::get('professor/alunos', [ProfessorController::class, 'listarAlunos'])
+        Route::get('professor/alunos', [ProfessorAlunoController::class, 'listarAlunos'])
             ->name('alunos.index');
 
         Route::get('/coord/cadastrar-alunos', [CsvController::class, 'create'])->name('create.alunos');
@@ -42,5 +39,26 @@ Route::name('professor.')->group(function() {
             Route::get('/', [ProfessorCertificadoController::class, 'index'])->name('index');
             Route::patch('/patch/{id}', [ProfessorCertificadoController::class, 'patch'])->name('patch');
         });
+
+        // Rotas de cursos do professor
+        Route::prefix('professor/cursos')->name('cursos.')->group(function() {
+            // Rota para listar cursos
+            Route::get('/', [ProfessorCursoController::class, 'index'])->name('index');
+            // Rota para criar um curso
+            Route::get('/criar', [ProfessorCursoController::class, 'create'])->name('create');
+            // Rota para editar um curso
+            Route::get('/{id}/edit', [ProfessorCursoController::class, 'edit'])->name('edit');
+
+            // Grupo de rotas protegidas por permissão de coordenador
+            Route::middleware([VerifyPermission::class . ':coordenador'])->group(function() {
+                // Rota para armazenar um curso
+                Route::post('/', [ProfessorCursoController::class, 'store'])->name('store');
+                // Rota para atualizar um curso
+                Route::put('/{id}', [ProfessorCursoController::class, 'put'])->name('update');
+                // Rota para deletar um curso
+                Route::delete('/{id}', [ProfessorCursoController::class, 'destroy'])->name('destroy');
+            });
+        });
     });
 });
+

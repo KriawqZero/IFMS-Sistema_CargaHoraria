@@ -10,6 +10,7 @@ class Curso extends Model {
 
     protected $fillable = [
         'nome',
+        'sigla'
     ];
 
     public function coordenador() {

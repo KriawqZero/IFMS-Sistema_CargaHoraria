@@ -67,10 +67,11 @@
       <span class="mx-3">Turmas</span>
     </a>
 
-    <a class="{{ request()->routeIs('') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
-      href="">
+    <a class="{{ request()->routeIs('professor.cursos.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+      href="{{ route('professor.cursos.index') }}">
       <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15,6.99l1.08,3.03h-2.16l1.08-3.03ZM6,18V0h-1c-1.66,0-3,1.34-3,3v15.77c.55-.49,1.26-.77,2-.77h2ZM2,22c0,1.1,.9,2,2,2H22v-4H4c-1.1,0-2,.9-2,2ZM22,2V18H8V0h12c1.1,0,2,.9,2,2Zm-2.37,12.02l-3.22-9.02c-.22-.6-.77-.99-1.41-.99s-1.19,.39-1.41,1l-3.22,9.02h2.12l.71-2h3.59l.71,2h2.12Z"/>
+        <path
+          d="M15,6.99l1.08,3.03h-2.16l1.08-3.03ZM6,18V0h-1c-1.66,0-3,1.34-3,3v15.77c.55-.49,1.26-.77,2-.77h2ZM2,22c0,1.1,.9,2,2,2H22v-4H4c-1.1,0-2,.9-2,2ZM22,2V18H8V0h12c1.1,0,2,.9,2,2Zm-2.37,12.02l-3.22-9.02c-.22-.6-.77-.99-1.41-.99s-1.19,.39-1.41,1l-3.22,9.02h2.12l.71-2h3.59l.71,2h2.12Z" />
       </svg>
       <span class="mx-3">Cursos</span>
     </a>

@@ -70,5 +70,15 @@ class CertificadoService {
         [$hours, $minutes] = explode(':', $time);
         return ($hours * 60) + $minutes;
     }
+
+    public function getUltimosCertificadosProfessor(Professor $professor, int $perPage = 5): LengthAwarePaginator {
+        return Certificado::query()
+            ->with(['aluno.turma'])
+            ->whereHas('aluno', function ($query) use ($professor) {
+                $query->whereIn('turma_id', $professor->turmas->pluck('id'));
+            })
+            ->latest()
+            ->paginate($perPage);
+    }
 }
 

@@ -103,7 +103,7 @@
                                     titulo: '{{ $certificado->titulo }}',
                                     cargaHoraria: '{{ $certificado->carga_horaria }}',
                                     formattedCargaHoraria: '{{ floor($certificado->carga_horaria / 60) }}:{{ str_pad($certificado->carga_horaria % 60, 2, '0', STR_PAD_LEFT) }}'
-                                    };"
+                                  };"
                     class="text-green-600 hover:text-green-900" title="Validar Certificado">
                     <svg class="h-6 w-6" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path

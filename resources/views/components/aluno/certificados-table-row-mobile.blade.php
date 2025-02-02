@@ -15,6 +15,9 @@
         @endif
       </button>
       <div x-show="open" class="mt-2 text-base text-gray-900">
+        @if (in_array('aluno', $colunas))
+          <p><strong>Aluno:</strong> {{ $certificado->aluno->nome }}</p>
+        @endif
         @if (in_array('categoria', $colunas))
           <p><strong>Categoria:</strong> {{ $certificado->categoria->nome }}</p>
         @endif
