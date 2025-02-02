@@ -57,7 +57,7 @@
               </svg>
               <span>
                 PENDENTE: {{ $aluno->cargaHorariaTotal() }}h /
-                {{ $aluno->turma->carga_horaria_minima }}h
+                {{ $aluno->turma->carga_horaria_minima ?? '999' }}h
               </span>
             </p>
           @endif
