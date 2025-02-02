@@ -128,7 +128,11 @@ class Aluno extends Model implements AuthenticatableContract {
     }
 
     public function maxCargaHoraria() {
-        return $this->turma->carga_horaria_minima;
+        if($this->turma && $this->turma->carga_horaria_minima) {
+            return $this->turma->carga_horaria_minima;
+        }
+
+        return 999;
     }
 
     public function paginarCertificados($maxItens = 10) {
