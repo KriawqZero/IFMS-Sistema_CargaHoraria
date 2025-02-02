@@ -60,5 +60,5 @@ RUN php artisan key:generate
 VOLUME ["/var/www/html/storage"]
 
 # Comando para iniciar o Nginx e PHP-FPM
-CMD ["/bin/sh", "-c", "service nginx start && php-fpm"]
+ENTRYPOINT ["./entrypoint.sh"]
 
