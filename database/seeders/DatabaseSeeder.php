@@ -40,16 +40,9 @@ class DatabaseSeeder extends Seeder {
         /*Professor::factory(3)->create();*/
 
         Curso::factory(2)->create();
-        Turma::factory(3)->create();
 
-        Aluno::create([
-            'cpf' => '00000000000',
-            'data_nascimento' => '2006-09-01',
-            'turma_id' => Turma::inRandomOrder()->first()->id,
-            'foto_src' => 'default-profile.svg',
-        ]);
 
-        Aluno::factory(20)->create();
+        //Aluno::factory(20)->create();
 
         Categoria::create([
             'nome' => 'Unidades curriculares optativas/eletivas',
@@ -76,6 +69,5 @@ class DatabaseSeeder extends Seeder {
             'limite_horas' => 80,
         ]);
 
-        Certificado::factory(40)->create();
     }
 }
