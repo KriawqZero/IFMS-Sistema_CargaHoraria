@@ -11,6 +11,7 @@
     <title>{{ $titulo . ' - ' . env('APP_NAME') }}</title>
 
     @vite(['resources/css/main.css', 'resources/css/app.css'])
+    @livewireStyles
   </head>
 
   <body>
@@ -26,15 +27,19 @@
 
         <main style="" class="flex-1 overflow-y-auto overflow-x-hidden bg-zinc-300">
           @if ($errors->any())
-            <x-alerts::erro-alert :erros="$errors->all()" timeout='10000' />
+            <x-alerts::erro-alert :erros="$errors->all()" timeout="10000" />
           @endif
 
-          @if (session('success'))
-            <x-alerts::success-alert :mensagem="session('success')" timeout='10000' />
+          @if (session()->has('success'))
+            <x-alerts::success-alert :mensagem="session('success')" timeout="10000" />
           @endif
 
-          @if (session('info'))
-            <x-alerts::info-alert :mensagem="session('info')" timeout='10000' />
+          @if (session()->has('info'))
+            <x-alerts::info-alert :mensagem="session('info')" timeout="10000" />
+          @endif
+
+          @if (session()->has('error'))
+            <x-alerts::erro-alert :erros="[session('error')]" timeout="10000" />
           @endif
 
           <div class="container mx-auto px-6 py-8">
@@ -44,7 +49,7 @@
       </div>
     </div>
 
-    @livewireStyles
+    @stack('scripts')
     @livewireScripts
   </body>
 

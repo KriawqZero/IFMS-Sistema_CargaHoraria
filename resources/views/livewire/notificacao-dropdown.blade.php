@@ -1,4 +1,4 @@
-<div wire:poll.10s wire:poll.keep-alive x-data="{ notificationOpen: false }" class="relative">
+<div wire:poll.15s.keep-alive x-data="{ notificationOpen: false }" class="relative">
   <button @click="notificationOpen = !notificationOpen" class="mx-4 flex text-gray-400 focus:outline-none">
     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

@@ -48,8 +48,7 @@
           </thead>
 
           <tbody>
-            <!-- Dados simulados -->
-            @forelse($alunos as $aluno)
+            @forelse($alunos->items() as $aluno)
               <tr>
                 <td class="flex border-b border-gray-200 px-4 py-2">
                   <div class="row relative block flex h-8 w-8 overflow-hidden rounded-full shadow focus:outline-none">
@@ -85,12 +84,17 @@
               </tr>
             @empty
               <tr>
-                <td class="border-b border-gray-200 px-4 py-2 text-center" colspan="3">Nenhum aluno
+                <td class="border-b border-gray-200 px-4 py-2 text-center" colspan="7">Nenhum aluno
                   encontrado.</td>
               </tr>
             @endforelse
           </tbody>
         </table>
+      </div>
+
+      <!-- Paginação -->
+      <div class="mt-8">
+        {{ $alunos->links() }}
       </div>
     </div>
   </div>

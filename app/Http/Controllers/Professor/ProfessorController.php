@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Professor\AuthService;
 use App\Http\Services\Professor\CertificadoService;
 use App\Http\Services\Professor\TurmaService;
+use App\Models\Professor;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class ProfessorController extends Controller
 {
@@ -48,15 +52,46 @@ class ProfessorController extends Controller
                 $credentials['senha']
             );
 
+            // Verifica se o professor é um novo usuário
+            if ($professor->primeiro_acesso) {
+                // Se for, redireciona para a página de troca de senha
+                auth('professor')->login($professor);
+                return redirect()->route('professor.trocarSenha');
+            }
+
             // Login e redirecionamento
             auth('professor')->login($professor);
             return redirect()->route('professor.dashboard');
 
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             return redirect()->back()->withErrors($e->errors());
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['login' => $e->getMessage()]);
         }
+    }
+
+    public function trocarSenhaForm() {
+        return view('professor.trocarSenha', [
+            'titulo' => 'Trocar Senha',
+        ]);
+    }
+
+    public function trocarSenha(Request $request) {
+        // Validação das senhas
+        $request->validate([
+            'nova_senha' => 'required|string|min:8|confirmed',
+        ]);
+
+        $professor = auth('professor')->user();
+
+        // Salva as alterações
+        Professor::where('id', $professor->id)->update([
+            'senha' => Hash::make($request->nova_senha),
+            'primeiro_acesso' => false,
+        ]);
+
+        // Redireciona para o dashboard após a troca de senha
+        return redirect()->route('professor.dashboard')->with('success', 'Senha alterada com sucesso!');
     }
 
     /**

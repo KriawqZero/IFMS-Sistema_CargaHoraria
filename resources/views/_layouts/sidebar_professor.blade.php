@@ -67,6 +67,15 @@
       <span class="mx-3">Turmas</span>
     </a>
 
+    <a class="{{ request()->routeIs('professor.professores.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+      href="{{ route('professor.professores.index') }}">
+      <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.043,14H7.957A4.963,4.963,0,0,0,3,18.957V24H21V18.957A4.963,4.963,0,0,0,16.043,14Z" />
+        <circle cx="12" cy="6" r="6" />
+      </svg>
+      <span class="mx-3">Professores</span>
+    </a>
+
     <a class="{{ request()->routeIs('professor.cursos.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
       href="{{ route('professor.cursos.index') }}">
       <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

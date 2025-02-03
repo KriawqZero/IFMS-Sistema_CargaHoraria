@@ -20,12 +20,12 @@
             <option value="todas">Todas as turmas</option>
             @foreach ($turmas as $turma)
               <option value="{{ $turma->id }}" {{ request('turma') == $turma->id ? 'selected' : '' }}>
-              @php
-                $certificadosPendentes = $turma->alunos->reduce(function ($carry, $aluno) {
-                    return $carry + $aluno->certificados->where('status', 'pendente')->count();
-                }, 0);
-              @endphp
-              {{ $turma->codigo }} ({{ $certificadosPendentes }}) - {{ $turma->curso->nome ?? 'Sem curso' }}
+                @php
+                  $certificadosPendentes = $turma->alunos->reduce(function ($carry, $aluno) {
+                      return $carry + $aluno->certificados->where('status', 'pendente')->count();
+                  }, 0);
+                @endphp
+                {{ $turma->codigo }} ({{ $certificadosPendentes }}) - {{ $turma->curso->nome ?? 'Sem curso' }}
               </option>
             @endforeach
           </select>
@@ -161,7 +161,7 @@
           <div class="flex items-center">
             <label class="block text-sm font-medium text-gray-700">Arquivo:</label>
             <a :href="modalData.cert_src" target="_blank"
-              class="hover:underline ml-4 text-green-500 hover:text-green-700">Visualizar Arquivo</a>
+              class="ml-4 text-green-500 hover:text-green-700 hover:underline">Visualizar Arquivo</a>
           </div>
 
           <!-- Input para título -->

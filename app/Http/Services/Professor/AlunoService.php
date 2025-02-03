@@ -3,6 +3,7 @@ namespace App\Http\Services\Professor;
 
 use App\Models\Aluno;
 use App\Models\Professor;
+use App\Models\Turma;
 
 class AlunoService {
     /**
@@ -12,8 +13,12 @@ class AlunoService {
      * @param  array  $filters
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getAlunosFiltrados(Professor $professor, array $filters) {
-        $turmas = $professor->turmas;
+    public function getAlunosFiltrados(Professor $professor, array $filters, int $perPage = 10) {
+        if($professor->cargo !== 'professor') {
+            $turmas = Turma::all();
+        } else {
+            $turmas = $professor->turmas;
+        }
 
         $query = Aluno::whereHas('turma', function($q) use ($turmas) {
             $q->whereIn('id', $turmas->pluck('id'));
@@ -30,9 +35,11 @@ class AlunoService {
                 $q->where('nome', 'like', "%$pesquisa%")
                     ->orWhere('cpf', 'like', "%$pesquisa%");
             });
-        });
+        })->orderBy('nome')
+            ->paginate($perPage)
+            ->appends($filters);
 
 
-        return $query->get();
+        return $query;
     }
 }

@@ -76,6 +76,6 @@ class DatabaseSeeder extends Seeder {
             'limite_horas' => 80,
         ]);
 
-        Certificado::factory(200)->create();
+        Certificado::factory(40)->create();
     }
 }

@@ -1,6 +1,5 @@
 @props(['erros', 'timeout'])
 
-<!-- Erro -->
 <div x-data="{ showError: 'true' }" x-show="showError" x-transition:enter="transition ease-out duration-300 transform"
   x-transition:enter-start="translate-x-full opacity-0" x-transition:enter-end="translate-x-0 opacity-100"
   x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-x-0 opacity-100"

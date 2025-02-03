@@ -40,6 +40,8 @@
         <a href="{{ route('perfil.index') }}"
           class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Perfil</a>
         @if (auth('professor')->check())
+          <a href="{{ route('professor.trocarSenha') }}"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Trocar Senha</a>
           <a href="{{ route('professor.logout') }}"
             class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Sair</a>
         @else

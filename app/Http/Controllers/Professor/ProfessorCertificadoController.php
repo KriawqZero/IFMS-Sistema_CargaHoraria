@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CertificadoUpdateRequest;
 use App\Http\Services\Professor\{ CertificadoService, NotificacaoService };
+use App\Models\Turma;
 
 class ProfessorCertificadoController extends Controller {
     public function __construct(
@@ -31,10 +32,16 @@ class ProfessorCertificadoController extends Controller {
             );
         }
 
+        if($professor->cargo !== 'professor') {
+            $turmas = Turma::all();
+        } else {
+            $turmas = $professor->turmas;
+        }
+
         return view('professor.certificados', [
             'titulo' => 'Certificados',
             'certificados' => $this->certificadoService->getCertificadosFiltrados($professor, $filters),
-            'turmas' => $professor->turmas,
+            'turmas' => $turmas,
             'categorias' => $this->certificadoService->getTodasCategorias(),
             'filters' => $filters
         ]);

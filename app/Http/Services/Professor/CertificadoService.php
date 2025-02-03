@@ -8,6 +8,23 @@ use Illuminate\Support\Facades\Storage;
 
 class CertificadoService {
     public function getCertificadosFiltrados(Professor $professor, array $filters): LengthAwarePaginator {
+        if ($professor->cargo !== 'professor') {
+            return Certificado::query()
+                ->with(['aluno.turma'])
+                ->when($filters['certificado_id'], fn($q) => $q->where('id', $filters['certificado_id']))
+                ->whereHas('aluno', function ($query) use ($filters) {
+                    $query
+                        ->when($filters['status'] !== 'todos',
+                            fn($q) => $q->where('status', $this->mapStatus($filters['status']))
+                        )->when($filters['pesquisa'],
+                            fn($q) => $this->aplicarFiltrosDePesquisa($q, $filters['pesquisa'])
+                        )->when($filters['turma'] !== 'todas', fn($q) => $q->where('turma_id', $filters['turma']));
+                })
+                ->latest()
+                ->paginate($filters['per_page'])
+                ->appends($filters);
+        }
+
         return Certificado::query()
             ->with(['aluno.turma'])
             ->when($filters['certificado_id'], fn($q) => $q->where('id', $filters['certificado_id']))
@@ -23,7 +40,7 @@ class CertificadoService {
         $query->whereIn('turma_id', $professor->turmas->pluck('id'))
             ->when($filters['turma'] !== 'todas', fn($q) => $q->where('turma_id', $filters['turma']))
             ->when($filters['status'] !== 'todos', fn($q) => $q->where('status', $this->mapStatus($filters['status'])))
-            ->when($filters['pesquisa'], fn($q) => $this->applySearchFilters($q, $filters['pesquisa']));
+            ->when($filters['pesquisa'], fn($q) => $this->aplicarFiltrosDePesquisa($q, $filters['pesquisa']));
     }
 
     private function mapStatus(string $status): string {
@@ -34,7 +51,7 @@ class CertificadoService {
         return $status;
     }
 
-    private function applySearchFilters($query, string $search): void {
+    private function aplicarFiltrosDePesquisa($query, string $search): void {
         $query->where(function ($q) use ($search) {
             $q->where('nome', 'like', "%$search%")
                 ->when(is_numeric($cleanCpf = preg_replace('/[^0-9]/', '', $search)), function ($q) use ($cleanCpf) {
@@ -96,6 +113,13 @@ class CertificadoService {
     }
 
     public function getUltimosCertificadosProfessor(Professor $professor, int $perPage = 5): LengthAwarePaginator {
+        if($professor->cargo !== 'professor') {
+            return Certificado::query()
+                ->with(['aluno.turma'])
+                ->latest()
+                ->paginate($perPage);
+        }
+
         return Certificado::query()
             ->with(['aluno.turma'])
             ->whereHas('aluno', function ($query) use ($professor) {
