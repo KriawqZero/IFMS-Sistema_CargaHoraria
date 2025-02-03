@@ -1,14 +1,20 @@
 <?php
 
-use App\Http\Controllers\Professor\{ ProfessorController, ProfessorCursoController, ProfessorCertificadoController, ProfessorAlunoController, CsvController, ProfessorProfessorController}; use App\Http\Middleware\VerifyPermission;
+use App\Http\Controllers\Professor\{ ProfessorController, ProfessorCursoController, ProfessorCertificadoController, ProfessorAlunoController, CsvController, ProfessorCRUDController}; use App\Http\Middleware\VerifyPermission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\VerifyAuth;
 use App\Http\Middleware\VerifyPrimeiroAcesso;
 
 // Grupo de rotas do professor (nomes prefixados com 'professor.')
 Route::name('professor.')->group(function() {
+    // Rota de formulario de login do professor
+    Route::get('login/professor', [ProfessorController::class, 'showLoginForm'])
+        ->middleware([VerifyAuth::class . ':none'])
+        ->name('login');
+
     // Rota de processamento do login do professor
     Route::post('professor', [ProfessorController::class, 'processLogin'])
+        ->middleware([VerifyAuth::class . ':none'])
         ->name('login.post');
 
     // Rota de logout do professor
@@ -26,10 +32,6 @@ Route::name('professor.')->group(function() {
 
     // Grupo de rotas protegidas por autenticação
     Route::middleware([VerifyAuth::class . ':professor', VerifyPrimeiroAcesso::class])->group(function() {
-        // Rota de formulario de login do professor
-        Route::get('login/professor', [ProfessorController::class, 'showLoginForm'])
-        ->name('login');
-
         // Rota de dashboard do professor
         Route::get('professor', [ProfessorController::class, 'dashboard'])
             ->name('dashboard');
@@ -55,19 +57,19 @@ Route::name('professor.')->group(function() {
 
         Route::prefix('professor/professores')->name('professores.')->group(function () {
             // Rota para listar professores
-            Route::get('/', [ProfessorProfessorController::class, 'index'])->name('index');
+            Route::get('/', [ProfessorCRUDController::class, 'index'])->name('index');
             // Rota para criar um professor
-            Route::get('/criar', [ProfessorProfessorController::class, 'create'])->name('create');
+            Route::get('/criar', [ProfessorCRUDController::class, 'create'])->name('create');
             // Rota para editar um professor
-            Route::get('/edit/{id}', [ProfessorProfessorController::class, 'edit'])->name('edit');
+            Route::get('/edit/{id}', [ProfessorCRUDController::class, 'edit'])->name('edit');
 
             Route::middleware([VerifyPermission::class . ':coordenador'])->group(function() {
                 // Rota para armazenar um professor
-                Route::post('/criar1', [ProfessorProfessorController::class, 'store'])->name('store');
+                Route::post('/criar', [ProfessorCRUDController::class, 'store'])->name('store');
                 // Rota para atualizar um professor
-                Route::put('/edit/{id}', [ProfessorProfessorController::class, 'put'])->name('update');
+                Route::patch('/edit/{id}', [ProfessorCRUDController::class, 'patch'])->name('update');
                 // Rota para deletar um professor
-                Route::delete('/{id}', [ProfessorProfessorController::class, 'destroy'])->name('destroy');
+                Route::delete('/{id}', [ProfessorCRUDController::class, 'destroy'])->name('destroy');
             });
         });
 

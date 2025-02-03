@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/main.js',
                 'resources/css/app.css',
                 'resources/css/main.css',
+                'resources/js/components/seletor-turma.js',
             ],
             refresh: true,
         }),

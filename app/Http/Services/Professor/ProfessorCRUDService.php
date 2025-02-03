@@ -19,6 +19,7 @@ class ProfessorCRUDService {
     public function atualizarProfessor($id, array $dados) {
         $professor = Professor::findOrFail($id);
         $professor->update($dados);
+
         return $professor;
     }
 

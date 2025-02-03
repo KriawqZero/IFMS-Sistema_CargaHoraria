@@ -30,6 +30,8 @@
           </div>
         @endif
 
+        <h1 class="text-2xl font-semibold text-gray-700 text-center">Login</h1>
+
         <form class="mt-4" action="{{ route('aluno.login.post') }}" method="POST">
           @csrf
           <label class="block">

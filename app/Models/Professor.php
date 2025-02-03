@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CargoEnum;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -31,7 +32,18 @@ class Professor extends Model implements AuthenticatableContract {
 
     public function getNomeCompletoAttribute() {
         $nomeCompleto = explode(' ', $this->nome);
-        return ucfirst($nomeCompleto[0]) . ' ' . ucfirst($nomeCompleto[count($nomeCompleto) - 1]);
+        return $nomeCompleto[0] . ' ' . $nomeCompleto[count($nomeCompleto) - 1];
+    }
+
+    public function cargoMenorQue(string $targetCarg): bool {
+        $atualCargo = CargoEnum::fromString($this->cargo);
+        $targetCargo = CargoEnum::fromString($targetCarg);
+
+        if (!$atualCargo || !$targetCargo) {
+            return false; // Se o cargo for inválido, retorna falso
+        }
+
+        return $atualCargo->level() < $targetCargo->level();
     }
 
     /*public function notificacoes() {*/

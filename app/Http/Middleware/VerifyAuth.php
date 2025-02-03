@@ -16,11 +16,9 @@ class VerifyAuth {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next, string $guard): Response {
-          // Se o guard for "all", verifica todos os guards configurados.
+        // Obtém os guards configurados no sistema.
+        $guards = array_keys(config('auth.guards'));
         if ($guard === "all") {
-            // Obtém os guards configurados no sistema.
-            $guards = array_keys(config('auth.guards'));
-
             foreach ($guards as $specificGuard) {
                 // Se algum guard estiver autenticado, segue o fluxo.
                 if (auth($specificGuard)->check()) {
@@ -34,23 +32,14 @@ class VerifyAuth {
                 ->withErrors(['message' => 'Você precisa estar autenticado para acessar esta página.']);
         }
 
-        // Verifica se o usuário está autenticado pelo guard especificado.
-        if (auth($guard)->check()) {
-            // Redireciona caso já esteja autenticado e tente acessar a rota de login.
-            if ($request->routeIs("$guard.login")) {
-                return redirect()
-                    ->route("$guard.dashboard")
-                    ->withErrors(['message' => 'Você já está autenticado.']);
+        if($guard === "none") {
+            foreach($guards as $specificGuard) {
+                if(auth($specificGuard)->check()) {
+                    return redirect()
+                        ->route("$specificGuard.dashboard")
+                        ->withErrors('Você já está autenticado.');
+                }
             }
-
-            return $next($request);
-        }
-
-        // Redireciona para o login se não estiver autenticado.
-        if (!$request->routeIs("$guard.login")) {
-            return redirect()
-                ->route("aluno.login")
-                ->withErrors(['message' => 'Você precisa estar autenticado para acessar esta página.']);
         }
 
         return $next($request);

@@ -19,12 +19,6 @@
               class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
           </div>
 
-          <!--<div>-->
-          <!--  <label class="block text-sm font-medium text-gray-700">Senha</label>-->
-          <!--  <input type="password" name="senha" required-->
-          <!--    class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">-->
-          <!--</div>-->
-
           <div>
             <label class="block text-sm font-medium text-gray-700">Cargo</label>
             <select name="cargo" class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
@@ -34,13 +28,27 @@
             </select>
           </div>
 
-          <div class="md:col-span-2" x-data="buscarTurmas">
+          <div class="md:col-span-2" x-data="seletorTurma({
+               maxTurmas: 3,
+               turmas: {{ json_encode(
+                   $turmas->map(
+                       fn($turma) => [
+                           'id' => $turma->id,
+                           'codigo' => $turma->codigo,
+                           'nomeCurso' => optional($turma->curso)->nome,
+                           'textoBusca' => $turma->codigo . ' - ' . optional($turma->curso)->nome,
+                           'qtdAlunos' => $turma->alunos->count(),
+                           'professorAtual' => optional($turma->professor)->nomeCompleto,
+                       ],
+                   ),
+               ) }},
+           })">
             <label class="block text-sm font-medium text-gray-700">Turmas (Máximo 3)</label>
 
             <div class="relative mt-1" x-cloak>
               <input type="text" x-model="termoPesquisa" placeholder="Pesquisar por código ou nome do curso..."
                 class="w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                :disabled="turmasSelecionadas.length >= 3" @input.debounce.300ms="">
+                :disabled="turmasSelecionadas.length >= 3" @input.debounce.500ms="">
 
               <template x-if="termoPesquisa.length > 0">
                 <div class="absolute z-10 mt-1 w-full rounded-md border border-gray-200 bg-white shadow-md">
@@ -111,54 +119,5 @@
 @endsection
 
 @push('scripts')
-  <script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('buscarTurmas', () => {
-        return {
-          termoPesquisa: '',
-          turmasSelecionadas: [],
-          listaTurmas: {!! json_encode(
-              $turmas->map(function ($turma) {
-                  return [
-                      'id' => $turma->id,
-                      'codigo' => $turma->codigo,
-                      'nomeCurso' => optional($turma->curso)->nome,
-                      'textoBusca' => $turma->codigo . ' - ' . optional($turma->curso)->nome,
-                      'qtdAlunos' => $turma->alunos->count(),
-                      'professorAtual' => optional($turma->professor)->nomeCompleto,
-                  ];
-              }),
-          ) !!},
-
-          turmasFiltradas() {
-            const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
-            return this.listaTurmas.filter(turma => {
-              const texto = this.removerAcentos(turma.textoBusca.toLowerCase());
-              return texto.includes(termo) && !this.turmasSelecionadas.find(t => t.id === turma.id);
-            });
-          },
-
-          clicarTurma(turma) {
-            if (this.turmasSelecionadas.length < 3 && !turma.professorAtual) {
-              this.turmasSelecionadas.push(turma);
-              this.termoPesquisa = '';
-            } else if (turma.professorAtual) {
-              alert(`Esta turma já está alocada ao professor ${turma.professorAtual}.
-              \nRemova o professor atual antes de alocar um professor.`);
-            } else {
-              alert('Você já selecionou o máximo de turmas permitido.');
-            }
-          },
-
-          removerAcentos(texto) {
-            return texto.normalize('NFD').replace(/[̀-ͯ]/g, '');
-          },
-
-          textoTurma(turma) {
-            return `${turma.codigo} (${turma.qtdAlunos})`;
-          }
-        };
-      });
-    });
-  </script>
+  @vite("resources/js/components/seletor-turma.js")
 @endpush
