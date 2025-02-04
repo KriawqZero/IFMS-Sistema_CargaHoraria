@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService {
     /**
-     * Autentica um professor
+     * Autentica o professor
      *
      * @param  string  $login
      * @param  string  $senha
      * @return \App\Models\Professor
      * @throws \Exception
      */
-    public function authenticate(string $login, string $senha): Professor {
+    public function autenticar(string $login, string $senha): Professor {
         $loginParts = explode('.', strtolower($login));
 
         if (count($loginParts) !== 2) {
@@ -27,6 +27,22 @@ class AuthService {
         if (!$professor || !Hash::check($senha, $professor->senha)) {
             throw new \Exception('Credenciais inválidas.');
         }
+
+        return $professor;
+    }
+
+    /**
+     * Troca a senha do professor
+     *
+     * @param  \App\Models\Professor  $professor
+     * @param  string  $senha
+     * @return \App\Models\Professor
+     */
+    public function trocarSenha(Professor $professor, string $senha): Professor {
+        $professor->update([
+            'senha' => Hash::make($senha),
+            'primeiro_acesso' => false,
+        ]);
 
         return $professor;
     }

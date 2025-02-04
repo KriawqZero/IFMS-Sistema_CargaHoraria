@@ -2,19 +2,13 @@
 
 namespace App\Http\Controllers\Professor;
 
-use Illuminate\Http\Request;
+use App\Http\Services\Professor\{AuthService, TurmaService, CertificadoService};
 use App\Http\Controllers\Controller;
-use App\Http\Services\Professor\AuthService;
-use App\Http\Services\Professor\CertificadoService;
-use App\Http\Services\Professor\TurmaService;
-use App\Models\Professor;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
+use App\Http\Requests\Professor\LoginRequest;
+use App\Http\Requests\Professor\TrocarSenhaRequest;
 
-class ProfessorController extends Controller
-{
-    // Injeção de dependência dos serviços
+class ProfessorController extends Controller {
+    // Injeção de dependência dos services
     public function __construct(
         private AuthService $authService,
         private TurmaService $turmaService,
@@ -38,16 +32,13 @@ class ProfessorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function processLogin(Request $request) {
+    public function processLogin(LoginRequest $request) {
         try {
-            // Validação básica dos campos
-            $credentials = $request->validate([
-                'login' => 'required|string',
-                'senha' => 'required|string',
-            ]);
+            // Obtém as credenciais do formulário
+            $credentials = $request->validated();
 
             // Tenta autenticar usando o serviço
-            $professor = $this->authService->authenticate(
+            $professor = $this->authService->autenticar(
                 $credentials['login'],
                 $credentials['senha']
             );
@@ -63,34 +54,41 @@ class ProfessorController extends Controller
             auth('professor')->login($professor);
             return redirect()->route('professor.dashboard');
 
-        } catch (ValidationException $e) {
-            return redirect()->back()->withErrors($e->errors());
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['login' => $e->getMessage()]);
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
+    /**
+     * Exibe o formulário de troca de senha
+     *
+     * @return \Illuminate\View\View
+     */
     public function trocarSenhaForm() {
         return view('professor.trocarSenha', [
             'titulo' => 'Trocar Senha',
         ]);
     }
 
-    public function trocarSenha(Request $request) {
-        // Validação das senhas
-        $request->validate([
-            'nova_senha' => 'required|string|min:8|confirmed',
-        ]);
+    /**
+     * Troca a senha do professor
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function trocarSenha(TrocarSenhaRequest $request) {
+        $input = $request->validated();
 
-        $professor = auth('professor')->user();
+        // Troca a senha do professor
+        try {
+            $this->authService->trocarSenha(
+                auth('professor')->user(),
+                $input['nova_senha']
+            );
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage());
+        }
 
-        // Salva as alterações
-        Professor::where('id', $professor->id)->update([
-            'senha' => Hash::make($request->nova_senha),
-            'primeiro_acesso' => false,
-        ]);
-
-        // Redireciona para o dashboard após a troca de senha
         return redirect()->route('professor.dashboard')->with('success', 'Senha alterada com sucesso!');
     }
 

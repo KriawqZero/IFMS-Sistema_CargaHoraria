@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\Professor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\Professor\ProfessorCRUDService;
-use App\Models\Professor;
-use App\Models\Turma;
+use App\Http\Requests\Professor\Professores\CriarProfessorRequest;
+use App\Http\Services\Professor\{ProfessorCRUDService, TurmaService};
+use App\Models\{Professor, Turma};
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 
 class ProfessorCRUDController extends Controller {
     public function __construct(
-         private ProfessorCRUDService $professorService
+        private ProfessorCRUDService $professorService,
+        private TurmaService $turmaService
     ) { }
 
     public function index() {
@@ -33,18 +34,8 @@ class ProfessorCRUDController extends Controller {
         ]);
     }
 
-    public function store(Request $request) {
-        // Validação dos dados
-        $validated = $request->validate([
-            'nome' => 'required|string|max:255',
-            'cargo' => 'required|in:professor,coordenador,admin',
-            'turmas' => 'nullable|array|max:3',
-            'turmas.*' => [
-                'required',
-                'integer',
-                Rule::exists('turmas', 'id')->whereNull('professor_id'),
-            ],
-        ]);
+    public function store(CriarProfessorRequest $request) {
+        $validated = $request->validated();
 
         /** @var Professor $professor */
         $professor = auth('professor')->user();
@@ -62,7 +53,7 @@ class ProfessorCRUDController extends Controller {
         $senhaTexto = $primeiroNome . '.' . $ultimoNome;
 
         // Cria o professor
-        $professor = Professor::create([
+        $professor = $this->professorService->criarProfessor([
             'nome' => $validated['nome'],
             'senha' => bcrypt($senhaTexto),
             'primeiro_acesso' => true,
@@ -71,8 +62,7 @@ class ProfessorCRUDController extends Controller {
 
         // Atualiza as turmas selecionadas
         if (!empty($validated['turmas'])) {
-            Turma::whereIn('id', $validated['turmas'])
-                ->update(['professor_id' => $professor->id]);
+            $this->turmaService->atualizarProfessorTurmas($professor->id, $validated['turmas']);
         }
 
         return redirect()
@@ -82,7 +72,7 @@ class ProfessorCRUDController extends Controller {
 
     public function edit($id) {
         $professor = $this->professorService->encontrarProfessor($id);
-        $turmas = Turma::all();
+        $turmas = $this->turmaService->getAllTurmas();
 
         return view('professor.professores.edit', [
             'titulo' => 'Editar Professor',
@@ -92,7 +82,7 @@ class ProfessorCRUDController extends Controller {
     }
 
     public function patch(Request $request, $id) {
-        $validados = $request->validate([
+        $input= $request->validate([
             'nome' => 'nullable|istring|max:255',
             'cargo' => 'nullable|in:professor,coordenador,admin',
             'turmas' => 'nullable|array|max:3',
@@ -103,7 +93,11 @@ class ProfessorCRUDController extends Controller {
             ],
         ]);
 
-        $this->professorService->atualizarProfessor($id, $validados);
+        $this->professorService->atualizarProfessor($id, [
+            'nome' => $input['nome'],
+            'cargo' => $input['cargo'],
+        ]);
+
         return redirect()->route('professor.professores.index');
     }
 
