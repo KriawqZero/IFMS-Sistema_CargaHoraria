@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Professor;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Professor\Curso\CursoRequest;
 use App\Http\Services\Professor\CursoService;
 
 class ProfessorCursoController extends Controller {
@@ -26,11 +26,8 @@ class ProfessorCursoController extends Controller {
         ]);
     }
 
-    public function store(Request $request) {
-        $input = $request->validate([
-            'nome' => 'required|string',
-            'sigla' => 'required|string',
-        ]);
+    public function store(CursoRequest $request) {
+        $input = $request->validated();
 
         if($this->cursoService->storeCurso($input))
             return redirect()->route('professor.cursos.index')->with('success', 'Curso criado com sucesso');
@@ -45,11 +42,8 @@ class ProfessorCursoController extends Controller {
         ]);
     }
 
-    public function put(Request $request, $id) {
-        $input = $request->validate([
-            'nome' => 'required|string',
-            'sigla' => 'required|string',
-        ]);
+    public function put(CursoRequest $request, $id) {
+        $input = $request->validated();
 
         if($this->cursoService->updateCurso($id, $input))
             return redirect()->route('professor.cursos.index')->with('success', 'Curso atualizado com sucesso');

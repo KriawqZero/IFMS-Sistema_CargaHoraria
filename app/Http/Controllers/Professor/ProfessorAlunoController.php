@@ -19,22 +19,21 @@ class ProfessorAlunoController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function listarAlunos(Request $request) {
-            $filters = [
-                'turma' => $request->input('turma', 'todas'),
-                'aluno_id' => $request->input('id'),
-                'pesquisa' => $request->input('pesquisa'),
-            ];
+    public function index(Request $request) {
+        $filters = [
+            'turma' => $request->input('turma', 'todas'),
+            'aluno_id' => $request->input('id'),
+            'pesquisa' => $request->input('pesquisa'),
+        ];
 
-            return view('professor/alunos', [
-                'titulo' => 'Alunos',
-                'alunos' => $this->alunoService->getAlunosFiltrados(
-                    auth('professor')->user(),
-                    $filters
-                ),
-                'turmas' => $this->turmaService->getTurmasProfessor(auth('professor')->id()),
-                'filters' => $filters
-            ]);
-
+        return view('professor/alunos', [
+            'titulo' => 'Alunos',
+            'alunos' => $this->alunoService->getAlunosFiltrados(
+                auth('professor')->user(),
+                $filters
+            ),
+            'turmas' => $this->turmaService->getTurmasProfessor(auth('professor')->id()),
+            'filters' => $filters
+        ]);
     }
 }

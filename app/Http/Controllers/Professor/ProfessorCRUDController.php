@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Professor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Professor\Professores\CriarProfessorRequest;
+use App\Http\Requests\Professor\Professores\EditarProfessorRequest;
 use App\Http\Services\Professor\{ProfessorCRUDService, TurmaService};
-use App\Models\{Professor, Turma};
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Str;
+use App\Models\Turma;
 
 class ProfessorCRUDController extends Controller {
     public function __construct(
@@ -46,28 +44,20 @@ class ProfessorCRUDController extends Controller {
                 ->withErrors('Você não tem permissao pra realizar essa ação..');
         }
 
-        // Gera a senha automática
-        $partesNome = explode(' ', $validated['nome']);
-        $primeiroNome = Str::lower(Str::ascii($partesNome[0])); // Remove acentos e coloca em minúsculo
-        $ultimoNome = Str::lower(Str::ascii(end($partesNome))); // Pega o último nome
-        $senhaTexto = $primeiroNome . '.' . $ultimoNome;
-
         // Cria o professor
-        $professor = $this->professorService->criarProfessor([
-            'nome' => $validated['nome'],
-            'senha' => bcrypt($senhaTexto),
-            'primeiro_acesso' => true,
-            'cargo' => $validated['cargo'],
-        ]);
+        $retorno = $this->professorService->criarProfessor(
+            $validated['nome'],
+            $validated['cargo']
+        );
 
         // Atualiza as turmas selecionadas
         if (!empty($validated['turmas'])) {
-            $this->turmaService->atualizarProfessorTurmas($professor->id, $validated['turmas']);
+            $this->turmaService->atualizarProfessorTurmas($retorno['professor_id'], $validated['turmas']);
         }
 
         return redirect()
             ->route('professor.professores.index')
-            ->with('success', 'Professor cadastrado com sucesso! Senha inicial: ' . $senhaTexto);
+            ->with('success', 'Professor cadastrado com sucesso! Senha inicial: ' . $retorno['senhaTexto']);
     }
 
     public function edit($id) {
@@ -81,24 +71,20 @@ class ProfessorCRUDController extends Controller {
         ]);
     }
 
-    public function patch(Request $request, $id) {
-        $input= $request->validate([
-            'nome' => 'nullable|istring|max:255',
-            'cargo' => 'nullable|in:professor,coordenador,admin',
-            'turmas' => 'nullable|array|max:3',
-            'turmas.*' => [
-                'required',
-                'integer',
-                Rule::exists('turmas', 'id')->whereNull('professor_id'),
-            ],
-        ]);
+    public function patch(EditarProfessorRequest $request, $id) {
+        $input = $request->validated();
 
         $this->professorService->atualizarProfessor($id, [
             'nome' => $input['nome'],
             'cargo' => $input['cargo'],
         ]);
 
-        return redirect()->route('professor.professores.index');
+        $this->turmaService->desvincularProfessorTurmas($id);
+        if (!empty($input['turmas'])) {
+            $this->turmaService->atualizarProfessorTurmas($id, $input['turmas']);
+        }
+
+        return redirect()->back()->with('success', 'Professor atualizado com sucesso!');
     }
 
     public function destroy($id) {

@@ -25,12 +25,12 @@ class ProfessorCertificadoController extends Controller {
         $filters = $this->prepareFilters($request);
 
         // Marcar notificação como lida se houver ID
-        if ($request->has('id')) {
-            $this->notificationService->markCertificadoNotificationsAsRead(
-                $professor,
-                $request->input('id')
-            );
-        }
+        /*if ($request->has('id')) {*/
+        /*    $this->notificationService->markCertificadoNotificationsAsRead(*/
+        /*        $professor,*/
+        /*        $request->input('id')*/
+        /*    );*/
+        /*}*/
 
         if($professor->cargo !== 'professor') {
             $turmas = Turma::all();

@@ -2,6 +2,7 @@
 namespace App\Http\Services\Professor;
 
 use App\Models\Professor;
+use Illuminate\Support\Str;
 
 class ProfessorCRUDService {
     /**
@@ -26,11 +27,27 @@ class ProfessorCRUDService {
     /**
      * Cria um professor
      *
-     * @param  array  $dados
-     * @return Professor
+     * @param  string  $nome
+     * @param  string  $cargo
+     * @return array
      */
-    public function criarProfessor(array $dados) {
-        return Professor::create($dados);
+    public function criarProfessor(string $nome, string $cargo) {
+        // Gera a senha automática
+        $partesNome = explode(' ',  $nome);
+        $primeiroNome = Str::lower(Str::ascii($partesNome[0])); // Remove acentos e coloca em minúsculo
+        $ultimoNome = Str::lower(Str::ascii(end($partesNome))); // Pega o último nome
+        $senhaTexto = $primeiroNome . '.' . $ultimoNome;
+
+        $professor = Professor::create([
+            'nome' => $nome,
+            'senha' => bcrypt($senhaTexto),
+            'cargo' => $cargo,
+        ]);
+
+        return [
+            'professor_id' => $professor->id,
+            'senhaTexto' => $senhaTexto
+        ];
     }
 
     /**
@@ -42,6 +59,7 @@ class ProfessorCRUDService {
      */
     public function atualizarProfessor($id, array $dados) {
         $professor = Professor::findOrFail($id);
+
         $professor->update($dados);
 
         return $professor;

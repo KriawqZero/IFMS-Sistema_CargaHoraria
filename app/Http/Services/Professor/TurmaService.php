@@ -48,10 +48,10 @@ class TurmaService {
      * @param  array  $turmasIds
      * @return bool
      */
-    public function desvincularProfessorTurmas(array $turmasIds): bool {
+    public function desvincularProfessorTurmas(int $professor_id): bool {
         try {
-            // Remove o professor das turmas selecionadas
-            Turma::whereIn('id', $turmasIds)->update(['professor_id' => null]);
+            // Remove o professor das turmas
+            Turma::where('professor_id', $professor_id)->update(['professor_id' => null]);
             return true;
         } catch (\Exception $e) {
             return false;

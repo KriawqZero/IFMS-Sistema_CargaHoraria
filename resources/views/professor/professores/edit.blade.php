@@ -14,16 +14,16 @@
       @method('PATCH')
 
       <div class="grid grid-cols-2 gap-6 md:grid-cols-1">
-        <div class="flex items-center col-span-2 md:col-span-1" x-data="{ isNomeEditable: false }" x-init="nomeProfessor = '{{ $professor->nome }}'">
+        <div class="flex items-center col-span-2 md:col-span-1" x-data="{ isNomeEditable: false, nomeProfessor: '{{ $professor->nome }}'}">
             <div class="w-full">
                 <label class="block text-sm font-medium text-gray-700">Nome Completo</label>
                 <input type="text"
-                       name="nome"
                        required
                        class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200"
                        x-model="nomeProfessor"
                        :disabled="!isNomeEditable"
                        value="{{ old('nome', $professor->nome) }}">
+                <input type="hidden" name="nome" x-model="nomeProfessor">
             </div>
             <button type="button"
                     @click="isNomeEditable = !isNomeEditable"
@@ -32,16 +32,18 @@
             </button>
         </div>
 
-        <div class="flex items-center md:col-span-1" x-data="{ isCargoEditable: false }">
+        <div class="flex items-center md:col-span-1" x-data="{ isCargoEditable: false, cargo: '{{ $professor->cargo }}'}">
           <div class="w-full">
             <label class="block text-sm font-medium text-gray-700">Cargo</label>
-            <select name="cargo"
-                     class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200"
-                     :disabled="!isCargoEditable">
+            <select x-model="cargo"
+                    name="cargo"
+                    class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200"
+                    :disabled="!isCargoEditable">
               <option value="professor" {{ $professor->cargo === 'professor' ? 'selected' : '' }}>Professor</option>
               <option value="coordenador" {{ $professor->cargo === 'coordenador' ? 'selected' : '' }}>Coordenador</option>
               <option value="admin" {{ $professor->cargo === 'admin' ? 'selected' : '' }}>Administrador</option>
             </select>
+            <input type="hidden" name="cargo" x-model="cargo">
           </div>
           <button type="button"
                   @click="isCargoEditable = !isCargoEditable"
@@ -77,7 +79,9 @@
 
           <div class="relative mt-1" x-cloak>
             <input type="text" x-model="termoPesquisa" placeholder="Pesquisar por código ou nome do curso..."
-              class="w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              class="w-full rounded-md border border-gray-300
+              disabled:cursor-not-allowed disabled:bg-gray-200
+              p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
               :disabled="turmasSelecionadas.length >= 3" @input.debounce.500ms="">
 
             <template x-if="termoPesquisa.length > 0">
@@ -117,6 +121,12 @@
                   <div class="mt-1 text-sm text-gray-500">
                     Código: <span class="font-mono" x-text="turma.codigo"></span>
                   </div>
+                  <div class="mt-1 text-sm text-gray-500">
+                    Alunos: <span class="font-mono" x-text="turma.qtdAlunos"></span>
+                  </div>
+                  <div class="mt-1 text-sm text-gray-500">
+                    Curso: <span class="font-mono" x-text="turma.nomeCurso"></span>
+                  </div>
                 </div>
                 <button type="button" @click="turmasSelecionadas.splice(index, 1)"
                   class="ml-4 text-red-500 transition-colors hover:text-red-700" title="Remover turma">
@@ -155,42 +165,5 @@
 @endsection
 
 @push('scripts')
-<script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('seletorTurma', (config) => ({
-      maxTurmas: config.maxTurmas || 3,
-      turmas: config.turmas || [],
-      turmasSelecionadas: config.turmasSelecionadas || [],
-      termoPesquisa: '',
-
-      turmasFiltradas() {
-        const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
-        return this.turmas.filter(turma => {
-          const texto = this.removerAcentos(turma.textoBusca.toLowerCase());
-          return texto.includes(termo) &&
-            !this.turmasSelecionadas.find(t => t.id === turma.id);
-        });
-      },
-
-      clicarTurma(turma) {
-        if (this.turmasSelecionadas.length < this.maxTurmas && !turma.professorAtual) {
-          this.turmasSelecionadas.push(turma);
-          this.termoPesquisa = '';
-        } else if (turma.professorAtual) {
-          alert(`Esta turma já está alocada ao professor ${turma.professorAtual}`);
-        } else {
-          alert('Você já selecionou o máximo de turmas permitido');
-        }
-      },
-
-      removerAcentos(texto) {
-        return texto.normalize('NFD').replace(/[̀-ͯ]/g, '');
-      },
-
-      textoTurma(turma) {
-        return `${turma.codigo} (${turma.qtdAlunos})`;
-      }
-    }));
-  });
-</script>
+  @vite("resources/js/components/seletor-turma.js")
 @endpush

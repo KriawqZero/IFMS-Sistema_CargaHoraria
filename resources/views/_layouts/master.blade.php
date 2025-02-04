@@ -8,7 +8,18 @@
     <meta name="referrer" content="always">
     <link rel="canonical" href="{{ $titulo }}">
 
-    <title>{{ $titulo . ' - ' . env('APP_NAME') }}</title>
+      @php
+        $notificacoes = $usuarioLogado->unreadNotifications->count();
+        if ($notificacoes > 0) {
+            $notificacoes = $notificacoes > 9 ? '9+' : $notificacoes;
+            $notificacoes = '(' . $notificacoes . ') ';
+        } else {
+            $notificacoes = '';
+        }
+      @endphp
+    <title>
+      {{ $notificacoes . $titulo . ' - ' . env('APP_NAME') }}
+    </title>
 
     @vite(['resources/css/main.css', 'resources/css/app.css'])
     @livewireStyles

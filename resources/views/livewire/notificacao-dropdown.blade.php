@@ -22,24 +22,25 @@
     <div class="flex items-center justify-between bg-green-50 px-4 py-3 shadow">
       <h3 class="text-sm font-medium text-green-800">Notificações</h3>
       @if ($usuarioLogado->unreadNotifications->count() > 0)
-        <button wire:click="markAllAsRead" class="text-green-500 transition hover:underline focus:outline-none">Marcar
+        <button wire:click="marcarTodasComoLido" class="text-green-500 transition hover:underline focus:outline-none">Marcar
           todas como lidas</button>
       @endif
     </div>
     @forelse($notifications as $notification)
+      @php
+        if (isset($notification->data['aluno'])) {
+            $id = $notification->data['certificado_id'];
+            $url = route('professor.certificados.index');
+        } elseif (isset($notification->data['professor'])) {
+            $id = $notification->data['certificado_id'];
+            $url = route('aluno.certificados.index');
+        } else {
+            $url = '#';
+        }
+      @endphp
       <div
-        class="group flex items-center justify-between rounded-lg bg-white px-4 py-3 shadow ring-green-300 transition hover:shadow-md hover:ring-2">
-        @php
-          if (isset($notification->data['aluno'])) {
-              $id = $notification->data['certificado_id'];
-              $url = route('professor.certificados.index');
-          } elseif (isset($notification->data['professor'])) {
-              $id = $notification->data['certificado_id'];
-              $url = route('aluno.certificados.index');
-          } else {
-              $url = '#';
-          }
-        @endphp
+        class="group flex items-center justify-between rounded-lg bg-white px-4 py-3 shadow ring-green-300 transition hover:shadow-md hover:ring-2"
+        >
         <!-- Form que cobre toda a área clicável -->
         <form action="{{ $url }}" method="GET" class="flex w-full cursor-pointer items-center">
           @if (isset($id))
@@ -47,6 +48,7 @@
             <input name="status" type="hidden" value="todos">
           @endif
           <button type="submit"
+            wire:click="marcarComoLida('{{ $notification->id }}')"
             class="{{ $notification->read_at ? 'bg-gray-100 hover:bg-gray-200' : 'bg-green-50 hover:bg-green-100' }} flex w-full items-center space-x-3 rounded-lg px-4 py-3 text-left transition">
             <!-- Imagem do usuário -->
             <img class="h-10 w-10 rounded-full object-cover"
@@ -61,7 +63,7 @@
         </form>
 
         <!-- Botão de Remover -->
-        <button wire:click="removeNotification('{{ $notification->id }}')"
+        <button wire:click="removerNotificacao('{{ $notification->id }}')"
           wire:confirm="Tem certeza que deseja excluir esta notificação?"
           class="ml-4 rounded-lg p-2 text-red-500 transition hover:bg-red-200">
           <svg class="h-6 w-6" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +93,7 @@
             </svg>
           </div>
         </div>
-        <button wire:click="loadMore" wire:loading.remove class="text-green-500 hover:underline">
+        <button wire:click="carregarMais" wire:loading.remove class="text-green-500 hover:underline">
           Carregar mais
         </button>
       @endif

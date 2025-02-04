@@ -36,7 +36,7 @@ Route::name('professor.')->group(function() {
         Route::get('professor', [ProfessorController::class, 'dashboard'])
             ->name('dashboard');
 
-        Route::get('professor/alunos', [ProfessorAlunoController::class, 'listarAlunos'])
+        Route::get('professor/alunos', [ProfessorAlunoController::class, 'index'])
             ->name('alunos.index');
 
         Route::get('/coord/cadastrar-alunos', [CsvController::class, 'create'])->name('create.alunos');

@@ -4,25 +4,19 @@ namespace App\Http\Requests\Professor\Professores;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditarProfessorRequest extends FormRequest
-{
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
+class EditarProfessorRequest extends FormRequest {
+    public function authorize(): bool {
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
-    {
+    public function rules(): array {
         return [
-            //
+            'nome' => 'nullable|string|max:255',
+            'cargo' => 'nullable|in:professor,coordenador,admin',
+            'turmas' => 'nullable|array|max:3',
+            'turmas.*' => [
+                'required', 'integer'
+            ],
         ];
     }
 }

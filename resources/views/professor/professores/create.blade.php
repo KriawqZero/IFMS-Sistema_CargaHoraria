@@ -47,7 +47,9 @@
 
             <div class="relative mt-1" x-cloak>
               <input type="text" x-model="termoPesquisa" placeholder="Pesquisar por código ou nome do curso..."
-                class="w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                class="w-full rounded-md border border-gray-300
+                p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500
+                disabled:cursor-not-allowed disabled:bg-gray-200"
                 :disabled="turmasSelecionadas.length >= 3" @input.debounce.500ms="">
 
               <template x-if="termoPesquisa.length > 0">

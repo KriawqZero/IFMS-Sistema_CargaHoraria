@@ -19,21 +19,12 @@ class NotificacaoDropdown extends Component {
         $this->usuarioLogado = $usuarioLogado;
     }
 
-    public function loadMore() {
+    public function carregarMais() {
         $this->loading = true; // Ativa o estado de carregamento
         $this->limit += 5;
         $this->dispatch('notificationsLoaded'); // Emite evento quando carregar
         $this->loading = false; // Desativa o estado de carregamento
     }
-
-    public function removeNotification($notificationId) {
-        $notification = $this->usuarioLogado->notifications()->find($notificationId);
-        if ($notification)
-            $notification->delete();
-
-        $this->dispatch('notificationsUpdated'); // Atualiza a lista após a remoção
-    }
-
 
     public function render() {
         $notifications = $this->usuarioLogado->notifications()->take($this->limit)->get();
@@ -44,7 +35,24 @@ class NotificacaoDropdown extends Component {
         ]);
     }
 
-    public function markAllAsRead() {
+    public function removerNotificacao($notificationId) {
+        $notification = $this->usuarioLogado->notifications()->find($notificationId);
+        if ($notification)
+            $notification->delete();
+
+        $this->dispatch('notificationsUpdated'); // Atualiza a lista após a remoção
+    }
+
+    public function marcarComoLida($notificationId) {
+        $notification = $this->usuarioLogado->notifications()->find($notificationId);
+
+        if ($notification) {
+            $notification->markAsRead();
+        }
+
+    }
+
+    public function marcarTodasComoLido() {
         $this->usuarioLogado->unreadNotifications->markAsRead();
         $this->dispatch('notificationsUpdated'); // Atualiza a lista após marcar como lido
     }
