@@ -26,6 +26,62 @@ class TurmaService {
     }
 
     /**
+     * Obtém turma por id
+     *
+     * @param  int  $id
+     * @return Turma
+     */
+    public function getTurmaPorId(int $id): Turma {
+        return Turma::findOrFail($id);
+    }
+
+    /**
+     * Armazena turma
+     *
+     * @param  array  $input
+     * @return bool
+     */
+    public function storeTurma(array $input): bool {
+        try {
+            Turma::create($input);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Atualiza turma
+     *
+     * @param  int  $id
+     * @param  array  $input
+     * @return bool
+     */
+    public function updateTurma(int $id, array $input): bool {
+        try {
+            Turma::findOrFail($id)->update($input);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Deleta turma
+     *
+     * @param  int  $id
+     * @return bool
+     */
+    public function deleteTurma(int $id): bool {
+        try {
+            Turma::findOrFail($id)->delete();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
      * Atualiza as turmas do professor
      *
      * @param  int  $professor_id

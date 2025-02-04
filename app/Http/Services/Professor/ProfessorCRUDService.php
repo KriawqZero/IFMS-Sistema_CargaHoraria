@@ -10,6 +10,15 @@ class ProfessorCRUDService {
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
+    public function getAllProfessores() {
+        return Professor::where('cargo', '==', 'professor')->latest()->get();
+    }
+
+    /**
+     * Lista todos os professores
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function listarProfessores() {
         return Professor::latest()->get();
     }

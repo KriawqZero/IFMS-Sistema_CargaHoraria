@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Professor\{ ProfessorController, ProfessorCursoController, ProfessorCertificadoController, ProfessorAlunoController, CsvController, ProfessorCRUDController}; use App\Http\Middleware\VerifyPermission;
+use App\Http\Controllers\Professor\{ ProfessorController, ProfessorCursoController, ProfessorCertificadoController, ProfessorAlunoController, CsvController, ProfessorCRUDController, ProfessorTurmaController}; use App\Http\Middleware\VerifyPermission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\VerifyAuth;
 use App\Http\Middleware\VerifyPrimeiroAcesso;
@@ -54,6 +54,26 @@ Route::name('professor.')->group(function() {
                 ->middleware([VerifyPermission::class . ':professor'])
                 ->name('patch');
         });
+
+        // Rotas de turmas do professor
+        Route::prefix('professor/turmas')->name('turmas.')->group(function() {
+            // Rota para listar turmas
+            Route::get('/', [ProfessorTurmaController::class, 'index'])->name('index');
+            // Rota para criar uma turma
+            Route::get('/criar', [ProfessorTurmaController::class, 'create'])->name('create');
+            // Rota para editar uma turma
+            Route::get('/edit/{id}', [ProfessorTurmaController::class, 'edit'])->name('edit');
+
+            Route::middleware([VerifyPermission::class . ':coordenador'])->group(function() {
+                // Rota para armazenar uma turma
+                Route::post('/', [ProfessorTurmaController::class, 'store'])->name('store');
+                // Rota para atualizar uma turma
+                Route::put('/edit/{id}', [ProfessorTurmaController::class, 'put'])->name('update');
+                // Rota para deletar uma turma
+                Route::delete('/{id}', [ProfessorTurmaController::class, 'destroy'])->name('destroy');
+            });
+        });
+
 
         Route::prefix('professor/professores')->name('professores.')->group(function () {
             // Rota para listar professores
