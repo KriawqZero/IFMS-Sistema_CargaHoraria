@@ -91,4 +91,9 @@ class ProfessorCRUDController extends Controller {
         $this->professorService->excluirProfessor($id);
         return redirect()->route('professor.professores.index');
     }
+
+    public function resetarSenha($id) {
+        $retorno = $this->professorService->resetarSenha($id);
+        return redirect()->back()->with('success', 'Senha resetada com sucesso! Nova senha: ' . $retorno['senhaTexto']);
+    }
 }

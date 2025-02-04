@@ -9,6 +9,10 @@
       </h3>
     </div>
 
+    <div class="mt-6 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative" role="alert">
+      <p>Se você deseja resetar a senha deste professor, clique no botão "Resetar Senha".</p>
+    </div>
+
     <form class="mt-8 space-y-6" action="{{ route('professor.professores.update', $professor->id) }}" method="POST">
       @csrf
       @method('PATCH')
@@ -149,17 +153,19 @@
           Cancelar
         </a>
 
-        <form action="{{ route('professor.professores.index', $professor->id) }}" method="POST" class="ml-auto">
-          @csrf
-          <!--method('PATCH')-->
-          <button type="submit"
-            class="rounded bg-yellow-500 px-4 py-2 text-white hover:bg-yellow-600"
-            onclick="return confirm('Tem certeza que deseja resetar a senha deste professor?')">
-            Resetar Senha
-          </button>
-        </form>
       </div>
     </form>
+
+    <form action="{{ route('professor.professores.resetarSenha', $professor->id) }}" method="POST" class="ml-auto">
+      @csrf
+      @method('PATCH')
+      <button type="submit"
+        class="rounded bg-yellow-500 px-4 py-2 text-red-800 hover:bg-yellow-600"
+        onclick="return confirm('Tem certeza que deseja resetar a senha deste professor?')">
+        Resetar Senha
+      </button>
+    </form>
+
   </div>
 </div>
 @endsection

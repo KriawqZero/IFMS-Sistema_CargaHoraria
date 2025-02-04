@@ -26,8 +26,14 @@
           </thead>
           <tbody>
             @foreach ($professores as $professor)
-              <tr>
-                <td class="border-b border-gray-200 px-4 py-2">{{ $professor->nomeCompleto }}</td>
+              @php $ehProfessorLogado = $professor == auth('professor')->user(); @endphp
+
+              <tr @if($ehProfessorLogado) class="text-red-800 italic" @endif>
+                <td class="border-b border-gray-200 px-4 py-2">
+                {{
+                  !$ehProfessorLogado ? $professor->nomeCompleto : $professor->nomeCompleto . ' (Você)'
+                }}
+                </td>
                 <td class="border-b border-gray-200 px-4 py-2">{{ ucfirst($professor->cargo) }}</td>
                 <td class="border-b border-gray-200 px-4 py-2">
                   @foreach ($professor->turmas->take(3) as $turma)
@@ -36,6 +42,7 @@
                 </td>
                 <td class="border-b border-gray-200 px-4 py-2">
 
+                  @if(!$ehProfessorLogado)
                   <div class="flex gap-2">
                     <a class="text-gray-600 hover:text-gray-800" href="{{ route('professor.professores.edit', $professor->id) }}">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6" viewBox="0 0 16 16">
@@ -73,6 +80,7 @@
                         </div>
                       </div>
                     </div>
+                    @endif
 
                   </div>
                 </td>

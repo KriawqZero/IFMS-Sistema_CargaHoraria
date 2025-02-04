@@ -33,10 +33,7 @@ class ProfessorCRUDService {
      */
     public function criarProfessor(string $nome, string $cargo) {
         // Gera a senha automática
-        $partesNome = explode(' ',  $nome);
-        $primeiroNome = Str::lower(Str::ascii($partesNome[0])); // Remove acentos e coloca em minúsculo
-        $ultimoNome = Str::lower(Str::ascii(end($partesNome))); // Pega o último nome
-        $senhaTexto = $primeiroNome . '.' . $ultimoNome;
+        $senhaTexto = $this->gerarSenha($nome);
 
         $professor = Professor::create([
             'nome' => $nome,
@@ -74,5 +71,34 @@ class ProfessorCRUDService {
     public function excluirProfessor($id) {
         $professor = Professor::findOrFail($id);
         return $professor->delete();
+    }
+
+    /**
+     * Reseta a senha de um professor
+     *
+     * @param  int  $id
+     * @return array
+     */
+    public function resetarSenha($id) {
+        $professor = Professor::findOrFail($id);
+
+        // Gera a senha automática
+        $senhaTexto = $this->gerarSenha($professor->nome);
+
+        $this->atualizarProfessor($id, [
+            'senha' => bcrypt($senhaTexto),
+            'primeiro_acesso' => true
+        ]);
+
+        return [
+            'senhaTexto' => $senhaTexto
+        ];
+    }
+
+    private function gerarSenha(string $nome): string {
+        $partesNome = explode(' ',  $nome);
+        $primeiroNome = Str::lower(Str::ascii($partesNome[0])); // Remove acentos e coloca em minúsculo
+        $ultimoNome = Str::lower(Str::ascii(end($partesNome))); // Pega o último nome
+        return $primeiroNome . '.' . $ultimoNome;
     }
 }

@@ -64,6 +64,8 @@ Route::name('professor.')->group(function() {
             Route::get('/edit/{id}', [ProfessorCRUDController::class, 'edit'])->name('edit');
 
             Route::middleware([VerifyPermission::class . ':coordenador'])->group(function() {
+                // Rota para resetar a senha de um professor
+                Route::patch('/reset/{id}', [ProfessorCRUDController::class, 'resetarSenha'])->name('resetarSenha');
                 // Rota para armazenar um professor
                 Route::post('/criar', [ProfessorCRUDController::class, 'store'])->name('store');
                 // Rota para atualizar um professor
