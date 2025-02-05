@@ -17,10 +17,9 @@ class Aluno extends Model implements AuthenticatableContract {
     protected $fillable = [
         'cpf',
         'nome',
-        'cpf',
         'data_nascimento',
         'foto_src',
-        'id_turma',
+        'turma_id',
     ];
     // ####### FIM PROPRIEDADES #######
 

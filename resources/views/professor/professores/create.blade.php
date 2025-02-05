@@ -29,27 +29,26 @@
           </div>
 
           <div class="md:col-span-2" x-data="seletorTurma({
-               maxTurmas: 3,
-               turmas: {{ json_encode(
-                   $turmas->map(
-                       fn($turma) => [
-                           'id' => $turma->id,
-                           'codigo' => $turma->codigo,
-                           'nomeCurso' => optional($turma->curso)->nome,
-                           'textoBusca' => $turma->codigo . ' - ' . optional($turma->curso)->nome,
-                           'qtdAlunos' => $turma->alunos->count(),
-                           'professorAtual' => optional($turma->professor)->nomeCompleto,
-                       ],
-                   ),
-               ) }},
-           })">
+              maxTurmas: 3,
+              mensagens: { turmaOcupada: 'Esta turma já possui um professor' },
+              turmas: {{ json_encode(
+                  $turmas->map(
+                      fn($turma) => [
+                          'id' => $turma->id,
+                          'codigo' => $turma->codigo,
+                          'nomeCurso' => optional($turma->curso)->nome,
+                          'textoBusca' => $turma->codigo . ' - ' . optional($turma->curso)->nome,
+                          'qtdAlunos' => $turma->alunos->count(),
+                          'professorAtual' => optional($turma->professor)->nomeCompleto,
+                      ],
+                  ),
+              ) }},
+          })">
             <label class="block text-sm font-medium text-gray-700">Turmas (Máximo 3)</label>
 
             <div class="relative mt-1" x-cloak>
               <input type="text" x-model="termoPesquisa" placeholder="Pesquisar por código ou nome do curso..."
-                class="w-full rounded-md border border-gray-300
-                p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500
-                disabled:cursor-not-allowed disabled:bg-gray-200"
+                class="w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-gray-200"
                 :disabled="turmasSelecionadas.length >= 3" @input.debounce.500ms="">
 
               <template x-if="termoPesquisa.length > 0">
@@ -121,5 +120,5 @@
 @endsection
 
 @push('scripts')
-  @vite("resources/js/components/seletor-turma.js")
+  @vite('resources/js/components/seletor-turma.js')
 @endpush

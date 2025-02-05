@@ -62,10 +62,12 @@ class ProfessorCertificadoController extends Controller {
                 auth('professor')->user()
             );
 
+            if($certificado->wasChanged())
+                return redirect(url()->previous())
+                    ->with('success', 'Certificado atualizado com sucesso!');
+
             return redirect(url()->previous())
-                ->with('success', $certificado->wasChanged()
-                    ? 'Certificado atualizado com sucesso!'
-                    : 'Nenhuma alteração realizada.');
+                ->with('info', 'Nenhuma alteração foi efetuada.');
 
         } catch (\Exception $e) {
             return redirect(url()->previous())

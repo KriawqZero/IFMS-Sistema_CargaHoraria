@@ -11,7 +11,7 @@ class TrocarSenhaRequest extends FormRequest {
 
     public function rules(): array {
         return [
-            'nova_senha' => 'required|string|min:8|confirmed',
+            'nova_senha' => 'required|string|min:6|confirmed',
         ];
     }
 }

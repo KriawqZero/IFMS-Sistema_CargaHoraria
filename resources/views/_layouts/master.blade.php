@@ -8,15 +8,15 @@
     <meta name="referrer" content="always">
     <link rel="canonical" href="{{ $titulo }}">
 
-      @php
-        $notificacoes = $usuarioLogado->unreadNotifications->count();
-        if ($notificacoes > 0) {
-            $notificacoes = $notificacoes > 9 ? '9+' : $notificacoes;
-            $notificacoes = '(' . $notificacoes . ') ';
-        } else {
-            $notificacoes = '';
-        }
-      @endphp
+    @php
+      $notificacoes = $usuarioLogado->unreadNotifications->count();
+      if ($notificacoes > 0) {
+          $notificacoes = $notificacoes > 9 ? '9+' : $notificacoes;
+          $notificacoes = '(' . $notificacoes . ') ';
+      } else {
+          $notificacoes = '';
+      }
+    @endphp
     <title>
       {{ $notificacoes . $titulo . ' - ' . env('APP_NAME') }}
     </title>

@@ -111,7 +111,7 @@ class ProfessorController extends Controller {
         return view('professor/index', [
             'titulo' => 'Professor',
             'professor' => auth('professor')->user(),
-            'turmas' => $this->turmaService->getTurmasProfessor(auth('professor')->id()),
+            'turmas' => $this->turmaService->getTurmasProfessor(auth('professor')->user()),
             'certificados' => $this->certificadoService->getUltimosCertificadosProfessor(auth('professor')->user()),
         ]);
     }

@@ -22,7 +22,8 @@
     <div class="flex items-center justify-between bg-green-50 px-4 py-3 shadow">
       <h3 class="text-sm font-medium text-green-800">Notificações</h3>
       @if ($usuarioLogado->unreadNotifications->count() > 0)
-        <button wire:click="marcarTodasComoLido" class="text-green-500 transition hover:underline focus:outline-none">Marcar
+        <button wire:click="marcarTodasComoLido"
+          class="text-green-500 transition hover:underline focus:outline-none">Marcar
           todas como lidas</button>
       @endif
     </div>
@@ -39,16 +40,14 @@
         }
       @endphp
       <div
-        class="group flex items-center justify-between rounded-lg bg-white px-4 py-3 shadow ring-green-300 transition hover:shadow-md hover:ring-2"
-        >
+        class="group flex items-center justify-between rounded-lg bg-white px-4 py-3 shadow ring-green-300 transition hover:shadow-md hover:ring-2">
         <!-- Form que cobre toda a área clicável -->
         <form action="{{ $url }}" method="GET" class="flex w-full cursor-pointer items-center">
           @if (isset($id))
             <input name="id" type="hidden" value={{ $id }}>
             <input name="status" type="hidden" value="todos">
           @endif
-          <button type="submit"
-            wire:click="marcarComoLida('{{ $notification->id }}')"
+          <button type="submit" wire:click="marcarComoLida('{{ $notification->id }}')"
             class="{{ $notification->read_at ? 'bg-gray-100 hover:bg-gray-200' : 'bg-green-50 hover:bg-green-100' }} flex w-full items-center space-x-3 rounded-lg px-4 py-3 text-left transition">
             <!-- Imagem do usuário -->
             <img class="h-10 w-10 rounded-full object-cover"

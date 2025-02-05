@@ -6,7 +6,16 @@
       <h1 class="text-xl font-semibold text-white">{{ $titulo }}</h1>
     </div>
 
+
     <div class="p-6">
+      <div class="mb-6 flex items-end justify-end rounded-lg p-4">
+        <a href="{{ route('professor.alunos.create') }}"
+          class="rounded-md bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600">
+          Novo Aluno
+        </a>
+      </div>
+
+
       <!-- Filtro por Turma -->
       <div class="mb-6 rounded-lg bg-white p-4 shadow-md">
         <h2 class="mb-4 text-lg font-medium">Filtrar Alunos</h2>
@@ -79,7 +88,7 @@
                 <td class="border-b border-gray-200 px-4 py-2">{{ $aluno->turma->codigo ?? 'Sem turma' }}</td>
                 <td class="border-b border-gray-200 px-4 py-2">{{ $aluno->turma->curso->nome ?? 'Sem curso' }}</td>
                 <td class="border-b border-gray-200 px-4 py-2">
-                  <a href="#" class="text-green-600 hover:underline" target="_blank">Ver detalhes</a>
+                  <a href="{{ route('professor.alunos.show', ['id' => $aluno->id]) }}" class="text-green-600 hover:underline" target="_blank">Ver detalhes</a>
                 </td>
               </tr>
             @empty

@@ -2,6 +2,7 @@
 
 namespace App\Http\Services\Professor;
 
+use App\Models\Professor;
 use App\Models\Turma;
 use Illuminate\Support\Collection;
 
@@ -12,8 +13,11 @@ class TurmaService {
      * @param  Professor  $professor
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getTurmasProfessor(int $professor_id): Collection {
-        return Turma::where('professor_id', $professor_id)->get();
+    public function getTurmasProfessor(Professor $professor): Collection {
+        if ($professor->cargo !== 'professor') {
+            return Turma::all();
+        }
+        return $professor->turmas;
     }
 
     /**

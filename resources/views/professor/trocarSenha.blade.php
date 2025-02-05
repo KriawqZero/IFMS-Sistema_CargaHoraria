@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <div class="flex h-screen items-center bg-stone-400 justify-center px-6">
+    <div class="flex h-screen items-center justify-center bg-stone-400 px-6">
       <div class="w-full max-w-sm rounded-[50px] bg-white p-8 shadow-2xl">
         <div class="flex items-center justify-center">
           <img class="m-7 h-24 object-cover" src="{{ asset('images/SISCO.png') }}" />
@@ -30,9 +30,9 @@
           </div>
         @endif
 
-        <h1 class="text-2xl font-semibold text-gray-700 text-center">Trocar Senha</h1>
-        <p class="text-gray-500 text-left mt-2">Ao acessar o sistema pela primeira vez você tem que digitar
-        uma senha para uso.</p>
+        <h1 class="text-center text-2xl font-semibold text-gray-700">Trocar Senha</h1>
+        <p class="mt-2 text-left text-gray-500">Ao acessar o sistema pela primeira vez você tem que digitar
+          uma senha para uso.</p>
 
         <form class="mt-4" action="{{ route('professor.trocarSenha') }}" method="POST">
           @csrf
@@ -52,12 +52,12 @@
 
           <div class="mt-6">
             <button type="submit"
-              class="w-full rounded-md bg-green-600 px-4 py-2 text-center text-md text-white hover:bg-green-700">
+              class="text-md w-full rounded-md bg-green-600 px-4 py-2 text-center text-white hover:bg-green-700">
               Atualizar Senha
             </button>
           </div>
 
-          <div class="mt-3 text-sm flex justify-center items-center">
+          <div class="mt-3 flex items-center justify-center text-sm">
             <a href="{{ route('professor.logout') }}"
               class="font-medium text-blue-600 underline transition duration-300 hover:text-blue-800">
               Sair

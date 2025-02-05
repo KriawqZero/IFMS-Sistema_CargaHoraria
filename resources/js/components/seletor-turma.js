@@ -4,7 +4,6 @@ document.addEventListener('alpine:init', () => {
         maxTurmas: config.maxTurmas || 3,
         turmas: config.turmas || [],
         mensagens: {
-            turmaOcupada: 'Esta turma já está alocada ao professor',
             maximoAtingido: 'Você já selecionou o máximo de turmas permitido.',
             ...config.mensagens
         },
@@ -25,10 +24,23 @@ document.addEventListener('alpine:init', () => {
 
         // Métodos
         clicarTurma(turma) {
-            if (this.turmasSelecionadas.length < this.maxTurmas && !turma.professorAtual) {
-                this.turmasSelecionadas.push(turma);
-                this.termoPesquisa = '';
-            } else if (turma.professorAtual) {
+            turma.professorAtual = turma.professorAtual || false;
+
+            // Verifica se a mensagem de turma ocupada existe
+            const mensagemTurmaOcupadaExiste = this.mensagens.turmaOcupada !== undefined;
+
+            // Condição para adicionar turma
+            if (this.turmasSelecionadas.length < this.maxTurmas) {
+                // Se NÃO há mensagem OU não tem professor atual
+                if (!mensagemTurmaOcupadaExiste || !turma.professorAtual) {
+                    this.turmasSelecionadas.push(turma);
+                    this.termoPesquisa = '';
+                    return; // Sai do método após adicionar
+                }
+            }
+
+            // Se chegou aqui, não adicionou. Verifica os motivos
+            if (mensagemTurmaOcupadaExiste && turma.professorAtual) {
                 alert(`${this.mensagens.turmaOcupada} ${turma.professorAtual}`);
             } else {
                 alert(this.mensagens.maximoAtingido);

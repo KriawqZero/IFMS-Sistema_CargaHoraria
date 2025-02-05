@@ -24,13 +24,13 @@
           <img class="m-7 h-24 object-cover" src="{{ asset('images/SISCO.png') }}" />
         </div>
 
+        <h1 class="text-center text-2xl font-semibold text-gray-700">Login</h1>
+
         @if ($errors->any())
           <div class="relative mt-4 rounded-xl border border-red-400 bg-red-100 px-4 py-3 text-red-700" role="alert">
             <span class="block sm:inline">{{ $errors->first() }}</span>
           </div>
         @endif
-
-        <h1 class="text-2xl font-semibold text-gray-700 text-center">Login</h1>
 
         <form class="mt-4" action="{{ route('aluno.login.post') }}" method="POST">
           @csrf

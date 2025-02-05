@@ -11,7 +11,7 @@
 
   <nav class="mt-10 text-slate-200">
     <!-- Visão Geral -->
-    <a class="{{ request()->routeIs('professor.dashboard') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('professor.dashboard') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} py-3 flex items-center px-6 py-2"
       href="{{ route('professor.dashboard') }}">
       <svg class="h-8 w-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -25,7 +25,7 @@
     </a>
 
     <!-- Validar Certificados -->
-    <a class="{{ request()->routeIs('professor.certificados.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('professor.certificados.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} py-3 flex items-center px-6 py-2"
       href="{{ route('professor.certificados.index') }}">
       <svg class="h-8 w-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -37,7 +37,7 @@
     </a>
 
     <!-- Alunos -->
-    <a class="{{ request()->routeIs('professor.alunos.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('professor.alunos.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} py-3 flex items-center px-6 py-2"
       href="{{ route('professor.alunos.index') }}">
       <svg class="h-8 w-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -47,7 +47,7 @@
       <span class="mx-3">Alunos</span>
     </a>
 
-    <a class="{{ request()->routeIs('professor.create.alunos') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('professor.create.alunos') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} py-3 flex items-center px-6 py-2"
       href="{{ route('professor.create.alunos') }}">
       <svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -56,7 +56,7 @@
       <span class="mx-3">Cadastrar Alunos</span>
     </a>
 
-    <a class="{{ request()->routeIs('professor.turmas.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('professor.turmas.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} py-3 flex items-center px-6 py-2"
       href="{{ route('professor.turmas.index') }}">
       <svg class="h-8 w-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -67,7 +67,7 @@
       <span class="mx-3">Turmas</span>
     </a>
 
-    <a class="{{ request()->routeIs('professor.professores.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('professor.professores.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} py-3 flex items-center px-6 py-2"
       href="{{ route('professor.professores.index') }}">
       <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path d="M16.043,14H7.957A4.963,4.963,0,0,0,3,18.957V24H21V18.957A4.963,4.963,0,0,0,16.043,14Z" />
@@ -76,7 +76,7 @@
       <span class="mx-3">Professores</span>
     </a>
 
-    <a class="{{ request()->routeIs('professor.cursos.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('professor.cursos.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} py-3 flex items-center px-6 py-2"
       href="{{ route('professor.cursos.index') }}">
       <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -85,7 +85,7 @@
       <span class="mx-3">Cursos</span>
     </a>
 
-    <a class="{{ request()->routeIs('') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} py-3 flex items-center px-6 py-2"
       href="">
       <svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -94,13 +94,13 @@
       <span class="mx-3">Relatórios</span>
     </a>
 
-    <a class="{{ request()->routeIs('') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
-      href="">
-      <svg class="h-8 w-8" viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M34.283,384c17.646,30.626,56.779,41.148,87.405,23.502c0.021-0.012,0.041-0.024,0.062-0.036l9.493-5.483   c17.92,15.332,38.518,27.222,60.757,35.072V448c0,35.346,28.654,64,64,64s64-28.654,64-64v-10.944   c22.242-7.863,42.841-19.767,60.757-35.115l9.536,5.504c30.633,17.673,69.794,7.167,87.467-23.467   c17.673-30.633,7.167-69.794-23.467-87.467l0,0l-9.472-5.461c4.264-23.201,4.264-46.985,0-70.187l9.472-5.461   c30.633-17.673,41.14-56.833,23.467-87.467c-17.673-30.633-56.833-41.14-87.467-23.467l-9.493,5.483   C362.862,94.638,342.25,82.77,320,74.944V64c0-35.346-28.654-64-64-64s-64,28.654-64,64v10.944   c-22.242,7.863-42.841,19.767-60.757,35.115l-9.536-5.525C91.073,86.86,51.913,97.367,34.24,128s-7.167,69.794,23.467,87.467l0,0   l9.472,5.461c-4.264,23.201-4.264,46.985,0,70.187l-9.472,5.461C27.158,314.296,16.686,353.38,34.283,384z M256,170.667   c47.128,0,85.333,38.205,85.333,85.333S303.128,341.333,256,341.333S170.667,303.128,170.667,256S208.872,170.667,256,170.667z" />
+    <a class="hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100 py-3 flex items-center px-6 py-2"
+      href="{{ route('professor.logout') }}">
+      <svg class="h-7 w-7" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
       </svg>
-      <span class="mx-3">Sistema</span>
+      <span class="mx-3">Sair</span>
     </a>
 
   </nav>

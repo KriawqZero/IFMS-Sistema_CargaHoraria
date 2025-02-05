@@ -36,14 +36,38 @@ Route::name('professor.')->group(function() {
         Route::get('professor', [ProfessorController::class, 'dashboard'])
             ->name('dashboard');
 
-        Route::get('professor/alunos', [ProfessorAlunoController::class, 'index'])
-            ->name('alunos.index');
+        Route::prefix('professor/alunos')->name('alunos.')->group(function () {
+            Route::get('/', [ProfessorAlunoController::class, 'index'])
+                ->name('index');
 
+            Route::get('/{id}', [ProfessorAlunoController::class, 'show'])
+                ->name('show');
+
+            Route::get('/criar', [ProfessorAlunoController::class, 'create'])
+                ->name('create');
+
+            Route::post('/criar', [ProfessorAlunoController::class, 'store'])
+                ->name('store');
+
+            Route::get('/edit/{id}', [ProfessorAlunoController::class, 'edit'])
+                ->name('edit');
+
+        });
+
+
+
+
+        /////////
         Route::get('/coord/cadastrar-alunos', [CsvController::class, 'create'])->name('create.alunos');
 
         Route::middleware([VerifyPermission::class . ':coordenador'])->group(function() {
             Route::post('/coord/cadastrar-alunos', [CsvController::class, 'store'])->name('create.alunos.post');
         });
+        //////////
+
+
+
+
 
         // Rotas de certificados do professor
         Route::prefix('professor/certificados')->name('certificados.')->group(function() {
