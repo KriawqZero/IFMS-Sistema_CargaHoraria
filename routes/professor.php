@@ -41,7 +41,7 @@ Route::name('professor.')->group(function() {
             Route::get('/', [ProfessorAlunoController::class, 'index'])
                 ->name('index');
             // Rota para mostrar um aluno
-            Route::get('/{id}', [ProfessorAlunoController::class, 'show'])
+            Route::get('/aluno/{id}', [ProfessorAlunoController::class, 'show'])
                 ->name('show');
             // Rota para criar um aluno
             Route::get('/criar', [ProfessorAlunoController::class, 'create'])

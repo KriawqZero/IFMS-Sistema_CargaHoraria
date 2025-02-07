@@ -38,7 +38,7 @@
       </div>
 
       <!-- Lista de Alunos -->
-      <div class="rounded-md bg-white p-4 shadow-md">
+      <div class="rounded-md bg-white p-4 shadow-md overflow-x-auto xl:overflow-visible">
         <h2 class="mb-4 text-lg font-medium text-gray-700">Alunos</h2>
         <!-- Tabela de Certificados -->
         <table class="w-full border-collapse text-left">
@@ -50,13 +50,13 @@
               <th class="border-b border-gray-300 px-4 py-2">Carga Horaria</th>
               <th class="border-b border-gray-300 px-4 py-2">Turma</th>
               <th class="border-b border-gray-300 px-4 py-2">Curso</th>
-              <th class="border-b border-gray-300 px-4 py-2">Ações</th>
             </tr>
           </thead>
 
           <tbody>
             @forelse($alunos->items() as $aluno)
-              <tr>
+              <tr class="cursor-pointer hover:bg-gray-100"
+                @click="window.open('{{ route('professor.alunos.show', ['id' => $aluno->id]) }}', '_self')">
                 <td class="flex border-b border-gray-200 px-4 py-2">
                   <div class="row relative block flex h-8 w-8 overflow-hidden rounded-full shadow focus:outline-none">
                     <img class="h-full w-full object-cover" src="{{ asset('storage/' . $aluno->foto_src) }}"
@@ -85,10 +85,6 @@
                 </td>
                 <td class="border-b border-gray-200 px-4 py-2">{{ $aluno->turma->codigo ?? 'Sem turma' }}</td>
                 <td class="border-b border-gray-200 px-4 py-2">{{ $aluno->turma->curso->nome ?? 'Sem curso' }}</td>
-                <td class="border-b border-gray-200 px-4 py-2">
-                  <a href="{{ route('professor.alunos.show', ['id' => $aluno->id]) }}"
-                    class="text-green-600 hover:underline" target="_blank">Ver detalhes</a>
-                </td>
               </tr>
             @empty
               <tr>

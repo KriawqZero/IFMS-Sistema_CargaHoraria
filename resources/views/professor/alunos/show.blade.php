@@ -49,7 +49,7 @@
             <div>
               <label class="text-sm font-medium text-gray-500">Data de Nascimento</label>
               <p class="mt-1 text-gray-600">
-                {{ \Carbon\Carbon::parse($aluno->data_nascimento)->format('d/m/Y') }}</p>
+                {{ \Carbon\Carbon::parse($aluno->data_nascimento)->format('d/m/Y') }}
               </p>
             </div>
           @endif

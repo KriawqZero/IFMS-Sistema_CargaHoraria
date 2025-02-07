@@ -4,48 +4,57 @@
   <div class="lg:pb-12 lg:pl-12 lg:pr-12">
     <div class="z-10 w-full rounded-3xl bg-white p-9 shadow-2xl sm:max-w-none lg:max-w-full">
       <div>
-        <h3 class="mt-5 text-3xl font-bold text-gray-900">
-          Editar Aluno: {{ $aluno->nomeCompleto }}
-        </h3>
+        <h3 class="mt-5 text-3xl font-bold text-gray-900"> Editar Aluno: {{ $aluno->nomeCompleto }} </h3>
       </div>
-
       <form class="mt-8 space-y-6" action="{{ route('professor.alunos.update', $aluno->id) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <!-- Nome (bloqueado) -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Nome Completo</label>
-            <div class="flex items-center gap-2">
-              <input type="text" value="{{ $aluno->nome }}" readonly
-                class="mt-1 block w-full cursor-not-allowed rounded-md border border-gray-300 bg-gray-100 p-2 shadow-sm">
+          <!-- Nome Completo -->
+          <div class="flex items-center md:col-span-2" x-data="{ isNomeEditable: false, nomeAluno: '{{ $aluno->nome }}' }">
+            <div class="w-full">
+              <label class="block text-sm font-medium text-gray-700">Nome Completo</label>
+              <input type="text" name="nome" x-model="nomeAluno" required
+                class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200"
+                :disabled="!isNomeEditable">
             </div>
+            <button type="button" @click="isNomeEditable = !isNomeEditable"
+              class="ml-4 mt-6 text-green-500 hover:text-green-700">
+              <span x-text="isNomeEditable ? 'Bloquear' : 'Alterar'"></span>
+            </button>
           </div>
 
-          <!-- CPF (formatado e editável com botão) -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">CPF</label>
-            <div class="flex items-center gap-2">
+          <!-- CPF -->
+          <div class="flex items-center" x-data="{ cpfEditavel: false }">
+            <div class="w-full">
+              <label class="block text-sm font-medium text-gray-700">CPF</label>
               <input type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                 value="{{ old('cpf', $aluno->formatCpf) }}" required
-                class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-100"
-                placeholder="000.000.000-00" title="Formato: 000.000.000-00" disabled>
-
-              <button type="button" @click="cpfEditavel = !cpfEditavel"
-                class="mt-1 rounded-md bg-blue-500 px-3 py-2 text-sm font-medium text-white hover:bg-blue-600">
-                <span x-text="cpfEditavel ? 'Bloquear' : 'Alterar'"></span>
-              </button>
+                class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200"
+                placeholder="000.000.000-00" title="Formato: 000.000.000-00" :disabled="!cpfEditavel">
             </div>
+            <button type="button" @click="cpfEditavel = !cpfEditavel"
+              class="ml-4 mt-6 text-green-500 hover:text-green-700">
+              <span x-text="cpfEditavel ? 'Bloquear' : 'Alterar'"></span>
+            </button>
           </div>
 
-          <!-- Data de Nascimento (bloqueada) -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Data de Nascimento</label>
-            <input type="text"
-              value="{{ $aluno->data_nascimento ? \Carbon\Carbon::parse($aluno->data_nascimento)->format('d/m/Y') : 'Não informada' }}"
-              readonly
-              class="mt-1 block w-full cursor-not-allowed rounded-md border border-gray-300 bg-gray-100 p-2 shadow-sm">
+          <!-- Data de Nascimento -->
+          <div class="flex items-center" x-data="{ isDataEditable: false, dataNascimento: '{{ $aluno->data_nascimento }}' }">
+            <div class="w-full">
+              <label class="block text-sm font-medium text-gray-700">Data de Nascimento</label>
+              <div x-show="!isDataEditable"
+                class="mt-1 block w-full rounded-md border border-gray-300 bg-gray-200 p-2 shadow-sm">
+                {{ $aluno->data_nascimento ? \Carbon\Carbon::parse($aluno->data_nascimento)->format('d/m/Y') : 'Não informada' }}
+              </div>
+              <input type="date" name="data_nascimento" x-model="dataNascimento" x-show="isDataEditable"
+                class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
+            </div>
+            <button type="button" @click="isDataEditable = !isDataEditable"
+              class="ml-4 mt-6 text-green-500 hover:text-green-700">
+              <span x-text="isDataEditable ? 'Bloquear' : 'Alterar'"></span>
+            </button>
           </div>
 
           <!-- Seletor de Turma -->
@@ -71,7 +80,7 @@
 
             <div class="relative mt-1" x-cloak>
               <input type="text" x-model="termoPesquisa" placeholder="Pesquisar por código ou curso..."
-                class="w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-gray-100"
+                class="w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-gray-200"
                 :disabled="turmasSelecionadas.length >= 1" @input.debounce.500ms="">
 
               <template x-if="termoPesquisa.length > 0">
@@ -102,7 +111,6 @@
                       Alunos: <span x-text="turma.qtdAlunos"></span>
                     </div>
                   </div>
-
                   <button type="button" @click="turmasSelecionadas.splice(index, 1)"
                     class="ml-4 text-red-500 transition-colors hover:text-red-700" title="Remover turma">
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,12 +141,6 @@
 @push('scripts')
   <script>
     document.addEventListener('alpine:init', () => {
-      // Estado para controle de edição do CPF
-      Alpine.data('edicaoAluno', () => ({
-        cpfEditavel: false
-      }));
-
-      // Seletor de Turma
       Alpine.data('seletorTurma', (config) => ({
         maxTurmas: config.maxTurmas || 1,
         turmas: config.turmas || [],
@@ -149,8 +151,7 @@
           const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
           return this.turmas.filter(turma => {
             const texto = this.removerAcentos(turma.textoBusca.toLowerCase());
-            return texto.includes(termo) &&
-              !this.turmasSelecionadas.find(t => t.id === turma.id);
+            return texto.includes(termo) && !this.turmasSelecionadas.find(t => t.id === turma.id);
           });
         },
 
@@ -162,7 +163,7 @@
         },
 
         removerAcentos(texto) {
-          return texto.normalize('NFD').replace(/[̀-ͯ]/g, '');
+          return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         }
       }));
     });

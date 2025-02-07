@@ -1,6 +1,11 @@
 <header class="flex items-center justify-between border-b-4 border-green-600 bg-white px-6 py-4">
   <div class="flex items-center">
-    <button @click="sidebarOpen = true" class="text-gray-500 focus:outline-none lg:hidden">
+    <button class=" text-gray-500 focus:outline-none lg:hidden" onclick="window.history.back()">
+      <svg class="h-6 w-6" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+      </svg>
+    </button>
+    <button @click="sidebarOpen = true" class="ml-2 text-gray-500 focus:outline-none lg:hidden">
       <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round" />
