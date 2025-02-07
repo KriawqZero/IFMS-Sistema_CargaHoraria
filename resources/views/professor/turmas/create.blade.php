@@ -5,25 +5,23 @@
     <div class="z-10 w-full rounded-3xl bg-white p-9 shadow-2xl sm:max-w-none lg:max-w-full">
       <div>
         <h3 class="mt-5 text-3xl font-bold text-gray-900">
-          Editar Turma {{ $turma->codigo }}
+          Criar Nova Turma
         </h3>
       </div>
 
-      <form class="mt-8 space-y-6" action="{{ route('professor.turmas.update', $turma->id) }}" method="POST">
+      <form class="mt-8 space-y-6" action="{{ route('professor.turmas.store') }}" method="POST">
         @csrf
-        @method('PUT')
 
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <label class="block text-sm font-medium text-gray-700">Código</label>
-            <input type="text" name="codigo" value="{{ old('codigo', $turma->codigo) }}" required
+            <input type="text" name="codigo" value="{{ old('codigo') }}" required
               class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
           </div>
 
           <div>
             <label class="block text-sm font-medium text-gray-700">Carga Horária Mínima</label>
-            <input type="number" name="carga_horaria_minima"
-              value="{{ old('carga_horaria_minima', $turma->carga_horaria_minima) }}"
+            <input type="number" name="carga_horaria_minima" value="{{ old('carga_horaria_minima') }}"
               class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
           </div>
 
@@ -31,7 +29,7 @@
             <label class="block text-sm font-medium text-gray-700">Curso</label>
             <select name="curso_id" class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
               @foreach ($cursos as $curso)
-                <option value="{{ $curso->id }}" {{ $turma->curso_id == $curso->id ? 'selected' : '' }}>
+                <option value="{{ $curso->id }}" {{ old('curso_id') == $curso->id ? 'selected' : '' }}>
                   {{ $curso->nome }}
                 </option>
               @endforeach
@@ -49,27 +47,18 @@
                       ],
                   ),
               ) }},
-              professorSelecionado: {{ json_encode(
-                  $turma->professor
-                      ? [
-                          'id' => $turma->professor->id,
-                          'nome' => $turma->professor->nome,
-                          'cargo' => $turma->professor->cargo,
-                          'textoBusca' => $turma->professor->nome,
-                      ]
-                      : null,
-              ) }}
+              professorSelecionado: null
           })">
             <label class="block text-sm font-medium text-gray-700">Professor</label>
 
             <div class="relative mt-1" x-cloak>
-              <input type="text" x-model="termoPesquisa" placeholder="Pesquisar professor por nome"
+              <input type="text" x-model="termoPesquisa" placeholder="Pesquisar professor por nome..."
                 class="w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-gray-200"
-                :disabled="!!professorSelecionado" @input.debounce.500ms="">
+                :disabled="!!professorSelecionado" @input.debounce.500ms="buscarProfessores">
 
               <template x-if="termoPesquisa.length > 0">
                 <div class="absolute z-10 mt-1 w-full rounded-md border border-gray-200 bg-white shadow-md">
-                  <template x-for="professor in professoresFiltrados()" :key="professor.id">
+                  <template x-for="professor in professoresFiltrados" :key="professor.id">
                     <div @click="selecionarProfessor(professor)"
                       class="cursor-pointer border-b border-gray-100 p-3 transition-colors last:border-0 hover:bg-blue-50">
                       <div class="font-medium text-gray-900" x-text="professor.nome"></div>
@@ -79,7 +68,7 @@
                     </div>
                   </template>
 
-                  <div x-show="professoresFiltrados().length === 0" class="p-3 text-gray-500">
+                  <div x-show="professoresFiltrados.length === 0" class="p-3 text-gray-500">
                     Nenhum professor encontrado
                   </div>
                 </div>
@@ -129,10 +118,16 @@
         professors: config.professors || [],
         professorSelecionado: config.professorSelecionado || null,
         termoPesquisa: '',
+        professoresFiltrados: [],
 
-        professoresFiltrados() {
+        init() {
+          // Inicializa a lista de professores filtrados com todos os professores
+          this.professoresFiltrados = this.professors;
+        },
+
+        buscarProfessores() {
           const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
-          return this.professors.filter(professor => {
+          this.professoresFiltrados = this.professors.filter(professor => {
             const texto = this.removerAcentos(professor.textoBusca.toLowerCase());
             return texto.includes(termo) &&
               (!this.professorSelecionado || professor.id !== this.professorSelecionado.id);
@@ -142,10 +137,11 @@
         selecionarProfessor(professor) {
           this.professorSelecionado = professor;
           this.termoPesquisa = '';
+          this.buscarProfessores(); // Atualiza a lista de professores filtrados
         },
 
         removerAcentos(texto) {
-          return texto.normalize('NFD').replace(/[̀-ͯ]/g, '');
+          return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         }
       }));
     });

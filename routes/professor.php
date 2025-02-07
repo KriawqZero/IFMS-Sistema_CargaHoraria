@@ -37,21 +37,24 @@ Route::name('professor.')->group(function() {
             ->name('dashboard');
 
         Route::prefix('professor/alunos')->name('alunos.')->group(function () {
+            // Rota para listar alunos
             Route::get('/', [ProfessorAlunoController::class, 'index'])
                 ->name('index');
-
+            // Rota para mostrar um aluno
             Route::get('/{id}', [ProfessorAlunoController::class, 'show'])
                 ->name('show');
-
+            // Rota para criar um aluno
             Route::get('/criar', [ProfessorAlunoController::class, 'create'])
                 ->name('create');
-
+            // Rota para armazenar um aluno
             Route::post('/criar', [ProfessorAlunoController::class, 'store'])
                 ->name('store');
-
+            // Rota para editar um aluno
             Route::get('/edit/{id}', [ProfessorAlunoController::class, 'edit'])
                 ->name('edit');
-
+            // Rota para atualizar um aluno
+            Route::put('/edit/{id}', [ProfessorAlunoController::class, 'put'])
+                ->name('update');
         });
 
 

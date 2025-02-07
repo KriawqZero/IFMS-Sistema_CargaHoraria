@@ -11,7 +11,7 @@ class ProfessorCRUDService {
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAllProfessores() {
-        return Professor::where('cargo', '==', 'professor')->latest()->get();
+        return Professor::where('cargo', '=', 'professor')->latest()->get();
     }
 
     /**

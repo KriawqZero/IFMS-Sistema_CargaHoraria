@@ -14,12 +14,6 @@ class ProfessorAlunoController extends Controller {
         private TurmaService $turmaService
     ) {}
 
-    /**
-     * Lista alunos com filtros
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
-     */
     public function index(Request $request) {
         $filters = [
             'turma' => $request->input('turma', 'todas'),
@@ -77,6 +71,20 @@ class ProfessorAlunoController extends Controller {
             'aluno' => $aluno,
             'turmas' => $this->turmaService->getTurmasProfessor(auth('professor')->user())
         ]);
+    }
 
+    public function put(StoreAlunoRequest $request, $id) {
+        $input = $request->validated();
+
+        if($this->alunoService->update(
+            $id,
+            $input['nome'],
+            $input['cpf'],
+            $input['data_nascimento'],
+            $input['id_turma'] ?? null
+        )) return redirect()->route('professor.alunos.index')
+            ->with('success', 'Aluno atualizado com sucesso!');
+
+        return redirect()->back()->withErrors('Erro ao atualizar aluno!');
     }
 }

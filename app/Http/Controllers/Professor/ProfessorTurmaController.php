@@ -24,7 +24,9 @@ class ProfessorTurmaController extends Controller {
 
     public function create() {
         return view('professor.turmas.create', [
-            'titulo' => 'Criar Turma'
+            'titulo' => 'Criar Turma',
+            'cursos' => $this->cursoService->getAllCursos(),
+            'professores' => $this->professorService->getAllProfessores()
         ]);
     }
 

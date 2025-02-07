@@ -35,6 +35,21 @@ class AlunoService {
         }
     }
 
+    public function update(int $id, string $nome, string $cpf, string|null $date, int|null $id_turma): bool {
+        try {
+            $aluno = Aluno::findOrFail($id);
+            $aluno->update( [
+                'nome' => $nome,
+                'cpf' => $cpf,
+                'data_nascimento' => $date,
+                'turma_id' => $id_turma
+            ]);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
     /**
      * Obtém alunos filtrados
      *
