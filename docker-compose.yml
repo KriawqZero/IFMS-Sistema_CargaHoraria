@@ -1,39 +1,28 @@
 services:
-  app:
-    build: .
-    container_name: laravel-app
-    restart: unless-stopped
-    networks:
-      - shared_network
-    user: "www-data:www-data"
+  application:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: application
+    container_name: application
+    tty: true
+    ports:
+      - "9000:9000"
     volumes:
-      - .:/var/www/html
-    environment:
-      - APP_KEY=
-      - DB_HOST=mariadb_local
-      - DB_PORT=3306
-      - DB_DATABASE=sistema_carga_horaria
-      - DB_USERNAME=user
-      - DB_PASSWORD=user123
-      - JWT_SECRET=3UQRwY1sg7OmNkrgOL2CMD9h05k09VhTIGMJPBW7V82OD77YwuGxOR894ECRUEvYyDHcw6h5kl2mKIOctwb0zjKgkf3CPDolxttDOMpC8irTSHiavmHO6CfD8EQ6ATum
-      - API_URL=http://api_csharp_local:8080/api/
-    env_file:
-      - .env
-
-  webserver:
+      - .:/var/www
+    networks:
+      - laravel_bridge
+  nginx:
     image: nginx:alpine
-    container_name: laravel-webserver
-    restart: unless-stopped
+    container_name: nginx
     ports:
       - "80:80"
-    networks:
-      - shared_network
     volumes:
-      - .:/var/www/html
-      - ./docker/nginx:/etc/nginx/conf.d
-    depends_on:
-      - app
+      - .:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - laravel_bridge
 
 networks:
-  shared_network:
-    external: true
+  laravel_bridge:
+    driver: bridge
