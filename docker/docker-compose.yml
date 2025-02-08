@@ -6,7 +6,7 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_ROOT_PASSWORD: root87603
       MYSQL_USER: user
       MYSQL_PASSWORD: user123
       MYSQL_DATABASE: sistema_carga_horaria
@@ -29,30 +29,6 @@ services:
       - mariadb
     networks:
       - shared_network
-
-  application:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-    image: application
-    container_name: application
-    tty: true
-    ports:
-      - "9000:9000"
-    volumes:
-      - .:/var/www
-    networks:
-      - laravel_bridge
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    ports:
-      - "80:80"
-    volumes:
-      - .:/var/www
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      - laravel_bridge
 
 volumes:
   mariadb_data:
