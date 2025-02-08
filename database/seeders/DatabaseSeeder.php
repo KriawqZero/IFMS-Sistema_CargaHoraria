@@ -42,6 +42,12 @@ class DatabaseSeeder extends Seeder {
 
         Turma::factory(5)->create();
 
+        Aluno::create([
+            'cpf' => '00000000000',
+            'foto_src' => 'default-profile.svg',
+            'turma_id' => 1,
+        ]);
+
         Aluno::factory(10)->create();
 
         Categoria::create([
