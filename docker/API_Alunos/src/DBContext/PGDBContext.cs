@@ -8,7 +8,7 @@ public class PGDBContext: DbContext {
                                     "Port=3306;" +       // A porta padrão do MariaDB é 3306
                                     "Database=api_alunos_database;" +
                                     "User Id=root;" +    // Altere para o seu usuário do MariaDB
-                                    "Password=root123;";  // Altere para a sua senha
+                                    "Password=root87603;";  // Altere para a sua senha
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseMySql(ConnectionString, ServerVersion.AutoDetect(ConnectionString));	
