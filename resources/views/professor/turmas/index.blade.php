@@ -14,7 +14,7 @@
         </a>
       </div>
 
-      <div class="rounded-md bg-white p-4 shadow-md">
+      <div class="rounded-md bg-white p-4 shadow-md overflow-x-auto xl:overflow-visible">
         <table class="w-full border-collapse text-left">
           <thead>
             <tr>

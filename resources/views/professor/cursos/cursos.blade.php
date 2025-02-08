@@ -18,7 +18,7 @@
       </div>
 
       <!-- Lista de Cursos -->
-      <div class="rounded-md bg-white p-4 shadow-md">
+      <div class="rounded-md bg-white p-4 shadow-md overflow-x-auto xl:overflow-visible">
         <h2 class="mb-4 text-lg font-medium text-gray-700">Lista de Cursos</h2>
         <table class="w-full border-collapse text-left">
           <thead>

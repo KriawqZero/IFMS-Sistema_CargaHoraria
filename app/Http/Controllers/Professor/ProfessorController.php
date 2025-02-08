@@ -109,7 +109,7 @@ class ProfessorController extends Controller {
      */
     public function dashboard() {
         return view('professor/index', [
-            'titulo' => 'Professor',
+            'titulo' => 'Visão Geral',
             'professor' => auth('professor')->user(),
             'turmas' => $this->turmaService->getTurmasProfessor(auth('professor')->user()),
             'certificados' => $this->certificadoService->getUltimosCertificadosProfessor(auth('professor')->user()),

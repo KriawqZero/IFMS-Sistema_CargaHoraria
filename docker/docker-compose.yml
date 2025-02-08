@@ -30,16 +30,18 @@ services:
     networks:
       - shared_network
 
-  api-csharp:
+  api-sisco:
     build:
       context: api/.
       dockerfile: Dockerfile
-    container_name: api_csharp_local
+    container_name: api_sisco_local
     restart: always
     ports:
       - "5000:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+        - mariadb
     networks:
       - shared_network
 
