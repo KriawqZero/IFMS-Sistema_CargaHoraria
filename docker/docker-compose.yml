@@ -30,6 +30,19 @@ services:
     networks:
       - shared_network
 
+  api-csharp:
+    build:
+      context: api/.
+      dockerfile: Dockerfile
+    container_name: api_csharp_local
+    restart: always
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - shared_network
+
 volumes:
   mariadb_data:
     driver: local
