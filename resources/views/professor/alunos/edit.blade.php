@@ -15,9 +15,10 @@
           <div class="flex items-center md:col-span-2" x-data="{ isNomeEditable: false, nomeAluno: '{{ $aluno->nome }}' }">
             <div class="w-full">
               <label class="block text-sm font-medium text-gray-700">Nome Completo</label>
-              <input type="text" name="nome" x-model="nomeAluno" required
+              <input type="text" x-model="nomeAluno"
                 class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200"
                 :disabled="!isNomeEditable">
+              <input type="hidden" name="nome" x-model="nomeAluno">
             </div>
             <button type="button" @click="isNomeEditable = !isNomeEditable"
               class="ml-4 mt-6 text-green-500 hover:text-green-700">
@@ -26,13 +27,13 @@
           </div>
 
           <!-- CPF -->
-          <div class="flex items-center" x-data="{ cpfEditavel: false }">
+          <div class="flex items-center" x-data="{ cpfEditavel: false, alunoCpf: '{{ $aluno->format_cpf }}' }">
             <div class="w-full">
               <label class="block text-sm font-medium text-gray-700">CPF</label>
-              <input type="text" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                value="{{ old('cpf', $aluno->formatCpf) }}" required
+              <input type="text" x-model="alunoCpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
                 class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm disabled:cursor-not-allowed disabled:bg-gray-200"
                 placeholder="000.000.000-00" title="Formato: 000.000.000-00" :disabled="!cpfEditavel">
+              <input type="hidden" name="cpf" x-model="alunoCpf">
             </div>
             <button type="button" @click="cpfEditavel = !cpfEditavel"
               class="ml-4 mt-6 text-green-500 hover:text-green-700">
@@ -48,8 +49,9 @@
                 class="mt-1 block w-full rounded-md border border-gray-300 bg-gray-200 p-2 shadow-sm">
                 {{ $aluno->data_nascimento ? \Carbon\Carbon::parse($aluno->data_nascimento)->format('d/m/Y') : 'Não informada' }}
               </div>
-              <input type="date" name="data_nascimento" x-model="dataNascimento" x-show="isDataEditable"
+              <input type="date" x-model="dataNascimento" x-show="isDataEditable"
                 class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
+              <input type="hidden" name="data_nascimento" x-model="dataNascimento">
             </div>
             <button type="button" @click="isDataEditable = !isDataEditable"
               class="ml-4 mt-6 text-green-500 hover:text-green-700">
@@ -153,31 +155,31 @@
   @vite('resources/js/components/seletor-turma.js')
   <script>
     /*    document.addEventListener('alpine:init', () => {
-        Alpine.data('seletorTurma', (config) => ({
-          maxTurmas: config.maxTurmas || 1,
-          turmas: config.turmas || [],
-          termoPesquisa: '',
-          turmasSelecionadas: config.turmasSelecionadas || [],
+          Alpine.data('seletorTurma', (config) => ({
+            maxTurmas: config.maxTurmas || 1,
+            turmas: config.turmas || [],
+            termoPesquisa: '',
+            turmasSelecionadas: config.turmasSelecionadas || [],
 
-          turmasFiltradas() {
-            const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
-            return this.turmas.filter(turma => {
-              const texto = this.removerAcentos(turma.textoBusca.toLowerCase());
-              return texto.includes(termo) && !this.turmasSelecionadas.find(t => t.id === turma.id);
-            });
-          },
+            turmasFiltradas() {
+              const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
+              return this.turmas.filter(turma => {
+                const texto = this.removerAcentos(turma.textoBusca.toLowerCase());
+                return texto.includes(termo) && !this.turmasSelecionadas.find(t => t.id === turma.id);
+              });
+            },
 
-          clicarTurma(turma) {
-            if (this.turmasSelecionadas.length < this.maxTurmas) {
-              this.turmasSelecionadas.push(turma);
-              this.termoPesquisa = '';
+            clicarTurma(turma) {
+              if (this.turmasSelecionadas.length < this.maxTurmas) {
+                this.turmasSelecionadas.push(turma);
+                this.termoPesquisa = '';
+              }
+            },
+
+            removerAcentos(texto) {
+              return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             }
-          },
-
-          removerAcentos(texto) {
-            return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-          }
-        }));
-      });
+          }));
+        });
   </script>
 @endpush

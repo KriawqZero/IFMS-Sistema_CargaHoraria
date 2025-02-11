@@ -3,66 +3,60 @@
 namespace App\Http\Controllers\Professor;
 
 use Illuminate\Http\Request;
-use App\Models\Turma;
 use App\Models\Aluno;
 use App\Http\Controllers\Controller;
+use App\Http\Services\Professor\TurmaService;
 
 class CsvController extends Controller {
+    public function __construct(
+        private TurmaService $turmaService
+    ) { }
+
     public function create() {
         return view('professor.cadastrar_alunos', [
             'titulo' => "Cadastrar alunos",
+            'turmas' => $this->turmaService->getAllTurmas(),
         ]);
     }
-
 
     public function store(Request $request) {
         // Validações
         $request->validate([
             'csv_text' => 'required|string',
-            'turma' => 'required|string|max:255',
+            'id_turma' => 'required|exists:turmas,id',
         ]);
 
         // Recuperar dados do request
         $csvText = $request->input('csv_text');
-        $codigoTurma =  $request->input('turma');
+        $turmaId = $request->input('id_turma');
 
-        // Criar ou obter a turma
-        $turma = Turma::where('codigo', $codigoTurma)->first();
+        // Obter a turma
+        $turma = $this->turmaService->getTurmaPorId($turmaId);
 
-        if(!$turma) return back()->withErrors("Turma não existe");
+        if (!$turma) {
+            return back()->withErrors("Turma não encontrada.");
+        }
 
         // Processar o CSV
         $rows = explode("\n", $csvText);
         $errors = [];
 
         foreach ($rows as $index => $row) {
-            $columns = str_getcsv($row, ',');
+            $cpf = trim($row);
 
-            if (count($columns) !== 2) {
-                $errors[] = "Linha " . ($index + 1) . ": formato inválido.";
-                continue;
-            }
-
-            $cpf = trim($columns[0]);
-            $dataNascimento = trim($columns[1]);
-
-            // Validar CPF e data
+            // Validar CPF
             if (!preg_match('/^\d{3}\.\d{3}\.\d{3}-\d{2}$/', $cpf)) {
                 $errors[] = "Linha " . ($index + 1) . ": CPF inválido.";
                 continue;
             }
 
-            if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $dataNascimento)) {
-                $errors[] = "Linha " . ($index + 1) . ": Data de nascimento inválida.";
-                continue;
-            }
+            $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
             // Criar ou atualizar aluno
             Aluno::updateOrCreate(
                 ['cpf' => $cpf],
                 [
-                    'data_nascimento' => $dataNascimento,
-                    'codigo_turma' => $turma->codigo
+                    'turma_id' => $turma->id,
                 ]
             );
         }
@@ -71,7 +65,6 @@ class CsvController extends Controller {
             return back()->withErrors($errors);
         }
 
-        return back()->with('success', 'CSV processado com sucesso!');
+        return back()->with('success', 'Alunos cadastrados com sucesso!');
     }
 }
-

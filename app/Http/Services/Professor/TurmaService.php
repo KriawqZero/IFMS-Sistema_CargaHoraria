@@ -21,6 +21,16 @@ class TurmaService {
     }
 
     /**
+     * Obtém turma por código
+     *
+     * @param  string  $codigo
+     * @return Turma|null
+     */
+    public function getTurmaPorCodigo(string $codigo): ?Turma {
+        return Turma::where('codigo', $codigo)->first();
+    }
+
+    /**
      * Obtém todas as turmas
      *
      * @return \Illuminate\Database\Eloquent\Collection
@@ -37,6 +47,15 @@ class TurmaService {
      */
     public function getTurmaPorId(int $id): Turma {
         return Turma::findOrFail($id);
+    }
+
+    /**
+     * Obtém todas as turmas com relacionamentos
+     *
+     * @return Collection
+     */
+    public function getAllTurmasComRelacionamentos(): Collection {
+        return Turma::with(['curso', 'professor'])->get();
     }
 
     /**

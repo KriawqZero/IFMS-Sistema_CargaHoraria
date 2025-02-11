@@ -73,6 +73,9 @@ Route::name('professor.')->group(function() {
                 // Rota para atualizar um aluno
                 Route::patch('/edit/{id}', [ProfessorAlunoController::class, 'patch'])
                     ->name('update');
+                // Rota para deletar um aluno
+                Route::delete('/{id}', [ProfessorAlunoController::class, 'destroy'])
+                    ->name('destroy');
             });
         });
 

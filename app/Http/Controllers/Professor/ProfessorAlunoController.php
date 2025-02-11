@@ -71,6 +71,13 @@ class ProfessorAlunoController extends Controller {
         return redirect()->back()->withErrors('Erro ao cadastrar aluno!');
     }
 
+    public function destroy($id) {
+        if($this->alunoService->delete($id)) return redirect()->route('professor.alunos.index')
+            ->with('success', 'Aluno deletado com sucesso!');
+
+        return redirect()->back()->withErrors('Erro ao deletar aluno!');
+    }
+
     public function edit($id) {
         $aluno = $this->alunoService->getAluno($id);
 

@@ -51,6 +51,31 @@ class AlunoService {
         }
     }
 
+    /**
+     * Deleta um aluno
+     *
+     * @param  int  $id
+     * @return bool
+     */
+    public function delete(int $id): bool {
+        try {
+            Aluno::findOrFail($id)->delete();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Atualiza um aluno
+     *
+     * @param  int  $id
+     * @param  string|null  $nome
+     * @param  string|null  $cpf
+     * @param  string|null  $date
+     * @param  int|null  $id_turma
+     * @return bool
+     */
     public function update(int $id, string|null $nome, string|null $cpf, string|null $date, int|null $id_turma): bool {
         try {
             $aluno = Aluno::findOrFail($id);
@@ -58,7 +83,7 @@ class AlunoService {
                 'nome' => $nome ?? $aluno->nome,
                 'cpf' => $cpf ?? $aluno->cpf,
                 'data_nascimento' => $date ?? $aluno->data_nascimento,
-                'turma_id' => $id_turma ?? $aluno->turma_id
+                'turma_id' => $id_turma ?? null
             ]);
             return true;
         } catch (\Exception $e) {
