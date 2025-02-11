@@ -11,7 +11,6 @@ enum CargoEnum: string {
         return match ($this) {
             self::Professor => 0,
             self::Coordenador => 1,
-            self::Admin => 2,
         };
     }
 
@@ -19,7 +18,6 @@ enum CargoEnum: string {
         return match ($cargo) {
             'professor' => self::Professor,
             'coordenador' => self::Coordenador,
-            'admin' => self::Admin,
             default => null,
         };
     }
