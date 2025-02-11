@@ -8,7 +8,7 @@
       </div>
       <form class="mt-8 space-y-6" action="{{ route('professor.alunos.update', $aluno->id) }}" method="POST">
         @csrf
-        @method('PUT')
+        @method('PATCH')
 
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           <!-- Nome Completo -->
@@ -60,7 +60,18 @@
           <!-- Seletor de Turma -->
           <div class="md:col-span-2" x-data="seletorTurma({
               maxTurmas: 1,
-              turmas: {{ json_encode($turmas) }},
+              turmas: {{ json_encode(
+                  $turmas->map(
+                      fn($turma) => [
+                          'id' => $turma->id,
+                          'codigo' => $turma->codigo,
+                          'nomeCurso' => optional($turma->curso)->nome,
+                          'textoBusca' => $turma->codigo . ' - ' . optional($turma->curso)->nome,
+                          'qtdAlunos' => $turma->alunos->count(),
+                          'professorAtual' => optional($turma->professor)->nomeCompleto,
+                      ],
+                  ),
+              ) }},
               turmasSelecionadas: {{ json_encode(
                   $aluno->turma
                       ? [
@@ -139,33 +150,34 @@
 @endsection
 
 @push('scripts')
+  @vite('resources/js/components/seletor-turma.js')
   <script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('seletorTurma', (config) => ({
-        maxTurmas: config.maxTurmas || 1,
-        turmas: config.turmas || [],
-        termoPesquisa: '',
-        turmasSelecionadas: config.turmasSelecionadas || [],
+    /*    document.addEventListener('alpine:init', () => {
+        Alpine.data('seletorTurma', (config) => ({
+          maxTurmas: config.maxTurmas || 1,
+          turmas: config.turmas || [],
+          termoPesquisa: '',
+          turmasSelecionadas: config.turmasSelecionadas || [],
 
-        turmasFiltradas() {
-          const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
-          return this.turmas.filter(turma => {
-            const texto = this.removerAcentos(turma.textoBusca.toLowerCase());
-            return texto.includes(termo) && !this.turmasSelecionadas.find(t => t.id === turma.id);
-          });
-        },
+          turmasFiltradas() {
+            const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
+            return this.turmas.filter(turma => {
+              const texto = this.removerAcentos(turma.textoBusca.toLowerCase());
+              return texto.includes(termo) && !this.turmasSelecionadas.find(t => t.id === turma.id);
+            });
+          },
 
-        clicarTurma(turma) {
-          if (this.turmasSelecionadas.length < this.maxTurmas) {
-            this.turmasSelecionadas.push(turma);
-            this.termoPesquisa = '';
+          clicarTurma(turma) {
+            if (this.turmasSelecionadas.length < this.maxTurmas) {
+              this.turmasSelecionadas.push(turma);
+              this.termoPesquisa = '';
+            }
+          },
+
+          removerAcentos(texto) {
+            return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
           }
-        },
-
-        removerAcentos(texto) {
-          return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        }
-      }));
-    });
+        }));
+      });
   </script>
 @endpush

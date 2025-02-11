@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Professor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Professor\Alunos\PatchAlunoRequest;
 use App\Http\Requests\Professor\Alunos\StoreAlunoRequest;
 use App\Http\Services\Professor\AlunoService;
 use App\Http\Services\Professor\TurmaService;
@@ -73,14 +74,14 @@ class ProfessorAlunoController extends Controller {
         ]);
     }
 
-    public function put(StoreAlunoRequest $request, $id) {
+    public function patch(PatchAlunoRequest $request, $id) {
         $input = $request->validated();
 
         if($this->alunoService->update(
             $id,
-            $input['nome'],
-            $input['cpf'],
-            $input['data_nascimento'],
+            $input['nome'] ?? null,
+            $input['cpf'] ?? null,
+            $input['data_nascimento'] ?? null,
             $input['id_turma'] ?? null
         )) return redirect()->route('professor.alunos.index')
             ->with('success', 'Aluno atualizado com sucesso!');

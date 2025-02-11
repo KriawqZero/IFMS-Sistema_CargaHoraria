@@ -36,26 +36,6 @@ Route::name('professor.')->group(function() {
         Route::get('professor', [ProfessorController::class, 'dashboard'])
             ->name('dashboard');
 
-        Route::prefix('professor/alunos')->name('alunos.')->group(function () {
-            // Rota para listar alunos
-            Route::get('/', [ProfessorAlunoController::class, 'index'])
-                ->name('index');
-            // Rota para mostrar um aluno
-            Route::get('/aluno/{id}', [ProfessorAlunoController::class, 'show'])
-                ->name('show');
-            // Rota para criar um aluno
-            Route::get('/criar', [ProfessorAlunoController::class, 'create'])
-                ->name('create');
-            // Rota para armazenar um aluno
-            Route::post('/criar', [ProfessorAlunoController::class, 'store'])
-                ->name('store');
-            // Rota para editar um aluno
-            Route::get('/edit/{id}', [ProfessorAlunoController::class, 'edit'])
-                ->name('edit');
-            // Rota para atualizar um aluno
-            Route::put('/edit/{id}', [ProfessorAlunoController::class, 'put'])
-                ->name('update');
-        });
 
 
 
@@ -70,6 +50,28 @@ Route::name('professor.')->group(function() {
 
 
 
+        // Rotas de alunos do professor
+        Route::prefix('professor/alunos')->name('alunos.')->group(function() {
+            Route::get('/', [ProfessorAlunoController::class, 'index'])
+                ->name('index');
+            // Rota para mostrar um aluno
+            Route::get('/aluno/{id}', [ProfessorAlunoController::class, 'show'])
+                ->name('show');
+            // Rota para criar um aluno
+            Route::get('/criar', [ProfessorAlunoController::class, 'create'])
+                ->name('create');
+            // Rota permissoes do coordenador
+            Route::middleware([VerifyPermission::class . ':coordenador'])->group(function() {
+                Route::post('/criar', [ProfessorAlunoController::class, 'store'])
+                    ->name('store');
+                // Rota para editar um aluno
+                Route::get('/edit/{id}', [ProfessorAlunoController::class, 'edit'])
+                    ->name('edit');
+                // Rota para atualizar um aluno
+                Route::patch('/edit/{id}', [ProfessorAlunoController::class, 'patch'])
+                    ->name('update');
+            });
+        });
 
 
         // Rotas de certificados do professor

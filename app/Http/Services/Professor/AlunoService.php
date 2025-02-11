@@ -35,14 +35,14 @@ class AlunoService {
         }
     }
 
-    public function update(int $id, string $nome, string $cpf, string|null $date, int|null $id_turma): bool {
+    public function update(int $id, string|null $nome, string|null $cpf, string|null $date, int|null $id_turma): bool {
         try {
             $aluno = Aluno::findOrFail($id);
             $aluno->update( [
-                'nome' => $nome,
-                'cpf' => $cpf,
-                'data_nascimento' => $date,
-                'turma_id' => $id_turma
+                'nome' => $nome ?? $aluno->nome,
+                'cpf' => $cpf ?? $aluno->cpf,
+                'data_nascimento' => $date ?? $aluno->data_nascimento,
+                'turma_id' => $id_turma ?? $aluno->turma_id
             ]);
             return true;
         } catch (\Exception $e) {

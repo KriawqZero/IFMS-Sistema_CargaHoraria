@@ -38,7 +38,7 @@
       </div>
 
       <!-- Lista de Alunos -->
-      <div class="rounded-md bg-white p-4 shadow-md overflow-x-auto xl:overflow-visible">
+      <div class="overflow-x-auto rounded-md bg-white p-4 shadow-md xl:overflow-visible">
         <h2 class="mb-4 text-lg font-medium text-gray-700">Alunos</h2>
         <!-- Tabela de Certificados -->
         <table class="w-full border-collapse text-left">
