@@ -23,8 +23,6 @@ services:
       - "7050:80"
     environment:
       PMA_HOST: mariadb
-      PMA_USER: root
-      PMA_PASSWORD: root87603
     depends_on:
       - mariadb
     networks:
