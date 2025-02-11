@@ -8,9 +8,6 @@ use App\Http\Middleware\VerifyJWT;
 
 // Grupo de rotas do aluno (nomes prefixados com 'aluno.')
 Route::name('aluno.')->group(function() {
-    Route::get('aluno/certificados/exportar', [AlunoCertificadoController::class, 'exportarCertificados'])
-        ->name('certificados.exportar');
-
     // Rota de formulario de login do aluno
     Route::get('/login', [AlunoController::class, 'showLoginForm'])
         ->middleware([VerifyAuth::class . ':none'])

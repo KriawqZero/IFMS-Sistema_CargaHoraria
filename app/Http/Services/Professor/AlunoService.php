@@ -16,6 +16,22 @@ class AlunoService {
     }
 
     /**
+     * Marca um aluno como concluído
+     *
+     * @param  int  $id
+     * @return bool
+     */
+    public function marcarComoConcluido(int $id): bool {
+        try {
+            $aluno = Aluno::findOrFail($id);
+            $aluno->update(['concluido' => true]);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
      * Cadastra um novo aluno
      *
      * @param  array  $input

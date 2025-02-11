@@ -60,6 +60,9 @@ Route::name('professor.')->group(function() {
             // Rota para criar um aluno
             Route::get('/criar', [ProfessorAlunoController::class, 'create'])
                 ->name('create');
+            // Rota para gerar relatorio do aluno
+            Route::get('aluno/exportar/{id}', [ProfessorAlunoController::class, 'exportarCertificadosAluno'])
+                ->name('relatorio.exportar');
             // Rota permissoes do coordenador
             Route::middleware([VerifyPermission::class . ':coordenador'])->group(function() {
                 Route::post('/criar', [ProfessorAlunoController::class, 'store'])

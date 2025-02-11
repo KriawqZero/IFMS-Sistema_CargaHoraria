@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('cpf')->unique();
             $table->date('data_nascimento')->nullable();
             $table->string('foto_src')->default('default-profile.svg');
+            $table->boolean('concluido')->default(false);
             $table->foreignId('turma_id')->nullable()->constrained('turmas')->onDelete('set null');
             $table->timestamps();
         });

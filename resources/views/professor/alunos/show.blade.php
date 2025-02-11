@@ -63,6 +63,13 @@
               </span>
             </p>
           </div>
+
+          <div class="bg-green-600 max-w-3xs text-white px-4 py-2 rounded-md hover:bg-blue-700">
+            <button >
+              <a href="{{ route('professor.alunos.relatorio.exportar', ['id' => $aluno->id]) }}">Gerar Relatório Aluno</a>
+            </button>
+          </div>
+
         </div>
       </div>
 

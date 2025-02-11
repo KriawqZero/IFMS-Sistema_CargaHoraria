@@ -7,13 +7,20 @@ use App\Http\Requests\Professor\Alunos\PatchAlunoRequest;
 use App\Http\Requests\Professor\Alunos\StoreAlunoRequest;
 use App\Http\Services\Professor\AlunoService;
 use App\Http\Services\Professor\TurmaService;
+use App\Http\Services\Aluno\CertificadoExportService;
 use Illuminate\Http\Request;
 
 class ProfessorAlunoController extends Controller {
     public function __construct(
+        private CertificadoExportService $exportService,
         private AlunoService $alunoService,
         private TurmaService $turmaService
     ) {}
+
+    public function exportarCertificadosAluno($id) {
+        $aluno = $this->alunoService->getAluno($id);
+        return $this->exportService->gerarPlanilha($aluno);
+    }
 
     public function index(Request $request) {
         $filters = [

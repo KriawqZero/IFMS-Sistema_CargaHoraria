@@ -9,15 +9,10 @@ use App\Http\Services\Aluno\{ CertificadoExportService, CertificadoQueryService,
 
 class AlunoCertificadoController extends Controller {
     public function __construct(
-        private CertificadoExportService $exportService,
         private CertificadoQueryService $queryService,
         private CertificadoStorageService $storageService,
         private CertificadoDeleteService $deleteService
     ) { }
-
-    public function exportarCertificados() {
-        return $this->exportService->gerarPlanilha(auth('aluno')->user());
-    }
 
     public function index(Request $request) {
         $resultado = $this->queryService->listarCertificados(

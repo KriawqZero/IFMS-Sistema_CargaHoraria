@@ -62,6 +62,11 @@ class ProfessorCertificadoController extends Controller {
                 auth('professor')->user()
             );
 
+            if($certificado->aluno->estaAprovado()) {
+                /*$this->notificationService->notificarAlunoAprovado($certificado->aluno);*/
+                /*$certificado->aluno->notificarAlunoAprovado();  */
+            }
+
             if($certificado->wasChanged())
                 return redirect(url()->previous())
                     ->with('success', 'Certificado atualizado com sucesso!');
