@@ -155,31 +155,31 @@
   @vite('resources/js/components/seletor-turma.js')
   <script>
     /*    document.addEventListener('alpine:init', () => {
-          Alpine.data('seletorTurma', (config) => ({
-            maxTurmas: config.maxTurmas || 1,
-            turmas: config.turmas || [],
-            termoPesquisa: '',
-            turmasSelecionadas: config.turmasSelecionadas || [],
+              Alpine.data('seletorTurma', (config) => ({
+                maxTurmas: config.maxTurmas || 1,
+                turmas: config.turmas || [],
+                termoPesquisa: '',
+                turmasSelecionadas: config.turmasSelecionadas || [],
 
-            turmasFiltradas() {
-              const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
-              return this.turmas.filter(turma => {
-                const texto = this.removerAcentos(turma.textoBusca.toLowerCase());
-                return texto.includes(termo) && !this.turmasSelecionadas.find(t => t.id === turma.id);
-              });
-            },
+                turmasFiltradas() {
+                  const termo = this.removerAcentos(this.termoPesquisa.toLowerCase());
+                  return this.turmas.filter(turma => {
+                    const texto = this.removerAcentos(turma.textoBusca.toLowerCase());
+                    return texto.includes(termo) && !this.turmasSelecionadas.find(t => t.id === turma.id);
+                  });
+                },
 
-            clicarTurma(turma) {
-              if (this.turmasSelecionadas.length < this.maxTurmas) {
-                this.turmasSelecionadas.push(turma);
-                this.termoPesquisa = '';
-              }
-            },
+                clicarTurma(turma) {
+                  if (this.turmasSelecionadas.length < this.maxTurmas) {
+                    this.turmasSelecionadas.push(turma);
+                    this.termoPesquisa = '';
+                  }
+                },
 
-            removerAcentos(texto) {
-              return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            }
-          }));
-        });
+                removerAcentos(texto) {
+                  return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                }
+              }));
+            });
   </script>
 @endpush

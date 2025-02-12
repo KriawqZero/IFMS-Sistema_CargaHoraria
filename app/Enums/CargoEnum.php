@@ -13,6 +13,14 @@ enum CargoEnum: string {
         };
     }
 
+    public static function format(string $cargo): string {
+        return match ($cargo) {
+            'professor' => 'Professor',
+            'coordenador' => 'Coordenador',
+            default => 'Cargo inválido',
+        };
+    }
+
     public static function fromString(string $cargo): ?self {
         return match ($cargo) {
             'professor' => self::Professor,

@@ -22,7 +22,7 @@
 
     <form action="{{ route('professor.create.alunos.post') }}" method="POST" class="space-y-6">
       @csrf
-      
+
       <!-- Campo CSV -->
       <div>
         <label for="csv_text" class="mb-2 block font-medium text-gray-700">Conteúdo CSV</label>
@@ -44,8 +44,8 @@
                       'textoBusca' => $turma->codigo . ' - ' . optional($turma->curso)->nome,
                       'qtdAlunos' => $turma->alunos->count(),
                       'professorAtual' => optional($turma->professor)->nomeCompleto,
-                  ]
-              )
+                  ],
+              ),
           ) }}
       })">
         <label class="block text-sm font-medium text-gray-700">Turma</label>
@@ -104,5 +104,5 @@
 @endsection
 
 @push('scripts')
-  @vite("resources/js/components/seletor-turma.js")
+  @vite('resources/js/components/seletor-turma.js')
 @endpush

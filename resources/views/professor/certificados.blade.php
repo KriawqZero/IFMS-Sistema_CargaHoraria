@@ -60,6 +60,7 @@
               <th class="w-[8%] border-b border-gray-300 px-1.5 py-2 xl:px-3">Turma</th>
               <th class="w-[16%] border-b border-gray-300 px-1.5 py-2 xl:px-3">Titulo</th>
               <th class="w-[12%] border-b border-gray-300 px-1.5 py-2 xl:px-3">Categoria</th>
+              <th class="w-[10%] border-b border-gray-300 px-1.5 py-2 xl:px-3">Data Constante</th>
               <th class="w-[10%] border-b border-gray-300 px-1.5 py-2 xl:px-3">Carga Horária</th>
               <th class="w-[10%] border-b border-gray-300 px-1.5 py-2 xl:px-3">Status</th>
               <th class="w-[8%] border-b border-gray-300 px-1.5 py-2 xl:px-3">Arquivo</th>
@@ -77,6 +78,7 @@
                           turma: '{{ addslashes($certificado->aluno->turma->codigo) }}',
                           categoria_id: '{{ addslashes($certificado->categoria->id) }}',
                           titulo: '{{ addslashes($certificado->titulo) }}',
+                          data_constante: '{{ $certificado->data_constante ? \Carbon\Carbon::parse($certificado->data_constante)->format('d/m/Y') : 'Não informada' }}',
                           cargaHoraria: '{{ $certificado->carga_horaria }}',
                           formattedCargaHoraria: '{{ floor($certificado->carga_horaria / 60) }}:{{ str_pad($certificado->carga_horaria % 60, 2, '0', STR_PAD_LEFT) }}',
                           status: '{{ $certificado->status }}'
@@ -93,6 +95,9 @@
                   {{ $certificado->titulo }}</td>
                 <td class="max-w-[120px] truncate border-b border-gray-200 px-1.5 py-2 xl:px-3">
                   {{ $certificado->categoria->nome }}</td>
+                <td class="max-w-[120px] truncate border-b border-gray-200 px-1.5 py-2 xl:px-3">
+                  {{ $certificado->data_constante ?
+                  \Carbon\Carbon::parse($certificado->data_constante)->format('d/m/Y') : 'Não informada' }}</td>
                 <td class="whitespace-nowrap border-b border-gray-200 px-1.5 py-2 xl:px-3">
                   @php
                     $horas = $certificado->carga_horaria
@@ -191,6 +196,27 @@
             <button type="button" @click="isCategoriaEditable = !isCategoriaEditable"
               class="ml-4 text-green-500 hover:text-green-700">
               <span x-text="isCategoriaEditable ? 'Bloquear' : 'Alterar'"></span>
+            </button>
+          </div>
+
+          <!-- Data Constante -->
+          <div class="flex items-center" x-data="{ isDataEditable: false }">
+            <div class="w-full">
+              <label for="data-constante" class="block text-sm font-medium text-gray-700">
+                Data Constante (dd/mm/aaaa)
+              </label>
+              <input type="text" id="data-constante"
+                class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-green-500 focus:ring-green-500 disabled:cursor-not-allowed disabled:bg-gray-200 sm:text-sm"
+                x-model="modalData.data_constante" :disabled="!isDataEditable" pattern="^\d{2}/\d{2}/\d{4}$"
+                placeholder="DD/MM/AAAA">
+              <input type="hidden" name="data_constante" x-model="modalData.data_constante">
+              <p x-show="!/^\d{2}\/\d{2}\/\d{4}$/.test(modalData.data_constante)" class="mt-1 text-xs text-red-500">
+                Formato inválido. Use DD/MM/AAAA
+              </p>
+            </div>
+            <button type="button" @click="isDataEditable = !isDataEditable"
+              class="ml-4 text-green-500 hover:text-green-700">
+              <span x-text="isDataEditable ? 'Bloquear' : 'Alterar'"></span>
             </button>
           </div>
 

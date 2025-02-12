@@ -13,7 +13,8 @@
         </x-master::card>
       </div>
       <div class="mt-0 w-full px-6 sm:w-1/2 md:mt-8 xl:mt-6 xl:w-1/3">
-        <x-master::card iconBg="bg-red-600 bg-opacity-75" titulo="{{ $professor->nome_completo }}" subtitulo="Aluno(a)">
+        <x-master::card iconBg="bg-red-600 bg-opacity-75" titulo="{{ $professor->certificadosPendentes() }}"
+          subtitulo="Certificados Pendentes">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewBox="0 0 16 16">
             <path
               d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8" />
@@ -21,10 +22,11 @@
         </x-master::card>
       </div>
       <div class="mt-0 w-full px-6 sm:w-1/2 md:mt-8 xl:mt-6 xl:w-1/3">
-        <x-master::card iconBg="bg-red-600 bg-opacity-75" titulo="{{ $professor->nome_completo }}" subtitulo="Aluno(a)">
+        <x-master::card iconBg="bg-indigo-400 bg-opacity-75" titulo="{{ $professor->cargo_enum }}" subtitulo="Cargo">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewBox="0 0 16 16">
             <path
-              d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8" />
+              d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5" />
+            <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85z" />
           </svg>
         </x-master::card>
       </div>

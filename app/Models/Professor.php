@@ -46,6 +46,20 @@ class Professor extends Model implements AuthenticatableContract {
         return $atualCargo->level() < $targetCargo->level();
     }
 
+    public function getCargoEnumAttribute() {
+        return CargoEnum::format($this->cargo);
+    }
+
+    public function certificadosPendentes() {
+        return $this->turmas()->with(['alunos' => function ($query) {
+            $query->withCount(['certificados as pendentes' => function ($q) {
+                $q->where('status', 'pendente');
+            }]);
+        }])->get()->flatMap(function ($turma) {
+            return $turma->alunos->pluck('pendentes');
+        })->sum();
+    }
+
     /*public function notificacoes() {*/
     /*    return $this->morphMany(Notificacao::class, 'receptor_categoria', 'receptor_categoria', 'receptor_id');*/
     /*}*/

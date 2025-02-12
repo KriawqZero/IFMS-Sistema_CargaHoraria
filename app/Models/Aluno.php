@@ -137,6 +137,11 @@ class Aluno extends Model implements AuthenticatableContract {
         return false;
     }
 
+    // Certificados pendentes
+    public function certificadosPendentes() {
+        return $this->certificados()->where('status', 'pendente')->get()->all();
+    }
+
     public function maxCargaHoraria() {
         if($this->turma && $this->turma->carga_horaria_minima) {
             return $this->turma->carga_horaria_minima;
