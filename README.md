@@ -1,9 +1,9 @@
 
 # Sistema de Carga Horária IFMS
 
-✨ Sistema para gestão de carga horária do IFMS (Instituto Federal do Mato Grosso do Sul).
+ Sistema para gestão de carga horária do IFMS (Instituto Federal do Mato Grosso do Sul).
 
-## 🚀 Começando
+## Começando
 
 Siga estas etapas para configurar o ambiente de desenvolvimento:
 
@@ -12,7 +12,7 @@ Siga estas etapas para configurar o ambiente de desenvolvimento:
 - Composer 2.0+
 - Node.js 16.x+
 - Yarn 1.22+
-- MySQL 5.7+ ou banco de dados equivalente
+- MariaDB 5.0+ ou banco de dados equivalente
 - Git
 
 ### Configuração do Ambiente
