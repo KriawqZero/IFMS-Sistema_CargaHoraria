@@ -83,18 +83,3 @@ http://localhost:8000
 ---
 
 📌 **Importante:** Sempre verifique se o arquivo `.env` está configurado corretamente com as credenciais do banco de dados antes de executar as migrações.
-
-## 💡 Recursos Principais
-- Gestão de carga horária institucional
-- Controle de atividades complementares
-- Relatórios automáticos
-- Interface administrativa intuitiva
-
-## 🤝 Como Contribuir
-1. Faça um fork do projeto
-2. Crie sua branch (`git checkout -b feature/nova-feature`)
-3. Comite suas mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Pushe para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-
-📄 **Licença:** Este projeto está sob licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
