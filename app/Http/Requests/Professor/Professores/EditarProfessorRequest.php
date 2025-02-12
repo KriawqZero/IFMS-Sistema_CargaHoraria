@@ -12,7 +12,7 @@ class EditarProfessorRequest extends FormRequest {
     public function rules(): array {
         return [
             'nome' => 'nullable|string|max:255',
-            'cargo' => 'nullable|in:professor,coordenador,admin',
+            'cargo' => 'nullable|in:professor,coordenador',
             'turmas' => 'nullable|array|max:3',
             'turmas.*' => [
                 'required', 'integer'

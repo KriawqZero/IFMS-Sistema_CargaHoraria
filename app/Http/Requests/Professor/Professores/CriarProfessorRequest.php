@@ -13,7 +13,7 @@ class CriarProfessorRequest extends FormRequest {
     public function rules(): array {
         return [
             'nome' => 'required|string|max:255',
-            'cargo' => 'required|in:professor,coordenador,admin',
+            'cargo' => 'required|in:professor,coordenador',
             'turmas' => 'nullable|array|max:3',
             'turmas.*' => [
                 'required',

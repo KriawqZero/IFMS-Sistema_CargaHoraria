@@ -24,7 +24,6 @@
             <select name="cargo" class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
               <option value="professor">Professor</option>
               <option value="coordenador">Coordenador</option>
-              <option value="admin">Administrador</option>
             </select>
           </div>
 

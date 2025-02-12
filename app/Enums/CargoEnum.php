@@ -5,7 +5,6 @@ namespace App\Enums;
 enum CargoEnum: string {
     case Professor = 'professor';
     case Coordenador = 'coordenador';
-    case Admin = 'admin';
 
     public function level(): int {
         return match ($this) {

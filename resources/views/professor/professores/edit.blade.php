@@ -41,7 +41,6 @@
                 <option value="professor" {{ $professor->cargo === 'professor' ? 'selected' : '' }}>Professor</option>
                 <option value="coordenador" {{ $professor->cargo === 'coordenador' ? 'selected' : '' }}>Coordenador
                 </option>
-                <option value="admin" {{ $professor->cargo === 'admin' ? 'selected' : '' }}>Administrador</option>
               </select>
               <input type="hidden" name="cargo" x-model="cargo">
             </div>

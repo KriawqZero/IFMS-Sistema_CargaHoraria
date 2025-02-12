@@ -29,13 +29,6 @@ class DatabaseSeeder extends Seeder {
             'primeiro_acesso' => false,
         ]);
 
-        /*Professor::create([*/
-        /*    'nome' => 'Marcilio Adm',*/
-        /*    'senha' => Hash::make('123456'),*/
-        /*    'cargo' => 'admin',*/
-        /*    'foto_src' => 'default-profile.svg',*/
-        /*]);*/
-
         /*Professor::factory(3)->create();*/
 
         Curso::factory(2)->create();
