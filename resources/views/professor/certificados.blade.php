@@ -96,8 +96,10 @@
                 <td class="max-w-[120px] truncate border-b border-gray-200 px-1.5 py-2 xl:px-3">
                   {{ $certificado->categoria->nome }}</td>
                 <td class="max-w-[120px] truncate border-b border-gray-200 px-1.5 py-2 xl:px-3">
-                  {{ $certificado->data_constante ?
-                  \Carbon\Carbon::parse($certificado->data_constante)->format('d/m/Y') : 'Não informada' }}</td>
+                  {{ $certificado->data_constante
+                      ? \Carbon\Carbon::parse($certificado->data_constante)->format('d/m/Y')
+                      : 'Não informada' }}
+                </td>
                 <td class="whitespace-nowrap border-b border-gray-200 px-1.5 py-2 xl:px-3">
                   @php
                     $horas = $certificado->carga_horaria

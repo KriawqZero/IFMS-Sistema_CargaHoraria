@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'api' => [
+        'url' => env('API_URL'),
+    ],
+
+    'api_feedback' => [
+        'url' => env('API_FEEDBACK_URL'),
+    ],
 ];

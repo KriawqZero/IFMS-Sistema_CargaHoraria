@@ -42,7 +42,7 @@ class AuthService {
 
     private function makeApiCall(string $cpf, string $senha, string $token): array {
         $response = Http::withToken($token)
-            ->get(env('API_URL') . 'Aluno/login', [
+            ->get(config('services.api.url') . '/Aluno/login', [
                 'cpf' => $cpf,
                 'senha' => $senha
             ]);

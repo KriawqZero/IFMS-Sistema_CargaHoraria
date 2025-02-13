@@ -7,20 +7,18 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Http;
 
-class VerifyJWT
-{
+class VerifyJWT {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
+    public function handle(Request $request, Closure $next): Response {
         // Faz login na API para obter o token
         $username = 'laravel';
         $password = 'certificado123';
 
-        $response = Http::post(env('API_URL') . 'Auth/login', [
+        $response = Http::post(env('API_URL') . '/Auth/login', [
             'username' => $username,
             'password' => $password,
         ]);

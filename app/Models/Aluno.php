@@ -124,7 +124,7 @@ class Aluno extends Model implements AuthenticatableContract {
 
     // Verificação de aprovação
     public function estaAprovado() {
-        if($this->turma() && $this->turma->carga_horaria_minima) {
+        if($this->turma && $this->turma->carga_horaria_minima) {
             return $this->cargaHorariaTotal() >= $this->turma->carga_horaria_minima;
         }
 

@@ -12,7 +12,7 @@
           </svg>
         </x-master::card>
       </div>
-      <div class="transform transition-transform hover:scale-105 mt-0 w-full px-6 sm:w-1/2 md:mt-8 xl:mt-6 xl:w-1/3">
+      <div class="mt-0 w-full transform px-6 transition-transform hover:scale-105 sm:w-1/2 md:mt-8 xl:mt-6 xl:w-1/3">
         <a href="{{ route('professor.certificados.index') }}?status=pendente">
           <x-master::card iconBg="bg-green-600 bg-opacity-75 " titulo="{{ $professor->certificadosPendentes() }}"
             subtitulo="Certificados para Validar">
