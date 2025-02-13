@@ -124,17 +124,22 @@ class Aluno extends Model implements AuthenticatableContract {
 
     // Verificação de aprovação
     public function estaAprovado() {
-        if($this->turma && $this->turma->carga_horaria_minima) {
-            $cg = $this->cargaHorariaTotal() >= $this->turma->carga_horaria_minima;
-            if($cg) {
-                $this->concluido = true;
-                $this->save();
-                return true;
-            }
-            return false;
+        if($this->turma() && $this->turma->carga_horaria_minima) {
+            return $this->cargaHorariaTotal() >= $this->turma->carga_horaria_minima;
         }
 
         return false;
+        /*if($this->turma && $this->turma->carga_horaria_minima) {*/
+        /*    $cg = $this->cargaHorariaTotal() >= $this->turma->carga_horaria_minima;*/
+        /*    if($cg) {*/
+        /*        $this->concluido = true;*/
+        /*        $this->save();*/
+        /*        return true;*/
+        /*    }*/
+        /*    return false;*/
+        /*}*/
+        /**/
+        /*return false;*/
     }
 
     // Certificados pendentes

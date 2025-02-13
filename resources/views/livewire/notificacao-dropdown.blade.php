@@ -29,14 +29,15 @@
     </div>
     @forelse($notifications as $notification)
       @php
-        if (isset($notification->data['aluno'])) {
+        if (isset($notification->data['aluno'], $notification->data['certificado_id'])) {
             $id = $notification->data['certificado_id'];
             $url = route('professor.certificados.index');
-        } elseif (isset($notification->data['professor'])) {
+        } elseif (isset($notification->data['professor'], $notification->data['certificado_id'])) {
             $id = $notification->data['certificado_id'];
             $url = route('aluno.certificados.index');
         } else {
             $url = '#';
+            $id = null;
         }
       @endphp
       <div

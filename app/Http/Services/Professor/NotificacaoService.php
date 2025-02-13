@@ -1,13 +1,12 @@
 <?php
 namespace App\Http\Services\Professor;
 
+use App\Models\Aluno;
 use App\Models\Professor;
+use App\Notifications\AlunoCumpriuHoras;
 
 class NotificacaoService {
-    public function markCertificadoNotificationsAsRead(Professor $professor, int $certificadoId): void {
-        $professor->notifications()
-            ->where('data->certificado_id', $certificadoId)
-            ->get()
-            ->markAsRead();
+    public function enviarEmailAlunoCumpriuHoras(Professor $professor, Aluno $aluno): void {
+        $professor->notify(new AlunoCumpriuHoras($aluno));
     }
 }

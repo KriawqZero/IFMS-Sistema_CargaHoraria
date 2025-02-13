@@ -79,6 +79,12 @@
                 {{ $aluno->concluido ? 'Concluído' : 'Em andamento' }}
               </span>
             </p>
+            <p class="mt-1">
+              <span
+                class="{{ $aluno->estaAprovado() ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }} inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+                {{ $aluno->estaAprovado() ? 'Aprovado' : 'Andamento' }}
+              </span>
+            </p>
           </div>
 
           <button class="rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700">

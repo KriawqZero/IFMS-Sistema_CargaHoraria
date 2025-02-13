@@ -20,6 +20,7 @@
             <tr>
               <th class="border-b border-gray-300 px-4 py-2">Código</th>
               <th class="border-b border-gray-300 px-4 py-2">Curso</th>
+              <th class="border-b border-gray-300 px-4 py-2">Alunos</th>
               <th class="border-b border-gray-300 px-4 py-2">Professor</th>
               <th class="border-b border-gray-300 px-4 py-2">Carga Horária</th>
               <th class="border-b border-gray-300 px-4 py-2"></th>
@@ -30,6 +31,7 @@
               <tr>
                 <td class="border-b border-gray-200 px-4 py-2 font-mono">{{ $turma->codigo }}</td>
                 <td class="border-b border-gray-200 px-4 py-2">{{ $turma->curso->nome ?? 'Nenhum' }}</td>
+                <td class="border-b border-gray-200 px-4 py-2">{{ $turma->alunos->count() }}</td>
                 <td class="border-b border-gray-200 px-4 py-2">{{ $turma->professor->nomeCompleto ?? 'Sem professor' }}
                 </td>
                 <td class="border-b border-gray-200 px-4 py-2">{{ $turma->carga_horaria_minima }}h</td>

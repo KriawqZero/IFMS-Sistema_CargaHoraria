@@ -65,6 +65,7 @@ class ProfessorCertificadoController extends Controller {
             if($certificado->aluno->estaAprovado()) {
                 /*$this->notificationService->notificarAlunoAprovado($certificado->aluno);*/
                 /*$certificado->aluno->notificarAlunoAprovado();  */
+                $this->notificationService->enviarEmailAlunoCumpriuHoras(auth('professor')->user(), $certificado->aluno);
             }
 
             if($certificado->wasChanged())
