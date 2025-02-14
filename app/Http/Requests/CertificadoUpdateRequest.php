@@ -17,7 +17,7 @@ class CertificadoUpdateRequest extends FormRequest {
     public function rules(): array {
         return [
             'titulo' => 'nullable|string|max:255',
-            'categoria' => 'nullable|string|max:255',
+            'categoria_id' => 'nullable|int|exists:categorias,id',
             'data_constante' => 'nullable|date',
             'carga_horaria' => 'sometimes|regex:/^\d{1,3}:[0-5]\d$/',
             'status' => 'nullable|in:valido,invalido,pendente',

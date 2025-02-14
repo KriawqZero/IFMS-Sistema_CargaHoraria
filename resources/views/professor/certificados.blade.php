@@ -7,13 +7,13 @@
     </div>
 
     <!-- Filtro por Turmas -->
-    <div class="mb-6 rounded-lg bg-white p-6 shadow-md">
+    <div class="mb-6 overflow-x-auto rounded-lg bg-white p-6 shadow-md xl:overflow-visible">
       <h2 class="mb-4 text-lg font-semibold">Filtrar Certificados</h2>
       <!-- Filtro de Turma e Pesquisa -->
       <div class="mb-6 flex items-center gap-4">
         <form action="{{ route('professor.certificados.index') }}" method="GET" class="flex w-full gap-4">
           <input type="text" name="pesquisa" placeholder="Pesquisar aluno..." value="{{ request('pesquisa') }}"
-            class="w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-green-300" />
+            class="w-full min-w-40 rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-green-300" />
 
           <select name="turma"
             class="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring focus:ring-green-300">

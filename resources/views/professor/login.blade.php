@@ -51,9 +51,9 @@
             </button>
           </div>
 
-          <div class="mt-2 flex justify-center">
+          <div class="mt-4 flex justify-center">
             <a href="{{ route('aluno.login') }}"
-              class="font-medium text-blue-600 underline transition duration-300 hover:text-blue-800">
+              class="font-medium text-blue-600 hover:underline hover:text-blue-800">
               Login Como Aluno
             </a>
           </div>

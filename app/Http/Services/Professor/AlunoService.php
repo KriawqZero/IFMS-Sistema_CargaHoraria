@@ -73,16 +73,18 @@ class AlunoService {
      * @param  string|null  $nome
      * @param  string|null  $cpf
      * @param  string|null  $date
+     * @param  bool|null  $concluido
      * @param  int|null  $id_turma
      * @return bool
      */
-    public function update(int $id, string|null $nome, string|null $cpf, string|null $date, int|null $id_turma): bool {
+    public function update(int $id, string|null $nome, string|null $cpf, string|null $date, bool|null $concluido, int|null $id_turma): bool {
         try {
             $aluno = Aluno::findOrFail($id);
             $aluno->update( [
                 'nome' => $nome ?? $aluno->nome,
                 'cpf' => $cpf ?? $aluno->cpf,
                 'data_nascimento' => $date ?? $aluno->data_nascimento,
+                'concluido' => $concluido ?? $aluno->concluido,
                 'turma_id' => $id_turma ?? null
             ]);
             return true;

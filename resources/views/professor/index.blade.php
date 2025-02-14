@@ -12,8 +12,8 @@
           </svg>
         </x-master::card>
       </div>
-      <div class="mt-0 w-full transform px-6 transition-transform hover:scale-105 sm:w-1/2 md:mt-8 xl:mt-6 xl:w-1/3">
-        <a href="{{ route('professor.certificados.index') }}?status=pendente">
+      <div class="mt-8 w-full transform px-6 transition-transform hover:scale-105 sm:w-1/2 md:mt-8 xl:mt-6 xl:w-1/3">
+        <a href="{{ route('professor.certificados.index', ['status' => 'pendente']) }}">
           <x-master::card iconBg="bg-green-600 bg-opacity-75 " titulo="{{ $professor->certificadosPendentes() }}"
             subtitulo="Certificados para Validar">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewBox="0 0 16 16">
@@ -25,7 +25,7 @@
           </x-master::card>
         </a>
       </div>
-      <div class="mt-0 w-full px-6 sm:w-1/2 md:mt-8 xl:mt-6 xl:w-1/3">
+      <div class="mt-8 w-full px-6 sm:w-1/2 md:mt-8 xl:mt-6 xl:w-1/3">
         <x-master::card iconBg="bg-indigo-400 bg-opacity-75" titulo="{{ $professor->cargo_enum }}" subtitulo="Cargo">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="white" viewBox="0 0 16 16">
             <path

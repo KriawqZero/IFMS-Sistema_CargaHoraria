@@ -15,14 +15,14 @@
       </div>
 
       <!-- Filtro por Turma -->
-      <div class="mb-6 rounded-lg bg-white p-4 shadow-md">
+      <div class="mb-6 overflow-x-auto rounded-lg bg-white p-4 shadow-md xl:overflow-visible">
         <h2 class="mb-4 text-lg font-medium">Filtrar Alunos</h2>
         <form method="GET" action="{{ route('professor.alunos.index') }}">
           <div class="flex items-center gap-4">
             <label for="turma" class="text-gray-600">Pesquisa:</label>
             <input type="text" name="pesquisa" placeholder="Nome ou CPF..." value="{{ request('pesquisa') }}"
-              class="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-green-300" />
-            <select id="turma" name="turma" class="w-1/3 rounded-md border border-gray-300 p-2">
+              class="w-full min-w-40 rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring focus:ring-green-300" />
+            <select id="turma" name="turma" class="min-w-30 w-1/3 rounded-md border border-gray-300 p-2">
               <option value="todas" {{ request('turma') == 'todas' ? 'selected' : '' }}>Todas as Turmas</option>
               @foreach ($turmas as $turma)
                 <option value="{{ $turma->codigo }}" {{ request('turma') == $turma->codigo ? 'selected' : '' }}>
@@ -50,12 +50,14 @@
               <th class="border-b border-gray-300 px-4 py-2">Carga Horaria</th>
               <th class="border-b border-gray-300 px-4 py-2">Turma</th>
               <th class="border-b border-gray-300 px-4 py-2">Curso</th>
+              <th class="border-b border-gray-300 px-4 py-2">Status</th>
             </tr>
           </thead>
 
           <tbody>
             @forelse($alunos->items() as $aluno)
-              <tr class="cursor-pointer hover:bg-gray-100"
+              <tr class="cursor-pointer hover:bg-gray-100
+                @if($aluno->concluido) bg-green-50 hover:bg-green-100 @endif"
                 @click="window.open('{{ route('professor.alunos.show', ['id' => $aluno->id]) }}', '_self')">
                 <td class="flex border-b border-gray-200 px-4 py-2">
                   <div class="row relative block flex h-8 w-8 overflow-hidden rounded-full shadow focus:outline-none">
@@ -85,6 +87,12 @@
                 </td>
                 <td class="border-b border-gray-200 px-4 py-2">{{ $aluno->turma->codigo ?? 'Sem turma' }}</td>
                 <td class="border-b border-gray-200 px-4 py-2">{{ $aluno->turma->curso->nome ?? 'Sem curso' }}</td>
+                <td class="border-b border-gray-200 px-4 py-2">
+                  <span
+                    class="{{ $aluno->concluido ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }} inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium">
+                    {{ $aluno->concluido ? 'Concluído' : 'Em andamento' }}
+                  </span>
+                </td>
               </tr>
             @empty
               <tr>

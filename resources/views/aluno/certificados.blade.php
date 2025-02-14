@@ -11,7 +11,7 @@
             <label for="per_page" class="sr-only">Itens por página</label>
             <div class="relative flex items-center">
               <select name="per_page" id="per_page" onchange="this.form.submit()"
-                class="h-10 px-3 rounded-lg border border-gray-200 bg-white pl-3 pr-8 text-sm shadow-sm hover:border-green-500 focus:border-green-500 focus:ring-1 focus:ring-green-500">
+                class="h-10 rounded-lg border border-gray-200 bg-white px-3 pl-3 pr-8 text-sm shadow-sm hover:border-green-500 focus:border-green-500 focus:ring-1 focus:ring-green-500">
                 <option value="5" {{ $perPage == 5 ? 'selected' : '' }}>5 itens</option>
                 <option value="10" {{ $perPage == 10 ? 'selected' : '' }}>10 itens</option>
                 <option value="25" {{ $perPage == 25 ? 'selected' : '' }}>25 itens</option>
@@ -23,18 +23,19 @@
           </div>
 
           <!-- Search Input -->
-          <div class="flex flex-1 items-center rounded-lg border border-gray-200 bg-white shadow-sm focus-within:ring-1 focus-within:ring-green-500">
-              <!-- Ícone da Lupa -->
-              <div class="pointer-events-none flex items-center justify-center pl-3 text-gray-400">
-                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-              </div>
+          <div
+            class="flex flex-1 items-center rounded-lg border border-gray-200 bg-white shadow-sm focus-within:ring-1 focus-within:ring-green-500">
+            <!-- Ícone da Lupa -->
+            <div class="pointer-events-none flex items-center justify-center pl-3 text-gray-400">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
 
-              <!-- Input de Busca -->
-              <input type="text" name="pesquisa" value="{{ request('pesquisa') }}" placeholder="Buscar certificados..."
-                  class="h-10 w-full border-0 bg-transparent pl-3 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-0 focus:ring-0" />
+            <!-- Input de Busca -->
+            <input type="text" name="pesquisa" value="{{ request('pesquisa') }}" placeholder="Buscar certificados..."
+              class="h-10 w-full border-0 bg-transparent pl-3 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-0 focus:ring-0" />
           </div>
         </div>
 

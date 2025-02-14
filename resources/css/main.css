@@ -37,6 +37,6 @@ html {
 
 @media (max-width: 768px) {
   html {
-    font-size: 12px; /* Mobile - ajuste este valor */
+    font-size: 14px; /* Mobile - ajuste este valor */
   }
 }

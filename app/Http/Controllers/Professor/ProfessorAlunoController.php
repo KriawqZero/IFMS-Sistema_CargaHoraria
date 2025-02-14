@@ -88,6 +88,19 @@ class ProfessorAlunoController extends Controller {
         ]);
     }
 
+    public function concluir($id) {
+        $aluno = $this->alunoService->getAluno($id);
+        if(!$aluno->estaAprovado())
+            return redirect()->back()->withErrors('Aluno ainda não cumpriu a carga horária minima necessária para conclusão.');
+
+        if($this->alunoService->update(
+            $id, null, null, null, true, $aluno->turma->id
+        )) return redirect()->route('professor.alunos.show', $id)
+            ->with('success', 'Aluno concluído com sucesso!');
+
+        return redirect()->back()->withErrors('Erro ao concluir aluno!');
+    }
+
     public function patch(PatchAlunoRequest $request, $id) {
         $input = $request->validated();
 
@@ -96,6 +109,7 @@ class ProfessorAlunoController extends Controller {
             $input['nome'] ?? null,
             $input['cpf'] ?? null,
             $input['data_nascimento'] ?? null,
+            null,
             $input['id_turma'] ?? null
         )) return redirect()->route('professor.alunos.index')
             ->with('success', 'Aluno atualizado com sucesso!');
