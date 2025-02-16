@@ -30,7 +30,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SSH_PORT || 22 }}
         source: "deployment.zip"
-        target: "/home/marcilio/app/deployment.zip"
+        target: "/home/marcilio/app"
 
     # Passo 4: Executar comandos no servidor via SSH
     - name: Deploy to Server
