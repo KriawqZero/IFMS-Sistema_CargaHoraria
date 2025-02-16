@@ -23,7 +23,7 @@ jobs:
 
     # Passo 3: Enviar o ZIP para o servidor via SCP
     - name: Upload ZIP to Server
-      uses: appleboy/scp-action@v0.1.10
+      uses: appleboy/ssh-action@v0.1.10
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
