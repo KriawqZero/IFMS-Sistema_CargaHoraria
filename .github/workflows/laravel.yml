@@ -1,66 +1,34 @@
-name: Laravel + Yarn CI & Deploy
+name: Laravel Deploy Only
 
 on:
   push:
     branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
 
 jobs:
-  laravel-ci:
+  prepare-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+    # Passo 1: Baixar o código
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: 8.2
-        extensions: mbstring, xml, mysql, intl, bcmath
-
-    - name: Install Composer dependencies
-      uses: ramsey/composer-install@v3
-      with:
-        composer-options: --prefer-dist --no-interaction
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-
-    - name: Install Yarn
-      run: npm install -g yarn
-
-    - name: Install Node.js dependencies
-      run: yarn install --immutable
-
-    - name: Build assets
-      run: yarn run build
-
-    - name: Create deployment package
+    # Passo 2: Criar pacote limpo
+    - name: Create raw package
       run: |
-        rm -rf node_modules .git .github
-        zip -r deployment.zip . -x '*.env*' '*.env.*'
+        # Remove arquivos desnecessários
+        rm -rf .git .github node_modules vendor
+        # Cria o zip
+        zip -r deployment.zip . -x '*.env*'
 
+    # Passo 3: Salvar o pacote
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: laravel-app
+        name: raw-laravel-code
         path: deployment.zip
 
-  deploy:
-    needs: laravel-ci
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
-
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: laravel-app
-
+    # Passo 4: Deploy via SSH
     - name: Deploy to Server
       uses: appleboy/ssh-action@v0.1.10
       with:
@@ -77,4 +45,4 @@ jobs:
           php artisan optimize:clear
           cd ..
           make up-app
-          echo "Deploy concluído com sucesso!"
+          echo "Deploy finalizado! ✅"
