@@ -1,0 +1,80 @@
+name: Laravel + Yarn CI & Deploy
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  laravel-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+        extensions: mbstring, xml, mysql, intl, bcmath
+
+    - name: Install Composer dependencies
+      uses: ramsey/composer-install@v3
+      with:
+        composer-options: --prefer-dist --no-interaction
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - name: Install Node.js dependencies
+      run: yarn install --immutable
+
+    - name: Build assets
+      run: yarn run build
+
+    - name: Create deployment package
+      run: |
+        rm -rf node_modules .git .github
+        zip -r deployment.zip . -x '*.env*' '*.env.*'
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: laravel-app
+        path: deployment.zip
+
+  deploy:
+    needs: laravel-ci
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
+
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: laravel-app
+
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SSH_PORT || 22 }}
+        script: |
+          cd /home/marcilio/app
+          docker-compose down
+          rm -rf src/*
+          unzip -q /home/runner/work/_temp/*/deployment.zip -d src/
+          cd src
+          php artisan optimize:clear
+          cd ..
+          make up-app
+          echo "Deploy concluído com sucesso!"
