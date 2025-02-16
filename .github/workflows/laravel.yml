@@ -46,13 +46,5 @@ jobs:
     - name: Generate app key
       run: php artisan key:generate --ansi
 
-    - name: Configure database
-      run: |
-        sed -i "s/DB_HOST=.*/DB_HOST=${{ secrets.DB_HOST }}/" .env
-        sed -i "s/DB_PORT=.*/DB_PORT=${{ secrets.DB_PORT }}/" .env
-        sed -i "s/DB_DATABASE=.*/DB_DATABASE=${{ secrets.DB_DATABASE }}/" .env
-        sed -i "s/DB_USERNAME=.*/DB_USERNAME=${{ secrets.DB_USERNAME }}/" .env
-        sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=${{ secrets.DB_PASSWORD }}/" .env
-
     - name: Run migrations
-      run: php artisan migrate --force
+      run: php artisan migrate:fresh --seed
