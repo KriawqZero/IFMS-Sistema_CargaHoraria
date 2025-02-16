@@ -33,3 +33,22 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php artisan test
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'
+
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+    - name: Install Composer dependencies
+      run: |
+        composer update
+        composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
