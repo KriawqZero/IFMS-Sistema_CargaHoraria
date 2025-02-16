@@ -23,7 +23,7 @@ jobs:
 
     # Passo 3: Enviar o ZIP para o servidor via SCP
     - name: Upload ZIP to Server
-      uses: appleboy/ssh-action@v0.1.10
+      uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
@@ -34,7 +34,7 @@ jobs:
 
     # Passo 4: Executar comandos no servidor via SSH
     - name: Deploy to Server
-      uses: appleboy/ssh-action@v0.1.10
+      uses: appleboy/ssh-action@v1.2.0
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
@@ -43,6 +43,12 @@ jobs:
         script: |
           cd /home/marcilio/app
           docker-compose down
+          
+          # Verifica se o ZIP foi enviado
+          if [ ! -f deployment.zip ]; then
+            echo "Erro: deployment.zip não encontrado!"
+            exit 1
+          fi
           
           # Limpa o diretório e descompacta o ZIP
           rm -rf src/*
