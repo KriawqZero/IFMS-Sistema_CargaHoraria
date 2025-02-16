@@ -10,7 +10,7 @@
 
     <meta name="description">
 
-    <title>TESTE TESTE TESTE{{ $titulo . ' - ' . env('APP_NAME') }}</title>
+    <title>{{ $titulo . ' - ' . env('APP_NAME') }}</title>
 
     @vite('resources/css/app.css')
     @vite('resources/css/main.css')
