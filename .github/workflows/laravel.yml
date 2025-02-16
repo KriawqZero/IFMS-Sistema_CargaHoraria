@@ -1,34 +1,38 @@
-name: Laravel Deploy Only
+name: Laravel Direct Deploy
 
 on:
   push:
     branches: [ main, develop ]
 
 jobs:
-  prepare-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Passo 1: Baixar o código
+    # Passo 1: Baixar o código do repositório
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # Passo 2: Criar pacote limpo
+    # Passo 2: Criar o pacote ZIP limpo
     - name: Create raw package
       run: |
-        # Remove arquivos desnecessários
-        rm -rf .git .github node_modules vendor
-        # Cria o zip
-        zip -r deployment.zip . -x '*.env*'
+        # Remove arquivos que não devem ser enviados
+        rm -rf .git .github .env node_modules vendor
+        # Cria o ZIP mantendo a estrutura de pastas
+        zip -r deployment.zip .
 
-    # Passo 3: Salvar o pacote
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
+    # Passo 3: Enviar o ZIP para o servidor via SCP
+    - name: Upload ZIP to Server
+      uses: appleboy/scp-action@v0.1.10
       with:
-        name: raw-laravel-code
-        path: deployment.zip
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SSH_PORT || 22 }}
+        source: "deployment.zip"
+        target: "/home/marcilio/app/deployment.zip"
 
-    # Passo 4: Deploy via SSH
+    # Passo 4: Executar comandos no servidor via SSH
     - name: Deploy to Server
       uses: appleboy/ssh-action@v0.1.10
       with:
@@ -39,10 +43,15 @@ jobs:
         script: |
           cd /home/marcilio/app
           docker-compose down
+          
+          # Limpa o diretório e descompacta o ZIP
           rm -rf src/*
-          unzip -q /home/runner/work/_temp/*/deployment.zip -d src/
+          unzip -q deployment.zip -d src/
+          rm deployment.zip  # Remove o ZIP após descompactar
+          
+          # Comandos pós-deploy
           cd src
           php artisan optimize:clear
           cd ..
           make up-app
-          echo "Deploy finalizado! ✅"
+          echo "Deploy realizado com sucesso!"
