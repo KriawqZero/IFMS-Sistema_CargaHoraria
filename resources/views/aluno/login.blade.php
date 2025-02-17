@@ -66,7 +66,7 @@
 
           <div class="mt-2 flex justify-center">
             <a href="{{ route('professor.login') }}"
-              class="font-medium text-blue-600 hover:underline hover:text-blue-800">
+              class="font-medium text-blue-600 hover:text-blue-800 hover:underline">
               Acesso Administrativo
             </a>
           </div>

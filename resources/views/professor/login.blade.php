@@ -52,8 +52,7 @@
           </div>
 
           <div class="mt-4 flex justify-center">
-            <a href="{{ route('aluno.login') }}"
-              class="font-medium text-blue-600 hover:underline hover:text-blue-800">
+            <a href="{{ route('aluno.login') }}" class="font-medium text-blue-600 hover:text-blue-800 hover:underline">
               Login Como Aluno
             </a>
           </div>

@@ -1,7 +1,7 @@
 @extends('_layouts.master')
 
 @section('body')
-  <div class="p-6" x-data="{ showConcluirModal: false }">
+  <div class="p-1 lg:p-3 xl:p-6" x-data="{ showConcluirModal: false }">
     <div class="rounded-lg bg-white p-6 shadow-md">
       <div class="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
@@ -38,7 +38,8 @@
             Esta ação não poderá ser desfeita. Tenha certeza de seu objetivo.
           </p>
           <p class="mb-4 text-gray-400">
-            <span class="font-semibold">Observação</span>: Só pode ser marcado como concluído um aluno que tenha atingido a carga horária mínima de
+            <span class="font-semibold">Observação</span>: Só pode ser marcado como concluído um aluno que tenha atingido
+            a carga horária mínima de
             {{ $aluno->maxCargaHoraria() }} horas.
           </p>
           <div class="flex justify-end gap-3">
@@ -57,11 +58,15 @@
       </div>
 
       <!-- Main Content -->
-      <div class="flex flex-col gap-6 md:flex-row">
-        <!-- Photo Section -->
-        <div class="md:w-1/4">
-          <div class="h-70 w-70 relative overflow-hidden rounded-full border-4 border-white shadow-xl">
-            <img src="{{ asset('storage/' . $aluno->foto_src) }}" class="h-full w-full object-cover">
+      <div class="flex flex-col gap-6 sm:flex-row"> <!-- Alterado para lg:flex-row -->
+        <!-- Seção da Foto -->
+        <div class="flex-shrink-0 self-center lg:self-start"> <!-- Adicionado flex-shrink-0 -->
+
+          <div class="h-64 w-64 md:h-72 md:w-72 lg:h-80 lg:w-80"> <!-- Aumentei os tamanhos -->
+            <div class="relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-xl">
+              <img src="{{ asset('storage/' . $aluno->foto_src) }}" class="h-full w-full object-cover object-center"
+                alt="Foto do aluno">
+            </div>
           </div>
         </div>
 

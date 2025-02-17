@@ -56,8 +56,8 @@
 
           <tbody>
             @forelse($alunos->items() as $aluno)
-              <tr class="cursor-pointer hover:bg-gray-100
-                @if($aluno->concluido) bg-green-50 hover:bg-green-100 @endif"
+              <tr
+                class="@if ($aluno->concluido) bg-green-50 hover:bg-green-100 @endif cursor-pointer hover:bg-gray-100"
                 @click="window.open('{{ route('professor.alunos.show', ['id' => $aluno->id]) }}', '_self')">
                 <td class="flex border-b border-gray-200 px-4 py-2">
                   <div class="row relative block flex h-8 w-8 overflow-hidden rounded-full shadow focus:outline-none">
