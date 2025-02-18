@@ -10,13 +10,20 @@ class AuthService {
         $this->validateCredentials($credentials);
         $this->validateToken($token);
 
-        $response = $this->makeApiCall(
+        $response = json_decode($this->callApi($this->normalizeCpf($credentials['cpf']), $credentials["senha"]));
+        //dd(json_decode($response));
+
+        /*$response = $this->makeApiCall(
             $this->normalizeCpf($credentials['cpf']),
             $credentials['senha'],
             $token
-        );
+        );*/
+        $response = (array) $response;
+        if($response["status"] == true)
+            return $this->updateOrCreateAluno($response);
 
-        return $this->updateOrCreateAluno($response);
+        else
+            throw new \Exception("Usuario ou senha incorretos");
     }
 
     private function validateCredentials(array $credentials): void {
@@ -60,12 +67,27 @@ class AuthService {
 
     private function updateOrCreateAluno(array $data): Aluno {
         return Aluno::updateOrCreate(
-            ['cpf' => $data['cpf']],
+            ['cpf' => $data['CPF']],
             [
                 'nome' => $data['nome'] ?? 'Nome não informado',
                 'email' => $data['email'] ?? null,
                 'data_nascimento' => $data['data_nascimento'] ?? null,
             ]
         );
+    }
+
+    private function callApi(string $user, string $senha){
+        $url = 'http://server.nudevcb.ifms.edu.br/api/logando';
+
+        $campos = [
+        'usuario' => $user,
+        'senha' => $senha
+        ];
+        $response = Http::asForm()->withHeaders([
+            'Authorization' => 'Bearer ',
+            'Accept' => 'application/json',
+        ])->post($url, $campos);
+
+        return $response;
     }
 }
