@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API_Alunos.Controllers;
 
 [ApiController]
-[Route("api/Aluno")]
+[Route("api/")]
 [Authorize]
 public class AlunoController : ControllerBase {
 	private readonly IAlunoRepository _repository;

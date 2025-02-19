@@ -14,8 +14,9 @@ public class AlunoRepository: IAlunoRepository {
 
     public object GetAlunoByCPF(AlunoLoginForm _form) {
         var aluno = _context.Alunos.FirstOrDefault(a =>
-                a.CPF == _form.usuario &&
-                a.senha == _form.senha);
+            a.CPF == _form.usuario &&
+            a.senha == _form.senha
+        );
 
         if(aluno == null) return new {
 	        status = false
@@ -29,7 +30,6 @@ public class AlunoRepository: IAlunoRepository {
             status = true
         };
     }
-
 
     // Alterando para autenticar com a data de nascimento ao invés de senha
     public object GetAlunoByCPFWDate(AlunoLoginFormWDate _form) {

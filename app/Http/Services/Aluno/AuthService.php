@@ -9,8 +9,6 @@ class AuthService {
         [$cpf, $senha] = [$this->normalizeCpf($credentials['cpf']), $credentials['senha']];
         $response = $this->callApi($cpf, $senha);
 
-        $response = (array) $response;
-
         return $this->updateOrCreateAluno($response);
     }
 
@@ -19,8 +17,9 @@ class AuthService {
     }
 
     private function updateOrCreateAluno(array $data): Aluno {
+        $cpf = $data['CPF'] ?? $data['cpf'];
         return Aluno::updateOrCreate(
-            ['cpf' => $data['CPF']],
+            ['cpf' => $cpf],
             [
                 'nome' => $data['nome'] ?? 'Nome não informado',
                 'email' => $data['email'] ?? null,
@@ -41,8 +40,6 @@ class AuthService {
             'Authorization' => 'Bearer ' . config('services.api.token'),
             'Accept' => 'application/json',
         ])->post($url, $campos);
-
-        dd($response->json());
 
         if (!$response->successful()) {
             throw new \Exception('Falha na comunicação com o serviço de autenticação');
