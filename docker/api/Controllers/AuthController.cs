@@ -1,4 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +41,7 @@ public class AuthController : ControllerBase
 			issuer: "API_Alunos",
 			audience: "laravel",
 			claims: claims,
-			expires: DateTime.Now.AddMinutes(15),
+			expires: DateTime.Now.AddDays(3650),
 			signingCredentials: creds);
 
 		return new JwtSecurityTokenHandler().WriteToken(token);

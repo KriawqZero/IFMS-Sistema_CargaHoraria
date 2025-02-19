@@ -14,11 +14,11 @@ public class AlunoRepository: IAlunoRepository {
 
     public object GetAlunoByCPF(AlunoLoginForm _form) {
         var aluno = _context.Alunos.FirstOrDefault(a =>
-                a.CPF == _form.CPF &&
+                a.CPF == _form.usuario &&
                 a.senha == _form.senha);
 
         if(aluno == null) return new {
-	        valido = false
+	        status = false
         };
 
         return new {
@@ -26,7 +26,7 @@ public class AlunoRepository: IAlunoRepository {
             aluno.CPF,
             aluno.email,
             aluno.data_nascimento,
-            valido = true
+            status = true
         };
     }
 

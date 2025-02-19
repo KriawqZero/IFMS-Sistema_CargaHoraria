@@ -24,14 +24,13 @@ public class AlunoController : ControllerBase {
 		return Ok();
 	}
 
-	[HttpGet("login")]
-	public IActionResult GetByCpf([FromQuery] AlunoLoginForm form) {
+	[HttpPost("login")]
+	public IActionResult GetByCpf([FromForm] AlunoLoginForm form) {
 		object aluno = _repository.GetAlunoByCPF(form);
 
 		return Ok(aluno);
 	}
 
-    // Alterando para usar o AlunoLoginFormWDate para autenticação
     [HttpGet("login/data")]
     public IActionResult GetByCpfWDate([FromQuery] AlunoLoginFormWDate form) {
         object aluno = _repository.GetAlunoByCPFWDate(form);

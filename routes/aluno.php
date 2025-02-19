@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Aluno\AlunoCertificadoController;
 use App\Http\Controllers\Aluno\AlunoController;
 use App\Http\Middleware\VerifyAuth;
-use App\Http\Middleware\VerifyJWT;
 
 // Grupo de rotas do aluno (nomes prefixados com 'aluno.')
 Route::name('aluno.')->group(function() {
@@ -14,7 +13,7 @@ Route::name('aluno.')->group(function() {
         ->name('login');
 
     Route::post('/login', [AlunoController::class, 'processLogin'])
-        ->middleware([VerifyJWT::class, VerifyAuth::class . ':none'])
+        ->middleware([VerifyAuth::class . ':none'])
         ->name('login.post');
 
     // Rota de logout do aluno

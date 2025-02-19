@@ -6,13 +6,11 @@ using API_Alunos.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
-namespace API_Alunos
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
+namespace API_Alunos {
+    public class Program {
+        public static void Main(string[] args) {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -23,9 +21,10 @@ namespace API_Alunos
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddTransient<IAlunoRepository, AlunoRepository>();
-            
+
+            builder.Services.AddControllers();
+
             //JWT
-            
             var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
             var key = Encoding.UTF8.GetBytes(jwtSettings.Secret);
             builder.Services.AddAuthentication(options =>
@@ -48,7 +47,7 @@ namespace API_Alunos
 
                             // Chave secreta usada para verificar a assinatura
                             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("3UQRwY1sg7OmNkrgOL2CMD9h05k09VhTIGMJPBW7V82OD77YwuGxOR894ECRUEvYyDHcw6h5kl2mKIOctwb0zjKgkf3CPDolxttDOMpC8irTSHiavmHO6CfD8EQ6ATum"))
-                            
+
                         };
                     });
 
@@ -63,11 +62,9 @@ namespace API_Alunos
                     Type = SecuritySchemeType.ApiKey
                 });
 
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement {
                     {
-                        new OpenApiSecurityScheme
-                        {
+                        new OpenApiSecurityScheme {
                             Reference = new OpenApiReference
                             {
                                 Type = ReferenceType.SecurityScheme,
@@ -78,8 +75,8 @@ namespace API_Alunos
                     }
                 });
             });
-            
-            
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -93,7 +90,7 @@ namespace API_Alunos
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
             app.MapControllers();
 
             app.Run();

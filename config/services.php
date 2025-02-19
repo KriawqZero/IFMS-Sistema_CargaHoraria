@@ -36,7 +36,8 @@ return [
     ],
 
     'api' => [
-        'url' => env('API_URL'),
+        'url' => env('FULL_API_URL'),
+        'token' => env('API_TOKEN'),
     ],
 
     'api_feedback' => [

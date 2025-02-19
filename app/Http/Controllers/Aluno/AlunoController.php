@@ -72,20 +72,23 @@ class AlunoController extends Controller {
      * @return \Illuminate\Http\RedirectResponse
      */
     public function processLogin(Request $request) {
+        $request->validate([
+            'cpf' => 'required|string|min:11',
+            'senha' => 'required|string',
+        ]);
+
         try {
-            $aluno = $this->authService->authenticate(
-                $request->only('cpf', 'senha'),
-                session('token')
-            );
+            $aluno = $this->authService->authenticate($request->all());
 
             auth('aluno')->login($aluno);
             $request->session()->regenerate();
 
             return redirect()->route('aluno.dashboard');
-
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        }
+        catch (\Illuminate\Validation\ValidationException $e) {
             return back()->withErrors($e->errors())->withInput();
-        } catch (\Exception $e) {
+        }
+        catch (\Exception $e) {
             return back()->withErrors(['message' => $e->getMessage()])->withInput();
         }
     }
