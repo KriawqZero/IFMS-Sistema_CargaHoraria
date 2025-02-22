@@ -6,8 +6,8 @@
       <h1 class="text-xl font-semibold text-white">{{ $titulo }}</h1>
     </div>
 
-    <div class="p-6">
-      <div class="mb-6 flex items-end justify-end rounded-lg p-4">
+    <div class="p-0">
+      <div class="mb-1 flex items-end justify-end rounded-lg p-4">
         <a href="{{ route('professor.alunos.create') }}"
           class="rounded-md bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600">
           Novo Aluno

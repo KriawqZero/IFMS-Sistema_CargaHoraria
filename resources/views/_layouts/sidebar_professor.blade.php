@@ -85,13 +85,13 @@
       <span class="mx-3">Cursos</span>
     </a>
 
-    <a class="{{ request()->routeIs('') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} flex items-center px-6 py-2 py-3"
-      href="">
+    <a class="{{ request()->routeIs('notas-de-atualizacao') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} flex items-center px-6 py-2 py-3"
+      href="{{ route('notas-de-atualizacao') }}">
       <svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
           d="m19.828 3.414-2.242-2.242a3.975 3.975 0 0 0 -2.829-1.172h-8.757a3 3 0 0 0 -3 3v21h18v-17.758a4.022 4.022 0 0 0 -1.172-2.828zm-1.414 1.414a1.923 1.923 0 0 1 .141.172h-2.555v-2.555a1.923 1.923 0 0 1 .172.141zm-13.414 17.172v-19a1 1 0 0 1 1-1h8v5h5v15zm2-6h10v-6h-10zm2-4h6v2h-6zm-2 6h10v2h-10z" />
       </svg>
-      <span class="mx-3">Relatórios</span>
+      <span class="mx-3">Notas de Atualização</span>
     </a>
 
     <a class="flex items-center px-6 py-2 py-3 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
@@ -106,4 +106,18 @@
     </a>
 
   </nav>
+
+  <div class="flex justify-center">
+    <img src="{{ asset('svg/ifms-cb-logo.svg') }}" class="absolute bottom-5 mx-6 my-6 h-10" />
+  </div>
+
+  <div class="absolute bottom-3 left-0 right-0 text-center text-slate-600 text-xs">
+    SISCO V1.1 (**/03/2025) by Marcilio Ortiz
+  </div>
 </div>
+
+
+
+
+
+

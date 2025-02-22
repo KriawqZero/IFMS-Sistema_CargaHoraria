@@ -58,17 +58,17 @@
       </div>
 
       <!-- Main Content -->
-      <div class="flex flex-col gap-6 sm:flex-row"> <!-- Alterado para lg:flex-row -->
+      <div class="flex flex-col gap-6 sm:flex-row">
         <!-- Seção da Foto -->
-        <div class="flex-shrink-0 self-center lg:self-start"> <!-- Adicionado flex-shrink-0 -->
-
-          <div class="h-64 w-64 md:h-72 md:w-72 lg:h-80 lg:w-80"> <!-- Aumentei os tamanhos -->
+        <a class="flex-shrink-0 group self-center lg:self-start" href="{{ asset('storage/' . $aluno->foto_src) }}" target="_blank">
+          <div class="h-64 w-64">
             <div class="relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-xl">
-              <img src="{{ asset('storage/' . $aluno->foto_src) }}" class="h-full w-full object-cover object-center"
+              <img src="{{ asset('storage/' . $aluno->foto_src) }}"
+                   class="transition-opacity duration-200 group-hover:opacity-75 h-full w-full object-cover object-center"
                 alt="Foto do aluno">
             </div>
           </div>
-        </div>
+        </a>
 
         <!-- Info Grid -->
         <div class="grid flex-1 grid-cols-1 gap-6 md:grid-cols-2">
@@ -138,7 +138,7 @@
           class="flex items-center rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700">
           Relatório Simplificado
         </a>
-        <button class="flex items-center rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-purple-700">
+        <button disabled class="flex items-center rounded-lg bg-green-600 px-4 py-2 text-white disabled:cursor-not-allowed hover:bg-purple-700">
           Relatório Completo (Em breve)
         </button>
       </div>

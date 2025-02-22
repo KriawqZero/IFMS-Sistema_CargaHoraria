@@ -17,31 +17,38 @@ class DatabaseSeeder extends Seeder {
             'nome' => 'Marcilio Prof',
             'senha' => Hash::make('123456'),
             'cargo' => 'professor',
-            'foto_src' => 'default-profile.svg',
-            'primeiro_acesso' => false,
         ]);
 
         Professor::create([
             'nome' => 'Marcilio Coord',
             'senha' => Hash::make('123456'),
             'cargo' => 'coordenador',
-            'foto_src' => 'default-profile.svg',
-            'primeiro_acesso' => false,
         ]);
 
-        /*Professor::factory(3)->create();*/
+        /*Professor::create([*/
+        /*    'nome' => 'Alfranio Pedroso Soares',*/
+        /*    'senha' => Hash::make('alfranio.soares'),*/
+        /*    'cargo' => 'coordenador',*/
+        /*]);*/
+        /**/
+        /*Professor::create([*/
+        /*    'nome' => 'Paulo Cesar do Carmo Ribeiro',*/
+        /*    'senha' => Hash::make('paulo.ribeiro'),*/
+        /*    'cargo' => 'professor',*/
+        /*]);*/
+        /**/
 
         Curso::factory(2)->create();
 
         Turma::factory(5)->create();
 
-        Aluno::create([
-            'cpf' => '00000000000',
-            'foto_src' => 'default-profile.svg',
-            'turma_id' => 1,
-        ]);
+        /*Aluno::create([*/
+        /*    'cpf' => '00000000000',*/
+        /*    'foto_src' => 'default-profile.svg',*/
+        /*    'turma_id' => 1,*/
+        /*]);*/
 
-        Aluno::factory(10)->create();
+        /*Aluno::factory(10)->create();*/
 
         Categoria::create([
             'nome' => 'Unidades curriculares optativas/eletivas',
@@ -68,7 +75,7 @@ class DatabaseSeeder extends Seeder {
             'limite_horas' => 80,
         ]);
 
-        Certificado::factory(20)->create();
+        /*Certificado::factory(20)->create();*/
 
     }
 }

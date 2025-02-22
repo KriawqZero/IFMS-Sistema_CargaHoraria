@@ -11,7 +11,7 @@
                 alt="Foto de perfil">
             </div>
             <span class="row mx-2 my-1 flex">
-              {{ $certificado->aluno->nome }} ({{ $certificado->aluno->turma->codigo }})
+              {{ $certificado->aluno->nome }} ({{ $certificado->aluno->turma->codigo ?? 'Sem Curso' }})
             </span>
           </div>
         </div>

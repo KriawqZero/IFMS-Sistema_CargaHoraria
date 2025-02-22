@@ -1,0 +1,44 @@
+[
+  {
+    "version": "1.1",
+    "date": "10/03/2025",
+    "author": "Marcilio Ortiz Barbosa",
+    "changes": [
+      {
+        "type": "improvement",
+        "description": "Melhorado envio de foto de perfil e sua visualização"
+      },
+      {
+        "type": "feature",
+        "description": "Criado página de notas de atualização"
+      },
+      {
+        "type": "critical",
+        "description": "Resolvido falha na visualização de aluno sem curso por professor/coordenador"
+      },
+      {
+        "type": "generic",
+        "description": "Corrigido bug visual na sidebar do aluno"
+      }
+    ]
+  },
+  {
+    "version": "1.0",
+    "date": "19/02/2025",
+    "author": "Marcilio Ortiz Barbosa",
+    "changes": [
+      {
+        "type": "feature",
+        "description": "Lançamento inicial do sistema em produção no campus IFMS-Corumbá"
+      },
+      {
+        "type": "feature",
+        "description": "Integração com API de acesso do campus"
+      },
+      {
+        "type": "generic",
+        "description": "Funcionalidades básicas de gestão de certificados"
+      }
+    ]
+  }
+]

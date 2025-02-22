@@ -19,7 +19,7 @@
       <span class="mx-3">Visão Geral</span>
     </a>
 
-    <a class="{{ request()->routeIs('aluno.detalhamento') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('aluno.certificados.index') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
       href="{{ route('aluno.certificados.index') }}">
       <svg class="h-8 w-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -33,7 +33,7 @@
       <span class="mx-3">Certificados</span>
     </a>
 
-    <a class="{{ request()->routeIs('aluno.enviar-certificado') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
+    <a class="{{ request()->routeIs('aluno.certificados.create') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
       href="{{ route('aluno.certificados.create') }}">
       <svg class="h-8 w-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd"
@@ -43,18 +43,21 @@
       <span class="mx-3">Enviar Certificado</span>
     </a>
 
-    <a class="{{ request()->routeIs('aluno.sobre') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2"
-      href="{{ route('aluno.sobre') }}">
-      <svg class="h-8 w-8" viewBox="0 0 18 18" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <a class="{{ request()->routeIs('notas-de-atualizacao') ? 'bg-gray-700 bg-opacity-25' : 'hover:bg-opacity-25 hover:bg-gray-700 hover:text-gray-100' }} mt-4 flex items-center px-6 py-2 py-2"
+      href="{{ route('notas-de-atualizacao') }}">
+      <svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
-          d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1" />
+          d="m19.828 3.414-2.242-2.242a3.975 3.975 0 0 0 -2.829-1.172h-8.757a3 3 0 0 0 -3 3v21h18v-17.758a4.022 4.022 0 0 0 -1.172-2.828zm-1.414 1.414a1.923 1.923 0 0 1 .141.172h-2.555v-2.555a1.923 1.923 0 0 1 .172.141zm-13.414 17.172v-19a1 1 0 0 1 1-1h8v5h5v15zm2-6h10v-6h-10zm2-4h6v2h-6zm-2 6h10v2h-10z" />
       </svg>
-
-      <span class="mx-3">Sobre</span>
+      <span class="mx-3">Notas de Atualização</span>
     </a>
   </nav>
 
   <div class="flex justify-center">
-    <img src="{{ asset('svg/ifms-cb-logo.svg') }}" class="absolute bottom-0 mx-6 my-6 h-10" />
+    <img src="{{ asset('svg/ifms-cb-logo.svg') }}" class="absolute bottom-5 mx-6 my-6 h-10" />
+  </div>
+
+  <div class="absolute bottom-3 left-0 right-0 text-center text-slate-600 text-xs">
+    SISCO V1.1 (**/03/2025) by Marcilio Ortiz
   </div>
 </div>
