@@ -60,11 +60,12 @@
       <!-- Main Content -->
       <div class="flex flex-col gap-6 sm:flex-row">
         <!-- Seção da Foto -->
-        <a class="flex-shrink-0 group self-center lg:self-start" href="{{ asset('storage/' . $aluno->foto_src) }}" target="_blank">
+        <a class="group flex-shrink-0 self-center lg:self-start" href="{{ asset('storage/' . $aluno->foto_src) }}"
+          target="_blank">
           <div class="h-64 w-64">
             <div class="relative h-full w-full overflow-hidden rounded-full border-4 border-white shadow-xl">
               <img src="{{ asset('storage/' . $aluno->foto_src) }}"
-                   class="transition-opacity duration-200 group-hover:opacity-75 h-full w-full object-cover object-center"
+                class="h-full w-full object-cover object-center transition-opacity duration-200 group-hover:opacity-75"
                 alt="Foto do aluno">
             </div>
           </div>
@@ -138,7 +139,8 @@
           class="flex items-center rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700">
           Relatório Simplificado
         </a>
-        <button disabled class="flex items-center rounded-lg bg-green-600 px-4 py-2 text-white disabled:cursor-not-allowed hover:bg-purple-700">
+        <button disabled
+          class="flex items-center rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-purple-700 disabled:cursor-not-allowed">
           Relatório Completo (Em breve)
         </button>
       </div>

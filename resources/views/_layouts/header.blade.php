@@ -62,22 +62,22 @@
 
       <div x-cloak x-show="dropdownOpen"
         class="absolute right-0 z-10 mt-2 w-48 overflow-hidden rounded-md bg-white shadow-xl">
-          <h3 class="block px-4 py-2 text-sm bg-green-50 text-gray-700">
-            {{ $usuarioLogado->nome_completo }}
-          </h3>
-          <a href="{{ route('perfil.index') }}"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Perfil</a>
-          @if (auth('professor')->check())
-            <a href="{{ route('professor.trocarSenha') }}"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Trocar Senha</a>
-            <a href="{{ route('professor.logout') }}"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Sair</a>
-          @else
-            <a href="{{ route('aluno.certificados.index') }}"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Certificados</a>
-            <a href="{{ route('aluno.logout') }}"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Sair</a>
-          @endif
+        <h3 class="block bg-green-50 px-4 py-2 text-sm text-gray-700">
+          {{ $usuarioLogado->nome_completo }}
+        </h3>
+        <a href="{{ route('perfil.index') }}"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Perfil</a>
+        @if (auth('professor')->check())
+          <a href="{{ route('professor.trocarSenha') }}"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Trocar Senha</a>
+          <a href="{{ route('professor.logout') }}"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Sair</a>
+        @else
+          <a href="{{ route('aluno.certificados.index') }}"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Certificados</a>
+          <a href="{{ route('aluno.logout') }}"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-600 hover:text-white">Sair</a>
+        @endif
       </div>
     </div>
   </div>
