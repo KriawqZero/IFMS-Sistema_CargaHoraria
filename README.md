@@ -1,7 +1,7 @@
 
 # Sistema de Carga Horária IFMS
 
- Sistema para gestão de carga horária do IFMS (Instituto Federal do Mato Grosso do Sul).
+ Sistema para gestão de carga horária do IFMS (Instituto Federal do Mato Grosso do Sul)
 
 ## Começando
 
