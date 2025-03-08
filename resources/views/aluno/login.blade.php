@@ -12,9 +12,6 @@
     <meta property="og:description" content="Acesso ao sistema de emissão e gestão de certificados digitais para alunos do IFMS Campus Corumbá">
     <meta property="og:url" content="{{ url()->current() }}">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-
     <meta name="description" content="Acesso seguro ao sistema de certificados do IFMS Campus Corumbá. Alunos, realize login com seu CPF e senha para gerenciar seus certificados digitais.">
 
     <title>{{ $titulo . ' - ' . env('APP_NAME') }}</title>
