@@ -82,4 +82,4 @@ http://localhost:8000
 
 ---
 
-📌 **Importante:** Sempre verifique se o arquivo `.env` está configurado corretamente com as credenciais do banco de dados antes de executar as migrações.
+📌 **Importante:** Sempre verifique se o arquivo `.env` está configurado corretamente com as credenciais do banco de dados antes de executar as migrações
