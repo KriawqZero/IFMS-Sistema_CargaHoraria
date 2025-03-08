@@ -42,13 +42,13 @@ class DatabaseSeeder extends Seeder {
 
         Turma::factory(5)->create();
 
-        /*Aluno::create([*/
-        /*    'cpf' => '00000000000',*/
-        /*    'foto_src' => 'default-profile.svg',*/
-        /*    'turma_id' => 1,*/
-        /*]);*/
+        Aluno::create([
+            'cpf' => '00000000000',
+            'foto_src' => 'default-profile.svg',
+            'turma_id' => 1,
+        ]);
 
-        /*Aluno::factory(10)->create();*/
+        Aluno::factory(5)->create();
 
         Categoria::create([
             'nome' => 'Unidades curriculares optativas/eletivas',
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder {
             'limite_horas' => 80,
         ]);
 
-        /*Certificado::factory(20)->create();*/
+        Certificado::factory(20)->create();
 
     }
 }

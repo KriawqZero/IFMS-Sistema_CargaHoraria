@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
-
+<html lang="pt-BR">
   <head>
+    <!-- Meta Tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-UA-Compatible" content="IE=edge">
     <meta name="referrer" content="always">
-    <link rel="canonical" href="#">
+    <link rel="canonical" href="{{ url()->current() }}">
 
-    <meta name="description">
+    <meta property="og:title" content="Login de Alunos - Sistema de Certificados IFMS Corumbá">
+    <meta property="og:description" content="Acesso ao sistema de emissão e gestão de certificados digitais para alunos do IFMS Campus Corumbá">
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+
+    <meta name="description" content="Acesso seguro ao sistema de certificados do IFMS Campus Corumbá. Alunos, realize login com seu CPF e senha para gerenciar seus certificados digitais.">
 
     <title>{{ $titulo . ' - ' . env('APP_NAME') }}</title>
 
