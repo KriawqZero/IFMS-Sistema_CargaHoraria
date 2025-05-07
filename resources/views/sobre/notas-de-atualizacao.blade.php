@@ -50,11 +50,11 @@
 
       <!-- Versões -->
       <div class="space-y-8">
-        @foreach (array_reverse($notas) as $nota)
+        @foreach ($notas as $index => $nota)
           <div class="relative border-l-4 border-gray-200 pl-6">
             <!-- Bolinha da versão -->
             <div
-              class="{{ $nota['version'] === '1.0' ? 'bg-gray-300' : 'bg-green-600' }} absolute -left-2.5 top-0 h-5 w-5 rounded-full">
+              class="{{ $index === 0 ? 'bg-green-600' : 'bg-gray-400' }} absolute -left-2.5 top-0 h-5 w-5 rounded-full">
             </div>
 
             <h3 class="text-xl font-semibold text-gray-800">

@@ -60,8 +60,38 @@
     <div class="flex flex-col items-center gap-4">
       <img src="{{ asset('svg/ifms-cb-logo.svg') }}" class="h-10" />
       <div class="px-4 text-center text-xs text-slate-600">
-        SISCO V1.1 (**/03/2025) by Marcilio Ortiz
+        <span id="version-info"> </span>
       </div>
     </div>
   </div>
 </div>
+
+@push('scripts')
+<script>
+  // Função para formatar a data
+  function formatarData(dataString) {
+    const data = new Date(dataString);
+    return data.toLocaleDateString('pt-BR');
+  }
+
+  // Função para atualizar a versão
+  async function atualizarVersao() {
+    try {
+      const response = await fetch('/api/version');
+      const data = await response.json();
+      
+      if (data.version) {
+        const versao = data.version;
+        const dataFormatada = formatarData(versao.date);
+        document.getElementById('version-info').textContent = 
+          `SISCO V${versao.version} (${dataFormatada}) por Marcilio Ortiz e Davi Nunes`;
+      }
+    } catch (error) {
+      console.error('Erro ao buscar versão:', error);
+    }
+  }
+
+  // Atualizar a versão quando a página carregar
+  document.addEventListener('DOMContentLoaded', atualizarVersao);
+</script>
+@endpush
