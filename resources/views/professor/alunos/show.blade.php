@@ -126,7 +126,7 @@
                 <div class="text-xl font-bold text-blue-800">
                   {{ $aluno->certificados->count() }}
                 </div>
-                <div class="text-xs text-blue-600">Total</div>
+                <div class="text-xs text-blue-600">Enviados</div>
               </div>
             </div>
           </div>

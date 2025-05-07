@@ -49,7 +49,7 @@
               ) }},
               professorSelecionado: null
           })">
-            <label class="block text-sm font-medium text-gray-700">Professor</label>
+            <label class="block text-sm font-medium text-gray-700">Professor (opcional)</label>
 
             <div class="relative mt-1" x-cloak>
               <input type="text" x-model="termoPesquisa" placeholder="Pesquisar professor por nome..."

@@ -45,7 +45,7 @@ class AuthService {
             throw new \Exception('Falha na comunicação com o serviço de autenticação');
         }
 
-        if ($response->json('status') == false) {
+        if ($response->json('status') == false || $response->json('valido') == false) {
             throw new \Exception('CPF ou Senha incorretos.');
         }
 
