@@ -42,3 +42,10 @@ Route::name('reports.')->prefix('reports')->group(function() {
 // Carregar rotas específicas
 require base_path('routes/aluno.php');
 require base_path('routes/professor.php');
+
+// Rota pública para obter a versão atual
+Route::get('/api/version', function () {
+    return response()->json([
+        'version' => App\Helpers\VersionHelper::getLatestVersion()
+    ]);
+});
