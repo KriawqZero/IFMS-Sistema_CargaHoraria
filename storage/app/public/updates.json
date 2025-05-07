@@ -1,5 +1,20 @@
 [
   {
+    "version": "1.2",
+    "date": "15/04/2025",
+    "author": "Marcilio Ortiz Barbosa",
+    "changes": [
+      {
+        "type": "generic",
+        "description": "Resolvido bug visual ao errar senha (aluno)"
+      },
+      {
+        "type": "improvement",
+        "description": "Melhorado forma de cadastro em massa de alunos (coordenador)"
+      }
+    ]
+  },
+  {
     "version": "1.1",
     "date": "10/03/2025",
     "author": "Marcilio Ortiz Barbosa",
