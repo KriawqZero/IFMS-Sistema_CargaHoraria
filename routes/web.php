@@ -26,6 +26,12 @@ Route::get('/notas-de-atualizacao', function() {
     ]);
 })->middleware([VerifyAuth::class . ':all'])->name('notas-de-atualizacao');
 
+Route::get('/ajuda', function() {
+    return view('ajuda.index', [
+        'titulo' => 'Ajuda - Login',
+    ]);
+})->name('ajuda');
+
 Route::name('reports.')->prefix('reports')->group(function() {
     Route::middleware([VerifyAuth::class . ':all'])->group(function() {
         Route::get('/', [FeedbackController::class, 'index'])->name('index');
