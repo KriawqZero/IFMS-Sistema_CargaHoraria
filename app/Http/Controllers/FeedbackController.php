@@ -17,11 +17,7 @@ class FeedbackController extends Controller {
         // Validação dos campos obrigatórios
         $request->validate([
             'tipo' => 'required|in:bug,sugestao',
-            'emailUsuario' => 'required|email',
             'descricao' => 'required|string',
-            'passosReproducao' => 'nullable|string',
-            'navegador' => 'nullable|string',
-            'sistemaOperacional' => 'nullable|string',
             'anexos.*' => 'nullable|file|max:10240', // Máximo de 10MB por arquivo
         ]);
 
@@ -29,11 +25,7 @@ class FeedbackController extends Controller {
             // Preparar os dados para enviar à API
             $data = [
                 'tipo' => $request->tipo,
-                'emailUsuario' => $request->emailUsuario,
                 'descricao' => $request->descricao,
-                'passosReproducao' => $request->passosReproducao,
-                'navegador' => $request->navegador,
-                'sistemaOperacional' => $request->sistemaOperacional,
                 'prioridade' => $request->tipo === 'bug' ? 'alta' : null,
             ];
 

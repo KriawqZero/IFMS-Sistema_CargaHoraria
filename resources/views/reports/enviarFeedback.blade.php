@@ -12,7 +12,7 @@
       <form class="mt-8 space-y-6" action="{{ route('reports.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div class="grid grid-cols-1 gap-6">
           <!-- Tipo (Obrigatório) -->
           <div>
             <label class="block text-sm font-medium text-gray-700">
@@ -26,17 +26,8 @@
             </select>
           </div>
 
-          <!-- Email (Obrigatório) -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">
-              Email <span class="text-red-500">*</span>
-            </label>
-            <input type="email" name="emailUsuario" value="{{ old('emailUsuario') }}" required
-              class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
-          </div>
-
           <!-- Descrição (Obrigatório) -->
-          <div class="md:col-span-2">
+          <div>
             <label class="block text-sm font-medium text-gray-700">
               Descrição <span class="text-red-500">*</span>
             </label>
@@ -44,8 +35,8 @@
               class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">{{ old('descricao') }}</textarea>
           </div>
 
-          <!-- Anexos -->
-          <div class="md:col-span-2" x-data="fileUpload()">
+          <!-- Anexos (Opcional) -->
+          <div x-data="fileUpload()">
             <label class="block text-sm font-medium text-gray-700">
               Anexos (Máximo 10 arquivos)
             </label>
@@ -102,25 +93,6 @@
             </div>
 
             <div class="mt-2 text-sm text-gray-500" x-text="`${files.length}/10 arquivos selecionados`"></div>
-          </div>
-
-          <!-- Outros campos -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Navegador</label>
-            <input type="text" name="navegador" value="{{ old('navegador') }}"
-              class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Sistema Operacional</label>
-            <input type="text" name="sistemaOperacional" value="{{ old('sistemaOperacional') }}"
-              class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">
-          </div>
-
-          <div class="md:col-span-2">
-            <label class="block text-sm font-medium text-gray-700">Passos para Reprodução</label>
-            <textarea name="passosReproducao" rows="3"
-              class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm">{{ old('passosReproducao') }}</textarea>
           </div>
         </div>
 
