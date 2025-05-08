@@ -20,12 +20,12 @@ class AuthService {
         $cpf = $data['CPF'] ?? $data['cpf'];
         // Tratamento do nome para capitalização e remoção do sufixo do curso
         $nome = $data['nome'] ?? 'Nome não informado';
-        
+
         // Verifica se o nome não está vazio
         if ($nome !== 'Nome não informado') {
             // Converte para minúsculo e depois capitaliza cada palavra
             $nome = mb_convert_case(mb_strtolower($nome), MB_CASE_TITLE, 'UTF-8');
-            
+
             // Remove o último "nome" (curso do aluno) que sempre está no final
             $partes = explode(' ', trim($nome));
             if (count($partes) > 1) {
@@ -33,11 +33,11 @@ class AuthService {
                 array_pop($partes);
                 $nome = implode(' ', $partes);
             }
-            
+
             // Remove espaços extras
             $nome = trim($nome);
         }
-        
+
         // Atualiza o nome nos dados
         $data['nome'] = $nome;
         return Aluno::updateOrCreate(

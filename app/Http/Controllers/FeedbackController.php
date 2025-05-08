@@ -26,6 +26,7 @@ class FeedbackController extends Controller {
             $data = [
                 'tipo' => $request->tipo,
                 'descricao' => $request->descricao,
+                'emailUsuario' => "exemplo@preguica.com",
                 'prioridade' => $request->tipo === 'bug' ? 'alta' : null,
             ];
 
@@ -52,6 +53,7 @@ class FeedbackController extends Controller {
             if ($response->successful()) {
                 return redirect()->back()->with('success', 'Feedback enviado com sucesso!');
             } else {
+                dd($response->json());
                 return redirect()->back()->with('error', 'Erro ao enviar feedback. Tente novamente.');
             }
         } catch (\Exception $e) {
