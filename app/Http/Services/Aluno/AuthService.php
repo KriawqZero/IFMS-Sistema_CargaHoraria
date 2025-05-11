@@ -67,12 +67,12 @@ dd($response);
             throw new \Exception('Falha na comunicação com o serviço de autenticação');
         }
 
-        if ($response->json()['status'] == 'false') {
+        if ($response->json()['status'] == false) {
             throw new \Exception('CPF ou Senha incorretos.');
         }
-        else if ($response->json()['status'] == false) {
+        /*else if ($response->json()['status'] == false) {
             throw new \Exception('CPF ou Senha incorretos.');
-        }
+        }*/
 
         return $response->json();
     }
