@@ -66,7 +66,7 @@ dd($response);
         if (!$response->successful()) {
             throw new \Exception('Falha na comunicação com o serviço de autenticação');
         }
-
+dd($response);
         if ((isset($response->json()['status']) && $response->json()['status'] == false)
         || (isset($response->json()['status']) && $response->json()['status'] == 'false')) {
             throw new \Exception('CPF ou Senha incorretos.');
