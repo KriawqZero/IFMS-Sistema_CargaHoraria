@@ -8,7 +8,7 @@ class AuthService {
     public function authenticate(array $credentials): Aluno {
         [$cpf, $senha] = [$this->normalizeCpf($credentials['cpf']), $credentials['senha']];
         $response = $this->callApi($cpf, $senha);
-
+dd($response);
         return $this->updateOrCreateAluno($response);
     }
 
