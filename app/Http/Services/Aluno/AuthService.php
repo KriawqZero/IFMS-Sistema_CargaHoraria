@@ -63,12 +63,14 @@ dd($response);
             'Accept' => 'application/json',
         ])->post($url, $campos);
 
-        if (!$response->successful()) {
+        if (!$response->successful() || !isset($response->json()['status'])) {
             throw new \Exception('Falha na comunicação com o serviço de autenticação');
         }
-dd($response);
-        if ((isset($response->json()['status']) && $response->json()['status'] == false)
-        || (isset($response->json()['status']) && $response->json()['status'] == 'false')) {
+
+        if ($response->json()['status'] == 'false') {
+            throw new \Exception('CPF ou Senha incorretos.');
+        }
+        else if ($response->json()['status'] == false) {
             throw new \Exception('CPF ou Senha incorretos.');
         }
 
