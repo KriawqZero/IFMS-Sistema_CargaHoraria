@@ -86,9 +86,12 @@ class AlunoController extends Controller {
             return redirect()->route('aluno.dashboard');
         }
         catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e);
             return back()->withErrors($e->errors())->withInput();
         }
         catch (\Exception $e) {
+            
+            dd($e);
             return back()->withErrors(['message' => $e->getMessage()])->withInput();
         }
     }
