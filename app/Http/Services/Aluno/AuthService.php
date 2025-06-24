@@ -63,7 +63,6 @@ class AuthService {
             'Accept' => 'application/json',
         ])->post($url, $campos);
 
-        dd($response);
         if (!$response->successful() || !isset($response->json()['status'])) {
             throw new \Exception('Falha na comunicação com o serviço de autenticação');
         }
