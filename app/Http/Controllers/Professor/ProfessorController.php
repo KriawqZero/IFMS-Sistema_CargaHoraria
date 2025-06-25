@@ -21,7 +21,6 @@ class ProfessorController extends Controller {
      * @return \Illuminate\View\View
      */
     public function showLoginForm() {
-        dd("ue");
         return view('professor/login', [
             'titulo' => 'Login Professor',
         ]);
