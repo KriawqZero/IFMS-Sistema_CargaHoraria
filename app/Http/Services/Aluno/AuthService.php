@@ -8,7 +8,7 @@ class AuthService {
     public function authenticate(array $credentials): Aluno {
         [$cpf, $senha] = [$this->normalizeCpf($credentials['cpf']), $credentials['senha']];
         $response = $this->callApi($cpf, $senha);
-        
+
         return $this->updateOrCreateAluno($response);
     }
 
@@ -67,7 +67,7 @@ class AuthService {
             throw new \Exception('Falha na comunicação com o serviço de autenticação');
         }
 
-        if ($response->json()['status'] == false) {
+        if ($response->json()['status'] === false) {
             throw new \Exception('CPF ou Senha incorretos.');
         }
         /*else if ($response->json()['status'] == false) {
