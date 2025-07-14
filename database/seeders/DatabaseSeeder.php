@@ -27,9 +27,8 @@ class DatabaseSeeder extends Seeder {
 
         Curso::factory(2)->create();
 
-        Turma::factory(5)->create();
-
-
+        Turma::factory(3)->create();
+        
         // Alunos fictícios para apresentação do TCC
         Aluno::create([
             'cpf' => '00000000000',
@@ -37,37 +36,76 @@ class DatabaseSeeder extends Seeder {
             'turma_id' => 1,
         ]);
 
-
-        // Alunos fictícios para apresentação do TCC
         Aluno::create([
+            'nome' => 'Maria Oliveira',
             'cpf' => '11111111111',
             'foto_src' => 'default-profile.svg',
             'turma_id' => 1,
         ]);
-
+        
         Aluno::create([
+            'nome' => 'Pedro Santos',
             'cpf' => '22222222222',
             'foto_src' => 'default-profile.svg',
             'turma_id' => 2,
         ]);
-
+        
         Aluno::create([
+            'nome' => 'Ana Costa',
             'cpf' => '33333333333',
             'foto_src' => 'default-profile.svg',
             'turma_id' => 3,
         ]);
-
+        
         Aluno::create([
+            'nome' => 'Lucas Pereira',
             'cpf' => '44444444444',
             'foto_src' => 'default-profile.svg',
             'turma_id' => 4,
         ]);
-
+        
         Aluno::create([
+            'nome' => 'Carla Rodrigues',
             'cpf' => '55555555555',
             'foto_src' => 'default-profile.svg',
             'turma_id' => 5,
         ]);
+        
+        Aluno::create([
+            'nome' => 'Marcos Almeida',
+            'cpf' => '66666666666',
+            'foto_src' => 'default-profile.svg',
+            'turma_id' => 6,
+        ]);
+        
+        Aluno::create([
+            'nome' => 'Fernanda Lima',
+            'cpf' => '77777777777',
+            'foto_src' => 'default-profile.svg',
+            'turma_id' => 7,
+        ]);
+        
+        Aluno::create([
+            'nome' => 'Rafael Martins',
+            'cpf' => '88888888888',
+            'foto_src' => 'default-profile.svg',
+            'turma_id' => 8,
+        ]);
+        
+        Aluno::create([
+            'nome' => 'Juliana Rocha',
+            'cpf' => '99999999999',
+            'foto_src' => 'default-profile.svg',
+            'turma_id' => 9,
+        ]);
+        
+        Aluno::create([
+            'nome' => 'Cauã Maciel',
+            'cpf' => '00000000000',
+            'foto_src' => 'default-profile.svg',
+            'turma_id' => 10,
+        ]);
+
 
         Categoria::create([
             'nome' => 'Unidades curriculares optativas/eletivas',
@@ -94,6 +132,6 @@ class DatabaseSeeder extends Seeder {
             'limite_horas' => 80,
         ]);
 
-        Certificado::factory(50)->create();
+        Certificado::factory(60)->create();
     }
 }
